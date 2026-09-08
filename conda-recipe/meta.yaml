@@ -74,7 +74,7 @@ test:
     - pip
 
 about:
-  home: https://github.com/IBM/QBioCode
+  home: https://github.com/qiskit-community/QBioCode
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
@@ -91,8 +91,8 @@ about:
     - Data Generation: Create artificial datasets with controlled complexity
     - Quantum ML Support: QSVC, PQK, VQC, QNN implementations
     - Classical ML Baselines: RF, SVM, LR, DT, NB, MLP, XGBoost
-  doc_url: https://ibm.github.io/QBioCode/
-  dev_url: https://github.com/IBM/QBioCode
+  doc_url: https://qiskit-community.github.io/QBioCode/
+  dev_url: https://github.com/qiskit-community/QBioCode
 
 extra:
   recipe-maintainers:

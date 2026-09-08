@@ -157,7 +157,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
-        python-version: '3.10'
+        # 3.12, not 3.10, because the [docs] extra pins `sphinx<9` --
+        # better_apidoc imports `get_documenter`, which Sphinx 9 renamed -- and
+        # Sphinx 8.2 requires Python >= 3.11. On 3.10 that pin silently resolves
+        # to Sphinx 8.1.3 instead: a different toolchain from the one this build
+        # is verified against, picked by pip's backtracking rather than by
+        # anyone. The supported-Python floor is asserted by the test matrix
+        # above; this job only has to build the site reproducibly.
+        python-version: '3.12'
         cache: 'pip'
     
     - name: Install dependencies
@@ -187,7 +194,7 @@ jobs:
         path: docs/build/html/
 
   # Publishes the built HTML to the gh-pages branch, which is what
-  # https://ibm.github.io/QBioCode serves (Pages source = "Deploy from a branch",
+  # https://qiskit-community.github.io/QBioCode serves (Pages source = "Deploy from a branch",
   # branch gh-pages). peaceiris/actions-gh-pages is used rather than
   # actions/deploy-pages because the latter requires flipping the repository's
   # Pages source to "GitHub Actions"; pushing the branch keeps the existing

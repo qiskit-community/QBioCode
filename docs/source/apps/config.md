@@ -12,7 +12,7 @@ QProfiler uses YAML configuration files to define:
 - Train/test split configuration
 - Model hyperparameters
 
-An example configuration file can be found at [`qbiocode/apps/qprofiler/configs/config.yaml`](https://github.com/IBM/QBioCode/blob/main/qbiocode/apps/qprofiler/configs/config.yaml).
+An example configuration file can be found at [`qbiocode/apps/qprofiler/configs/config.yaml`](https://github.com/qiskit-community/QBioCode/blob/main/qbiocode/apps/qprofiler/configs/config.yaml).
 
 ## Quick Start
 

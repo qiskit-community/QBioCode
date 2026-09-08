@@ -17,7 +17,7 @@ QSage is an intelligent meta-learning system that predicts which machine learnin
     **Key Advantage**: QSage uses the same data complexity measures computed by :doc:`QProfiler <profiler>` to make predictions. This creates a powerful workflow: QProfiler characterizes your data, and QSage recommends the best models based on those characteristics.
 
 .. note::
-    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://ibm.github.io/QBioCode/installation.html>`_ guide.
+    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://qiskit-community.github.io/QBioCode/installation.html>`_ guide.
 
 How QSage Works
 ===============
@@ -347,7 +347,7 @@ For a complete walkthrough with visualizations and analysis, see the interactive
 .. toctree::
    :maxdepth: 1
    
-   QSage Tutorial Notebook <https://github.com/IBM/QBioCode/blob/main/tutorial/QSage/qsage.ipynb>
+   QSage Tutorial Notebook <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QSage/qsage.ipynb>
 
 The tutorial covers:
    - Loading and preparing QProfiler data

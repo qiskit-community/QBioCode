@@ -29,13 +29,13 @@ Instructors
 -----------
 
 **Aritra Bose** — Staff Research Scientist, IBM  
-`Profile <https://research.ibm.com/people/aritra-bose>`_
+`Profile <https://research.ibm.com/people/aritra-bose>`__
 
 **Filippo Utro** — Senior Research Scientist, IBM  
-`Profile <https://research.ibm.com/people/filippo-utro>`_
+`Profile <https://research.ibm.com/people/filippo-utro>`__
 
 **Laxmi Parida** — IBM Fellow  
-`Profile <https://research.ibm.com/people/laxmi-parida>`_
+`Profile <https://research.ibm.com/people/laxmi-parida>`__
 
 ----
 
@@ -58,7 +58,7 @@ Prerequisites
 - Create an account: `IBM Quantum <https://quantum.ibm.com/lab>`_
 - (Optional) `Qiskit Summer School QML <https://www.youtube.com/playlist?list=PLOFEBzvs-VvqJwybFxkTiDzhf5E11p8BI>`_
 - Basic ML and multi-omics knowledge
-- Review `QBioCode <https://github.com/IBM/QBioCode>`_
+- Review `QBioCode <https://github.com/qiskit-community/QBioCode>`_
 
 **Set up the environment (do this before the workshop)**
 
@@ -69,7 +69,7 @@ importable inside the notebooks — a plain ``pip install -r requirements.txt`` 
 
 .. code-block:: bash
 
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
 
    # create an isolated environment (venv or conda), e.g.
@@ -122,7 +122,7 @@ Session I — Foundations (09:00–10:45)
       - `Intro to Quantum <../_static/workshops/Intro2026.pdf>`_ 
       - `QML Overview <../_static/workshops/QML.pdf>`_
    - 💻 Notebook: `Intro to Qiskit <../_static/workshops/IntrotoQiskit.ipynb>`_
-   - 📘 Background: `Quantum Machine Learning <https://ibm.github.io/QBioCode/background.html>`_
+   - 📘 Background: `Quantum Machine Learning <https://qiskit-community.github.io/QBioCode/background.html>`_
 
 .. dropdown:: 3. Data complexity measures (09:45–10:15)
    :icon: graph
@@ -132,7 +132,7 @@ Session I — Foundations (09:00–10:45)
    **Materials**
 
    - 📄 Slides: `Characterizing Data Complexity in Machine Learning <../_static/workshops/datacomplex.pdf>`_
-   - 📘 Background: `Data complexity documentation <https://ibm.github.io/QBioCode/apps/profiler.html#data-complexity-measures>`_
+   - 📘 Background: `Data complexity documentation <https://qiskit-community.github.io/QBioCode/apps/profiler.html#data-complexity-measures>`_
 
 .. dropdown:: 4. QBioCode application setup (10:15–10:45) — 🖐️ Hands-on
    :icon: play
@@ -153,8 +153,8 @@ Session I — Foundations (09:00–10:45)
    **Materials**
 
    - 📄 Slides: `QBC <../_static/workshops/qbiocode.pdf>`_
-   - 🔗 Code & install instructions: `<https://github.com/IBM/QBioCode>`_
-   - 📘 Documentation: `QBioCode docs <https://ibm.github.io/QBioCode/>`_
+   - 🔗 Code & install instructions: `<https://github.com/qiskit-community/QBioCode>`_
+   - 📘 Documentation: `QBioCode docs <https://qiskit-community.github.io/QBioCode/>`_
 
 ----
 
@@ -172,11 +172,11 @@ Session II — QBioCode Applications (11:00–13:00)
 
    **Materials**
 
-   - 💻 Notebook: `Tutorial QProfiler <https://github.com/IBM/QBioCode/blob/main/tutorial/QProfiler/example_qprofiler.ipynb>`_
+   - 💻 Notebook: `Tutorial QProfiler <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QProfiler/example_qprofiler.ipynb>`_
    - 📄 Slides: `QBC <../_static/workshops/qbiocode.pdf>`_
    - 📘 Documentation: 
-      - `QProfiler <https://ibm.github.io/QBioCode/apps/profiler.html>`_ 
-      - `Configuration Guide <https://ibm.github.io/QBioCode/apps/config.html>`_
+      - `QProfiler <https://qiskit-community.github.io/QBioCode/apps/profiler.html>`_ 
+      - `Configuration Guide <https://qiskit-community.github.io/QBioCode/apps/config.html>`_
 
 
 .. dropdown:: 2. QBioCode Module I: Quantum Projection Learning (11:45–12:15)  — 🖐️ Hands-on
@@ -186,10 +186,10 @@ Session II — QBioCode Applications (11:00–13:00)
 
    **Materials**
 
-   - 💻 Notebook: `Tutorial QPL <https://github.com/IBM/QBioCode/blob/main/tutorial/Quantum_Projection_Learning/QPL_example.ipynb>`_
-   - 💻 Notebook: `Tutorial QPL for omics <https://ibm.github.io/QBioCode/tutorials/PQK%20-%20OV.html>`_
+   - 💻 Notebook: `Tutorial QPL <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/Quantum_Projection_Learning/QPL_example.ipynb>`_
+   - 💻 Notebook: `Tutorial QPL for omics <https://qiskit-community.github.io/QBioCode/tutorials/PQK%20-%20OV.html>`_
    - 📄 Slides: `QPL for antibiotic resistance  <../_static/workshops/QPL_antibody.pdf>`_
-   - 📘 Documentation: `QPL <https://ibm.github.io/QBioCode/tutorials/Quantum_Projection_Learning/QPL_example.html>`_
+   - 📘 Documentation: `QPL <https://qiskit-community.github.io/QBioCode/tutorials/Quantum_Projection_Learning/QPL_example.html>`_
 
 
 .. dropdown:: 3. QBioCode Module II: Quantum ensemble methods (12:15–13:00)  — 🖐️ Hands-on
@@ -199,9 +199,9 @@ Session II — QBioCode Applications (11:00–13:00)
 
    **Materials**
 
-   - 💻 Notebook: `Tutorial QEnsemble <https://github.com/IBM/QBioCode/blob/main/tutorial/QEnsemble/QEnsemble_example_blobs.ipynb>`_
-   - 📄 Slides: `QEnsemble <../_static/workshops/QEnsemble_slides.pdf>`_
-   - 📘 Documentation: `QEnsemble <https://ibm.github.io/QBioCode/tutorials/QEnsemble/QEnsemble_example_blobs.html>`_
+   - 💻 Notebook: `Tutorial QEnsemble <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QEnsemble/QEnsemble_example_blobs.ipynb>`_
+   - 📄 Slides: `QEnsemble <../_static/workshops/QEnsemble_slides.pdf>`__
+   - 📘 Documentation: `QEnsemble <https://qiskit-community.github.io/QBioCode/tutorials/QEnsemble/QEnsemble_example_blobs.html>`__
 
 ----
 
@@ -331,7 +331,7 @@ Session IV — Hands-on + Discussion (16:15–18:00)
 Materials
 ---------
 
-- GitHub: `QBioCode <https://github.com/IBM/QBioCode>`_
+- GitHub: `QBioCode <https://github.com/qiskit-community/QBioCode>`_
 
 ----
 

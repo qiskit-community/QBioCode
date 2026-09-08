@@ -1,23 +1,44 @@
 
-data_path: /dccstor/boseukb/Q/NetMed/Aug21/GWAS_NetworkPropagation/processed_data
+# ------------------------------------------------------------
+# Input data (Hydra pipeline only)
+# ------------------------------------------------------------
+# This file ships inside the wheel as the default config, so every path in it is
+# relative: it used to name an absolute /dccstor/... research filesystem, which
+# no installed copy could resolve. Relative paths are read from the working
+# directory you launch from -- point data_path at your own layout, or pass
+# `--config my_config.yaml` to the `quvine` CLI.
+#
+# data_path/, graph.* and disease.* are read only by the Hydra research pipeline
+# (`python -m qbiocode.apps.quvine.main`), which expects the layout below. The
+# `quvine` CLI and the `embed()` API take their graph from the caller and ignore
+# these three sections entirely:
+#
+#   ${data_path}/networks/<graph.name>/edges_list_ncbi.csv
+#   ${data_path}/gwas_gene_pvals/<disease.name>/filtered_ncbi_PEGASUS_<disease.name>_gwas_data.csv
+#   ${data_path}/gene_seeds/<disease.name>_ncbi_seeds.json
+#   ${data_path}/gwas_catalog_targets/<disease.name>_targets_gene2ncbi.json
+data_path: ./data
 
 graph:
-  name: ProteomeHD
+  name: my_network
   path: ${data_path}/networks/${graph.name}/edges_list_ncbi.csv
   
 #walker: rwr
 
 disease: 
-  name: autism
+  name: my_phenotype
 
 # ------------------------------------------------------------
 # Project / runtime
 # ------------------------------------------------------------
 runtime:
   name: qune
+  # ${now:...} is a Hydra resolver, so it only interpolates under `main.py`. The
+  # embed() API never reads run_name, and OmegaConf resolves lazily, so loading
+  # this file outside Hydra is fine as long as nothing asks for it.
   run_name: ${now:%Y-%m-%d_%H-%M-%S}
-  run_dir: ProteomeHD
-  output_dir: /dccstor/boseukb/Q/NetMed/qnetbio/outputs/${runtime.run_dir}/${runtime.run_name}
+  run_dir: ${graph.name}
+  output_dir: ./outputs/${runtime.run_dir}/${runtime.run_name}
   n_jobs: 16
   chunk_size: 30
 

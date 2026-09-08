@@ -157,6 +157,10 @@ def test_the_makefile_treats_warnings_as_errors():
         "index.html",
         "installation.html",
         "tutorials.html",
+        # A generated page: conf.py copies tutorial/ into docs/source/tutorials/
+        # at builder-inited. If that hook breaks, every tutorial link on the site
+        # 404s, and without this the build still "succeeds".
+        "tutorials/QuVINE/example_quvine.html",
         "apps/quvine.html",
         "api/qbiocode.evaluation.html",
     ],

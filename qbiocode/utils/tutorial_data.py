@@ -14,23 +14,23 @@
 
 """Locate the fixture files the tutorial notebooks read.
 
-The tutorials live in two parallel trees -- ``tutorial/`` (runnable copies) and
-``docs/source/tutorials/`` (the copies Sphinx renders) -- and their fixtures are
-spread across three directories, because several of them are shared between
-notebooks and are deliberately committed only once:
+The notebooks live in one tree, ``tutorial/``, but their fixtures are spread
+across three directories inside it, because several are shared between notebooks
+and are deliberately committed only once:
 
-===================================== ===========================================
-``tutorial/QuVINE/datasets/``         the graph benchmarks (``pbmc5k_graph_*``)
-                                      and the balanced per-task subsets
-``tutorial/QProfiler/data/``          ``pbmc5k_small_cd4_vs_cd8.h5ad`` and the
-                                      ``sc_binary/*.csv`` exports
-``docs/source/tutorials/QProfiler/``  the same, for the rendered docs
-``docs/source/tutorials/QSage/data/`` ``qprofiler_benchmarks.csv``, the QProfiler
-                                      results table QSage trains on. Committed
-                                      under ``docs/`` because ``tutorial/**/data/``
-                                      is gitignored as run output, and read from
-                                      both trees through this resolver.
-===================================== ===========================================
+============================= ===================================================
+``tutorial/QuVINE/datasets/`` the graph benchmarks (``pbmc5k_graph_*``) and the
+                              balanced per-task subsets
+``tutorial/QProfiler/data/``  ``pbmc5k_small_cd4_vs_cd8.h5ad`` and the
+                              ``sc_binary/*.csv`` exports
+``tutorial/QSage/data/``      ``qprofiler_benchmarks.csv``, the QProfiler results
+                              table QSage trains on
+============================= ===================================================
+
+A notebook cannot simply read ``./data``, then: the file it needs may belong to a
+sibling notebook's directory. It also cannot read the copy Sphinx renders --
+``docs/source/tutorials/`` is generated from this tree at build time *without* the
+fixtures, since ``nbsphinx_execute = 'never'`` means nothing runs there.
 
 Every notebook previously derived its own path with
 
@@ -72,9 +72,7 @@ logger = logging.getLogger(__name__)
 REPO_DATA_DIRS = (
     ("tutorial", "QuVINE", "datasets"),
     ("tutorial", "QProfiler", "data"),
-    ("docs", "source", "tutorials", "QProfiler", "data"),
-    ("docs", "source", "tutorials", "QuVINE", "datasets"),
-    ("docs", "source", "tutorials", "QSage", "data"),
+    ("tutorial", "QSage", "data"),
 )
 
 #: Directories relative to the *current working directory*, which for a notebook
@@ -241,6 +239,6 @@ def tutorial_data_path(filename, search_dirs=None):
         f"Point {DATA_ENV_VAR} at the directory holding it "
         f"(export {DATA_ENV_VAR}=/path/to/datasets), run the notebook from a "
         f"QBioCode checkout, or regenerate the fixtures with the preprocessing "
-        f"tutorial (docs/source/tutorials/Preprocessing/sc-qc.ipynb), which "
+        f"tutorial (tutorial/Preprocessing/sc-qc.ipynb), which "
         f"writes every pbmc5k_* file from the raw 10x matrix."
     )

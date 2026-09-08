@@ -199,7 +199,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`deploy-docs` job** in `.github/workflows/ci.yml`. On a push to `main` it downloads
   the HTML the `docs` job already built and publishes it to the `gh-pages` branch that
-  https://ibm.github.io/QBioCode serves, writing `.nojekyll` first so Pages does not
+  https://qiskit-community.github.io/QBioCode serves, writing `.nojekyll` first so Pages does not
   discard Sphinx's `_static/`, `_images/`, `_sources/` and `_modules/` directories. The
   site was previously updated by committing the rendered output into the repository and
   copying it across by hand. `peaceiris/actions-gh-pages` is used rather than
@@ -313,6 +313,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   default that nothing filled in — the defect only appears when all the call sites are read
   together. Replayed against the pre-fix tree it reports eight offenders; against this one,
   none.
+
+- **QuVINE documentation at QProfiler/QSage parity.** The QuVINE app page was 199 lines
+  against `profiler.rst`'s 974 and linked 2 of its 4 notebooks.
+  - `docs/source/apps/quvine.rst` gains **How QuVINE Works** (the view → walk → corpus →
+    SGNS → fusion pipeline, with a stage-by-stage reading of `pipeline.py`), a
+    **command-line flag table**, an **Outputs** section naming every file a run writes and
+    every key in `embedding_meta.json`, a **Configuration** section, and links to all four
+    QuVINE notebooks instead of two.
+  - New page `docs/source/apps/quvine_config.md` documents the 314-line shipped config
+    section by section — and, first of all, **which of the three entry points reads which
+    sections**. `embed()` and the `quvine` CLI read `views`, `walks`, `train`, `min_count`,
+    `fusion` and `experiment.base_seed`; `data_path`, `graph`, `disease`, `runtime`,
+    `preprocess`, `baselines`, `analysis` and `evaluation` are the Hydra research
+    pipeline's alone. It also records the `${now:...}` Hydra-only resolver, the
+    `preprocess.subgraph` → `preprocess.subsample` schema migration, and the six supported
+    `fusion.method` values (`concatenate` is not one, despite appearing in older configs).
+  - New `:ref:`graph-complexity-measures`` section grouping all 88 `evaluate_graph`
+    columns by family — Laplacian spectrum, eigenvector localization, diffusion and walk
+    spectra, quantum composites, paths, degree/centrality concentration, community,
+    Ollivier-Ricci curvature, effective resistance, persistent homology, label-aware —
+    the graph analogue of `profiler.rst`'s `:ref:`data-complexity-measures``, and
+    cross-linked from `apps.rst` and `tutorials.md`.
+  - `README.md` gains a QuVINE Applications subsection, and its tutorial list goes from
+    5 entries to the 12 the site actually publishes.
 
 ### Changed
 - **Code Formatting**: Applied consistent code style across entire codebase
@@ -430,6 +454,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   renaming them would break callers and any saved result CSV for a wording change.
 
 ### Fixed
+
+#### 🚧 The documentation site had not been rebuilt since 12 July
+- **`deploy-docs` was never reached.** The job is correct and correctly gated
+  (`push` to `main`, never on a pull request), but it declares `needs: docs` -- and the
+  `docs` job had been failing on every push to `main`. GitHub therefore *skipped* the
+  deploy rather than failing it, which is the quiet kind of broken: CI showed a red X
+  attributed to a docs warning while the published site silently stayed months behind.
+  `gh-pages` still carried a build whose commit message predates the job's own message
+  template, so nothing that job produced had ever been published.
+- **The `docs` job failed on six warnings, not on anything structural.** `docs/Makefile`
+  passes `-W --keep-going`, so any warning is fatal: three malformed docstring
+  constructs surfacing in generated `api/` pages, and three duplicate link targets in
+  `docs/source/workshops/ISMB_2026.rst` where named references (`` `Profile <...>`_ ``)
+  repeated the same label. The workshop links are now anonymous (`` `...`__ ``), which is
+  what a repeated label requires.
+- **The docs job built on a Python the pinned Sphinx does not support.** It requested
+  3.10 while the `[docs]` extra pins `sphinx<9`; Sphinx 8.2 requires Python >= 3.11, so
+  on 3.10 pip quietly backtracked to Sphinx 8.1.3 -- a toolchain nobody had verified the
+  build against, selected by the resolver rather than chosen. That job now uses 3.12,
+  matching the other single-version jobs. The supported-Python floor is still asserted
+  by the test matrix, which is where it belongs.
+
+#### 🔗 Documentation URLs pointed at a repository that had moved
+- **The project moved from `IBM/QBioCode` to `qiskit-community/QBioCode`, and the old
+  Pages host stopped answering.** `https://ibm.github.io/QBioCode/` returns 404 -- a
+  transferred repository redirects on `github.com`, but its `github.io` Pages site does
+  not follow. 81 links across 28 files still named the old host or org, including the
+  GitHub button that the theme renders on every page of the site.
+- All of them now name `qiskit-community`. IBM remains where it is accurate: Apache
+  license headers, author affiliations, `research.ibm.com` profiles and IBM Quantum
+  references are untouched.
+- Five malformed links in `README.md` are repaired at the same time, all of them
+  reachable only by reading the rendered page: a missing `/` produced
+  `.../QBioCodeapps/sage.html`; a `[url(url)` typo rendered as literal text instead of a
+  link; the issue tracker was pointed at the Pages host, which does not serve `/issues`;
+  and a stray blank line split one sentence across a paragraph break.
+
+#### 🩹 `quvine` read an edge list's header row as an edge
+- **`quvine --edgelist` now recognizes and skips a header row.** `_load_graph` passed
+  `header=None` to `pd.read_csv`, so the `source,target` first line that the tool's own
+  `--help` and documentation both show was loaded as an edge between a node named
+  "source" and a node named "target". On the 34-node karate graph the run reported 34
+  nodes without the header and **36 with it**, embedded the two phantom nodes, and exited
+  0 either way — nothing in `embedding_meta.json` or on stderr said which had happened.
+  A header is now dropped and the fact reported on stderr.
+- Detection matches a **closed set of conventional column names** (`source`/`target`,
+  `from`/`to`, `gene1`/`gene2`, `node_a`/`node_b`, ...), both fields required, rather than
+  sniffing. Every heuristic considered has a failure mode that is worse than the bug:
+  "row 0's endpoints appear nowhere else" deletes the first edge of a sparse matching, and
+  "row 0 is non-numeric" deletes the first edge of every string-labelled graph — and a
+  deleted real edge leaves no phantom node to notice. Single-letter names (`u`, `v`, `a`,
+  `b`) are deliberately excluded as plausible node labels.
+- New `--header {auto,yes,no}` forces the decision for anything the set does not cover.
+  A file containing only a header is now an error rather than an empty graph.
+
+#### 🩹 A nested `.. toctree::` swallowed the rest of its page
+- **`tests/test_docs_structure.py`'s toctree parser now ends a directive body where
+  reStructuredText does** — at the first non-blank line indented no further than the
+  directive — instead of only at column 0. That held for as long as every toctree in the
+  tree sat at column 0. Restoring `better_apidoc` broke it: the pages it generates indent
+  the whole body under one top-level `.. automodule::`, so nothing dedents to column 0,
+  and the parser ran to the end of the file yielding every `list-table` row as a toctree
+  entry — one of them a dataclass `__repr__` long enough to raise
+  `OSError: File name too long` when the existence check `stat()`ed it as a filename.
 
 #### 💥 Every XGBoost fit crashed the interpreter on macOS
 - **`import qbiocode` no longer loads `torch` before `xgboost`.** `xgboost` and `torch`
@@ -1318,8 +1406,8 @@ This is the first public release of QBioCode, a comprehensive framework for quan
 - Automated CI/CD pipelines
 - Ready for PyPI distribution and Zenodo archiving
 
-**Note**: This is an alpha release. APIs may change in future versions. Please report any issues on our [GitHub issue tracker](https://github.com/IBM/QBioCode/issues).
+**Note**: This is an alpha release. APIs may change in future versions. Please report any issues on our [GitHub issue tracker](https://github.com/qiskit-community/QBioCode/issues).
 
 ---
 
-[0.1.0]: https://github.com/IBM/QBioCode/releases/tag/v0.1.0
+[0.1.0]: https://github.com/qiskit-community/QBioCode/releases/tag/v0.1.0

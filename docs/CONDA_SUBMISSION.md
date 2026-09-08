@@ -12,7 +12,7 @@ QBioCode will be available through two conda channels:
 
 Before submitting, ensure:
 - ✅ Package is published on PyPI (https://pypi.org/project/qbiocode/)
-- ✅ GitHub repository is public (https://github.com/IBM/QBioCode)
+- ✅ GitHub repository is public (https://github.com/qiskit-community/QBioCode)
 - ✅ Package has a proper LICENSE file
 - ✅ Package has comprehensive documentation
 - ✅ All tests pass in CI/CD

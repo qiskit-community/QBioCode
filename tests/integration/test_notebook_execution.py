@@ -85,10 +85,14 @@ def test_the_notebook_executes(relative_path, tmp_path, monkeypatch):
         pytest.fail(f"{relative_path} failed to execute:\n{failure}")
 
 
+# One tree, not two. ``docs/source/tutorials/`` was a second copy of these same
+# notebooks and is now generated from ``tutorial/`` by ``conf.py`` at build time,
+# so it is absent on a clean checkout and a duplicate of every entry here after a
+# build -- either way, nothing to execute.
 ALL_NOTEBOOKS = sorted(
     str(path.relative_to(REPO_ROOT))
-    for directory in ("tutorial", "docs/source/tutorials")
-    for path in (REPO_ROOT / directory).rglob("*.ipynb")
+    for path in (REPO_ROOT / "tutorial").rglob("*.ipynb")
+    if ".ipynb_checkpoints" not in path.parts
 )
 
 # Notebooks whose committed outputs stop partway. Each would be listed with the

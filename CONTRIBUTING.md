@@ -320,11 +320,19 @@ View documentation at `docs/build/html/index.html`
 
 ### Adding Tutorials
 
-1. Create Jupyter notebook in `tutorial/` directory
-2. Copy to `docs/source/tutorials/` directory
-3. Update `docs/source/tutorials.md` with description
-4. Test notebook execution
-5. Commit both versions
+1. Create the Jupyter notebook in the `tutorial/` directory -- the single source.
+   Do **not** copy it into `docs/source/tutorials/`: that tree is generated from
+   `tutorial/` by `_sync_tutorials()` in `docs/source/conf.py` on every build, and
+   is gitignored. Hand-maintaining a second copy is exactly how the two trees
+   drifted before.
+2. Add it to the hidden toctree at the bottom of `docs/source/tutorials.md`, as
+   `tutorials/<subdir>/<name>`, and write its gallery entry in the same file.
+   A notebook that no toctree names becomes an orphan page, which fails the
+   `-W` docs build; `tests/test_docs_structure.py` catches it first.
+3. Read fixtures through `qbiocode.utils.tutorial_data_path("<file>")` rather than
+   a hand-built relative path, so the notebook runs from any working directory.
+4. Test notebook execution, and commit it with its outputs -- `nbsphinx_execute`
+   is `'never'`, so the committed outputs are what the site publishes.
 
 ## Testing
 

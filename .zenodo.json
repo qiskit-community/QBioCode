@@ -58,7 +58,7 @@
   ],
   "related_identifiers": [
     {
-      "identifier": "https://github.com/IBM/QBioCode",
+      "identifier": "https://github.com/qiskit-community/QBioCode",
       "relation": "isSupplementTo",
       "scheme": "url"
     },

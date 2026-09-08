@@ -30,7 +30,7 @@ QProfiler is a comprehensive tool that goes beyond simple model evaluation. It p
     **Binary Classification Focus**: QProfiler is currently optimized for **binary classification** tasks (2 classes). While multi-class classification is supported experimentally, results may vary and some metrics may not be fully optimized. For best results, use datasets with exactly 2 classes.
 
 .. note::
-    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://ibm.github.io/QBioCode/installation.html>`_ guide.
+    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://qiskit-community.github.io/QBioCode/installation.html>`_ guide.
 
 Usage
 =====
@@ -355,7 +355,7 @@ Matrix Properties
 .. admonition:: Key References
    :class: tip
    
-   - **Comprehensive Overview:** `Data Complexity slides <https://github.com/IBM/QBioCode/blob/Tutorial_ISMB25/ISMB2025/SessionII/DataComplexity/datacomplex.pdf>`_ from ISMB 2025 tutorial
+   - **Comprehensive Overview:** `Data Complexity slides <https://github.com/qiskit-community/QBioCode/blob/Tutorial_ISMB25/ISMB2025/SessionII/DataComplexity/datacomplex.pdf>`_ from ISMB 2025 tutorial
    - **Meta-Learning Context:** Lorena, A. C., et al. (2019). "How Complex is your classification problem? A survey on measuring classification complexity." *ACM Computing Surveys*, 52(5), 1-34.
 
 

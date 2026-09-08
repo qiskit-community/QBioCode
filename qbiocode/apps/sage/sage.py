@@ -971,7 +971,7 @@ def main():
         # Train with custom seed
         qsage --input data.csv --output results/ --seed 123
         
-        For more information, see: https://ibm.github.io/QBioCode/apps/sage.html
+        For more information, see: https://qiskit-community.github.io/QBioCode/apps/sage.html
                 """
     )
     

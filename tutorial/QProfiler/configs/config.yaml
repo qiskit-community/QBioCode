@@ -5,8 +5,8 @@ config_file_name: 'basic_config'
 
 # Directory holding the input CSVs. Relative paths resolve against the working
 # directory first, so 'data/ld_data' is the directory example_qprofiler.ipynb
-# generates next to itself -- which keeps this config correct from either the
-# tutorial/ or the docs/source/tutorials/ copy of the notebook.
+# generates next to itself -- which keeps this config correct wherever the
+# notebook is run from, including the generated copy under docs/.
 folder_path: 'data/ld_data'
 file_dataset: 'ALL'
 # or use a list as below, to only select a few datasets

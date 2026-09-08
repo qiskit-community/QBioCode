@@ -44,9 +44,9 @@ QuVINE (Quantum View-based Network Embeddings) turns a graph into low-dimensiona
 
 QuVINE's dependencies are optional, so install it with ``pip install "qbiocode[quvine]"``.
 
-Graph-complexity metrics are intentionally *not* part of the embedding app; they live in :func:`qbiocode.evaluate_graph` (``qbiocode.evaluation.graph_evaluation``).
+Graph-complexity metrics are intentionally *not* part of the embedding app; they live in :func:`qbiocode.evaluate_graph` (``qbiocode.evaluation.graph_evaluation``). All 88 of them are grouped and described under :ref:`Graph-Complexity Measures <graph-complexity-measures>`.
 
-See the :doc:`QuVINE documentation <apps/quvine>` for detailed usage instructions.
+See the :doc:`QuVINE documentation <apps/quvine>` for detailed usage instructions, and the :doc:`QuVINE Configuration Guide <apps/quvine_config>` for the shipped YAML config.
 
 .. toctree::
    :hidden:

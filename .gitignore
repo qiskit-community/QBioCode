@@ -47,9 +47,14 @@ docs/outputdir/*
 
 # Project specific (top-level scratch dirs only -- anchored with a leading
 # slash so they do not swallow committed fixtures such as
-# docs/source/tutorials/QProfiler/data/*.h5ad)
+# tutorial/QProfiler/data/*.h5ad)
 /results/
 /data/
+# archive/ holds pre-migration SLURM scripts and superseded copies of tutorial
+# notebooks. It was tracked in spite of MANIFEST.in already pruning it, so the
+# files shipped in no distribution and only made `git status` noisier. Untracked
+# (`git rm -r --cached archive`) and kept on disk.
+/archive/
 
 # Tutorial generated outputs
 tutorial/**/ModelResults.csv
@@ -63,14 +68,15 @@ tutorial/**/results.pkl
 tutorial/**/my_qsage_model.pkl
 tutorial/**/performance_summary_and_spearman_correlation_plots/
 # tutorial/**/data/ holds a mix: run artifacts (ld_data/, per-run CSVs) that must
-# stay out of git, and four *input* fixtures that are already tracked
-# (QProfiler/data/pbmc5k_small_cd4_vs_cd8.h5ad and QProfiler/data/sc_binary/*.csv).
-# Git honours the index over this pattern, so the tracked four keep versioning
+# stay out of git, and five *input* fixtures that are already tracked:
+#   QProfiler/data/pbmc5k_small_cd4_vs_cd8.h5ad
+#   QProfiler/data/sc_binary/*.csv                    (three matrices)
+#   QSage/data/qprofiler_benchmarks.csv               (read by qsage.ipynb)
+# Git honours the index over this pattern, so the tracked five keep versioning
 # normally; the rule only stops *new* files here from being added by accident.
 # A `!` re-include cannot rescue them -- git does not descend into an excluded
 # directory -- so if another fixture ever needs committing, add it with
-# `git add -f` and list it here, or put it under docs/source/tutorials/**/data/,
-# which is deliberately not ignored (see below).
+# `git add -f` and list it above.
 tutorial/**/data/
 tutorial/**/*.png
 tutorial/**/.ipynb_checkpoints/
@@ -80,8 +86,8 @@ tutorial/**/qpl_projections/
 # beside itself, then writes its results table there. Every byte is reproducible
 # from the URL in the notebook's own download cell, so none of it belongs in git --
 # and without these rules a reader's first run leaves ~300 MB of untracked files
-# that `git add -A` would happily commit. The results *.png is already covered by
-# the tutorial/**/*.png rule above.
+# that `git add -A` would happily commit. Its results *.png is covered by the
+# tutorial/**/*.png rule above.
 tutorial/**/OV/
 tutorial/**/ovarian.zip
 tutorial/**/PQK_OV_results.csv
@@ -91,28 +97,16 @@ tutorial/**/PQK_OV_results.csv
 !tutorial/**/configs/
 !tutorial/**/configs/*.yaml
 
-# Docs tutorial generated outputs (mirror of the tutorial/ rules above).
-# Notebooks under docs/source/tutorials are published with nbsphinx_execute =
-# 'never', so their run artifacts are never needed by the docs build.
-docs/source/tutorials/**/ModelResults.csv
-docs/source/tutorials/**/RawDataEvaluation.csv
-docs/source/tutorials/**/compiled_*.csv
-docs/source/tutorials/**/results.pkl
-docs/source/tutorials/**/my_qsage_model.pkl
-docs/source/tutorials/**/performance_summary_and_spearman_correlation_plots/
-docs/source/tutorials/**/*.png
-docs/source/tutorials/**/.ipynb_checkpoints/
-docs/source/tutorials/**/pqk_projections/
-
-# Deliberately NOT ignoring docs/source/tutorials/**/data/: unlike tutorial/,
-# that directory holds committed *input* fixtures (pbmc5k_small_cd4_vs_cd8.h5ad
-# and the sc_binary/*.csv matrices) which the published notebooks read.
-
-# Keep docs tutorial notebooks, configs, and committed figure assets
-!docs/source/tutorials/**/*.ipynb
-!docs/source/tutorials/**/configs/
-!docs/source/tutorials/**/configs/*.yaml
-!docs/source/tutorials/PQK_OV_results.png
+# docs/source/tutorials/ is GENERATED, not authored. `_sync_tutorials()` in
+# docs/source/conf.py copies the notebooks out of tutorial/ at build time, so the
+# tree that nbsphinx reads is a derived copy and nothing in it belongs in git.
+#
+# It used to be a hand-maintained second copy of tutorial/, which is exactly how
+# the two drifted: sc_binary_qprofiler.ipynb grew an ADT/protein modality on this
+# side only, qsage.ipynb's data fixture existed only on this side (so the
+# tutorial/ copy could not run), and two notebooks existed here and nowhere else.
+# tutorial/ is now the single source of truth.
+/docs/source/tutorials/
 
 # Generated locally by `pip freeze`; specific to one OS/arch/Python, so never
 # committed. See requirements/requirements.txt for the recipe.

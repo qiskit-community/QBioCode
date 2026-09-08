@@ -33,6 +33,7 @@ they run on a bare install.
 """
 
 import ast
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -224,6 +225,43 @@ def test_pyproject_declares_the_quvine_console_script_and_packaged_config():
     assert (QUVINE_ROOT / "cli.py").exists()
 
 
+@pytest.mark.parametrize(
+    "config",
+    sorted(
+        path.relative_to(REPO_ROOT).as_posix()
+        for path in (REPO_ROOT / "qbiocode").rglob("configs/*.yaml")
+    ),
+)
+def test_no_shipped_config_names_an_absolute_path(config):
+    """A packaged default must resolve on the machine that installed it.
+
+    ``qbiocode/apps/quvine/configs/config.yaml`` shipped in the wheel pointing
+    ``data_path`` and ``runtime.output_dir`` at ``/dccstor/boseukb/...`` -- an
+    internal research filesystem. It is the config the ``quvine`` CLI falls back
+    to when ``--config`` is omitted, so the default could not resolve for anyone
+    outside that cluster.
+
+    Parametrized over every shipped config rather than asserting on the one that
+    was wrong, because the next one will be added by copying this one.
+    """
+    text = (REPO_ROOT / config).read_text(encoding="utf-8")
+    offenders = []
+    for number, line in enumerate(text.splitlines(), start=1):
+        code = line.split("#", 1)[0]
+        if ":" not in code:
+            continue
+        value = code.split(":", 1)[1].strip().strip("'\"")
+        # A leading slash in a *value* is an absolute POSIX path; "C:\\..." is the
+        # Windows equivalent. Interpolations (${...}) and comments are not values.
+        if value.startswith("/") or re.match(r"^[A-Za-z]:[\\/]", value):
+            offenders.append(f"{config}:{number}: {line.strip()}")
+    assert not offenders, (
+        "absolute filesystem paths in a config that ships inside the wheel, so "
+        "the default cannot resolve on an installed copy:\n  "
+        + "\n  ".join(offenders)
+    )
+
+
 def test_torch_is_a_base_dependency_not_a_quvine_extra():
     """``qbiocode.embeddings`` imports torch eagerly, so it cannot be optional.
 
@@ -294,3 +332,83 @@ def test_documented_method_count_matches_the_code():
         text = (REPO_ROOT / relative).read_text()
         assert f"{total} named methods" in text or f"{total} method names" in text or \
             f"({total} in total)" in text, f"{relative} does not quote {total} methods"
+
+
+class TestTheEdgeListLoaderDropsAHeaderRow:
+    """A header row must not become two nodes and an edge that is not in the graph.
+
+    ``_load_graph`` read every row as an edge, so the ``source,target`` first line
+    that ``quvine --help`` and the QuVINE docs both show was loaded as an edge
+    between a node named "source" and a node named "target". On a 34-node karate
+    graph the run reported 34 nodes when the header was absent and 36 when it was
+    present, embedded the two phantom nodes, and exited 0 either way. Nothing in
+    the output said which had happened.
+
+    These import pandas and networkx, which are base dependencies, not part of the
+    ``[quvine]`` extra -- ``_load_graph`` deliberately imports them inside the
+    function so ``--help`` still works on a bare install.
+    """
+
+    @staticmethod
+    def _write(tmp_path, text):
+        path = tmp_path / "edges.csv"
+        path.write_text(text, encoding="utf-8")
+        return str(path)
+
+    def _load(self, path, **kwargs):
+        from qbiocode.apps.quvine.cli import _load_graph
+
+        return _load_graph(path, ",", False, **kwargs)
+
+    def test_a_conventional_header_is_dropped(self, tmp_path):
+        graph = self._load(self._write(tmp_path, "source,target\n0,1\n1,2\n"))
+        assert sorted(graph.nodes) == ["0", "1", "2"]
+
+    def test_a_file_without_a_header_is_unchanged(self, tmp_path):
+        graph = self._load(self._write(tmp_path, "0,1\n1,2\n"))
+        assert sorted(graph.nodes) == ["0", "1", "2"]
+
+    def test_other_conventional_spellings_are_recognized(self, tmp_path):
+        for first, second in [("from", "to"), ("gene1", "gene2"), ("Node_A", "node_b")]:
+            graph = self._load(self._write(tmp_path, f"{first},{second}\nx,y\n"))
+            assert sorted(graph.nodes) == ["x", "y"], f"{first},{second} not detected"
+
+    def test_real_node_names_are_never_mistaken_for_a_header(self, tmp_path):
+        """The rule is a closed set of names, not a heuristic, for exactly this.
+
+        A sniffing rule -- "row 0's endpoints appear nowhere else", or "row 0 is
+        non-numeric" -- silently deletes the first edge of a sparse
+        string-labelled graph. Deleting a real edge is worse than the bug being
+        fixed, because there is no phantom node to notice.
+        """
+        graph = self._load(self._write(tmp_path, "TP53,MDM2\nEGFR,KRAS\n"))
+        assert sorted(graph.nodes) == ["EGFR", "KRAS", "MDM2", "TP53"]
+        assert graph.number_of_edges() == 2
+
+    def test_header_yes_forces_the_drop(self, tmp_path):
+        graph = self._load(self._write(tmp_path, "TP53,MDM2\nEGFR,KRAS\n"), header="yes")
+        assert sorted(graph.nodes) == ["EGFR", "KRAS"]
+
+    def test_header_no_forces_the_row_to_be_read_as_an_edge(self, tmp_path):
+        graph = self._load(self._write(tmp_path, "source,target\n0,1\n"), header="no")
+        assert sorted(graph.nodes) == ["0", "1", "source", "target"]
+
+    def test_a_header_only_file_is_an_error_not_an_empty_graph(self, tmp_path):
+        import pytest
+
+        with pytest.raises(ValueError, match="only a header row"):
+            self._load(self._write(tmp_path, "source,target\n"))
+
+    def test_the_cli_exposes_the_override(self):
+        """``--header`` must exist, or the escape hatch is unreachable."""
+        tree = ast.parse((QUVINE_ROOT / "cli.py").read_text(encoding="utf-8"))
+        flags = {
+            node.args[0].value
+            for node in ast.walk(tree)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "add_argument"
+            and node.args
+            and isinstance(node.args[0], ast.Constant)
+        }
+        assert "--header" in flags

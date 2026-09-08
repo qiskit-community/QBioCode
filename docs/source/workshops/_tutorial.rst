@@ -104,7 +104,7 @@ Session III — Model Selection & Meta-learning
    Predict which ML models perform best using data complexity features.
 
    **Materials**
-   - 💻 Tutorial: `<https://ibm.github.io/QBioCode/tutorials/QSage/qsage.html>`_
+   - 💻 Tutorial: `<https://qiskit-community.github.io/QBioCode/tutorials/QSage/qsage.html>`_
    - 📄 Slides: TBD
 
 
@@ -117,7 +117,7 @@ Session III — Model Selection & Meta-learning
    - when quantum models outperform classical models  
 
    **Materials**
-   - 💻 Notebook: `<https://github.com/IBM/QBioCode/tree/main/tutorial>`_
+   - 💻 Notebook: `<https://github.com/qiskit-community/QBioCode/tree/main/tutorial>`_
    - 📘 Background: data complexity and benchmarking
 
 ----

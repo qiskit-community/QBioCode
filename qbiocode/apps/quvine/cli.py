@@ -30,8 +30,48 @@ import os
 import sys
 
 
-def _load_graph(path: str, sep: str, weighted: bool):
-    """Load an undirected graph from a 2- or 3-column edge list (CSV/TSV)."""
+#: Conventional first-row labels of an edge-list file. A row whose first two
+#: fields are *both* in this set is a header, not an edge.
+#:
+#: Matched against a closed set of names rather than sniffed. The obvious
+#: heuristics all have a failure mode on real data -- "row 0's endpoints appear
+#: nowhere else" misreads a sparse matching's first edge, and "row 0 is
+#: non-numeric" misreads every string-labelled graph -- and misreading a real
+#: edge as a header silently deletes it. Single letters (``u``, ``v``, ``a``,
+#: ``b``) are deliberately absent: they are plausible node names. Anything this
+#: set does not cover is handled by ``--header yes``.
+_HEADER_NAMES = frozenset(
+    {
+        "source", "target", "from", "to", "src", "dst", "head", "tail",
+        "node1", "node2", "node_1", "node_2", "node_a", "node_b",
+        "source_id", "target_id", "sourceid", "targetid",
+        "gene1", "gene2", "gene_1", "gene_2", "gene_a", "gene_b",
+        "protein1", "protein2", "protein_1", "protein_2",
+    }
+)
+
+
+def _looks_like_a_header(row) -> bool:
+    """True when this row is column names rather than an edge."""
+    try:
+        first, second = str(row.iloc[0]).strip().lower(), str(row.iloc[1]).strip().lower()
+    except (IndexError, AttributeError):
+        return False
+    return first in _HEADER_NAMES and second in _HEADER_NAMES
+
+
+def _load_graph(path: str, sep: str, weighted: bool, header: str = "auto"):
+    """Load an undirected graph from a 2- or 3-column edge list (CSV/TSV).
+
+    ``header`` is ``"auto"``, ``"yes"`` or ``"no"``.
+
+    A header row is dropped rather than read as an edge. It used to be read as
+    one: ``pd.read_csv(..., header=None)`` turned the ``source,target`` line that
+    this tool's own ``--help`` and documentation show into an edge between a node
+    called "source" and a node called "target". Nothing failed -- the run
+    produced an embedding with two extra rows and one edge that is not in the
+    graph, which is the kind of wrong that survives review.
+    """
     import pandas as pd
     import networkx as nx
 
@@ -49,6 +89,21 @@ def _load_graph(path: str, sep: str, weighted: bool):
             f"Edge list {path!r} must have at least 2 columns (source, target); "
             f"found {df.shape[1]}."
         )
+
+    if header == "yes" or (header == "auto" and len(df) and _looks_like_a_header(df.iloc[0])):
+        if not len(df):
+            raise ValueError(
+                f"Edge list {path!r} was read as header-only (--header yes) and "
+                f"contains no edges."
+            )
+        dropped = list(df.iloc[0][:2])
+        df = df.iloc[1:].reset_index(drop=True)
+        print(f"  skipping header row {dropped} in {path}", file=sys.stderr)
+        if df.empty:
+            raise ValueError(
+                f"Edge list {path!r} contains only a header row and no edges."
+            )
+
     df = df.rename(columns={0: "source", 1: "target"})
     # QuVINE's corpus builder requires string node tokens (word2vec); coerce so
     # integer-id edge lists work too.
@@ -77,7 +132,7 @@ Examples:
   quvine --edgelist edges.csv --method quvine_fused --output out/
   quvine --list-methods
 
-For more information, see: https://github.com/IBM/QBioCode
+For more information, see: https://github.com/qiskit-community/QBioCode
 """,
     )
     parser.add_argument("--edgelist", "-i", help="Path to a 2/3-column edge-list file (source,target[,weight]).")
@@ -88,6 +143,12 @@ For more information, see: https://github.com/IBM/QBioCode
     )
     parser.add_argument("--sep", default=",", help="Edge-list column separator (default: ',').")
     parser.add_argument("--weighted", action="store_true", help="Use a 3rd column as edge weight.")
+    parser.add_argument(
+        "--header", choices=("auto", "yes", "no"), default="auto",
+        help="Whether the edge list's first row is column names (default: auto -- "
+             "recognized when both of its first two fields are conventional "
+             "column names such as source/target).",
+    )
     parser.add_argument("--base-seed", type=int, default=None, help="Override the base random seed.")
     parser.add_argument("--config", default=None, help="Path to a QuVINE config YAML (defaults to packaged config).")
     parser.add_argument("--npy", action="store_true", help="Also write the embedding as a .npy array.")
@@ -152,7 +213,7 @@ For more information, see: https://github.com/IBM/QBioCode
 
     print("\nLoading graph...")
     try:
-        G = _load_graph(args.edgelist, args.sep, args.weighted)
+        G = _load_graph(args.edgelist, args.sep, args.weighted, args.header)
     except ValueError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)

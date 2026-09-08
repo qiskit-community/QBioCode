@@ -11,7 +11,16 @@
 #   Ubuntu: apt-get install -y pandoc
 # ==========================================================================
 
-sphinx
+# `sphinx<9`, not bare `sphinx`: better_apidoc imports `get_documenter` from
+# `sphinx.ext.autosummary`, which Sphinx 9 renamed to `_get_documenter`. conf.py's
+# `run_apidoc` reports that ImportError at info level and falls back to the
+# committed docs/source/api/*.rst pages, so on Sphinx 9 the build still succeeds
+# and CI stays green while the API reference silently stops regenerating -- it
+# freezes at whatever was last committed. Lift the pin when better_apidoc
+# supports Sphinx 9, or when the api/ pages move to sphinx.ext.apidoc. pip
+# backtracks sphinx-autodoc-typehints to a Sphinx 8-compatible release to
+# satisfy this, which is intended -- its newest release requires Sphinx >= 9.1.
+sphinx<9
 sphinx-autodoc-typehints
 sphinx_rtd_theme
 sphinx-design

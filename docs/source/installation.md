@@ -128,7 +128,7 @@ pip install qbiocode
 pip install 'qbiocode[apps]'
 ```
 
-**Note**: See [docs/CONDA_SUBMISSION.md](https://github.com/IBM/QBioCode/blob/main/docs/CONDA_SUBMISSION.md) for information about the conda submission process.
+**Note**: See [docs/CONDA_SUBMISSION.md](https://github.com/qiskit-community/QBioCode/blob/main/docs/CONDA_SUBMISSION.md) for information about the conda submission process.
 
 ## Install from Source
 
@@ -174,7 +174,7 @@ Once the activated, you'll see `(venv)` at the beginning of your terminal promt.
    
    ```bash
    # Clone the repository first
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
    
    # Install in editable mode
@@ -327,7 +327,7 @@ If you need the latest version of QBioCode with the most recent features and bug
 
    ```bash
    # Clone the repository
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
    
    # Install QBioCode (this will upgrade the pre-installed version)
@@ -412,7 +412,7 @@ Another cloud-based option is [Google Colab](https://colab.research.google.com/)
 
 ```text
 # In a Colab notebook cell:
-!git clone https://github.com/IBM/QBioCode.git
+!git clone https://github.com/qiskit-community/QBioCode.git
 %cd QBioCode
 !pip install .
 ```
