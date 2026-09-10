@@ -1,5 +1,5 @@
 {% set name = "qbiocode" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,16 +7,17 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/qbiocode-{{ version }}.tar.gz
-  sha256: # This will be filled automatically by conda-forge bot
+  sha256: 29b69270eabc1ac94f24def95ad1d062b84be6c3249488d375b6fbe8f472d87a
 
 build:
   noarch: python
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
-    - qprofiler=apps.qprofiler.cli:main
-    - qprofiler-batch=apps.qprofiler.qprofiler_batchmode:main
-    - qsage=apps.sage.sage:main
+    - qprofiler=qbiocode.apps.qprofiler.cli:main
+    - qprofiler-batch=qbiocode.apps.qprofiler.qprofiler_batchmode:main
+    - qsage=qbiocode.apps.sage.sage:main
+    - quvine=qbiocode.apps.quvine.cli:main
 
 requirements:
   host:
@@ -31,10 +32,13 @@ requirements:
     - hfda
     - hydra-core
     - ipykernel
+    - joblib
+    - matplotlib-base
     - networkx
     - numpy
     - optuna
     - pandas
+    - pyyaml
     # Qiskit ecosystem
     - qiskit ==2.2.0
     - qiskit-aer ==0.17.0
@@ -48,13 +52,15 @@ requirements:
     - scikit-learn
     - scipy
     - seaborn
-    - tensorflow
     - pytorch
     - tqdm
     - umap-learn
     - xgboost
-    # Apps extras
-    - joblib
+    # Single-cell / multi-omics
+    - scanpy
+    - anndata
+    - leidenalg
+    - igraph
 
 test:
   imports:
@@ -65,11 +71,13 @@ test:
     - qbiocode.learning
     - qbiocode.utils
     - qbiocode.visualization
-    - apps.qprofiler
-    - apps.sage
+    - qbiocode.apps.qprofiler
+    - qbiocode.apps.sage
   commands:
     - qprofiler --help
+    - qprofiler-batch --help
     - qsage --help
+    - quvine --help
   requires:
     - pip
 
@@ -80,14 +88,15 @@ about:
   license_file: LICENSE
   summary: Quantum machine learning applications for healthcare and life sciences
   description: |
-    QBioCode provides a comprehensive suite of computational resources for quantum 
-    machine learning applications in healthcare and life science data analysis. 
-    It includes tools for benchmarking quantum and classical ML models, analyzing 
+    QBioCode provides a comprehensive suite of computational resources for quantum
+    machine learning applications in healthcare and life science data analysis.
+    It includes tools for benchmarking quantum and classical ML models, analyzing
     data complexity, and making informed model selection decisions.
-    
+
     Key Features:
     - QProfiler: Automated ML benchmarking with data complexity analysis
     - QSage: Meta-learning tool for intelligent model selection
+    - QuVINE: Quantum View-based Network Embeddings for graph data
     - Data Generation: Create artificial datasets with controlled complexity
     - Quantum ML Support: QSVC, PQK, VQC, QNN implementations
     - Classical ML Baselines: RF, SVM, LR, DT, NB, MLP, XGBoost
@@ -99,5 +108,3 @@ extra:
     - futro  # Filippo Utro
     - krhriss  # Kahn Rhrissorrakrai
     - raubenb  # Bryan Raubenolt
-
-# Made with Bob
