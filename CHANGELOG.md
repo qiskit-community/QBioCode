@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-10
+
 ### Added
 - **QuVINE — Quantum View-based Network Embeddings** (`qbiocode.apps.quvine`), a new
   in-tree app that turns a graph into low-dimensional node embeddings by combining
@@ -1287,13 +1289,6 @@ have been re-executed.
 - Documentation build failures
 - Path handling in cross-platform tests
 
-### Planned Features
-- Additional quantum ML algorithms
-- Enhanced meta-learning capabilities
-- More dataset complexity metrics
-- Performance optimizations
-- Extended Galaxy tool integration
-
 ## [0.1.0] - 2026-04-06
 
 ### ⚠️ Breaking Changes
@@ -1410,4 +1405,5 @@ This is the first public release of QBioCode, a comprehensive framework for quan
 
 ---
 
+[0.2.0]: https://github.com/qiskit-community/QBioCode/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/qiskit-community/QBioCode/releases/tag/v0.1.0
