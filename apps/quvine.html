@@ -1,0 +1,1232 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>QuVINE &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apps/quvine';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QuVINE Configuration Guide" href="quvine_config.html" />
+    <link rel="prev" title="QSage" href="sage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="profiler.html">QProfiler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Configure YAML</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sage.html">QSage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QSage/qsage.ipynb">QSage Tutorial Notebook</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">QuVINE</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html">Configure YAML</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../apps.html" class="nav-link">Applications</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">QuVINE</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="quvine">
+<h1>QuVINE<a class="headerlink" href="#quvine" title="Link to this heading">#</a></h1>
+<p><strong>Quantum View-based Network Embeddings</strong></p>
+<p>QuVINE turns a graph into low-dimensional node embeddings by combining
+classical and quantum random walks with SGNS-based representation learning. It
+is vendored into QBioCode as an in-tree app (<code class="docutils literal notranslate"><span class="pre">qbiocode.apps.quvine</span></code>).</p>
+<section id="installation">
+<span id="quvine-installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>QuVINE’s Python modules ship with QBioCode, but its third-party dependencies
+(gensim, hiperwalk, node2vec, torch-geometric, python-louvain, ripser,
+omegaconf) are heavy, so they are behind an optional extra:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"qbiocode[quvine]"</span>
+</pre></div>
+</div>
+<p>A plain <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qbiocode</span></code> leaves QuVINE’s dependencies out. <code class="docutils literal notranslate"><span class="pre">import</span>
+<span class="pre">qbiocode</span></code> and every classical embedding still work; requesting a QuVINE method
+then raises a <code class="xref py py-class docutils literal notranslate"><span class="pre">QuvineDependencyError</span></code> that names
+the extra, the missing module, and the command above. To check an existing
+environment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">describe_environment</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">describe_environment</span><span class="p">())</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>🔬 <strong>What QuVINE Does</strong></dt><dd><ol class="arabic simple">
+<li><p><strong>Builds multiple views</strong> of a single input graph</p></li>
+<li><p><strong>Runs walks</strong>: random walk with restart (RWR) and discrete-/continuous-time quantum walks (DTQW/CTQW)</p></li>
+<li><p><strong>Learns embeddings</strong> via skip-gram negative sampling (SGNS), with quantum-calibrated filter / GAT / GraphGPS variants</p></li>
+<li><p><strong>Compares against classical baselines</strong>: node2vec, NetMF, APPNP</p></li>
+<li><p><strong>Fuses views</strong> into a single embedding when requested</p></li>
+</ol>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before you start, make sure that you have installed QBioCode correctly by following the  <a class="reference external" href="https://qiskit-community.github.io/QBioCode/installation.html">Installation</a> guide.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Graph-complexity metrics are <strong>not</strong> part of the embedding app. They live in
+QBioCode’s own <code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.evaluate_graph()</span></code>
+(<code class="docutils literal notranslate"><span class="pre">qbiocode.evaluation.graph_evaluation</span></code>), which you can run on the same
+graph to characterize it.</p>
+</div>
+</section>
+<section id="how-quvine-works">
+<h2>How QuVINE Works<a class="headerlink" href="#how-quvine-works" title="Link to this heading">#</a></h2>
+<p>QuVINE does not walk the input graph directly. It builds a family of bounded
+<strong>views</strong> around each node, walks each view with a mix of classical and quantum
+walks, treats the resulting node sequences as a corpus, and learns one embedding
+per walk kind with skip-gram negative sampling – optionally fusing them into a
+single matrix.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🌐 Construction</div>
+<p class="sd-card-text"><strong>Preprocess</strong> (research pipeline only)</p>
+<ul class="simple">
+<li><p class="sd-card-text">Radius-bounded subsample around the seed set</p></li>
+<li><p class="sd-card-text">Local-score sparsification, degree-capped</p></li>
+</ul>
+<p class="sd-card-text"><strong>Views</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">views.num_views</span></code> constrained subgraphs per root</p></li>
+<li><p class="sd-card-text">Bounded by <code class="docutils literal notranslate"><span class="pre">max_nodes</span></code> / <code class="docutils literal notranslate"><span class="pre">max_edges</span></code> / <code class="docutils literal notranslate"><span class="pre">max_degree</span></code></p></li>
+<li><p class="sd-card-text">Hubs down-weighted by <code class="docutils literal notranslate"><span class="pre">degree_alpha</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🎲 Representation</div>
+<p class="sd-card-text"><strong>Walks</strong> – one corpus per kind in <code class="docutils literal notranslate"><span class="pre">walks.kinds</span></code></p>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rwr</span></code> classical random walk with restart</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ctqw</span></code> continuous-time quantum walk</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">dtqw</span></code> discrete-time quantum walk</p></li>
+</ul>
+<p class="sd-card-text"><strong>SGNS</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">Skip-gram over the walk token sequences</p></li>
+<li><p class="sd-card-text">One <code class="docutils literal notranslate"><span class="pre">(n_nodes,</span> <span class="pre">dim)</span></code> matrix per walk kind</p></li>
+<li><p class="sd-card-text">Fused across kinds by <code class="docutils literal notranslate"><span class="pre">fusion.method</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="the-embedding-pipeline">
+<h3>The Embedding Pipeline<a class="headerlink" href="#the-embedding-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>networkx.Graph  (or a 2-/3-column edge list)
+         ↓
+[Preprocess]  subsample → sparsify          (Hydra pipeline only)
+         ↓
+Views:  num_views constrained subgraphs per root
+         ↓
+Walks:  rwr ┄┄┄┐   ctqw ┄┄┄┐   dtqw ┄┄┄┐    (each kind, independently)
+         ↓     │           │           │
+Corpus: node-sequence tokens per walk kind
+         ↓     │           │           │
+SGNS:   E_rwr  │   E_ctqw  │   E_dtqw  │    (n_nodes × dim each)
+         ↓─────┴───────────┴───────────┘
+Fusion: fusion.method (svd | graphreg | attention | hybrid | ...)
+         ↓
+EmbedResult.embedding  →  (n_nodes, dim)
+</pre></div>
+</div>
+</section>
+<section id="stages-in-detail">
+<h3>Stages in detail<a class="headerlink" href="#stages-in-detail" title="Link to this heading">#</a></h3>
+<p><strong>1. Views instead of the whole graph.</strong> For each root node QuVINE samples
+<code class="docutils literal notranslate"><span class="pre">views.num_views</span></code> bounded subgraphs, each capped at <code class="docutils literal notranslate"><span class="pre">max_nodes</span></code> nodes,
+<code class="docutils literal notranslate"><span class="pre">max_edges</span></code> edges and <code class="docutils literal notranslate"><span class="pre">max_degree</span></code> degree. This is what makes quantum walks
+tractable: a CTQW or DTQW needs an operator over the walked subgraph, so the caps
+bound that cost per root rather than by the size of the whole network. Sampling
+is degree-normalized (<code class="docutils literal notranslate"><span class="pre">degree_norm</span></code>, <code class="docutils literal notranslate"><span class="pre">degree_alpha</span></code>) so a view is not
+swallowed by whichever hub it happened to touch.</p>
+<p><strong>2. Walks, one corpus per kind.</strong> Every entry in <code class="docutils literal notranslate"><span class="pre">walks.kinds</span></code> produces its
+own token corpus over the views. <code class="docutils literal notranslate"><span class="pre">rwr</span></code> is the classical control;
+<code class="docutils literal notranslate"><span class="pre">ctqw</span></code> evolves for <code class="docutils literal notranslate"><span class="pre">walks.time</span></code>; <code class="docutils literal notranslate"><span class="pre">dtqw</span></code> takes <code class="docutils literal notranslate"><span class="pre">walks.steps</span></code> steps with the
+<code class="docutils literal notranslate"><span class="pre">walks.coin</span></code> operator. Walks are seeded per root and derived from
+<code class="docutils literal notranslate"><span class="pre">experiment.base_seed</span></code>, so a run reproduces regardless of how the roots were
+scheduled across workers.</p>
+<p><strong>3. SGNS.</strong> Each corpus is trained with skip-gram negative sampling
+(<code class="docutils literal notranslate"><span class="pre">train.sg</span></code>, <code class="docutils literal notranslate"><span class="pre">train.negative</span></code>, <code class="docutils literal notranslate"><span class="pre">train.window</span></code>, <code class="docutils literal notranslate"><span class="pre">train.epochs</span></code>) into a
+<code class="docutils literal notranslate"><span class="pre">(n_nodes,</span> <span class="pre">train.embedding_dim)</span></code> matrix.</p>
+<p><strong>4. Fusion.</strong> The <code class="docutils literal notranslate"><span class="pre">*_fused</span></code> methods combine the per-kind matrices through
+<code class="docutils literal notranslate"><span class="pre">fusion.method</span></code> at rank <code class="docutils literal notranslate"><span class="pre">fusion.k</span></code>. The single-kind methods
+(<code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine_ctqw</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine_dtqw</span></code>) skip this and return one
+matrix directly.</p>
+<p><strong>5. Quantum-calibrated baselines.</strong> The <code class="docutils literal notranslate"><span class="pre">gat_*</span></code>, <code class="docutils literal notranslate"><span class="pre">graphgps_*</span></code> and
+<code class="docutils literal notranslate"><span class="pre">filter_*</span></code> families are classical architectures whose spectral filter is fitted
+against a quantum walk’s profile (<code class="docutils literal notranslate"><span class="pre">heat_qcal_ctqw</span></code>, <code class="docutils literal notranslate"><span class="pre">poly_qcal_dtqw</span></code>, …).
+They exist so a quantum walk can be compared against a classical model that has
+been given the <em>same</em> spectral information – which is a much harder baseline
+than an unmodified GAT.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Every knob named above is documented in the
+<a class="reference internal" href="quvine_config.html"><span class="doc">QuVINE Configuration Guide</span></a>, including which of the
+three entry points reads it.</p>
+</div>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>QuVINE can be used as a <strong>command-line tool</strong> or as a <strong>Python library</strong>.</p>
+<section id="command-line-interface">
+<h3>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h3>
+<p>After installing QBioCode, the <code class="docutils literal notranslate"><span class="pre">quvine</span></code> command embeds the nodes of a graph
+given as a 2- or 3-column edge list (<code class="docutils literal notranslate"><span class="pre">source,target[,weight]</span></code>). A conventional
+header row is recognized and skipped; <code class="docutils literal notranslate"><span class="pre">#</span></code> comment lines are ignored:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all available methods</span>
+quvine<span class="w"> </span>--list-methods
+
+<span class="c1"># Embed a graph with the default fused method</span>
+quvine<span class="w"> </span>--edgelist<span class="w"> </span>edges.csv<span class="w"> </span>--method<span class="w"> </span>quvine_fused<span class="w"> </span>--output<span class="w"> </span>out/
+
+<span class="c1"># Use a classical baseline on a tab-separated, weighted edge list</span>
+quvine<span class="w"> </span>--edgelist<span class="w"> </span>edges.tsv<span class="w"> </span>--sep<span class="w"> </span><span class="s1">'\t'</span><span class="w"> </span>--weighted<span class="w"> </span>--method<span class="w"> </span>node2vec<span class="w"> </span>--output<span class="w"> </span>out/
+</pre></div>
+</div>
+<section id="command-line-options">
+<h4>Command-Line Options<a class="headerlink" href="#command-line-options" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 12.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--edgelist</span></code>, <code class="docutils literal notranslate"><span class="pre">-i</span></code></p></td>
+<td><p><em>required</em></p></td>
+<td><p>Path to the edge-list file: <code class="docutils literal notranslate"><span class="pre">source,target</span></code> or
+<code class="docutils literal notranslate"><span class="pre">source,target,weight</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code>, <code class="docutils literal notranslate"><span class="pre">-o</span></code></p></td>
+<td><p><em>required</em></p></td>
+<td><p>Output directory. Created if it does not exist.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--method</span></code>, <code class="docutils literal notranslate"><span class="pre">-m</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quvine_fused</span></code></p></td>
+<td><p>Embedding method. Any name from <code class="docutils literal notranslate"><span class="pre">--list-methods</span></code>; an unrecognized name
+is rejected with suggestions drawn from the real dispatch table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--sep</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p>Field separator of the edge list. Use <code class="docutils literal notranslate"><span class="pre">--sep</span> <span class="pre">'\t'</span></code> for TSV.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--weighted</span></code></p></td>
+<td><p>off</p></td>
+<td><p>Read a third column as the edge weight. Without this the third column is
+ignored and every edge weighs 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--header</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">auto</span></code></p></td>
+<td><p>Whether the first row is column names. <code class="docutils literal notranslate"><span class="pre">auto</span></code> recognizes a row whose
+first two fields are both conventional column names (<code class="docutils literal notranslate"><span class="pre">source</span></code>/<code class="docutils literal notranslate"><span class="pre">target</span></code>,
+<code class="docutils literal notranslate"><span class="pre">gene1</span></code>/<code class="docutils literal notranslate"><span class="pre">gene2</span></code>, <code class="docutils literal notranslate"><span class="pre">from</span></code>/<code class="docutils literal notranslate"><span class="pre">to</span></code>, …) and reports on stderr that it
+skipped it. <code class="docutils literal notranslate"><span class="pre">yes</span></code> and <code class="docutils literal notranslate"><span class="pre">no</span></code> force the decision.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--base-seed</span></code></p></td>
+<td><p>from config</p></td>
+<td><p>Integer seed, overriding <code class="docutils literal notranslate"><span class="pre">experiment.base_seed</span></code>. Set it for anything you
+intend to reproduce.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--config</span></code></p></td>
+<td><p>packaged default</p></td>
+<td><p>Path to a YAML config. See the
+<a class="reference internal" href="quvine_config.html"><span class="doc">Configuration Guide</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--npy</span></code></p></td>
+<td><p>off</p></td>
+<td><p>Additionally write the raw array as <code class="docutils literal notranslate"><span class="pre">embedding.npy</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--list-methods</span></code></p></td>
+<td><p>off</p></td>
+<td><p>Print every available method and exit. Methods whose dependency is
+missing are reported as unavailable rather than omitted silently.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The tool validates before it computes: a missing, nonexistent or directory
+<code class="docutils literal notranslate"><span class="pre">--edgelist</span></code>, a <code class="docutils literal notranslate"><span class="pre">--config</span></code> that is not a file, an empty <code class="docutils literal notranslate"><span class="pre">--sep</span></code>, an
+unknown <code class="docutils literal notranslate"><span class="pre">--method</span></code>, an edge list that is only a header, or a graph that parses
+to zero nodes each exit non-zero with a message naming the problem. In particular a mistyped <code class="docutils literal notranslate"><span class="pre">--config</span></code> path is
+an error – earlier versions silently fell back to the packaged default and
+produced a run configured by something other than what you asked for.</p>
+</section>
+<section id="outputs">
+<h4>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">quvine</span></code> run writes three things into <code class="docutils literal notranslate"><span class="pre">--output</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 32.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Contents</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">embedding.csv</span></code></p></td>
+<td><p>The embedding matrix. Index column <code class="docutils literal notranslate"><span class="pre">node</span></code> carries the original graph
+node labels; columns are <code class="docutils literal notranslate"><span class="pre">dim_0</span></code> … <code class="docutils literal notranslate"><span class="pre">dim_{d-1}</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">embedding.npy</span></code></p></td>
+<td><p>The same matrix as a raw NumPy array, written only with <code class="docutils literal notranslate"><span class="pre">--npy</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">embedding_meta.json</span></code></p></td>
+<td><p>Run metadata: <code class="docutils literal notranslate"><span class="pre">requested_method</span></code>, the <code class="docutils literal notranslate"><span class="pre">method</span></code> it resolved to,
+<code class="docutils literal notranslate"><span class="pre">kind</span></code> (<code class="docutils literal notranslate"><span class="pre">sgns</span></code> / <code class="docutils literal notranslate"><span class="pre">sgns_fused</span></code> / <code class="docutils literal notranslate"><span class="pre">registry</span></code>), <code class="docutils literal notranslate"><span class="pre">dim</span></code>, <code class="docutils literal notranslate"><span class="pre">n_nodes</span></code>,
+<code class="docutils literal notranslate"><span class="pre">execution_time</span></code>, and <code class="docutils literal notranslate"><span class="pre">used_quantum_targets</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">requested_method</span></code> and <code class="docutils literal notranslate"><span class="pre">method</span></code> differ whenever an alias or a config choice
+resolves: <code class="docutils literal notranslate"><span class="pre">quvine_fused</span></code> runs as <code class="docutils literal notranslate"><span class="pre">fused:svd</span></code> when <code class="docutils literal notranslate"><span class="pre">fusion.method</span></code> is
+<code class="docutils literal notranslate"><span class="pre">svd</span></code>. Both are recorded, so a result file says exactly what produced it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a fused method <code class="docutils literal notranslate"><span class="pre">dim</span></code> is <code class="docutils literal notranslate"><span class="pre">fusion.k</span></code>, not <code class="docutils literal notranslate"><span class="pre">train.embedding_dim</span></code> –
+fusion reduces the stacked per-walk-kind embeddings to its own rank. With the
+shipped defaults that is 10 rather than 64. Single-kind methods return
+<code class="docutils literal notranslate"><span class="pre">train.embedding_dim</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The research pipeline (<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">qbiocode.apps.quvine.main</span></code>) writes a
+larger result set – <code class="docutils literal notranslate"><span class="pre">ranking_results.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">embedding_comparison.csv</span></code>,
+the resolved <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">summary.json</span></code>, per-iteration
+<code class="docutils literal notranslate"><span class="pre">embeddings/embeddings_iter_{n}.npz</span></code> and plots – into
+<code class="docutils literal notranslate"><span class="pre">runtime.output_dir</span></code>. See the
+<a class="reference internal" href="quvine_config.html"><span class="doc">Configuration Guide</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="python-library-usage">
+<h3>Python Library Usage<a class="headerlink" href="#python-library-usage" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span><span class="p">,</span> <span class="n">list_methods</span>
+
+<span class="c1"># Inspect the available methods (83 in total)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_methods</span><span class="p">())</span>
+
+<span class="c1"># Build (or load) a graph</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+
+<span class="c1"># Embed its nodes; result.embedding has shape (n_nodes, dim)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">"quvine_fused"</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">embed()</span></code> function accepts the graph, a <code class="docutils literal notranslate"><span class="pre">method</span></code> name, and optional
+configuration/override arguments (<code class="docutils literal notranslate"><span class="pre">config</span></code>, <code class="docutils literal notranslate"><span class="pre">overrides</span></code>, <code class="docutils literal notranslate"><span class="pre">base_seed</span></code>,
+<code class="docutils literal notranslate"><span class="pre">fuse</span></code>, <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code>, …). It returns an <code class="docutils literal notranslate"><span class="pre">EmbedResult</span></code> whose <code class="docutils literal notranslate"><span class="pre">embedding</span></code>
+attribute is the <code class="docutils literal notranslate"><span class="pre">(n_nodes,</span> <span class="pre">dim)</span></code> embedding matrix.</p>
+<p>Evaluating the input graph:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_graph</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">evaluate_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"karate"</span><span class="p">)</span>   <span class="c1"># -&gt; pandas.DataFrame</span>
+</pre></div>
+</div>
+</section>
+<section id="as-a-qbiocode-embedding">
+<h3>As a QBioCode Embedding<a class="headerlink" href="#as-a-qbiocode-embedding" title="Link to this heading">#</a></h3>
+<p>QuVINE is also wired into QBioCode’s embedding layer, so any of its method names
+is usable wherever <code class="docutils literal notranslate"><span class="pre">pca</span></code>, <code class="docutils literal notranslate"><span class="pre">nmf</span></code> or <code class="docutils literal notranslate"><span class="pre">umap</span></code> is – including QProfiler’s
+<code class="docutils literal notranslate"><span class="pre">embeddings:</span></code> config list. The call shape is identical:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_embeddings</span>
+
+<span class="n">X_train_emb</span><span class="p">,</span> <span class="n">X_test_emb</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">(</span>
+    <span class="s2">"quvine_rwr"</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">8</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>A symmetric k-nearest-neighbour graph is built over the rows of
+<code class="docutils literal notranslate"><span class="pre">vstack([X_train,</span> <span class="pre">X_test])</span></code> with edge weight <code class="docutils literal notranslate"><span class="pre">1/(1+d)</span></code>, embedded with the
+requested method, reduced to <code class="docutils literal notranslate"><span class="pre">n_components</span></code> if the method returned a different
+width, and split back into the train and test blocks.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>QuVINE methods are <strong>transductive</strong>: no QuVINE method has an out-of-sample
+<code class="docutils literal notranslate"><span class="pre">transform</span></code>, so the test rows take part in building the graph. Test
+<em>features</em> therefore influence the geometry; test <em>labels</em> never enter at any
+point. <code class="docutils literal notranslate"><span class="pre">get_embeddings</span></code> emits one <code class="xref py py-class docutils literal notranslate"><span class="pre">UserWarning</span></code> per call saying so,
+and <code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.is_transductive()</span></code> lets downstream code branch on it. The
+classical <code class="docutils literal notranslate"><span class="pre">spectral</span></code> mode has exactly the same property.</p>
+</div>
+<p>Discovering what is available:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qbiocode</span>
+
+<span class="n">qbiocode</span><span class="o">.</span><span class="n">SKLEARN_METHODS</span>           <span class="c1"># the classical modes, always present</span>
+<span class="n">qbiocode</span><span class="o">.</span><span class="n">QUVINE_HEADLINE_METHODS</span>   <span class="c1"># the QuVINE names worth trying first</span>
+<span class="n">qbiocode</span><span class="o">.</span><span class="n">QUVINE_METHODS</span>            <span class="c1"># all 83; empty if the extra is absent</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">netmf</span></code>, <code class="docutils literal notranslate"><span class="pre">appnp</span></code> and the <code class="docutils literal notranslate"><span class="pre">gat_*</span></code> family need nothing beyond the base
+install. The rest raise a message naming the missing dependency and the exact
+install command – see <a class="reference internal" href="#quvine-installation"><span class="std std-ref">the installation note above</span></a>.</p>
+</section>
+</section>
+<section id="available-methods">
+<h2>Available Methods<a class="headerlink" href="#available-methods" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">list_methods()</span></code> returns 83 method names spanning several families. Pass
+<code class="docutils literal notranslate"><span class="pre">kind=&quot;sgns&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">kind=&quot;registry&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">kind=&quot;fused&quot;</span></code> to narrow the list:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Family</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fused (all walk kinds combined)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quvine_fused</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine</span></code>, <code class="docutils literal notranslate"><span class="pre">fused</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine_sgns_fused</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>QuVINE (quantum-calibrated)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine_ctqw_heat</span></code>, <code class="docutils literal notranslate"><span class="pre">quvine_dtqw_poly</span></code>, …</p></td>
+</tr>
+<tr class="row-even"><td><p>Filter variants</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">filter_rwr_heat</span></code>, <code class="docutils literal notranslate"><span class="pre">filter_ctqw_poly</span></code>, <code class="docutils literal notranslate"><span class="pre">filter_dtqw_heat</span></code>, …</p></td>
+</tr>
+<tr class="row-odd"><td><p>GAT variants</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gat_heat</span></code>, <code class="docutils literal notranslate"><span class="pre">gat_ctqw_poly</span></code>, <code class="docutils literal notranslate"><span class="pre">gat_dtqw_heat</span></code>, …</p></td>
+</tr>
+<tr class="row-even"><td><p>GraphGPS variants</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">graphgps_*</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Walks</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rwr</span></code>, <code class="docutils literal notranslate"><span class="pre">ctqw</span></code>, <code class="docutils literal notranslate"><span class="pre">dtqw</span></code>, <code class="docutils literal notranslate"><span class="pre">sgns_*</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Classical baselines</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">node2vec</span></code>, <code class="docutils literal notranslate"><span class="pre">netmf</span></code>, <code class="docutils literal notranslate"><span class="pre">appnp</span></code>, <code class="docutils literal notranslate"><span class="pre">graphsage</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Small quantum-walk step counts often work best: high step counts can
+over-mix the walk, so a modest number of steps tends to give comparable or
+better embeddings.</p>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>Every stage above is driven by a YAML config. QuVINE ships a working default and
+finds it automatically, so nothing below is required to get started – but the
+three entry points read <em>different parts</em> of it, which is the one thing worth
+knowing before you edit it:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 74.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Entry point</p></th>
+<th class="head"><p>Reads</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">embed()</span></code> and the <code class="docutils literal notranslate"><span class="pre">quvine</span></code> CLI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">views</span></code>, <code class="docutils literal notranslate"><span class="pre">walks</span></code>, <code class="docutils literal notranslate"><span class="pre">train</span></code>, <code class="docutils literal notranslate"><span class="pre">min_count</span></code>, <code class="docutils literal notranslate"><span class="pre">fusion</span></code>,
+<code class="docutils literal notranslate"><span class="pre">experiment.base_seed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">qbiocode.apps.quvine.main</span></code></p></td>
+<td><p>all of the above <strong>plus</strong> <code class="docutils literal notranslate"><span class="pre">data_path</span></code>, <code class="docutils literal notranslate"><span class="pre">graph</span></code>, <code class="docutils literal notranslate"><span class="pre">disease</span></code>,
+<code class="docutils literal notranslate"><span class="pre">runtime</span></code>, <code class="docutils literal notranslate"><span class="pre">preprocess</span></code>, <code class="docutils literal notranslate"><span class="pre">baselines</span></code>, <code class="docutils literal notranslate"><span class="pre">analysis</span></code>, <code class="docutils literal notranslate"><span class="pre">evaluation</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Point QuVINE at your own file with <code class="docutils literal notranslate"><span class="pre">embed(...,</span> <span class="pre">config=path)</span></code>, the CLI’s
+<code class="docutils literal notranslate"><span class="pre">--config</span></code>, or the <code class="docutils literal notranslate"><span class="pre">QUVINE_DEFAULT_CONFIG</span></code> environment variable; override
+individual keys with <code class="docutils literal notranslate"><span class="pre">overrides={&quot;train&quot;:</span> <span class="pre">{&quot;epochs&quot;:</span> <span class="pre">20}}</span></code> or the dotlist form
+<code class="docutils literal notranslate"><span class="pre">overrides=[&quot;train.epochs=20&quot;]</span></code>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quvine_config.html">Configure YAML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#configuration-sections">Configuration Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#overriding-without-editing-the-file">Overriding Without Editing the File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quvine_config.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="graph-complexity-measures">
+<span id="id2"></span><h2>Graph-Complexity Measures<a class="headerlink" href="#graph-complexity-measures" title="Link to this heading">#</a></h2>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.evaluate_graph()</span></code> is the graph analogue of QProfiler’s
+<a class="reference internal" href="profiler.html#data-complexity-measures"><span class="std std-ref">data-complexity measures</span></a>: it summarizes a graph
+as a single-row <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> you can correlate against embedding
+quality, use to choose a method, or report alongside a result.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_graph</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">evaluate_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"karate"</span><span class="p">)</span>   <span class="c1"># 1 x 88 DataFrame</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">evaluate_graph</span></code> is <strong>core QBioCode</strong>, not part of the QuVINE app – it is
+documented here because this is where you are most likely to want it. It needs
+only the base install; QuVINE’s optional extra is irrelevant to it.</p>
+</div>
+<p>It merges two families of metrics, and each degrades independently: if one
+family cannot be computed for a graph, that family’s columns are dropped with a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">UserWarning</span></code> and the rest are still returned. An empty graph yields a
+size-only summary. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> raises <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
+<section id="the-88-columns">
+<h3>The 88 columns<a class="headerlink" href="#the-88-columns" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 8.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Family</p></th>
+<th class="head"><p>Count</p></th>
+<th class="head"><p>Metrics</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Size and density</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">num_nodes</span></code>, <code class="docutils literal notranslate"><span class="pre">num_edges</span></code>, <code class="docutils literal notranslate"><span class="pre">num_nodes_raw</span></code>, <code class="docutils literal notranslate"><span class="pre">num_edges_raw</span></code>,
+<code class="docutils literal notranslate"><span class="pre">log_num_nodes</span></code>, <code class="docutils literal notranslate"><span class="pre">log_num_edges</span></code>, <code class="docutils literal notranslate"><span class="pre">density</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_degree</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">_raw</span></code> pair is the graph as given; the unsuffixed pair is after
+QuVINE’s own normalization.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Laplacian spectrum</p></td>
+<td><p>16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spectral_gap</span></code>, <code class="docutils literal notranslate"><span class="pre">normalized_spectral_gap</span></code>, <code class="docutils literal notranslate"><span class="pre">algebraic_connectivity</span></code>,
+<code class="docutils literal notranslate"><span class="pre">algebraic_connectivity_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">spectral_entropy_partial</span></code>, <code class="docutils literal notranslate"><span class="pre">von_neumann_entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">estrada_index</span></code>,
+<code class="docutils literal notranslate"><span class="pre">laplacian_effective_rank_partial</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_degeneracy_fraction</span></code>,
+<code class="docutils literal notranslate"><span class="pre">spectral_dimension</span></code>, <code class="docutils literal notranslate"><span class="pre">bipartite_proximity</span></code>, <code class="docutils literal notranslate"><span class="pre">eigenvalue_mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">eigenvalue_std</span></code>, <code class="docutils literal notranslate"><span class="pre">eigenvalue_max</span></code>, <code class="docutils literal notranslate"><span class="pre">eigenvalue_min</span></code>.
+The spectral gap is the single most useful predictor here – a small gap
+means slow diffusion and weakly separated communities.</p></td>
+</tr>
+<tr class="row-even"><td><p>Eigenvector localization</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ipr_low_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">ipr_high_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">adjacency_ipr_low_mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">adjacency_ipr_high_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">inverse_participation_ratio</span></code>,
+<code class="docutils literal notranslate"><span class="pre">participation_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">spectral_concentration</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dominant_eigenvector_centrality</span></code>.
+High inverse participation ratio (IPR) means the eigenvectors are
+concentrated on few nodes, which walk-based embeddings find hard.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diffusion and walk spectra</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">heat_kernel_trace_t1</span></code>, <code class="docutils literal notranslate"><span class="pre">heat_kernel_trace_t10</span></code>,
+<code class="docutils literal notranslate"><span class="pre">nonbacktracking_spectral_radius</span></code>, <code class="docutils literal notranslate"><span class="pre">wl_compression_ratio</span></code>.
+The two heat-kernel traces bracket short- and long-time diffusion;
+<code class="docutils literal notranslate"><span class="pre">wl_compression_ratio</span></code> is how far Weisfeiler-Lehman refinement collapses
+the node set, i.e. how much structural symmetry there is.</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum composites</p></td>
+<td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quantum_complexity</span></code>, <code class="docutils literal notranslate"><span class="pre">quantum_advantage_score</span></code>,
+<code class="docutils literal notranslate"><span class="pre">quantum_advantage_arithmetic</span></code>, <code class="docutils literal notranslate"><span class="pre">quantum_advantage_geometric</span></code>,
+<code class="docutils literal notranslate"><span class="pre">quantum_advantage_harmonic</span></code>.
+Composite scores built from the spectral columns above, meant as a
+screening heuristic for where a quantum walk may help – not a guarantee.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paths and connectivity</p></td>
+<td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">approx_avg_path_length</span></code>, <code class="docutils literal notranslate"><span class="pre">path_length_ratio</span></code>,
+<code class="docutils literal notranslate"><span class="pre">largest_cc_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">log_odd_girth</span></code>, <code class="docutils literal notranslate"><span class="pre">approx_conductance</span></code>.
+<code class="docutils literal notranslate"><span class="pre">largest_cc_fraction</span></code> below 1 means the graph is disconnected, which
+every walk method notices.</p></td>
+</tr>
+<tr class="row-even"><td><p>Degree and centrality concentration</p></td>
+<td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">degree_gini</span></code>, <code class="docutils literal notranslate"><span class="pre">max_degree_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">degree_assortativity</span></code>,
+<code class="docutils literal notranslate"><span class="pre">degree_heterogeneity</span></code>, <code class="docutils literal notranslate"><span class="pre">pagerank_gini</span></code>,
+<code class="docutils literal notranslate"><span class="pre">betweenness_gini_approx</span></code>, <code class="docutils literal notranslate"><span class="pre">closeness_gini_approx</span></code>,
+<code class="docutils literal notranslate"><span class="pre">core_number_gini</span></code>, <code class="docutils literal notranslate"><span class="pre">centrality_entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">centrality_variance</span></code>,
+<code class="docutils literal notranslate"><span class="pre">centrality_gini</span></code>, <code class="docutils literal notranslate"><span class="pre">centrality_range</span></code>.
+Gini coefficients near 1 mark a hub-dominated graph, where a ranking
+result needs degree-matched null controls to mean anything.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Community and clustering</p></td>
+<td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">modularity</span></code>, <code class="docutils literal notranslate"><span class="pre">transitivity</span></code>, <code class="docutils literal notranslate"><span class="pre">clustering_mean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">clustering_std</span></code>, <code class="docutils literal notranslate"><span class="pre">cycle_density</span></code>, <code class="docutils literal notranslate"><span class="pre">cyclomatic_number</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ollivier-Ricci curvature</p></td>
+<td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">orc_gJC_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_gJC_min</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_gJC_max</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_gJC_std</span></code>,
+<code class="docutils literal notranslate"><span class="pre">orc_kLB_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_kLB_min</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_kLB_max</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_kLB_std</span></code>,
+<code class="docutils literal notranslate"><span class="pre">orc_negative_fraction</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_num_edges</span></code>.
+Two curvature estimators – a Jaccard-based approximation (<code class="docutils literal notranslate"><span class="pre">gJC</span></code>) and a
+Lin-Lu-Yau lower bound (<code class="docutils literal notranslate"><span class="pre">kLB</span></code>). Negative curvature marks bridging
+edges between communities.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Effective resistance</p></td>
+<td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kirchhoff_index</span></code>, <code class="docutils literal notranslate"><span class="pre">kirchhoff_per_pair</span></code>, <code class="docutils literal notranslate"><span class="pre">kirchhoff_normalised</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Persistent homology</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">betti_0</span></code>, <code class="docutils literal notranslate"><span class="pre">betti_1</span></code>, <code class="docutils literal notranslate"><span class="pre">betti_2</span></code>, <code class="docutils literal notranslate"><span class="pre">betti_sum</span></code>,
+<code class="docutils literal notranslate"><span class="pre">euler_characteristic</span></code>, <code class="docutils literal notranslate"><span class="pre">persistence_entropy_H0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">persistence_entropy_H1</span></code>, <code class="docutils literal notranslate"><span class="pre">persistence_entropy_H2</span></code>.
+Needs <code class="docutils literal notranslate"><span class="pre">ripser</span></code> (part of the <code class="docutils literal notranslate"><span class="pre">[quvine]</span></code> extra); dropped with a warning
+if it is absent.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Label- and feature-aware</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">label_homophily</span></code>, <code class="docutils literal notranslate"><span class="pre">feature_dirichlet_energy</span></code>. Computed only when the
+graph carries node labels or features; a low homophily graph is one where
+neighbouring nodes disagree, and embedding-then-classify does poorly.</p></td>
+</tr>
+<tr class="row-even"><td><p>Identifier</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Graph</span></code> – the <code class="docutils literal notranslate"><span class="pre">name</span></code> you passed, so several summaries concatenate
+into a comparable table.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To compare graphs, concatenate the single-row frames:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_graph</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">evaluate_graph</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">graphs</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+</pre></div>
+</div>
+<p>That is exactly what the <a class="reference internal" href="../tutorials/QuVINE/example_quvine.html"><span class="doc">Getting Started notebook</span></a> does before correlating complexity
+against macro-F1.</p>
+</div>
+<p>The individual functions behind these columns are documented in
+<a class="reference internal" href="../api/qbiocode.evaluation.graph_evaluation.html#module-qbiocode.evaluation.graph_evaluation" title="qbiocode.evaluation.graph_evaluation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qbiocode.evaluation.graph_evaluation</span></code></a>.</p>
+</section>
+</section>
+<section id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h2>
+<p>Four notebooks, in reading order – the synthetic walkthrough introduces the API
+and the method registry, two single-cell notebooks apply it to real data, and the
+last drives QuVINE through QProfiler:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../tutorials/QuVINE/example_quvine.html"><span class="doc">QuVINE - Getting Started</span></a> -
+benchmark 12 methods across three stochastic block models of increasing
+difficulty, then correlate each graph’s complexity against node-classification
+macro-F1. Fully synthetic, so no data files are needed.</p></li>
+<li><p><a class="reference internal" href="../tutorials/QuVINE/quvine_sc_cd4_vs_cd8.html"><span class="doc">QuVINE on Single-Cell Data</span></a> -
+build a kNN graph from PBMC single-cell data, inspect it with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.evaluate_graph()</span></code>, and compare classical against
+quantum-calibrated walk embeddings on a CD4-vs-CD8 task.</p></li>
+<li><p><a class="reference internal" href="../tutorials/QuVINE/quvine_sc_t_vs_mono.html"><span class="doc">QuVINE on T vs. Monocyte</span></a> - a
+transductive, semi-supervised task on an 800-cell two-view graph with soft seed
+labels, evaluated both by training on the seed embeddings and by ranking
+non-seed nodes against degree- and distance-matched null controls.</p></li>
+<li><p><a class="reference internal" href="../tutorials/QProfiler/sc_binary_quvine_2x2_qprofiler.html"><span class="doc">QuVINE Embeddings in QProfiler</span></a> -
+drive QuVINE through <code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.get_embeddings()</span></code> like any other embedding
+and let QProfiler benchmark the 2x2 classical/quantum design.</p></li>
+<li><p>The <a class="reference internal" href="../tutorials.html"><span class="doc">Tutorials</span></a> page for the full gallery.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="quvine_config.html"><span class="doc">QuVINE Configuration Guide</span></a> - the shipped config, section by section</p></li>
+<li><p><a class="reference internal" href="../api/qbiocode.apps.quvine.html#module-qbiocode.apps.quvine" title="qbiocode.apps.quvine"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qbiocode.apps.quvine</span></code></a> - App package</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.evaluate_graph()</span></code> - Graph-complexity metrics</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="sage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">QSage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quvine_config.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">QuVINE Configuration Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-quvine-works">How QuVINE Works</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-embedding-pipeline">The Embedding Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stages-in-detail">Stages in detail</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command-Line Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-options">Command-Line Options</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-library-usage">Python Library Usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as-a-qbiocode-embedding">As a QBioCode Embedding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-methods">Available Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-complexity-measures">Graph-Complexity Measures</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-88-columns">The 88 columns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

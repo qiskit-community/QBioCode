@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.reproducibility.dataset_registry &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/reproducibility/dataset_registry';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.reproducibility.dataset_registry</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.reproducibility.dataset_registry</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Dataset Registry for QuVINE</span>
+
+<span class="sd">Central registry mapping dataset names to their locations, metadata, and task splits.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">asdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+
+
+<div class="viewcode-block" id="DatasetType">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Type of dataset."""</span>
+    <span class="n">SYNTHETIC</span> <span class="o">=</span> <span class="s2">"synthetic"</span>
+    <span class="n">REAL_WORLD</span> <span class="o">=</span> <span class="s2">"real_world"</span>
+    <span class="n">PPI</span> <span class="o">=</span> <span class="s2">"ppi"</span></div>
+
+
+
+<div class="viewcode-block" id="DatasetMetadata">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetMetadata">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetMetadata</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Metadata for a dataset."""</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">dataset_type</span><span class="p">:</span> <span class="n">DatasetType</span>
+    <span class="n">num_nodes</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">num_edges</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">is_directed</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">has_node_features</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">has_node_labels</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">generation_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ppi_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">disease</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">requested_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">actual_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">largest_connected_component_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="DatasetEntry">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetEntry">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetEntry</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Registry entry for a single dataset instance.</span>
+
+<span class="sd">    Each entry represents one graph instance for a fixed</span>
+<span class="sd">    dataset/source/disease/size/repetition combination.</span>
+<span class="sd">    """</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">dataset_type</span><span class="p">:</span> <span class="n">DatasetType</span>
+    <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">graph_path</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">metadata_path</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">available_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">split_paths</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span>  <span class="c1"># task -&gt; split file path</span>
+    <span class="n">disease_node_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ppi_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">disease</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">requested_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">actual_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">registry_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="DatasetEntry.to_dict">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetEntry.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Convert to dictionary for JSON serialization."""</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
+            <span class="s2">"dataset_type"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">repetition_id</span><span class="p">,</span>
+            <span class="s2">"seed"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
+            <span class="s2">"graph_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">graph_path</span><span class="p">),</span>
+            <span class="s2">"metadata_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata_path</span><span class="p">),</span>
+            <span class="s2">"available_tasks"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_tasks</span><span class="p">,</span>
+            <span class="s2">"split_paths"</span><span class="p">:</span> <span class="p">{</span><span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">task</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="s2">"disease_node_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">disease_node_path</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disease_node_path</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">"ppi_source"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ppi_source</span><span class="p">,</span>
+            <span class="s2">"disease"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">disease</span><span class="p">,</span>
+            <span class="s2">"requested_size"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">requested_size</span><span class="p">,</span>
+            <span class="s2">"actual_size"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">actual_size</span><span class="p">,</span>
+            <span class="s2">"registry_group"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry_group</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="DatasetEntry.from_dict">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetEntry.from_dict">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'DatasetEntry'</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Create from dictionary."""</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"dataset_name"</span><span class="p">],</span>
+            <span class="n">dataset_type</span><span class="o">=</span><span class="n">DatasetType</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"dataset_type"</span><span class="p">]),</span>
+            <span class="n">repetition_id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"repetition_id"</span><span class="p">],</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"seed"</span><span class="p">],</span>
+            <span class="n">graph_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"graph_path"</span><span class="p">]),</span>
+            <span class="n">metadata_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"metadata_path"</span><span class="p">]),</span>
+            <span class="n">available_tasks</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">"available_tasks"</span><span class="p">],</span>
+            <span class="n">split_paths</span><span class="o">=</span><span class="p">{</span><span class="n">task</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">task</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">"split_paths"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="n">disease_node_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"disease_node_path"</span><span class="p">])</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"disease_node_path"</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">ppi_source</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ppi_source"</span><span class="p">),</span>
+            <span class="n">disease</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"disease"</span><span class="p">),</span>
+            <span class="n">requested_size</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"requested_size"</span><span class="p">),</span>
+            <span class="n">actual_size</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"actual_size"</span><span class="p">),</span>
+            <span class="n">registry_group</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"registry_group"</span><span class="p">),</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DatasetRegistry">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetRegistry</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Central registry for all datasets used in QuVINE experiments.</span>
+<span class="sd">    </span>
+<span class="sd">    Maintains a mapping from (dataset_name, repetition_id) to dataset locations</span>
+<span class="sd">    and metadata. Ensures all methods access the same data files.</span>
+<span class="sd">    """</span>
+    
+<div class="viewcode-block" id="DatasetRegistry.__init__">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">registry_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Initialize dataset registry.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        registry_path : Path, optional</span>
+<span class="sd">            Path to registry JSON file. If provided, loads existing registry.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">DatasetEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry_path</span> <span class="o">=</span> <span class="n">registry_path</span>
+        
+        <span class="k">if</span> <span class="n">registry_path</span> <span class="ow">and</span> <span class="n">registry_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">registry_path</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.register">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.register">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset_type</span><span class="p">:</span> <span class="n">DatasetType</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">graph_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">metadata_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">available_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">split_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">disease_node_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ppi_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">disease</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">requested_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">actual_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">registry_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Register a dataset instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Name of the dataset</span>
+<span class="sd">        dataset_type : DatasetType</span>
+<span class="sd">            Type of dataset</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition index</span>
+<span class="sd">        seed : int</span>
+<span class="sd">            Seed used for generation/sampling</span>
+<span class="sd">        graph_path : Path</span>
+<span class="sd">            Path to saved graph file</span>
+<span class="sd">        metadata_path : Path</span>
+<span class="sd">            Path to metadata JSON</span>
+<span class="sd">        available_tasks : List[str]</span>
+<span class="sd">            Tasks available for this dataset</span>
+<span class="sd">        split_paths : Dict[str, Path], optional</span>
+<span class="sd">            Mapping from task name to split file path</span>
+<span class="sd">        """</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">DatasetEntry</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="o">=</span><span class="n">dataset_name</span><span class="p">,</span>
+            <span class="n">dataset_type</span><span class="o">=</span><span class="n">dataset_type</span><span class="p">,</span>
+            <span class="n">repetition_id</span><span class="o">=</span><span class="n">repetition_id</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+            <span class="n">graph_path</span><span class="o">=</span><span class="n">graph_path</span><span class="p">,</span>
+            <span class="n">metadata_path</span><span class="o">=</span><span class="n">metadata_path</span><span class="p">,</span>
+            <span class="n">available_tasks</span><span class="o">=</span><span class="n">available_tasks</span><span class="p">,</span>
+            <span class="n">split_paths</span><span class="o">=</span><span class="n">split_paths</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="n">disease_node_path</span><span class="o">=</span><span class="n">disease_node_path</span><span class="p">,</span>
+            <span class="n">ppi_source</span><span class="o">=</span><span class="n">ppi_source</span><span class="p">,</span>
+            <span class="n">disease</span><span class="o">=</span><span class="n">disease</span><span class="p">,</span>
+            <span class="n">requested_size</span><span class="o">=</span><span class="n">requested_size</span><span class="p">,</span>
+            <span class="n">actual_size</span><span class="o">=</span><span class="n">actual_size</span><span class="p">,</span>
+            <span class="n">registry_group</span><span class="o">=</span><span class="n">registry_group</span><span class="p">,</span>
+        <span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.get">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.get">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetEntry</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get dataset entry.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DatasetEntry or None</span>
+<span class="sd">            Dataset entry if found, None otherwise</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.add_split">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.add_split">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_split</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">split_path</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Add a task split to an existing dataset entry.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        task : str</span>
+<span class="sd">            Task name</span>
+<span class="sd">        split_path : Path</span>
+<span class="sd">            Path to split file</span>
+<span class="sd">        """</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset </span><span class="si">{</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2"> rep </span><span class="si">{</span><span class="n">repetition_id</span><span class="si">}</span><span class="s2"> not registered"</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">split_paths</span><span class="p">[</span><span class="n">task</span><span class="p">]</span> <span class="o">=</span> <span class="n">split_path</span>
+        
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">available_tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">available_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.get_all_datasets">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.get_all_datasets">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Get list of all unique dataset names."""</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.get_repetitions">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.get_repetitions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_repetitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Get all repetition IDs for a dataset."""</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">rep</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">rep</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">dataset_name</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.get_entries_for_dataset">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.get_entries_for_dataset">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_entries_for_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DatasetEntry</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Get all entries for a dataset across all repetitions."""</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">entry</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> 
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">dataset_name</span>
+        <span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.validate_consistency">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.validate_consistency">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_consistency</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">task</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Validate that all required files exist for a dataset-task combination.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        task : str</span>
+<span class="sd">            Task name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if all files exist, False otherwise</span>
+<span class="sd">        """</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">entry</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check graph and metadata exist</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="o">.</span><span class="n">graph_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="o">.</span><span class="n">metadata_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">disease_node_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">entry</span><span class="o">.</span><span class="n">disease_node_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Check task split exists</span>
+        <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">split_paths</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="o">.</span><span class="n">split_paths</span><span class="p">[</span><span class="n">task</span><span class="p">]</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.save">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Save registry to JSON file.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        output_path : Path, optional</span>
+<span class="sd">            Output path. If None, uses self.registry_path.</span>
+<span class="sd">        """</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">output_path</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry_path</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No output path specified"</span><span class="p">)</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"entries"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">"key"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">rep</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                    <span class="s2">"entry"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rep</span><span class="p">),</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        
+        <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.load">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.load">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Load registry from JSON file.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        input_path : Path</span>
+<span class="sd">            Input path</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">entries</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">"entries"</span><span class="p">]:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="n">DatasetEntry</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">"entry"</span><span class="p">])</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">repetition_id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry_path</span> <span class="o">=</span> <span class="n">input_path</span></div>
+
+    
+<div class="viewcode-block" id="DatasetRegistry.get_summary">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.get_summary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get summary statistics of the registry.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Summary statistics</span>
+<span class="sd">        """</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_datasets</span><span class="p">()</span>
+        
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"total_datasets"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">datasets</span><span class="p">),</span>
+            <span class="s2">"total_entries"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="p">),</span>
+            <span class="s2">"datasets"</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+            <span class="n">reps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_repetitions</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+            <span class="n">entries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_entries_for_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+            
+            <span class="n">tasks</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+                <span class="n">tasks</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">available_tasks</span><span class="p">)</span>
+            
+            <span class="n">summary</span><span class="p">[</span><span class="s2">"datasets"</span><span class="p">][</span><span class="n">dataset</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"num_repetitions"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">reps</span><span class="p">),</span>
+                <span class="s2">"repetition_ids"</span><span class="p">:</span> <span class="n">reps</span><span class="p">,</span>
+                <span class="s2">"available_tasks"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tasks</span><span class="p">),</span>
+                <span class="s2">"dataset_type"</span><span class="p">:</span> <span class="n">entries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dataset_type</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">entries</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">summary</span></div>
+
+
+<div class="viewcode-block" id="DatasetRegistry.export_registry_json">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.export_registry_json">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_registry_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Explicit helper for writing a registry JSON artifact."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DatasetRegistry.export_registry_csv">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.dataset_registry.html#qbiocode.apps.quvine.reproducibility.dataset_registry.DatasetRegistry.export_registry_csv">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_registry_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Export flattened registry records to CSV."""</span>
+        <span class="n">output_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">fieldnames</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">"dataset_name"</span><span class="p">,</span>
+            <span class="s2">"dataset_type"</span><span class="p">,</span>
+            <span class="s2">"repetition_id"</span><span class="p">,</span>
+            <span class="s2">"seed"</span><span class="p">,</span>
+            <span class="s2">"graph_path"</span><span class="p">,</span>
+            <span class="s2">"metadata_path"</span><span class="p">,</span>
+            <span class="s2">"disease_node_path"</span><span class="p">,</span>
+            <span class="s2">"ppi_source"</span><span class="p">,</span>
+            <span class="s2">"disease"</span><span class="p">,</span>
+            <span class="s2">"requested_size"</span><span class="p">,</span>
+            <span class="s2">"actual_size"</span><span class="p">,</span>
+            <span class="s2">"registry_group"</span><span class="p">,</span>
+            <span class="s2">"available_tasks"</span><span class="p">,</span>
+            <span class="s2">"split_paths"</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fieldnames</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">entry</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entries</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])):</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">({</span>
+                    <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="s2">"dataset_type"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">dataset_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">repetition_id</span><span class="p">,</span>
+                    <span class="s2">"seed"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
+                    <span class="s2">"graph_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">graph_path</span><span class="p">),</span>
+                    <span class="s2">"metadata_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">metadata_path</span><span class="p">),</span>
+                    <span class="s2">"disease_node_path"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">disease_node_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">disease_node_path</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"ppi_source"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">ppi_source</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"disease"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">disease</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"requested_size"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">requested_size</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">requested_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"actual_size"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">actual_size</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">actual_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"registry_group"</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">registry_group</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">,</span>
+                    <span class="s2">"available_tasks"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">available_tasks</span><span class="p">)),</span>
+                    <span class="s2">"split_paths"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">task</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">split_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()}),</span>
+                <span class="p">})</span></div>
+</div>
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.evaluation.link_prediction &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/evaluation/link_prediction';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.evaluation.link_prediction</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.evaluation.link_prediction</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Link Prediction Evaluation Module</span>
+
+<span class="sd">This module provides functions for evaluating node embeddings on link prediction tasks.</span>
+<span class="sd">Includes edge sampling strategies, edge feature computation, and comprehensive evaluation metrics.</span>
+
+<span class="sd">Edge Sampling Strategies:</span>
+
+<span class="sd">1. Random negative sampling</span>
+<span class="sd">2. Hard negatives: 2-hop node pairs (common neighbors but no edge)</span>
+<span class="sd">3. Same-community non-edges</span>
+<span class="sd">4. Stratified sampling by node degree</span>
+
+<span class="sd">Edge Feature Computation:</span>
+
+<span class="sd">1. Hadamard product: ``u ⊙ v``</span>
+<span class="sd">2. Average: ``(u + v) / 2``</span>
+<span class="sd">3. L1 distance: ``|u - v|``</span>
+<span class="sd">4. L2 distance: ``||u - v||₂``</span>
+<span class="sd">5. Concatenation: ``[u; v]``</span>
+<span class="sd">6. Inner product (dot product): ``u · v``</span>
+<span class="sd">7. Cosine similarity: ``(u · v) / (||u|| ||v||)``</span>
+
+<span class="sd">Evaluation Metrics:</span>
+
+<span class="sd">- AUC-ROC, AUC-PR</span>
+<span class="sd">- Precision@K, Recall@K</span>
+<span class="sd">- Hit@K, MRR (Mean Reciprocal Rank)</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">average_precision_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_make_bidi</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Return a bidirectional (both-direction) copy of an edge collection."""</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+
+<div class="viewcode-block" id="sample_negative_edges">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.sample_negative_edges">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_negative_edges</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">existing_edges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'random'</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sample negative edges (non-existent edges) from the graph.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        n_samples: Number of negative edges to sample</span>
+<span class="sd">        existing_edges: Set of existing edges to avoid</span>
+<span class="sd">        strategy: Sampling strategy ('random', 'hard_2hop', 'same_community')</span>
+<span class="sd">        seed: Random seed</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        List of negative edge tuples</span>
+<span class="sd">    """</span>
+    <span class="c1"># A local generator, not np.random.seed(): reseeding the global RNG makes every</span>
+    <span class="c1"># subsequent random draw in the calling process depend on this function having been</span>
+    <span class="c1"># called, which silently couples unrelated results together.</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">existing_edges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">existing_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+
+    <span class="n">existing_edges_bidirectional</span> <span class="o">=</span> <span class="n">_make_bidi</span><span class="p">(</span><span class="n">existing_edges</span><span class="p">)</span>
+    
+    <span class="n">negative_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">'random'</span><span class="p">:</span>
+        <span class="c1"># Random negative sampling</span>
+        <span class="n">max_attempts</span> <span class="o">=</span> <span class="n">n_samples</span> <span class="o">*</span> <span class="mi">10</span>
+        <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_edges</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_samples</span> <span class="ow">and</span> <span class="n">attempts</span> <span class="o">&lt;</span> <span class="n">max_attempts</span><span class="p">:</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">)]</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">)]</span>
+            
+            <span class="k">if</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">v</span> <span class="ow">and</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_edges_bidirectional</span><span class="p">:</span>
+                <span class="n">negative_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span>
+            
+            <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">'hard_2hop'</span><span class="p">:</span>
+        <span class="c1"># Hard negatives: 2-hop node pairs (common neighbors but no edge)</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">u_neighbors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+            <span class="c1"># Find 2-hop neighbors</span>
+            <span class="n">two_hop_neighbors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">u_neighbors</span><span class="p">:</span>
+                <span class="n">two_hop_neighbors</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">neighbor</span><span class="p">))</span>
+            
+            <span class="c1"># Remove 1-hop neighbors and self</span>
+            <span class="n">two_hop_neighbors</span> <span class="o">-=</span> <span class="n">u_neighbors</span>
+            <span class="n">two_hop_neighbors</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            
+            <span class="c1"># Sample from 2-hop neighbors</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="p">[(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">two_hop_neighbors</span> 
+                         <span class="k">if</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_edges_bidirectional</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">candidates</span><span class="p">:</span>
+                <span class="n">sample_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span> <span class="o">//</span> <span class="n">n_nodes</span><span class="p">))</span>
+                <span class="n">sampled</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">sampled</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_edges</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_samples</span><span class="p">:</span>
+                        <span class="n">edge</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                        <span class="n">negative_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+                        <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+                        <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    
+    <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">'same_community'</span><span class="p">:</span>
+        <span class="c1"># Same-community non-edges (requires community detection)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">community</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">community_louvain</span>
+            <span class="n">communities</span> <span class="o">=</span> <span class="n">community_louvain</span><span class="o">.</span><span class="n">best_partition</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"python-louvain not installed, falling back to random sampling"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">sample_negative_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">existing_edges</span><span class="p">,</span> <span class="s1">'random'</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+        
+        <span class="c1"># Group nodes by community</span>
+        <span class="n">community_nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">communities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">comm</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">community_nodes</span><span class="p">:</span>
+                <span class="n">community_nodes</span><span class="p">[</span><span class="n">comm</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">community_nodes</span><span class="p">[</span><span class="n">comm</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        
+        <span class="c1"># Sample within communities</span>
+        <span class="k">for</span> <span class="n">comm</span><span class="p">,</span> <span class="n">comm_nodes</span> <span class="ow">in</span> <span class="n">community_nodes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">comm_nodes</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="c1"># Sample pairs within community</span>
+            <span class="n">sample_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">community_nodes</span><span class="p">))</span>
+            <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">max_attempts</span> <span class="o">=</span> <span class="n">sample_size</span> <span class="o">*</span> <span class="mi">10</span>
+            
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_edges</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_samples</span> <span class="ow">and</span> <span class="n">attempts</span> <span class="o">&lt;</span> <span class="n">max_attempts</span><span class="p">:</span>
+                <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">comm_nodes</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existing_edges_bidirectional</span><span class="p">:</span>
+                    <span class="n">negative_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                    <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                    <span class="n">existing_edges_bidirectional</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span>
+                <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown strategy: </span><span class="si">{</span><span class="n">strategy</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative_edges</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n_samples</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could only sample </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> negative edges (requested </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">negative_edges</span><span class="p">[:</span><span class="n">n_samples</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="split_edges">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.split_edges">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">split_edges</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">test_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">val_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">negative_sampling_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'random'</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Split graph edges into train/validation/test sets.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        test_ratio: Fraction of edges for testing</span>
+<span class="sd">        val_ratio: Fraction of edges for validation</span>
+<span class="sd">        negative_sampling_strategy: Strategy for sampling negative edges</span>
+<span class="sd">        seed: Random seed</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple of (train_graph, val_edges, test_edges, negative_edges)</span>
+<span class="sd">    """</span>
+    <span class="c1"># Local generator rather than np.random.seed(seed) -- see sample_negative_edges.</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="n">edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+    <span class="n">n_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+    <span class="c1"># Shuffle edges</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    
+    <span class="c1"># Split edges</span>
+    <span class="n">n_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_edges</span> <span class="o">*</span> <span class="n">test_ratio</span><span class="p">)</span>
+    <span class="n">n_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_edges</span> <span class="o">*</span> <span class="n">val_ratio</span><span class="p">)</span>
+    <span class="n">n_train</span> <span class="o">=</span> <span class="n">n_edges</span> <span class="o">-</span> <span class="n">n_test</span> <span class="o">-</span> <span class="n">n_val</span>
+    
+    <span class="n">train_edges</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]</span>
+    <span class="n">val_edges</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">n_train</span><span class="p">:</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">n_val</span><span class="p">]</span>
+    <span class="n">test_edges</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">n_val</span><span class="p">:]</span>
+    
+    <span class="c1"># Create training graph</span>
+    <span class="n">train_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">train_graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">train_graph</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">train_edges</span><span class="p">)</span>
+    
+    <span class="c1"># Ensure training graph is connected (if original was connected)</span>
+    <span class="k">if</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">train_graph</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Training graph is disconnected after edge split. Consider reducing test_ratio."</span><span class="p">)</span>
+    
+    <span class="c1"># Sample negative edges (same number as test edges)</span>
+    <span class="n">negative_edges</span> <span class="o">=</span> <span class="n">sample_negative_edges</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">n_test</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span> <span class="n">strategy</span><span class="o">=</span><span class="n">negative_sampling_strategy</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">train_graph</span><span class="p">,</span> <span class="n">val_edges</span><span class="p">,</span> <span class="n">test_edges</span><span class="p">,</span> <span class="n">negative_edges</span></div>
+
+
+
+<div class="viewcode-block" id="compute_edge_features">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.compute_edge_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_edge_features</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'hadamard'</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute edge features from node embeddings.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings: Node embedding matrix (n_nodes x embedding_dim)</span>
+<span class="sd">        node_list: List of node IDs corresponding to embedding rows</span>
+<span class="sd">        edges: List of edge tuples</span>
+<span class="sd">        method: Feature computation method</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Edge feature matrix (n_edges x feature_dim)</span>
+<span class="sd">    """</span>
+    <span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_list</span><span class="p">)}</span>
+    <span class="n">edge_features</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_idx</span> <span class="ow">or</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edge (</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">) contains unknown node(s). Skipping."</span><span class="p">)</span>
+            <span class="k">continue</span>
+        
+        <span class="n">u_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">u</span><span class="p">]]</span>
+        <span class="n">v_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span>
+        
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'hadamard'</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">u_emb</span> <span class="o">*</span> <span class="n">v_emb</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'average'</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="p">(</span><span class="n">u_emb</span> <span class="o">+</span> <span class="n">v_emb</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'l1'</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u_emb</span> <span class="o">-</span> <span class="n">v_emb</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'l2'</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="p">(</span><span class="n">u_emb</span> <span class="o">-</span> <span class="n">v_emb</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'concat'</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">u_emb</span><span class="p">,</span> <span class="n">v_emb</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'inner_product'</span> <span class="ow">or</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'dot'</span><span class="p">:</span>
+            <span class="c1"># Inner product (dot product) - returns scalar</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u_emb</span><span class="p">,</span> <span class="n">v_emb</span><span class="p">)])</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'cosine'</span><span class="p">:</span>
+            <span class="c1"># Cosine similarity - returns scalar</span>
+            <span class="n">norm_u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u_emb</span><span class="p">)</span>
+            <span class="n">norm_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v_emb</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">norm_u</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">norm_v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u_emb</span><span class="p">,</span> <span class="n">v_emb</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_u</span> <span class="o">*</span> <span class="n">norm_v</span><span class="p">)])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">feature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+        <span class="n">edge_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">edge_features</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_extract_edge_endpoints</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+    <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">],</span>
+    <span class="n">node_to_idx</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Return (U, V) embedding matrices for valid edges."""</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_idx</span> <span class="ow">or</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edge (</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">) contains unknown node(s). Skipping."</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">U</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">u</span><span class="p">]])</span>
+        <span class="n">V</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">v</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">U</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">U</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_apply_edge_method</span><span class="p">(</span><span class="n">U</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">V</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Vectorised edge feature from pre-extracted endpoint embeddings."""</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'hadamard'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">U</span> <span class="o">*</span> <span class="n">V</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'average'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">U</span> <span class="o">+</span> <span class="n">V</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'l1'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span> <span class="o">-</span> <span class="n">V</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'l2'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">U</span> <span class="o">-</span> <span class="n">V</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'inner_product'</span><span class="p">,</span> <span class="s1">'dot'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">V</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'cosine'</span><span class="p">:</span>
+        <span class="n">norms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">norms</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">V</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">/</span> <span class="n">norms</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'concat'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_classify_and_score</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">n_pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">n_neg</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">k_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">classifier</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'logistic'</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Scale, train classifier, and return link prediction metrics."""</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train_sc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test_sc</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">classifier</span> <span class="o">==</span> <span class="s1">'logistic'</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">classifier</span> <span class="o">==</span> <span class="s1">'random_forest'</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown classifier: </span><span class="si">{</span><span class="n">classifier</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_sc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_sc</span><span class="p">)</span>
+    <span class="n">y_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_sc</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="s1">'predict_proba'</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">clf</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_test_sc</span><span class="p">))</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'auc_roc'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_scores</span><span class="p">),</span>
+        <span class="s1">'auc_pr'</span><span class="p">:</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_scores</span><span class="p">),</span>
+        <span class="s1">'f1'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'binary'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'n_positive'</span><span class="p">:</span> <span class="n">n_pos</span><span class="p">,</span>
+        <span class="s1">'n_negative'</span><span class="p">:</span> <span class="n">n_neg</span><span class="p">,</span>
+        <span class="s1">'n_train'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span>
+        <span class="s1">'n_test'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">sorted_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">y_scores</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_sorted</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_sorted</span><span class="p">):</span>
+            <span class="n">top_k</span> <span class="o">=</span> <span class="n">y_sorted</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">'precision@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">'recall@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">'hit@</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">top_k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="n">pos_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_sorted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out</span><span class="p">[</span><span class="s1">'mrr'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">pos_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<div class="viewcode-block" id="evaluate_link_prediction">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.evaluate_link_prediction">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_link_prediction</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">positive_edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">negative_edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">edge_feature_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'hadamard'</span><span class="p">,</span>
+    <span class="n">classifier</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'logistic'</span><span class="p">,</span>
+    <span class="n">k_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="n">test_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">train_positive_edges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_negative_edges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate link prediction performance with no train-test leakage.</span>
+
+<span class="sd">    When *train_positive_edges* and *train_negative_edges* are provided the</span>
+<span class="sd">    classifier is trained on those edges and evaluated on *positive_edges* /</span>
+<span class="sd">    *negative_edges* (the held-out test set).  The StandardScaler is always</span>
+<span class="sd">    fit exclusively on the training features so that test statistics are</span>
+<span class="sd">    never seen during normalisation.</span>
+
+<span class="sd">    When train edges are omitted the function falls back to an internal</span>
+<span class="sd">    stratified split controlled by *test_size*.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings: Node embedding matrix</span>
+<span class="sd">        node_list: List of node IDs</span>
+<span class="sd">        positive_edges: Test positive (existing) edges</span>
+<span class="sd">        negative_edges: Test negative (non-existing) edges</span>
+<span class="sd">        edge_feature_method: Method for computing edge features</span>
+<span class="sd">        classifier: Classifier type ('logistic' or 'random_forest')</span>
+<span class="sd">        k_values: K values for Precision@K and Recall@K</span>
+<span class="sd">        test_size: Fraction for internal test split (only used when train edges not provided)</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">        train_positive_edges: Training positive edges (prevents leakage)</span>
+<span class="sd">        train_negative_edges: Training negative edges (prevents leakage)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of evaluation metrics</span>
+<span class="sd">    """</span>
+    <span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_list</span><span class="p">)}</span>
+    <span class="n">U_pos</span><span class="p">,</span> <span class="n">V_pos</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">positive_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+    <span class="n">U_neg</span><span class="p">,</span> <span class="n">V_neg</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">negative_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_pos</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_neg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"No valid edge features computed. Skipping evaluation."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'no_valid_features'</span><span class="p">,</span> <span class="s1">'auc_roc'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'auc_pr'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s1">'f1'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'n_positive'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'n_negative'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+    <span class="n">pos_features</span> <span class="o">=</span> <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_pos</span><span class="p">,</span> <span class="n">V_pos</span><span class="p">,</span> <span class="n">edge_feature_method</span><span class="p">)</span>
+    <span class="n">neg_features</span> <span class="o">=</span> <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_neg</span><span class="p">,</span> <span class="n">V_neg</span><span class="p">,</span> <span class="n">edge_feature_method</span><span class="p">)</span>
+    <span class="n">X_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">pos_features</span><span class="p">,</span> <span class="n">neg_features</span><span class="p">])</span>
+    <span class="n">y_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">pos_features</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_features</span><span class="p">)])</span>
+
+    <span class="c1"># Pre-initialize to avoid unbound-variable hazard when have_train is False.</span>
+    <span class="n">U_tp</span> <span class="o">=</span> <span class="n">V_tp</span> <span class="o">=</span> <span class="n">U_tn</span> <span class="o">=</span> <span class="n">V_tn</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">train_positive_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">train_negative_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">U_tp</span><span class="p">,</span> <span class="n">V_tp</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">train_positive_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+        <span class="n">U_tn</span><span class="p">,</span> <span class="n">V_tn</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">train_negative_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">U_tp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">U_tn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>
+            <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_tp</span><span class="p">,</span> <span class="n">V_tp</span><span class="p">,</span> <span class="n">edge_feature_method</span><span class="p">),</span>
+            <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_tn</span><span class="p">,</span> <span class="n">V_tn</span><span class="p">,</span> <span class="n">edge_feature_method</span><span class="p">),</span>
+        <span class="p">])</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">U_tp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tn</span><span class="p">)])</span>
+        <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test_all</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">train_positive_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">train_negative_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Train edge features empty; falling back to internal split."</span><span class="p">)</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_test_all</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_classify_and_score</span><span class="p">(</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span>
+        <span class="n">n_pos</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">pos_features</span><span class="p">),</span> <span class="n">n_neg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">neg_features</span><span class="p">),</span>
+        <span class="n">k_values</span><span class="o">=</span><span class="n">k_values</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">classifier</span><span class="o">=</span><span class="n">classifier</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate_link_prediction_cv">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.evaluate_link_prediction_cv">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_link_prediction_cv</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">test_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">edge_feature_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'hadamard'</span><span class="p">,</span>
+    <span class="n">negative_sampling_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'random'</span><span class="p">,</span>
+    <span class="n">k_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate link prediction with train-test split.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        embeddings: Node embedding matrix</span>
+<span class="sd">        node_list: List of node IDs</span>
+<span class="sd">        test_ratio: Fraction of edges for testing</span>
+<span class="sd">        edge_feature_method: Method for computing edge features</span>
+<span class="sd">        negative_sampling_strategy: Strategy for negative sampling</span>
+<span class="sd">        k_values: K values for metrics</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of evaluation metrics</span>
+<span class="sd">    """</span>
+    <span class="c1"># Split edges</span>
+    <span class="n">train_graph</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">test_edges</span><span class="p">,</span> <span class="n">negative_edges</span> <span class="o">=</span> <span class="n">split_edges</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">test_ratio</span><span class="o">=</span><span class="n">test_ratio</span><span class="p">,</span> <span class="n">val_ratio</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+        <span class="n">negative_sampling_strategy</span><span class="o">=</span><span class="n">negative_sampling_strategy</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">random_state</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Evaluate</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">evaluate_link_prediction</span><span class="p">(</span>
+        <span class="n">embeddings</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+        <span class="n">node_list</span><span class="o">=</span><span class="n">node_list</span><span class="p">,</span>
+        <span class="n">positive_edges</span><span class="o">=</span><span class="n">test_edges</span><span class="p">,</span>
+        <span class="n">negative_edges</span><span class="o">=</span><span class="n">negative_edges</span><span class="p">,</span>
+        <span class="n">edge_feature_method</span><span class="o">=</span><span class="n">edge_feature_method</span><span class="p">,</span>
+        <span class="n">k_values</span><span class="o">=</span><span class="n">k_values</span><span class="p">,</span>
+        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># Further split for train/test within evaluation</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate_all_edge_feature_methods">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.evaluate_all_edge_feature_methods">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_all_edge_feature_methods</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">positive_edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">negative_edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">k_values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">train_positive_edges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_negative_edges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate link prediction using all edge feature methods.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings: Node embedding matrix</span>
+<span class="sd">        node_list: List of node IDs</span>
+<span class="sd">        positive_edges: Test positive edges</span>
+<span class="sd">        negative_edges: Test negative edges</span>
+<span class="sd">        k_values: K values for metrics</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">        train_positive_edges: Training positive edges (no leakage when provided)</span>
+<span class="sd">        train_negative_edges: Training negative edges (no leakage when provided)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping method names to evaluation results</span>
+<span class="sd">    """</span>
+    <span class="c1"># Pre-extract endpoint embeddings once for each edge set (avoids rebuilding</span>
+    <span class="c1"># node_to_idx and re-indexing embeddings for every one of the 6 methods).</span>
+    <span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_list</span><span class="p">)}</span>
+    <span class="n">U_pos</span><span class="p">,</span> <span class="n">V_pos</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">positive_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+    <span class="n">U_neg</span><span class="p">,</span> <span class="n">V_neg</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">negative_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+
+    <span class="n">_empty_result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'no_valid_features'</span><span class="p">,</span> <span class="s1">'auc_roc'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'auc_pr'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                     <span class="s1">'f1'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">'n_positive'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'n_negative'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_pos</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_neg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">m</span><span class="p">:</span> <span class="n">_empty_result</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'hadamard'</span><span class="p">,</span> <span class="s1">'average'</span><span class="p">,</span> <span class="s1">'l1'</span><span class="p">,</span> <span class="s1">'l2'</span><span class="p">,</span> <span class="s1">'inner_product'</span><span class="p">,</span> <span class="s1">'cosine'</span><span class="p">]}</span>
+
+    <span class="n">have_train</span> <span class="o">=</span> <span class="n">train_positive_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">train_negative_edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">have_train</span><span class="p">:</span>
+        <span class="n">U_tp</span><span class="p">,</span> <span class="n">V_tp</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">train_positive_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+        <span class="n">U_tn</span><span class="p">,</span> <span class="n">V_tn</span> <span class="o">=</span> <span class="n">_extract_edge_endpoints</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">train_negative_edges</span><span class="p">,</span> <span class="n">node_to_idx</span><span class="p">)</span>
+        <span class="n">have_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">have_train</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Train edge features empty; falling back to internal split."</span><span class="p">)</span>
+
+    <span class="n">y_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">U_pos</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_neg</span><span class="p">)])</span>
+    <span class="n">y_train_fixed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">U_tp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">U_tn</span><span class="p">)])</span> <span class="k">if</span> <span class="n">have_train</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'hadamard'</span><span class="p">,</span> <span class="s1">'average'</span><span class="p">,</span> <span class="s1">'l1'</span><span class="p">,</span> <span class="s1">'l2'</span><span class="p">,</span> <span class="s1">'inner_product'</span><span class="p">,</span> <span class="s1">'cosine'</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">X_test_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>
+                <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_pos</span><span class="p">,</span> <span class="n">V_pos</span><span class="p">,</span> <span class="n">method</span><span class="p">),</span>
+                <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_neg</span><span class="p">,</span> <span class="n">V_neg</span><span class="p">,</span> <span class="n">method</span><span class="p">),</span>
+            <span class="p">])</span>
+            <span class="k">if</span> <span class="n">have_train</span><span class="p">:</span>
+                <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span>
+                    <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_tp</span><span class="p">,</span> <span class="n">V_tp</span><span class="p">,</span> <span class="n">method</span><span class="p">),</span>
+                    <span class="n">_apply_edge_method</span><span class="p">(</span><span class="n">U_tn</span><span class="p">,</span> <span class="n">V_tn</span><span class="p">,</span> <span class="n">method</span><span class="p">),</span>
+                <span class="p">])</span>
+                <span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_fixed</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test_all</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                    <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                    <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_test_all</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">_classify_and_score</span><span class="p">(</span>
+                <span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span>
+                <span class="n">n_pos</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">U_pos</span><span class="p">),</span> <span class="n">n_neg</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">U_neg</span><span class="p">),</span>
+                <span class="n">k_values</span><span class="o">=</span><span class="n">k_values</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Link prediction with </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+
+<div class="viewcode-block" id="summarize_link_prediction_results">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.summarize_link_prediction_results">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">summarize_link_prediction_results</span><span class="p">(</span>
+    <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Summarize link prediction results across all edge feature methods.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        results: Dictionary of results from evaluate_all_edge_feature_methods</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of summary statistics</span>
+<span class="sd">    """</span>
+    <span class="c1"># Extract AUC scores</span>
+    <span class="n">auc_roc_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">auc_pr_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mrr_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s1">'error'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">'auc_roc'</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+                <span class="n">auc_roc_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'auc_roc'</span><span class="p">])</span>
+            <span class="k">if</span> <span class="s1">'auc_pr'</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+                <span class="n">auc_pr_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'auc_pr'</span><span class="p">])</span>
+            <span class="k">if</span> <span class="s1">'mrr'</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+                <span class="n">mrr_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'mrr'</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">auc_roc_scores</span><span class="p">:</span>
+        <span class="c1"># nan, not 0.0: no method produced a score, which is not the same claim</span>
+        <span class="c1"># as every method scoring zero.</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'mean_auc_roc'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span>
+            <span class="s1">'mean_auc_pr'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span>
+            <span class="s1">'mean_mrr'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span>
+            <span class="s1">'n_defined_auc_roc'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">'n_defined_auc_pr'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">'n_defined_mrr'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">'n_successful_methods'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+    
+    <span class="c1"># nan-aware: a method whose ranking metric was undefined (single-class test</span>
+    <span class="c1"># split) reports nan, and plain np.mean would propagate that one nan into</span>
+    <span class="c1"># every summary field, erasing the methods that did succeed. n_defined_* says</span>
+    <span class="c1"># how many values each statistic was actually computed over.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stats</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">n_defined</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">arr</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">n_defined</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="sa">f</span><span class="s1">'mean_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span> <span class="sa">f</span><span class="s1">'std_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">'max_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span> <span class="sa">f</span><span class="s1">'min_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'nan'</span><span class="p">),</span>
+                    <span class="sa">f</span><span class="s1">'n_defined_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sa">f</span><span class="s1">'mean_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">)),</span>
+                <span class="sa">f</span><span class="s1">'std_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">arr</span><span class="p">)),</span>
+                <span class="sa">f</span><span class="s1">'max_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">arr</span><span class="p">)),</span>
+                <span class="sa">f</span><span class="s1">'min_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">arr</span><span class="p">)),</span>
+                <span class="sa">f</span><span class="s1">'n_defined_</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s1">'</span><span class="p">:</span> <span class="n">n_defined</span><span class="p">}</span>
+
+    <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">**</span><span class="n">_stats</span><span class="p">(</span><span class="s1">'auc_roc'</span><span class="p">,</span> <span class="n">auc_roc_scores</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">_stats</span><span class="p">(</span><span class="s1">'auc_pr'</span><span class="p">,</span> <span class="n">auc_pr_scores</span><span class="p">),</span>
+        <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_stats</span><span class="p">(</span><span class="s1">'mrr'</span><span class="p">,</span> <span class="n">mrr_scores</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+           <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'max_'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'min_'</span><span class="p">))},</span>
+        <span class="s1">'n_successful_methods'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">auc_roc_scores</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">summary</span></div>
+
+
+
+<div class="viewcode-block" id="compute_structural_link_features">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.link_prediction.html#qbiocode.apps.quvine.evaluation.link_prediction.compute_structural_link_features">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_structural_link_features</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute structural features for edges (for baseline comparison).</span>
+<span class="sd">    </span>
+<span class="sd">    Features:</span>
+<span class="sd">    - Common neighbors</span>
+<span class="sd">    - Jaccard coefficient</span>
+<span class="sd">    - Adamic-Adar index</span>
+<span class="sd">    - Preferential attachment</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        edges: List of edge tuples</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Structural feature matrix (n_edges x 4)</span>
+<span class="sd">    """</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">G</span> <span class="ow">or</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>
+            <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="k">continue</span>
+        
+        <span class="c1"># Common neighbors</span>
+        <span class="n">common_neighbors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">common_neighbors</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)))</span>
+        
+        <span class="c1"># Jaccard coefficient</span>
+        <span class="n">u_neighbors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+        <span class="n">v_neighbors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+        <span class="n">union</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u_neighbors</span> <span class="o">|</span> <span class="n">v_neighbors</span><span class="p">)</span>
+        <span class="n">jaccard</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u_neighbors</span> <span class="o">&amp;</span> <span class="n">v_neighbors</span><span class="p">)</span> <span class="o">/</span> <span class="n">union</span> <span class="k">if</span> <span class="n">union</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        
+        <span class="c1"># Adamic-Adar index</span>
+        <span class="n">adamic_adar</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">common_neighbors</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="n">deg_w</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">deg_w</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">adamic_adar</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">deg_w</span><span class="p">)</span>
+        
+        <span class="c1"># Preferential attachment</span>
+        <span class="n">pref_attach</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        
+        <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">common_neighbors</span><span class="p">,</span> <span class="n">jaccard</span><span class="p">,</span> <span class="n">adamic_adar</span><span class="p">,</span> <span class="n">pref_attach</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">features</span><span class="p">)</span></div>
+
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

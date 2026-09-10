@@ -1,0 +1,1429 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>qbiocode.apps.quvine.baselines.gat module &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/qbiocode.apps.quvine.baselines.gat';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qbiocode.apps.quvine.baselines.gcn_mf module" href="qbiocode.apps.quvine.baselines.gcn_mf.html" />
+    <link rel="prev" title="qbiocode.apps.quvine.baselines.configs module" href="qbiocode.apps.quvine.baselines.configs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">qbiocode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="qbiocode.html">qbiocode package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.version.html">qbiocode.version module</a></li>
+<li class="toctree-l3 current active"><a class="reference internal" href="qbiocode.apps.html">qbiocode.apps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.data_generation.html">qbiocode.data_generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.embeddings.html">qbiocode.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.evaluation.html">qbiocode.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.learning.html">qbiocode.learning package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.utils.html">qbiocode.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.visualization.html">qbiocode.visualization package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_overview.html" class="nav-link">API Overview</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">qbiocode</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.html" class="nav-link">qbiocode package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.html" class="nav-link">qbiocode.apps package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.html" class="nav-link">qbiocode.apps.quvine package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.baselines.html" class="nav-link">qbiocode.apps.quvine.baselines package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.baselines.gat module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-qbiocode.apps.quvine.baselines.gat">
+<span id="qbiocode-apps-quvine-baselines-gat-module"></span><h1>qbiocode.apps.quvine.baselines.gat module<a class="headerlink" href="#module-qbiocode.apps.quvine.baselines.gat" title="Link to this heading">#</a></h1>
+<p>QuVINE GAT Variants: controlled downstream probes for quantum/classical diffusion features.</p>
+<dl>
+<dt>This module replaces the earlier GCN-MF pathway with a cleaner GAT pathway:</dt><dd><p>feature_builder(G) -&gt; X_variant -&gt; same GAT encoder -&gt; embeddings / logits</p>
+</dd>
+<dt>Important design choice:</dt><dd><p>The GAT is NOT quantum. Quantum content enters only through the input
+representation, e.g. QCal-Heat/QCal-Poly features calibrated to CTQW/DTQW
+targets, or direct CTQW/DTQW embeddings computed elsewhere.</p>
+</dd>
+<dt>Supported input variants:</dt><dd><p>raw_structural       : scalable structural node features
+provided             : user-provided features
+rwr                  : classical random-walk-with-restart diffusion features
+heat_fixed           : classical heat kernel features with user-provided t
+poly_fixed           : classical polynomial features with user-provided coeffs
+heat_qcal_ctqw       : heat kernel calibrated to CTQW targets
+poly_qcal_ctqw       : polynomial filter calibrated to CTQW targets
+heat_qcal_rwr        : heat kernel calibrated to RWR/classical-walk targets
+poly_qcal_rwr        : polynomial filter calibrated to RWR/classical-walk targets
+direct_ctqw          : direct CTQW embedding/features provided by user
+direct_dtqw          : direct DTQW embedding/features provided by user</p>
+</dd>
+<dt>Dependencies beyond the previous GCN-MF file:</dt><dd><p>Required: PyTorch, NumPy, SciPy, NetworkX</p>
+<p>Optional: scikit-learn only for StandardScaler if
+normalize_structural_features=True; code falls back to internal
+standardization when sklearn is absent.</p>
+</dd>
+</dl>
+<p>No PyTorch Geometric is required. This file implements a sparse edge-index GAT
+using only PyTorch index_add/scatter_reduce operations.</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Classes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer" title="qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EdgeIndexGATLayer</span></code></a></p></td>
+<td><p>Sparse edge-index GAT layer using only PyTorch.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.GATConfig" title="qbiocode.apps.quvine.baselines.gat.GATConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GATConfig</span></code></a></p></td>
+<td><p>GATConfig(hidden_dim: 'int' = 64, output_dim: 'int' = 128, num_layers: 'int' = 2, heads: 'int' = 4, dropout: 'float' = 0.5, attention_dropout: 'float' = 0.2, negative_slope: 'float' = 0.2, residual: 'bool' = True)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.GATEncoder" title="qbiocode.apps.quvine.baselines.gat.GATEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GATEncoder</span></code></a></p></td>
+<td><p>GAT encoder returning node embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier" title="qbiocode.apps.quvine.baselines.gat.GATNodeClassifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GATNodeClassifier</span></code></a></p></td>
+<td><p>GAT encoder plus linear classifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig" title="qbiocode.apps.quvine.baselines.gat.TrainConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainConfig</span></code></a></p></td>
+<td><p>TrainConfig(epochs: 'int' = 200, lr: 'float' = 0.005, weight_decay: 'float' = 0.0005, patience: 'int' = 25, edge_batch_size: 'int' = 8192, val_edge_fraction: 'float' = 0.1, random_state: 'int' = 42, device: 'str' = 'cpu', verbose: 'bool' = False)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Functions:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.align_features" title="qbiocode.apps.quvine.baselines.gat.align_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">align_features</span></code></a></p></td>
+<td><p>Align feature matrix to nodelist.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.apply_heat_filter" title="qbiocode.apps.quvine.baselines.gat.apply_heat_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_heat_filter</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.apply_polynomial_filter" title="qbiocode.apps.quvine.baselines.gat.apply_polynomial_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_polynomial_filter</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.apply_rwr_filter" title="qbiocode.apps.quvine.baselines.gat.apply_rwr_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_rwr_filter</span></code></a></p></td>
+<td><p>Random walk with restart / PPR-style feature diffusion.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.as_numpy" title="qbiocode.apps.quvine.baselines.gat.as_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_numpy</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.build_gat_input_features" title="qbiocode.apps.quvine.baselines.gat.build_gat_input_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_gat_input_features</span></code></a></p></td>
+<td><p>Construct input features for a GAT variant with optional train/test separation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.build_normalized_laplacian" title="qbiocode.apps.quvine.baselines.gat.build_normalized_laplacian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_normalized_laplacian</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.build_structural_features" title="qbiocode.apps.quvine.baselines.gat.build_structural_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_structural_features</span></code></a></p></td>
+<td><p>Scalable structural node features for graphs without attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.calibrate_heat_kernel" title="qbiocode.apps.quvine.baselines.gat.calibrate_heat_kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate_heat_kernel</span></code></a></p></td>
+<td><p>Fit heat time to target distributions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.calibrate_polynomial_filter" title="qbiocode.apps.quvine.baselines.gat.calibrate_polynomial_filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate_polynomial_filter</span></code></a></p></td>
+<td><p>Fit monomial polynomial coefficients to target distributions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.edge_index_from_graph" title="qbiocode.apps.quvine.baselines.gat.edge_index_from_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">edge_index_from_graph</span></code></a></p></td>
+<td><p>Return directed edge_index [2, E_dir], including both directions for undirected G.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.edge_scores_dot" title="qbiocode.apps.quvine.baselines.gat.edge_scores_dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">edge_scores_dot</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding" title="qbiocode.apps.quvine.baselines.gat.generate_gat_embedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_gat_embedding</span></code></a></p></td>
+<td><p>Generate unsupervised GAT embeddings for one feature variant.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding_by_method_name" title="qbiocode.apps.quvine.baselines.gat.generate_gat_embedding_by_method_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_gat_embedding_by_method_name</span></code></a></p></td>
+<td><p>Generate GAT embedding using standardized method names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.generate_multiple_gat_embeddings" title="qbiocode.apps.quvine.baselines.gat.generate_multiple_gat_embeddings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_multiple_gat_embeddings</span></code></a></p></td>
+<td><p>Generate embeddings for several variants using identical kwargs/configs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.get_direct_walk_features" title="qbiocode.apps.quvine.baselines.gat.get_direct_walk_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_direct_walk_features</span></code></a></p></td>
+<td><p>Fetch direct CTQW/DTQW features computed by the SGNS/walk pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.get_nodelist" title="qbiocode.apps.quvine.baselines.gat.get_nodelist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodelist</span></code></a></p></td>
+<td><p>Return the node order to use, validating that it belongs to <code class="docutils literal notranslate"><span class="pre">G</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.heat_taylor_coeffs" title="qbiocode.apps.quvine.baselines.gat.heat_taylor_coeffs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">heat_taylor_coeffs</span></code></a></p></td>
+<td><p>Classical fixed polynomial baseline approximating exp(-tL).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.make_edge_batch" title="qbiocode.apps.quvine.baselines.gat.make_edge_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_edge_batch</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.require_torch" title="qbiocode.apps.quvine.baselines.gat.require_torch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">require_torch</span></code></a></p></td>
+<td><p>Check if PyTorch is available and raise informative error if not.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.row_normalize" title="qbiocode.apps.quvine.baselines.gat.row_normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_normalize</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.sample_negative_edges" title="qbiocode.apps.quvine.baselines.gat.sample_negative_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_negative_edges</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.scipy_sparse_to_torch_coo" title="qbiocode.apps.quvine.baselines.gat.scipy_sparse_to_torch_coo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy_sparse_to_torch_coo</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.set_seed" title="qbiocode.apps.quvine.baselines.gat.set_seed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_seed</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.split_edges" title="qbiocode.apps.quvine.baselines.gat.split_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_edges</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.standardize_columns" title="qbiocode.apps.quvine.baselines.gat.standardize_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">standardize_columns</span></code></a></p></td>
+<td><p>Standardize columns with optional train-only statistics.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.train_gat_link_reconstruction" title="qbiocode.apps.quvine.baselines.gat.train_gat_link_reconstruction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_gat_link_reconstruction</span></code></a></p></td>
+<td><p>Train a GAT encoder with edge reconstruction and return embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.train_gat_node_classifier" title="qbiocode.apps.quvine.baselines.gat.train_gat_node_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_gat_node_classifier</span></code></a></p></td>
+<td><p>Train GAT directly for node classification and return embeddings plus metadata.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GATConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attention_dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.hidden_dim">
+<span class="sig-name descname"><span class="pre">hidden_dim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.hidden_dim" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.output_dim">
+<span class="sig-name descname"><span class="pre">output_dim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.output_dim" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.num_layers">
+<span class="sig-name descname"><span class="pre">num_layers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.num_layers" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.heads">
+<span class="sig-name descname"><span class="pre">heads</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.heads" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.dropout">
+<span class="sig-name descname"><span class="pre">dropout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.dropout" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.attention_dropout">
+<span class="sig-name descname"><span class="pre">attention_dropout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.attention_dropout" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.negative_slope">
+<span class="sig-name descname"><span class="pre">negative_slope</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.negative_slope" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATConfig.residual">
+<span class="sig-name descname"><span class="pre">residual</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.residual" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TrainConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8192</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_edge_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#TrainConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.epochs">
+<span class="sig-name descname"><span class="pre">epochs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.epochs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.lr">
+<span class="sig-name descname"><span class="pre">lr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.005</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.lr" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.weight_decay">
+<span class="sig-name descname"><span class="pre">weight_decay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0005</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.weight_decay" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.patience">
+<span class="sig-name descname"><span class="pre">patience</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">25</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.patience" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.edge_batch_size">
+<span class="sig-name descname"><span class="pre">edge_batch_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.edge_batch_size" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.val_edge_fraction">
+<span class="sig-name descname"><span class="pre">val_edge_fraction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.val_edge_fraction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.random_state">
+<span class="sig-name descname"><span class="pre">random_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">42</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.random_state" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.device">
+<span class="sig-name descname"><span class="pre">device</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cpu'</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.device" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.TrainConfig.verbose">
+<span class="sig-name descname"><span class="pre">verbose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.verbose" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.require_torch">
+<span class="sig-name descname"><span class="pre">require_torch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#require_torch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.require_torch" title="Link to this definition">#</a></dt>
+<dd><p>Check if PyTorch is available and raise informative error if not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="qbiocode.apps.quvine.utils.torch_utils.html#qbiocode.apps.quvine.utils.torch_utils.TorchNotAvailableError" title="qbiocode.apps.quvine.utils.torch_utils.TorchNotAvailableError"><strong>TorchNotAvailableError</strong></a> – If PyTorch is not installed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.set_seed">
+<span class="sig-name descname"><span class="pre">set_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#set_seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.set_seed" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.get_nodelist">
+<span class="sig-name descname"><span class="pre">get_nodelist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#get_nodelist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.get_nodelist" title="Link to this definition">#</a></dt>
+<dd><p>Return the node order to use, validating that it belongs to <code class="docutils literal notranslate"><span class="pre">G</span></code>.</p>
+<p>Every consumer of this ordering indexes <code class="docutils literal notranslate"><span class="pre">G</span></code> by these ids – degree views,
+Laplacian construction, per-node metric dicts – so an id that is not in the
+graph has no meaningful feature row. Rejecting it here names the offending
+ids; letting it through produced either a silently zeroed feature column or
+an inscrutable numpy shape error several frames deeper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if <code class="docutils literal notranslate"><span class="pre">nodelist</span></code> contains ids absent from <code class="docutils literal notranslate"><span class="pre">G</span></code>, or duplicates.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.as_numpy">
+<span class="sig-name descname"><span class="pre">as_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#as_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.as_numpy" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.row_normalize">
+<span class="sig-name descname"><span class="pre">row_normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#row_normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.row_normalize" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.standardize_columns">
+<span class="sig-name descname"><span class="pre">standardize_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#standardize_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.standardize_columns" title="Link to this definition">#</a></dt>
+<dd><p>Standardize columns with optional train-only statistics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>) – Feature matrix [N, d]</p></li>
+<li><p><strong>train_mask</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span>) – Boolean mask for training nodes [N]. If None, uses all nodes.</p></li>
+<li><p><strong>eps</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Small constant for numerical stability</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Standardized features [N, d]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.scipy_sparse_to_torch_coo">
+<span class="sig-name descname"><span class="pre">scipy_sparse_to_torch_coo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#scipy_sparse_to_torch_coo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.scipy_sparse_to_torch_coo" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.edge_index_from_graph">
+<span class="sig-name descname"><span class="pre">edge_index_from_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_self_loops</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#edge_index_from_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.edge_index_from_graph" title="Link to this definition">#</a></dt>
+<dd><p>Return directed edge_index [2, E_dir], including both directions for undirected G.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.build_normalized_laplacian">
+<span class="sig-name descname"><span class="pre">build_normalized_laplacian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#build_normalized_laplacian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.build_normalized_laplacian" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">csr_matrix</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.build_structural_features">
+<span class="sig-name descname"><span class="pre">build_structural_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#build_structural_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.build_structural_features" title="Link to this definition">#</a></dt>
+<dd><p>Scalable structural node features for graphs without attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span>) – NetworkX graph</p></li>
+<li><p><strong>nodelist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>]</span>) – Ordered list of nodes (default: G.nodes())</p></li>
+<li><p><strong>train_mask</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span>) – Boolean mask [N] indicating training nodes.
+If None, uses all nodes (acceptable for transductive tasks).</p></li>
+<li><p><strong>normalize</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to standardize features</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>[degree, log_degree, clustering, core_number, pagerank,</dt><dd><p>log_triangles, avg_neighbor_degree, local_degree_fraction]</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Feature matrix [N, 8] with columns</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For transductive node classification, train_mask can be None since
+the full graph structure is known. For inductive tasks or to prevent
+test leakage, always provide train_mask.</p>
+</div>
+<dl class="simple">
+<dt>Degenerate graphs:</dt><dd><p>Any structural column that networkx cannot compute for this graph class
+(clustering and triangles on multigraphs, k-core with self-loops,
+pagerank that fails to converge) falls back to zeros – pagerank to the
+uniform distribution – and logs the reason at DEBUG. The feature matrix
+always has the documented width; it is never partially built.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.align_features">
+<span class="sig-name descname"><span class="pre">align_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#align_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.align_features" title="Link to this definition">#</a></dt>
+<dd><p>Align feature matrix to nodelist.</p>
+<p>If feature_nodes is None, features are assumed already ordered as nodelist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.apply_heat_filter">
+<span class="sig-name descname"><span class="pre">apply_heat_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#apply_heat_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.apply_heat_filter" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.apply_polynomial_filter">
+<span class="sig-name descname"><span class="pre">apply_polynomial_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#apply_polynomial_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.apply_polynomial_filter" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.apply_rwr_filter">
+<span class="sig-name descname"><span class="pre">apply_rwr_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#apply_rwr_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.apply_rwr_filter" title="Link to this definition">#</a></dt>
+<dd><p>Random walk with restart / PPR-style feature diffusion.</p>
+<p>Iteration: Z_{k+1} = alpha X + (1-alpha) P Z_k,
+where P = D^{-1} A is row-stochastic. This is classical, not quantum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.calibrate_heat_kernel">
+<span class="sig-name descname"><span class="pre">calibrate_heat_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_to_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'l2'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#calibrate_heat_kernel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.calibrate_heat_kernel" title="Link to this definition">#</a></dt>
+<dd><p>Fit heat time to target distributions.</p>
+<p>targets can be CTQW targets, DTQW targets, or classical RWR targets. The
+routine is agnostic: it simply matches target probabilities on sampled node
+sets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.calibrate_polynomial_filter">
+<span class="sig-name descname"><span class="pre">calibrate_polynomial_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_to_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#calibrate_polynomial_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.calibrate_polynomial_filter" title="Link to this definition">#</a></dt>
+<dd><p>Fit monomial polynomial coefficients to target distributions.</p>
+<p>Critical bug fix relative to the earlier code: we do NOT column-normalize
+the polynomial basis during fitting unless that same normalization is also
+used at application time. Ridge handles conditioning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.heat_taylor_coeffs">
+<span class="sig-name descname"><span class="pre">heat_taylor_coeffs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#heat_taylor_coeffs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.heat_taylor_coeffs" title="Link to this definition">#</a></dt>
+<dd><p>Classical fixed polynomial baseline approximating exp(-tL).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.get_direct_walk_features">
+<span class="sig-name descname"><span class="pre">get_direct_walk_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direct_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#get_direct_walk_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.get_direct_walk_features" title="Link to this definition">#</a></dt>
+<dd><p>Fetch direct CTQW/DTQW features computed by the SGNS/walk pipeline.</p>
+<p>This function intentionally does not recompute CTQW/DTQW. Your attached
+pipeline trains SGNS embeddings from corpora produced by BaseWalker and then
+stores embeddings in an EmbeddingStore; pass the resulting array here.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EdgeIndexGATLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attention_dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#EdgeIndexGATLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Sparse edge-index GAT layer using only PyTorch.</p>
+<p>This layer computes attention over incoming neighbors for each destination
+node. edge_index[0] = source, edge_index[1] = destination.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.reset_parameters">
+<span class="sig-name descname"><span class="pre">reset_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#EdgeIndexGATLayer.reset_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.reset_parameters" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#EdgeIndexGATLayer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.forward" title="Link to this definition">#</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATEncoder">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GATEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATEncoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATEncoder" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>GAT encoder returning node embeddings.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATEncoder.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATEncoder.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATEncoder.forward" title="Link to this definition">#</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATNodeClassifier">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GATNodeClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATNodeClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>GAT encoder plus linear classifier.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATNodeClassifier.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.forward" title="Link to this definition">#</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.get_embeddings">
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#GATNodeClassifier.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.get_embeddings" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.sample_negative_edges">
+<span class="sig-name descname"><span class="pre">sample_negative_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempt_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#sample_negative_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.sample_negative_edges" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.split_edges">
+<span class="sig-name descname"><span class="pre">split_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#split_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.split_edges" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.edge_scores_dot">
+<span class="sig-name descname"><span class="pre">edge_scores_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index_2xn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#edge_scores_dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.edge_scores_dot" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.make_edge_batch">
+<span class="sig-name descname"><span class="pre">make_edge_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#make_edge_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.make_edge_batch" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.train_gat_link_reconstruction">
+<span class="sig-name descname"><span class="pre">train_gat_link_reconstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gat_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_graph_for_message_passing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#train_gat_link_reconstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.train_gat_link_reconstruction" title="Link to this definition">#</a></dt>
+<dd><p>Train a GAT encoder with edge reconstruction and return embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.train_gat_node_classifier">
+<span class="sig-name descname"><span class="pre">train_gat_node_classifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gat_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#train_gat_node_classifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.train_gat_node_classifier" title="Link to this definition">#</a></dt>
+<dd><p>Train GAT directly for node classification and return embeddings plus metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.build_gat_input_features">
+<span class="sig-name descname"><span class="pre">build_gat_input_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_coeffs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_laplacian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#build_gat_input_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.build_gat_input_features" title="Link to this definition">#</a></dt>
+<dd><p>Construct input features for a GAT variant with optional train/test separation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span>) – NetworkX graph</p></li>
+<li><p><strong>variant</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Feature variant name</p></li>
+<li><p><strong>nodelist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>]</span>) – Ordered list of nodes</p></li>
+<li><p><strong>train_mask</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span>) – Boolean mask [N] for training nodes. If None, uses all nodes
+(acceptable for transductive tasks). Prevents test leakage.</p></li>
+<li><p><strong>base_features</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – Pre-computed base features (if provided, assumed pre-normalized)</p></li>
+<li><p><strong>...</strong> (<em>other args as before</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Feature matrix and metadata dict</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(X, meta)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.generate_gat_embedding">
+<span class="sig-name descname"><span class="pre">generate_gat_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_feature_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_coeffs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_laplacian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gat_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_graph_for_message_passing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#generate_gat_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding" title="Link to this definition">#</a></dt>
+<dd><p>Generate unsupervised GAT embeddings for one feature variant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.generate_multiple_gat_embeddings">
+<span class="sig-name descname"><span class="pre">generate_multiple_gat_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variants</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#generate_multiple_gat_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.generate_multiple_gat_embeddings" title="Link to this definition">#</a></dt>
+<dd><p>Generate embeddings for several variants using identical kwargs/configs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gat.generate_gat_embedding_by_method_name">
+<span class="sig-name descname"><span class="pre">generate_gat_embedding_by_method_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtqw_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rwr_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gat_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gat.html#generate_gat_embedding_by_method_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding_by_method_name" title="Link to this definition">#</a></dt>
+<dd><p>Generate GAT embedding using standardized method names.</p>
+<p>This function maps the 12 standardized GAT method names to the existing
+variant system in generate_gat_embedding.</p>
+<dl class="simple">
+<dt>Supported methods:</dt><dd><ul class="simple">
+<li><p>gat_baseline: Raw structural features</p></li>
+<li><p>gat_heat: Heat kernel filter only</p></li>
+<li><p>gat_poly: Polynomial filter only</p></li>
+<li><p>gat_rwr: RWR walk only</p></li>
+<li><p>gat_ctqw: CTQW walk only (direct features)</p></li>
+<li><p>gat_dtqw: DTQW walk only (direct features)</p></li>
+<li><p>gat_rwr_heat: RWR + heat filter</p></li>
+<li><p>gat_rwr_poly: RWR + polynomial filter</p></li>
+<li><p>gat_ctqw_heat: CTQW + heat filter (quantum calibrated)</p></li>
+<li><p>gat_ctqw_poly: CTQW + polynomial filter (quantum calibrated)</p></li>
+<li><p>gat_dtqw_heat: DTQW + heat filter (quantum calibrated)</p></li>
+<li><p>gat_dtqw_poly: DTQW + polynomial filter (quantum calibrated)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span>) – NetworkX graph</p></li>
+<li><p><strong>method_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Standardized method name (e.g., ‘gat_baseline’, ‘gat_ctqw_heat’)</p></li>
+<li><p><strong>embedding_dim</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Output embedding dimension</p></li>
+<li><p><strong>nodelist</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>]</span>) – Ordered list of nodes</p></li>
+<li><p><strong>base_features</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span>) – Pre-computed base features</p></li>
+<li><p><strong>ctqw_targets</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>]]</span>) – CTQW calibration targets</p></li>
+<li><p><strong>dtqw_targets</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>]]</span>) – DTQW calibration targets</p></li>
+<li><p><strong>rwr_targets</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>]]</span>) – RWR calibration targets</p></li>
+<li><p><strong>heat_t</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Heat kernel time parameter (for fixed variants)</p></li>
+<li><p><strong>poly_K</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Polynomial degree</p></li>
+<li><p><strong>rwr_alpha</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – RWR restart probability</p></li>
+<li><p><strong>gat_config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.GATConfig" title="qbiocode.apps.quvine.baselines.gat.GATConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">GATConfig</span></code></a>]</span>) – GAT model configuration</p></li>
+<li><p><strong>train_config</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig" title="qbiocode.apps.quvine.baselines.gat.TrainConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrainConfig</span></code></a>]</span>) – Training configuration</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node embeddings [N, embedding_dim]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emb</span> <span class="o">=</span> <span class="n">generate_gat_embedding_by_method_name</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">'gat_baseline'</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">emb</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (34, 64)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If method_name is not recognized</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qbiocode.apps.quvine.baselines.configs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.baselines.configs module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qbiocode.apps.quvine.baselines.gcn_mf.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.baselines.gcn_mf module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig"><code class="docutils literal notranslate"><span class="pre">GATConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.hidden_dim"><code class="docutils literal notranslate"><span class="pre">GATConfig.hidden_dim</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.output_dim"><code class="docutils literal notranslate"><span class="pre">GATConfig.output_dim</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.num_layers"><code class="docutils literal notranslate"><span class="pre">GATConfig.num_layers</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.heads"><code class="docutils literal notranslate"><span class="pre">GATConfig.heads</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.dropout"><code class="docutils literal notranslate"><span class="pre">GATConfig.dropout</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.attention_dropout"><code class="docutils literal notranslate"><span class="pre">GATConfig.attention_dropout</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.negative_slope"><code class="docutils literal notranslate"><span class="pre">GATConfig.negative_slope</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATConfig.residual"><code class="docutils literal notranslate"><span class="pre">GATConfig.residual</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig"><code class="docutils literal notranslate"><span class="pre">TrainConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.epochs"><code class="docutils literal notranslate"><span class="pre">TrainConfig.epochs</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.lr"><code class="docutils literal notranslate"><span class="pre">TrainConfig.lr</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.weight_decay"><code class="docutils literal notranslate"><span class="pre">TrainConfig.weight_decay</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.patience"><code class="docutils literal notranslate"><span class="pre">TrainConfig.patience</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.edge_batch_size"><code class="docutils literal notranslate"><span class="pre">TrainConfig.edge_batch_size</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.val_edge_fraction"><code class="docutils literal notranslate"><span class="pre">TrainConfig.val_edge_fraction</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.random_state"><code class="docutils literal notranslate"><span class="pre">TrainConfig.random_state</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.device"><code class="docutils literal notranslate"><span class="pre">TrainConfig.device</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.TrainConfig.verbose"><code class="docutils literal notranslate"><span class="pre">TrainConfig.verbose</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.require_torch"><code class="docutils literal notranslate"><span class="pre">require_torch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.set_seed"><code class="docutils literal notranslate"><span class="pre">set_seed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.get_nodelist"><code class="docutils literal notranslate"><span class="pre">get_nodelist()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.as_numpy"><code class="docutils literal notranslate"><span class="pre">as_numpy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.row_normalize"><code class="docutils literal notranslate"><span class="pre">row_normalize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.standardize_columns"><code class="docutils literal notranslate"><span class="pre">standardize_columns()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.scipy_sparse_to_torch_coo"><code class="docutils literal notranslate"><span class="pre">scipy_sparse_to_torch_coo()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.edge_index_from_graph"><code class="docutils literal notranslate"><span class="pre">edge_index_from_graph()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.build_normalized_laplacian"><code class="docutils literal notranslate"><span class="pre">build_normalized_laplacian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.build_structural_features"><code class="docutils literal notranslate"><span class="pre">build_structural_features()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.align_features"><code class="docutils literal notranslate"><span class="pre">align_features()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.apply_heat_filter"><code class="docutils literal notranslate"><span class="pre">apply_heat_filter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.apply_polynomial_filter"><code class="docutils literal notranslate"><span class="pre">apply_polynomial_filter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.apply_rwr_filter"><code class="docutils literal notranslate"><span class="pre">apply_rwr_filter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.calibrate_heat_kernel"><code class="docutils literal notranslate"><span class="pre">calibrate_heat_kernel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.calibrate_polynomial_filter"><code class="docutils literal notranslate"><span class="pre">calibrate_polynomial_filter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.heat_taylor_coeffs"><code class="docutils literal notranslate"><span class="pre">heat_taylor_coeffs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.get_direct_walk_features"><code class="docutils literal notranslate"><span class="pre">get_direct_walk_features()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer"><code class="docutils literal notranslate"><span class="pre">EdgeIndexGATLayer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.reset_parameters"><code class="docutils literal notranslate"><span class="pre">EdgeIndexGATLayer.reset_parameters()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.EdgeIndexGATLayer.forward"><code class="docutils literal notranslate"><span class="pre">EdgeIndexGATLayer.forward()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATEncoder"><code class="docutils literal notranslate"><span class="pre">GATEncoder</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATEncoder.forward"><code class="docutils literal notranslate"><span class="pre">GATEncoder.forward()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier"><code class="docutils literal notranslate"><span class="pre">GATNodeClassifier</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.forward"><code class="docutils literal notranslate"><span class="pre">GATNodeClassifier.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.GATNodeClassifier.get_embeddings"><code class="docutils literal notranslate"><span class="pre">GATNodeClassifier.get_embeddings()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.sample_negative_edges"><code class="docutils literal notranslate"><span class="pre">sample_negative_edges()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.split_edges"><code class="docutils literal notranslate"><span class="pre">split_edges()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.edge_scores_dot"><code class="docutils literal notranslate"><span class="pre">edge_scores_dot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.make_edge_batch"><code class="docutils literal notranslate"><span class="pre">make_edge_batch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.train_gat_link_reconstruction"><code class="docutils literal notranslate"><span class="pre">train_gat_link_reconstruction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.train_gat_node_classifier"><code class="docutils literal notranslate"><span class="pre">train_gat_node_classifier()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.build_gat_input_features"><code class="docutils literal notranslate"><span class="pre">build_gat_input_features()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding"><code class="docutils literal notranslate"><span class="pre">generate_gat_embedding()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.generate_multiple_gat_embeddings"><code class="docutils literal notranslate"><span class="pre">generate_multiple_gat_embeddings()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gat.generate_gat_embedding_by_method_name"><code class="docutils literal notranslate"><span class="pre">generate_gat_embedding_by_method_name()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

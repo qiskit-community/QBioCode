@@ -1,0 +1,1606 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>QProfiler CC/CQ/QC/QQ 2×2 on CD4-vs-CD8 — classical vs quantum embeddings × classical vs quantum ML &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=a35ea3b2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/QProfiler/sc_binary_quvine_2x2_qprofiler';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Quantum Ensemble Learning Tutorial" href="../QEnsemble/QEnsemble_example_blobs.html" />
+    <link rel="prev" title="QuVINE on the T-vs-Monocyte cell graph" href="../QuVINE/quvine_sc_t_vs_mono.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Artificial_data_generation/example_data_generation.html">Artificial Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing/sc-qc.html">5k PBMC CITE-seq — QC &amp; preprocessing</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="example_qprofiler.html">QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sc_binary_qprofiler.html">QProfiler on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/example_quvine.html">QuVINE - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/quvine_sc_cd4_vs_cd8.html">QuVINE on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/quvine_sc_t_vs_mono.html">QuVINE on T vs. Monocyte</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QuVINE Embeddings in QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QEnsemble/QEnsemble_example_blobs.html">Quantum Ensemble Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSage/qsage.html">QSage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum_Projection_Learning/QPL_example.html">Quantum Projection Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PQK%20-%20OV.html">PQK on Ovarian Cancer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">QProfiler CC/CQ/QC/QQ 2×2 on CD4-vs-CD8 — classical vs quantum embeddings × classical vs quantum ML</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+    /* Improve notebook cell spacing */
+    div.nbinput.container,
+    div.nboutput.container {
+        margin-bottom: 1em;
+    }
+
+    /* Better code cell styling */
+    div.highlight-ipython3 {
+        margin: 0.5em 0;
+    }
+
+    /* Improve markdown cell rendering */
+    .nbinput + .nboutput {
+        margin-top: 0.5em;
+    }
+</style><section id="QProfiler-CC/CQ/QC/QQ-2×2-on-CD4-vs-CD8-—-classical-vs-quantum-embeddings-×-classical-vs-quantum-ML">
+<h1>QProfiler CC/CQ/QC/QQ 2×2 on CD4-vs-CD8 — classical vs quantum embeddings × classical vs quantum ML<a class="headerlink" href="#QProfiler-CC/CQ/QC/QQ-2×2-on-CD4-vs-CD8-—-classical-vs-quantum-embeddings-×-classical-vs-quantum-ML" title="Link to this heading">#</a></h1>
+<p>The full 2×2 quadrant benchmark on the one discriminative single-cell binary task, CD4 vs CD8 T cells. The two axes are:</p>
+<ul class="simple">
+<li><p>Embedding type — Classical (<code class="docutils literal notranslate"><span class="pre">pca,</span> <span class="pre">nmf,</span> <span class="pre">umap,</span> <span class="pre">isomap,</span> <span class="pre">lle</span></code> + the classical-walk ablation <code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code>, plus <code class="docutils literal notranslate"><span class="pre">node2vec,</span> <span class="pre">graphsage,</span> <span class="pre">baseline_filter_*</span></code>) vs Quantum (QuVINE quantum-walk embeddings <code class="docutils literal notranslate"><span class="pre">quvine_ctqw,</span> <span class="pre">quvine_dtqw</span></code> and the quantum-calibrated diffusion filters <code class="docutils literal notranslate"><span class="pre">filter_ctqw_heat,</span> <span class="pre">filter_dtqw_heat</span></code>).</p></li>
+<li><p>ML-method type — Classical (<code class="docutils literal notranslate"><span class="pre">lr,</span> <span class="pre">svc,</span> <span class="pre">rf,</span> <span class="pre">mlp,</span> <span class="pre">nb,</span> <span class="pre">dt,</span> <span class="pre">xgb</span></code>) vs Quantum (<code class="docutils literal notranslate"><span class="pre">pqk,</span> <span class="pre">qsvc,</span> <span class="pre">vqc,</span> <span class="pre">qnn</span></code>).</p></li>
+</ul>
+<p>That gives four quadrants:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Classical ML</p></th>
+<th class="head"><p>Quantum ML</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Classical embedding</strong></p></td>
+<td><p><strong>CC</strong></p></td>
+<td><p><strong>CQ</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Quantum embedding</strong></p></td>
+<td><p><strong>QC</strong></p></td>
+<td><p><strong>QQ</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>QProfiler already benchmarks the full <code class="docutils literal notranslate"><span class="pre">embeddings</span> <span class="pre">×</span> <span class="pre">model</span></code> cross-product, so the entire 2×2 falls out of one config run — we just tag each result row by quadrant afterward.</p>
+<p>QuVINE embeddings are wired into QProfiler’s <code class="docutils literal notranslate"><span class="pre">get_embeddings</span></code> by name (any <code class="docutils literal notranslate"><span class="pre">quvine_*</span></code> / <code class="docutils literal notranslate"><span class="pre">node2vec</span></code> / <code class="docutils literal notranslate"><span class="pre">graphsage</span></code> / <code class="docutils literal notranslate"><span class="pre">filter_*</span></code> method). QuVINE is transductive: it embeds every node of a graph at once. We build one kNN cell graph over the concatenated train+test features, embed all cells once, then slice the rows back into train/test by construction order. Only feature-derived structure enters the graph — the class label never does — so this is the standard transductive protocol (the
+same all-cells-at-once embedding the QuVINE tutorial uses), <strong>not label leakage</strong>.</p>
+<blockquote>
+<div><p>Dropped on purpose: the <code class="docutils literal notranslate"><span class="pre">gat_*</span></code> / <code class="docutils literal notranslate"><span class="pre">graphgps_*</span></code> walk families. Their walk variant is compressed into a single calibrated heat-time scalar <code class="docutils literal notranslate"><span class="pre">t</span></code>, which collapses the ctqw/dtqw/rwr distinction — so they add cost without a real quantum-walk signal here. The cheaper <code class="docutils literal notranslate"><span class="pre">filter_*</span></code> diffusion arm is kept as the quantum-calibrated representative (with the caveat that <code class="docutils literal notranslate"><span class="pre">filter_ctqw</span></code> vs <code class="docutils literal notranslate"><span class="pre">filter_dtqw</span></code> may still converge for the same reason).</p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>Install.</strong> QuVINE ships behind an optional extra, so a plain <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qbiocode</span></code> does <em>not</em> pull its dependencies (gensim, hiperwalk, node2vec, torch-geometric, python-louvain, ripser, omegaconf). Install it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"qbiocode[quvine]"</span>
+</pre></div>
+</div>
+<p>Calling a <code class="docutils literal notranslate"><span class="pre">quvine_*</span></code> method without the extra raises an error naming the missing package and this exact command, rather than a bare <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+<p>This notebook also reads an <code class="docutils literal notranslate"><span class="pre">.h5ad</span></code> fixture, so it needs <code class="docutils literal notranslate"><span class="pre">anndata</span></code> — part of the base install.</p>
+<section id="1.-Setup-and-imports">
+<h2>1. Setup and imports<a class="headerlink" href="#1.-Setup-and-imports" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qbc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.qprofiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">qprofiler</span> <span class="k">as</span> <span class="n">profiler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tutorial_data_path</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+
+<span class="c1"># ---- Paths ----</span>
+<span class="c1"># The cd4_vs_cd8 fixture is committed once and shared with the QProfiler and QuVINE</span>
+<span class="c1"># tutorials; tutorial_data_path() finds it in whichever tree holds it (it searches</span>
+<span class="c1"># $QBC_DATA first, then every fixture directory of a source checkout) and raises a</span>
+<span class="c1"># FileNotFoundError naming each directory tried. export_task_csv() below wants the</span>
+<span class="c1"># containing directory, not the file.</span>
+<span class="n">H5AD_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">tutorial_data_path</span><span class="p">(</span><span class="s2">"pbmc5k_small_cd4_vs_cd8.h5ad"</span><span class="p">))</span>
+<span class="n">NB_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>   <span class="c1"># this notebook's own directory (portable across docs/ and tutorial/)</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">NB_DIR</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">,</span> <span class="s2">"sc_binary"</span><span class="p">)</span>             <span class="c1"># per-task CSVs written here</span>
+<span class="c1"># The config template ships as package data, so read it out of the installed package</span>
+<span class="c1"># rather than deriving a repo root from qbc.__file__ -- that only resolves for an</span>
+<span class="c1"># editable install and silently points into site-packages for a normal one.</span>
+<span class="n">CONFIG_TEMPLATE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">profiler</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">"configs"</span><span class="p">,</span> <span class="s2">"config.yaml"</span><span class="p">)</span>
+<span class="n">OUT_DIR</span> <span class="o">=</span> <span class="n">NB_DIR</span>                                                  <span class="c1"># ModelResults.csv etc. land here</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># QProfiler writes outputs to the current working directory -&gt; pin it to OUT_DIR.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">OUT_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"qbiocode"</span><span class="p">,</span> <span class="n">qbc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"cwd (outputs):"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;env&gt;/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+qbiocode 0.1.0
+cwd (outputs): &lt;repo&gt;/tutorial/QProfiler
+</pre></div></div>
+</div>
+</section>
+<section id="2.-Configuration-—-the-four-axes-+-a-FULL_GRID-toggle">
+<h2>2. Configuration — the four axes + a <code class="docutils literal notranslate"><span class="pre">FULL_GRID</span></code> toggle<a class="headerlink" href="#2.-Configuration-—-the-four-axes-+-a-FULL_GRID-toggle" title="Link to this heading">#</a></h2>
+<p>The canonical Classical (C) and Quantum (Q) method lists for each axis are fixed below — they define which quadrant every result lands in. <code class="docutils literal notranslate"><span class="pre">FULL_GRID</span></code> chooses how much of each axis actually runs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FULL_GRID</span> <span class="pre">=</span> <span class="pre">False</span></code> (default): a tractable subset — a couple of embeddings and models per axis, with <code class="docutils literal notranslate"><span class="pre">pqk</span></code> as the sole quantum ML. Still covers all four quadrants, runs on a laptop in minutes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FULL_GRID</span> <span class="pre">=</span> <span class="pre">True</span></code>: every embedding × every model — much slower, since quantum ML on the local statevector simulator dominates the runtime (14 embeddings × 11 models × <code class="docutils literal notranslate"><span class="pre">ITER</span></code> splits).</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================ EXPERIMENT CONFIG ============================</span>
+<span class="n">TASK</span> <span class="o">=</span> <span class="s2">"cd4_vs_cd8"</span>   <span class="c1"># the only discriminative task (others saturate at ~1.0)</span>
+<span class="n">LEAKAGE_SAFE</span> <span class="o">=</span> <span class="kc">True</span>   <span class="c1"># drop label-defining marker genes</span>
+<span class="n">N_FEATURES</span> <span class="o">=</span> <span class="mi">50</span>       <span class="c1"># top-variance HVGs exported (keeps compute light)</span>
+<span class="n">N_COMPONENTS</span> <span class="o">=</span> <span class="mi">8</span>      <span class="c1"># embedding width == qubit count for PQK/quantum encoders</span>
+<span class="n">ITER</span> <span class="o">=</span> <span class="mi">3</span>              <span class="c1"># train/test splits per (embedding, model)</span>
+<span class="n">TEST_SIZE</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="c1"># ---- Canonical axis definitions (these decide the quadrant of every arm) ----</span>
+<span class="c1"># Classical embeddings: sklearn reductions + graph embeddings whose walk is classical.</span>
+<span class="c1"># quvine_rwr is the classical random-walk ABLATION of the quantum walks (same pipeline).</span>
+<span class="n">C_EMB</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pca"</span><span class="p">,</span> <span class="s2">"nmf"</span><span class="p">,</span> <span class="s2">"umap"</span><span class="p">,</span> <span class="s2">"isomap"</span><span class="p">,</span> <span class="s2">"lle"</span><span class="p">,</span>
+         <span class="s2">"quvine_rwr"</span><span class="p">,</span> <span class="s2">"node2vec"</span><span class="p">,</span> <span class="s2">"graphsage"</span><span class="p">,</span>
+         <span class="s2">"baseline_filter_heat"</span><span class="p">,</span> <span class="s2">"baseline_filter_poly"</span><span class="p">]</span>
+<span class="c1"># Quantum embeddings: QuVINE quantum-walk SGNS + quantum-calibrated diffusion filters.</span>
+<span class="n">Q_EMB</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">,</span> <span class="s2">"filter_ctqw_heat"</span><span class="p">,</span> <span class="s2">"filter_dtqw_heat"</span><span class="p">]</span>
+
+<span class="n">C_ML</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"lr"</span><span class="p">,</span> <span class="s2">"svc"</span><span class="p">,</span> <span class="s2">"rf"</span><span class="p">,</span> <span class="s2">"mlp"</span><span class="p">,</span> <span class="s2">"nb"</span><span class="p">,</span> <span class="s2">"dt"</span><span class="p">,</span> <span class="s2">"xgb"</span><span class="p">]</span>   <span class="c1"># classical models</span>
+<span class="n">Q_ML</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pqk"</span><span class="p">,</span> <span class="s2">"qsvc"</span><span class="p">,</span> <span class="s2">"vqc"</span><span class="p">,</span> <span class="s2">"qnn"</span><span class="p">]</span>                    <span class="c1"># quantum models</span>
+
+<span class="c1"># ---- What actually runs ----</span>
+<span class="n">FULL_GRID</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">FULL_GRID</span><span class="p">:</span>
+    <span class="n">EMB</span> <span class="o">=</span> <span class="n">C_EMB</span> <span class="o">+</span> <span class="n">Q_EMB</span>
+    <span class="n">ML</span>  <span class="o">=</span> <span class="n">C_ML</span> <span class="o">+</span> <span class="n">Q_ML</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># One+ representative per family so all four quadrants are populated but cheap.</span>
+    <span class="n">EMB</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pca"</span><span class="p">,</span> <span class="s2">"quvine_rwr"</span><span class="p">,</span>          <span class="c1"># classical embeddings (incl. classical-walk ablation)</span>
+           <span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">]</span>  <span class="c1"># quantum-walk embeddings</span>
+    <span class="n">ML</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"lr"</span><span class="p">,</span> <span class="s2">"rf"</span><span class="p">,</span>                    <span class="c1"># classical ML</span>
+           <span class="s2">"pqk"</span><span class="p">]</span>                         <span class="c1"># quantum ML (statevector sim; the slow arm)</span>
+
+<span class="c1"># PQK feature-map tuning: a SHALLOW linearly-entangled ZZ map (reps=1) avoids the</span>
+<span class="c1"># quantum-kernel concentration the deep template default suffers -- higher accuracy, ~3x faster.</span>
+<span class="n">PQK_ARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"encoding"</span><span class="p">:</span> <span class="s2">"ZZ"</span><span class="p">,</span> <span class="s2">"entanglement"</span><span class="p">:</span> <span class="s2">"linear"</span><span class="p">,</span> <span class="s2">"primitive"</span><span class="p">:</span> <span class="s2">"estimator"</span><span class="p">,</span> <span class="s2">"reps"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="c1"># QuVINE overrides forwarded to embed(). `dimension` is forced to N_COMPONENTS automatically.</span>
+<span class="c1"># steps is kept small: quantum walks spread ballistically, so large step counts over-mix and</span>
+<span class="c1"># wash out same-class structure.</span>
+<span class="n">QUVINE_ARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"walks"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"steps"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"num_walks"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"walk_length"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+               <span class="s2">"train"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"epochs"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>
+               <span class="s2">"views"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"num_views"</span><span class="p">:</span> <span class="mi">4</span><span class="p">}}</span>
+<span class="n">N_NEIGHBORS</span> <span class="o">=</span> <span class="mi">15</span>   <span class="c1"># neighbors for the kNN cell graph QuVINE embeds on</span>
+<span class="c1"># ===========================================================================</span>
+
+<span class="n">Q_EMB_SET</span><span class="p">,</span> <span class="n">Q_ML_SET</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">Q_EMB</span><span class="p">),</span> <span class="nb">set</span><span class="p">(</span><span class="n">Q_ML</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quadrant</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="s2">"Q"</span> <span class="k">if</span> <span class="n">emb</span> <span class="ow">in</span> <span class="n">Q_EMB_SET</span> <span class="k">else</span> <span class="s2">"C"</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s2">"Q"</span> <span class="k">if</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">Q_ML_SET</span> <span class="k">else</span> <span class="s2">"C"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"FULL_GRID:"</span><span class="p">,</span> <span class="n">FULL_GRID</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"embeddings:"</span><span class="p">,</span> <span class="n">EMB</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"models     :"</span><span class="p">,</span> <span class="n">ML</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"quadrants that will appear:"</span><span class="p">,</span>
+      <span class="nb">sorted</span><span class="p">({</span><span class="n">quadrant</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">EMB</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ML</span><span class="p">}))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_components=</span><span class="si">{</span><span class="n">N_COMPONENTS</span><span class="si">}</span><span class="s2"> | iters=</span><span class="si">{</span><span class="n">ITER</span><span class="si">}</span><span class="s2"> | combos=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">EMB</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">ML</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FULL_GRID: False
+embeddings: [&#39;pca&#39;, &#39;quvine_rwr&#39;, &#39;quvine_ctqw&#39;, &#39;quvine_dtqw&#39;]
+models     : [&#39;lr&#39;, &#39;rf&#39;, &#39;pqk&#39;]
+quadrants that will appear: [&#39;CC&#39;, &#39;CQ&#39;, &#39;QC&#39;, &#39;QQ&#39;]
+n_components=8 | iters=3 | combos=12
+</pre></div></div>
+</div>
+</section>
+<section id="3.-Build-the-CD4-vs-CD8-CSV">
+<h2>3. Build the CD4-vs-CD8 CSV<a class="headerlink" href="#3.-Build-the-CD4-vs-CD8-CSV" title="Link to this heading">#</a></h2>
+<p>QProfiler reads plain CSVs (features in columns, <strong>label in the last column</strong>). We export the CD4-vs-CD8 task from the small balanced h5ad (500 cells, 250/class), keeping the top <code class="docutils literal notranslate"><span class="pre">N_FEATURES</span></code> high-variance HVGs and dropping the label-defining markers when <code class="docutils literal notranslate"><span class="pre">LEAKAGE_SAFE</span></code>. This is the same leakage-safe export used by the <code class="docutils literal notranslate"><span class="pre">sc_binary_qprofiler.ipynb</span></code> tutorial.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">export_task_csv</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">leakage_safe</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">h5ad_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Write pbmc-&lt;task&gt;.csv (top-variance HVGs + label) and return (path, info)."""</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">h5ad_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"pbmc5k_small_</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">.h5ad"</span><span class="p">))</span>
+
+    <span class="n">keep</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"highly_variable"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">leakage_safe</span> <span class="ow">and</span> <span class="s2">"is_label_leakage"</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"is_label_leakage"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[:,</span> <span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">"todense"</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">genes</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">n_features</span><span class="p">]</span>
+    <span class="n">X_sel</span><span class="p">,</span> <span class="n">genes_sel</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">order</span><span class="p">],</span> <span class="n">genes</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_sel</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">genes_sel</span><span class="p">))</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">"label"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>   <span class="c1"># label MUST be last column</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"pbmc-</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"task"</span><span class="p">:</span> <span class="n">task</span><span class="p">,</span> <span class="s2">"n_cells"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"n_features"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">genes_sel</span><span class="p">),</span>
+            <span class="s2">"classes"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"label"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">info</span>
+
+<span class="n">csv_path</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">export_task_csv</span><span class="p">(</span><span class="n">TASK</span><span class="p">,</span> <span class="n">N_FEATURES</span><span class="p">,</span> <span class="n">LEAKAGE_SAFE</span><span class="p">,</span> <span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">H5AD_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"CSV -&gt;"</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;task&#39;: &#39;cd4_vs_cd8&#39;, &#39;n_cells&#39;: 500, &#39;n_features&#39;: 50, &#39;classes&#39;: {&#39;CD4_T&#39;: 250, &#39;CD8_T&#39;: 250}}
+CSV -&gt; &lt;repo&gt;/tutorial/QProfiler/data/sc_binary/pbmc-cd4_vs_cd8.csv
+</pre></div></div>
+</div>
+</section>
+<section id="4.-Assemble-the-QProfiler-config">
+<h2>4. Assemble the QProfiler config<a class="headerlink" href="#4.-Assemble-the-QProfiler-config" title="Link to this heading">#</a></h2>
+<p>Start from the shipped template (so every model-arg block is present) and override our choices. <code class="docutils literal notranslate"><span class="pre">embeddings</span> <span class="pre">=</span> <span class="pre">EMB</span></code> and <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">ML</span></code> make QProfiler run the full cross-product; <code class="docutils literal notranslate"><span class="pre">quvine_args</span></code> / <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> are threaded through to the QuVINE embeddings.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">CONFIG_TEMPLATE</span><span class="p">))</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">"folder_path"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">),</span>
+    <span class="s2">"file_dataset"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"pbmc-</span><span class="si">{</span><span class="n">TASK</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">],</span>
+    <span class="s2">"embeddings"</span><span class="p">:</span> <span class="n">EMB</span><span class="p">,</span>
+    <span class="s2">"model"</span><span class="p">:</span> <span class="n">ML</span><span class="p">,</span>
+    <span class="s2">"n_components"</span><span class="p">:</span> <span class="n">N_COMPONENTS</span><span class="p">,</span>
+    <span class="s2">"n_neighbors"</span><span class="p">:</span> <span class="n">N_NEIGHBORS</span><span class="p">,</span>
+    <span class="s2">"iter"</span><span class="p">:</span> <span class="n">ITER</span><span class="p">,</span>
+    <span class="s2">"test_size"</span><span class="p">:</span> <span class="n">TEST_SIZE</span><span class="p">,</span>
+    <span class="s2">"stratify"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"y"</span><span class="p">],</span>
+    <span class="s2">"scaling"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"True"</span><span class="p">],</span>
+    <span class="s2">"n_jobs"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"grid_search"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">"backend"</span><span class="p">:</span> <span class="s2">"simulator"</span><span class="p">,</span>   <span class="c1"># only used by the quantum models</span>
+<span class="p">})</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">"pqk_args"</span><span class="p">]</span> <span class="o">=</span> <span class="n">PQK_ARGS</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">"quvine_args"</span><span class="p">]</span> <span class="o">=</span> <span class="n">QUVINE_ARGS</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"file_dataset:"</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">"file_dataset"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"embeddings  :"</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">"embeddings"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"models      :"</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">"model"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"pqk_args    :"</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">"pqk_args"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"quvine_args :"</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">"quvine_args"</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+file_dataset: [&#39;pbmc-cd4_vs_cd8.csv&#39;]
+embeddings  : [&#39;pca&#39;, &#39;quvine_rwr&#39;, &#39;quvine_ctqw&#39;, &#39;quvine_dtqw&#39;]
+models      : [&#39;lr&#39;, &#39;rf&#39;, &#39;pqk&#39;]
+pqk_args    : {&#39;encoding&#39;: &#39;ZZ&#39;, &#39;entanglement&#39;: &#39;linear&#39;, &#39;primitive&#39;: &#39;estimator&#39;, &#39;reps&#39;: 1}
+quvine_args : {&#39;walks&#39;: {&#39;steps&#39;: 4, &#39;num_walks&#39;: 10, &#39;walk_length&#39;: 10}, &#39;train&#39;: {&#39;epochs&#39;: 50}, &#39;views&#39;: {&#39;num_views&#39;: 4}}
+</pre></div></div>
+</div>
+</section>
+<section id="5.-Run-QProfiler">
+<h2>5. Run QProfiler<a class="headerlink" href="#5.-Run-QProfiler" title="Link to this heading">#</a></h2>
+<p>QProfiler appends to <code class="docutils literal notranslate"><span class="pre">ModelResults.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">RawDataEvaluation.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">results.pkl</span></code> in the working directory, so we clear stale outputs first. PQK caches its projections keyed by dataset/embedding/iter — <strong>not</strong> by <code class="docutils literal notranslate"><span class="pre">pqk_args</span></code> — so we purge <code class="docutils literal notranslate"><span class="pre">pqk_projections/</span></code> too, otherwise a stale cache would silently mask a feature-map change.</p>
+<blockquote>
+<div><p>With <code class="docutils literal notranslate"><span class="pre">FULL_GRID</span> <span class="pre">=</span> <span class="pre">True</span></code> this cell can run for a long time (quantum ML on the simulator). Start with the default subset to sanity-check the pipeline.</p>
+</div></blockquote>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"ModelResults.csv"</span><span class="p">,</span> <span class="s2">"RawDataEvaluation.csv"</span><span class="p">,</span> <span class="s2">"results.pkl"</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s2">"pqk_projections"</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">profiler</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">model_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"ModelResults.csv"</span><span class="p">)</span>
+<span class="n">model_results</span><span class="p">[</span><span class="s2">"quadrant"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">quadrant</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">m</span>
+                             <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">model_results</span><span class="p">[</span><span class="s2">"embeddings"</span><span class="p">],</span> <span class="n">model_results</span><span class="p">[</span><span class="s2">"model"</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ModelResults:"</span><span class="p">,</span> <span class="n">model_results</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"quadrants present:"</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">model_results</span><span class="p">[</span><span class="s2">"quadrant"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+<span class="n">model_results</span><span class="p">[[</span><span class="s2">"embeddings"</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">,</span> <span class="s2">"quadrant"</span><span class="p">,</span> <span class="s2">"iteration"</span><span class="p">,</span>
+               <span class="s2">"accuracy"</span><span class="p">,</span> <span class="s2">"f1_score"</span><span class="p">,</span> <span class="s2">"auc"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Processing file: pbmc-cd4_vs_cd8.csv
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+&#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+at datapoint 0
+at datapoint 100
+at datapoint 200
+at datapoint 300
+at datapoint 0
+at datapoint 100
+ModelResults: (36, 33)
+quadrants present: [&#39;CC&#39;, &#39;CQ&#39;, &#39;QC&#39;, &#39;QQ&#39;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>embeddings</th>
+      <th>model</th>
+      <th>quadrant</th>
+      <th>iteration</th>
+      <th>accuracy</th>
+      <th>f1_score</th>
+      <th>auc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pca</td>
+      <td>lr</td>
+      <td>CC</td>
+      <td>1</td>
+      <td>0.893333</td>
+      <td>0.893029</td>
+      <td>0.893333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>pca</td>
+      <td>pqk</td>
+      <td>CQ</td>
+      <td>1</td>
+      <td>0.900000</td>
+      <td>0.899960</td>
+      <td>0.900000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>pca</td>
+      <td>rf</td>
+      <td>CC</td>
+      <td>1</td>
+      <td>0.893333</td>
+      <td>0.893162</td>
+      <td>0.893333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>quvine_rwr</td>
+      <td>lr</td>
+      <td>CC</td>
+      <td>1</td>
+      <td>0.886667</td>
+      <td>0.886419</td>
+      <td>0.886667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>quvine_rwr</td>
+      <td>pqk</td>
+      <td>CQ</td>
+      <td>1</td>
+      <td>0.860000</td>
+      <td>0.859494</td>
+      <td>0.860000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>quvine_rwr</td>
+      <td>rf</td>
+      <td>CC</td>
+      <td>1</td>
+      <td>0.873333</td>
+      <td>0.873057</td>
+      <td>0.873333</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>quvine_ctqw</td>
+      <td>lr</td>
+      <td>QC</td>
+      <td>1</td>
+      <td>0.893333</td>
+      <td>0.893257</td>
+      <td>0.893333</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>quvine_ctqw</td>
+      <td>pqk</td>
+      <td>QQ</td>
+      <td>1</td>
+      <td>0.806667</td>
+      <td>0.805968</td>
+      <td>0.806667</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>quvine_ctqw</td>
+      <td>rf</td>
+      <td>QC</td>
+      <td>1</td>
+      <td>0.920000</td>
+      <td>0.919943</td>
+      <td>0.920000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>quvine_dtqw</td>
+      <td>lr</td>
+      <td>QC</td>
+      <td>1</td>
+      <td>0.860000</td>
+      <td>0.859243</td>
+      <td>0.860000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>quvine_dtqw</td>
+      <td>pqk</td>
+      <td>QQ</td>
+      <td>1</td>
+      <td>0.806667</td>
+      <td>0.805968</td>
+      <td>0.806667</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>quvine_dtqw</td>
+      <td>rf</td>
+      <td>QC</td>
+      <td>1</td>
+      <td>0.820000</td>
+      <td>0.819992</td>
+      <td>0.820000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="6.-The-2×2-quadrant-summary">
+<h2>6. The 2×2 quadrant summary<a class="headerlink" href="#6.-The-2×2-quadrant-summary" title="Link to this heading">#</a></h2>
+<p>Collapse every arm into its quadrant and report the <strong>median</strong> and <strong>best</strong> performance per quadrant across all arms and splits. This is the headline CC/CQ/QC/QQ comparison: does a quantum embedding (QC/QQ) or a quantum ML method (CQ/QQ) buy anything over the fully classical CC corner on this hard task?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">METRIC</span> <span class="o">=</span> <span class="s2">"f1_score"</span>   <span class="c1"># switch to 'accuracy' or 'auc' if preferred</span>
+
+<span class="c1"># Median &amp; best (over arms and splits) per quadrant.</span>
+<span class="n">med</span> <span class="o">=</span> <span class="n">model_results</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"quadrant"</span><span class="p">)[</span><span class="n">METRIC</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">model_results</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"quadrant"</span><span class="p">)[</span><span class="n">METRIC</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="c1"># Best arm (embedding+model) per quadrant, by median over splits.</span>
+<span class="n">arm_med</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"quadrant"</span><span class="p">,</span> <span class="s2">"embeddings"</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">])[</span><span class="n">METRIC</span><span class="p">]</span>
+           <span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">best_arm</span> <span class="o">=</span> <span class="n">arm_med</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">arm_med</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"quadrant"</span><span class="p">)[</span><span class="n">METRIC</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+<span class="n">best_arm</span> <span class="o">=</span> <span class="n">best_arm</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"quadrant"</span><span class="p">)</span>
+
+<span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"CC"</span><span class="p">,</span> <span class="s2">"CQ"</span><span class="p">,</span> <span class="s2">"QC"</span><span class="p">,</span> <span class="s2">"QQ"</span><span class="p">]</span>
+<span class="n">grid_med</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">med</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CC"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">med</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CQ"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)],</span>
+                      <span class="p">[</span><span class="n">med</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"QC"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">med</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"QQ"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)]])</span>
+<span class="n">grid_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">best</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CC"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">best</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CQ"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)],</span>
+                      <span class="p">[</span><span class="n">best</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"QC"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">best</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"QQ"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)]])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.4</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grid_med</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"viridis"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">grid_med</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span>
+               <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">grid_med</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">"Classical ML"</span><span class="p">,</span> <span class="s2">"Quantum ML"</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s2">"Classical</span><span class="se">\n</span><span class="s2">embedding"</span><span class="p">,</span> <span class="s2">"Quantum</span><span class="se">\n</span><span class="s2">embedding"</span><span class="p">])</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)],</span> <span class="n">order</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">q</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">med</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="se">\n</span><span class="s2">(not run)"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="n">best_arm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="se">\n</span><span class="s2">median </span><span class="si">{</span><span class="n">grid_med</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">best </span><span class="si">{</span><span class="n">grid_best</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">ba</span><span class="p">[</span><span class="s1">'embeddings'</span><span class="p">]</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">ba</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">"white"</span> <span class="k">if</span> <span class="n">grid_med</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">grid_med</span><span class="p">)</span> <span class="k">else</span> <span class="s2">"black"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CD4-vs-CD8 2×2: median </span><span class="si">{</span><span class="n">METRIC</span><span class="si">}</span><span class="s2"> per quadrant"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"median </span><span class="si">{</span><span class="n">METRIC</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"median"</span><span class="p">:</span> <span class="n">med</span><span class="p">,</span> <span class="s2">"best"</span><span class="p">:</span> <span class="n">best</span><span class="p">})</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_12_0.png" src="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_12_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>median</th>
+      <th>best</th>
+    </tr>
+    <tr>
+      <th>quadrant</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CC</th>
+      <td>0.883</td>
+      <td>0.907</td>
+    </tr>
+    <tr>
+      <th>CQ</th>
+      <td>0.860</td>
+      <td>0.913</td>
+    </tr>
+    <tr>
+      <th>QC</th>
+      <td>0.856</td>
+      <td>0.920</td>
+    </tr>
+    <tr>
+      <th>QQ</th>
+      <td>0.819</td>
+      <td>0.873</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="7.-Per-arm-heatmap-(embedding-×-model),-quadrants-outlined">
+<h2>7. Per-arm heatmap (embedding × model), quadrants outlined<a class="headerlink" href="#7.-Per-arm-heatmap-(embedding-×-model),-quadrants-outlined" title="Link to this heading">#</a></h2>
+<p>The full resolution behind the 2×2: median <code class="docutils literal notranslate"><span class="pre">f1_score</span></code> for every (embedding, model) arm. Rows are grouped classical-then-quantum embeddings; columns classical-then-quantum models. The dashed lines mark the CC/CQ/QC/QQ boundaries.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pivot</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"embeddings"</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">])[</span><span class="n">METRIC</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="s2">"model"</span><span class="p">))</span>
+
+<span class="c1"># Order rows/cols classical-first, then quantum; keep only what ran.</span>
+<span class="n">row_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">C_EMB</span> <span class="o">+</span> <span class="n">Q_EMB</span> <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">pivot</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">col_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">C_ML</span> <span class="o">+</span> <span class="n">Q_ML</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">pivot</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">pivot</span> <span class="o">=</span> <span class="n">pivot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_order</span><span class="p">,</span> <span class="n">col_order</span><span class="p">]</span>
+
+<span class="n">n_c_emb</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">C_EMB</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">row_order</span><span class="p">)</span>   <span class="c1"># classical-embedding row count</span>
+<span class="n">n_c_ml</span>  <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">m</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">C_ML</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">col_order</span><span class="p">)</span>    <span class="c1"># classical-ML column count</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_order</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">row_order</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">".2f"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"magma"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"label"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"median </span><span class="si">{</span><span class="n">METRIC</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Quadrant boundaries.</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">n_c_ml</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_order</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">n_c_ml</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"cyan"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">n_c_emb</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">row_order</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">n_c_emb</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"cyan"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"ML method  (classical | quantum)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"embedding  (classical | quantum)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Per-arm median </span><span class="si">{</span><span class="n">METRIC</span><span class="si">}</span><span class="s2"> — dashed lines split the four quadrants"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_14_0.png" src="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_14_0.png" />
+</div>
+</div>
+</section>
+<section id="8.-Distribution-per-quadrant-+-the-classical-walk-ablation">
+<h2>8. Distribution per quadrant + the classical-walk ablation<a class="headerlink" href="#8.-Distribution-per-quadrant-+-the-classical-walk-ablation" title="Link to this heading">#</a></h2>
+<p>Boxplots of every arm’s per-split metric within each quadrant show spread, not just the median. Alongside, we isolate the <strong>``quvine_rwr`` vs ``quvine_ctqw`` / ``quvine_dtqw``</strong> contrast: same graph, same SGNS pipeline, same <code class="docutils literal notranslate"><span class="pre">dimension</span></code> — the <em>only</em> difference is a classical random walk vs a quantum walk. That is the cleanest read on whether the quantum walk itself adds discriminative structure (paired against the identical classical-walk baseline).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># (a) metric distribution per quadrant</span>
+<span class="n">present</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">order</span> <span class="k">if</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">model_results</span><span class="p">[</span><span class="s2">"quadrant"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_results</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"quadrant"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">METRIC</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">present</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">palette</span><span class="o">=</span><span class="s2">"Set2"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_results</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"quadrant"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">METRIC</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">present</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="n">color</span><span class="o">=</span><span class="s2">".25"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">METRIC</span><span class="si">}</span><span class="s2"> distribution per quadrant"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+
+<span class="c1"># (b) classical-walk ablation: quvine_rwr vs quantum walks, per ML model</span>
+<span class="n">walk_emb</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"quvine_rwr"</span><span class="p">,</span> <span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">model_results</span><span class="p">[</span><span class="s2">"embeddings"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+<span class="n">abl</span> <span class="o">=</span> <span class="n">model_results</span><span class="p">[</span><span class="n">model_results</span><span class="p">[</span><span class="s2">"embeddings"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">walk_emb</span><span class="p">)]</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">walk_emb</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">abl</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">abl</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"model"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">METRIC</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"embeddings"</span><span class="p">,</span>
+                <span class="n">hue_order</span><span class="o">=</span><span class="n">walk_emb</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">errorbar</span><span class="o">=</span><span class="s2">"sd"</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"QuVINE walk ablation: classical (rwr) vs quantum (ctqw/dtqw)"</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"embedding"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">"need &gt;=2 of quvine_rwr/ctqw/dtqw</span><span class="se">\n</span><span class="s2">(enable them in the config)"</span><span class="p">,</span>
+                 <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Numeric ablation table (median over splits), if available.</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">walk_emb</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">abl</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">abl</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"embeddings"</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">])[[</span><span class="s2">"accuracy"</span><span class="p">,</span> <span class="s2">"f1_score"</span><span class="p">,</span> <span class="s2">"auc"</span><span class="p">]]</span>
+            <span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_16_0.png" src="../../_images/tutorials_QProfiler_sc_binary_quvine_2x2_qprofiler_16_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>accuracy</th>
+      <th>f1_score</th>
+      <th>auc</th>
+    </tr>
+    <tr>
+      <th>embeddings</th>
+      <th>model</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">quvine_ctqw</th>
+      <th>lr</th>
+      <td>0.853</td>
+      <td>0.853</td>
+      <td>0.853</td>
+    </tr>
+    <tr>
+      <th>pqk</th>
+      <td>0.833</td>
+      <td>0.832</td>
+      <td>0.833</td>
+    </tr>
+    <tr>
+      <th>rf</th>
+      <td>0.873</td>
+      <td>0.873</td>
+      <td>0.873</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">quvine_dtqw</th>
+      <th>lr</th>
+      <td>0.860</td>
+      <td>0.859</td>
+      <td>0.860</td>
+    </tr>
+    <tr>
+      <th>pqk</th>
+      <td>0.807</td>
+      <td>0.806</td>
+      <td>0.807</td>
+    </tr>
+    <tr>
+      <th>rf</th>
+      <td>0.827</td>
+      <td>0.827</td>
+      <td>0.827</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">quvine_rwr</th>
+      <th>lr</th>
+      <td>0.853</td>
+      <td>0.853</td>
+      <td>0.853</td>
+    </tr>
+    <tr>
+      <th>pqk</th>
+      <td>0.860</td>
+      <td>0.859</td>
+      <td>0.860</td>
+    </tr>
+    <tr>
+      <th>rf</th>
+      <td>0.860</td>
+      <td>0.859</td>
+      <td>0.860</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="9.-Notes-and-caveats">
+<h2>9. Notes and caveats<a class="headerlink" href="#9.-Notes-and-caveats" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>The 2×2 is one cross-product run.</strong> QProfiler benchmarks <code class="docutils literal notranslate"><span class="pre">embeddings</span> <span class="pre">×</span> <span class="pre">model</span></code>; tagging each row by (embedding∈Q_EMB, model∈Q_ML) recovers CC/CQ/QC/QQ. Add/remove arms by editing the axis lists in §2 — quadrant assignment follows automatically.</p></li>
+<li><p><strong>``quvine_rwr`` is the classical-walk ablation</strong>, deliberately placed in the <em>classical</em> embedding column: it shares the QuVINE SGNS pipeline with <code class="docutils literal notranslate"><span class="pre">quvine_ctqw</span></code>/<code class="docutils literal notranslate"><span class="pre">quvine_dtqw</span></code> but uses a classical random walk, so the QC/QQ-vs-CC gap it leaves is the honest quantum-walk effect (not a pipeline artifact).</p></li>
+<li><p><strong>``filter_ctqw_heat`` vs ``filter_dtqw_heat`` may converge.</strong> Both compress their walk into a single calibrated heat-time scalar, so the ctqw/dtqw distinction can wash out — expected, and the reason the <code class="docutils literal notranslate"><span class="pre">gat_*</span></code>/<code class="docutils literal notranslate"><span class="pre">graphgps_*</span></code> families were dropped entirely.</p></li>
+<li><p><strong>Transductive graph spans train+test features</strong> — disclosed above; only feature structure, never the label, enters the embedding.</p></li>
+<li><p><strong>Compute:</strong> quantum ML on the statevector simulator dominates. Keep <code class="docutils literal notranslate"><span class="pre">N_COMPONENTS</span></code> small (= qubit count) and use the default subset before <code class="docutils literal notranslate"><span class="pre">FULL_GRID</span> <span class="pre">=</span> <span class="pre">True</span></code>. Purge <code class="docutils literal notranslate"><span class="pre">pqk_projections/</span></code> between runs (done in §5) since the cache is not keyed by <code class="docutils literal notranslate"><span class="pre">pqk_args</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../QuVINE/quvine_sc_t_vs_mono.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">QuVINE on the T-vs-Monocyte cell graph</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../QEnsemble/QEnsemble_example_blobs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Quantum Ensemble Learning Tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Setup-and-imports">1. Setup and imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Configuration-—-the-four-axes-+-a-FULL_GRID-toggle">2. Configuration — the four axes + a <code class="docutils literal notranslate"><span class="pre">FULL_GRID</span></code> toggle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Build-the-CD4-vs-CD8-CSV">3. Build the CD4-vs-CD8 CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Assemble-the-QProfiler-config">4. Assemble the QProfiler config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Run-QProfiler">5. Run QProfiler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-The-2×2-quadrant-summary">6. The 2×2 quadrant summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Per-arm-heatmap-(embedding-×-model),-quadrants-outlined">7. Per-arm heatmap (embedding × model), quadrants outlined</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Distribution-per-quadrant-+-the-classical-walk-ablation">8. Distribution per quadrant + the classical-walk ablation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#9.-Notes-and-caveats">9. Notes and caveats</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

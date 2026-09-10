@@ -1,0 +1,1963 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>qbiocode.evaluation.graph_evaluation module &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/qbiocode.evaluation.graph_evaluation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qbiocode.evaluation.model_evaluation module" href="qbiocode.evaluation.model_evaluation.html" />
+    <link rel="prev" title="qbiocode.evaluation.dataset_evaluation module" href="qbiocode.evaluation.dataset_evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">qbiocode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="qbiocode.html">qbiocode package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.version.html">qbiocode.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.apps.html">qbiocode.apps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.data_generation.html">qbiocode.data_generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.embeddings.html">qbiocode.embeddings package</a></li>
+<li class="toctree-l3 current active"><a class="reference internal" href="qbiocode.evaluation.html">qbiocode.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.learning.html">qbiocode.learning package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.utils.html">qbiocode.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.visualization.html">qbiocode.visualization package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_overview.html" class="nav-link">API Overview</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">qbiocode</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.html" class="nav-link">qbiocode package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.evaluation.html" class="nav-link">qbiocode.evaluation package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.evaluation.graph_evaluation module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-qbiocode.evaluation.graph_evaluation">
+<span id="qbiocode-evaluation-graph-evaluation-module"></span><h1>qbiocode.evaluation.graph_evaluation module<a class="headerlink" href="#module-qbiocode.evaluation.graph_evaluation" title="Link to this heading">#</a></h1>
+<p>Graph complexity evaluation for QBioCode.</p>
+<p>This module is the graph-network analogue of <a class="reference internal" href="qbiocode.evaluation.dataset_evaluation.html#module-qbiocode.evaluation.dataset_evaluation" title="qbiocode.evaluation.dataset_evaluation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qbiocode.evaluation.dataset_evaluation</span></code></a>.
+Where <code class="docutils literal notranslate"><span class="pre">dataset_evaluation.evaluate(df,</span> <span class="pre">y,</span> <span class="pre">file)</span></code> summarizes a tabular (samples x
+features) dataset, <code class="docutils literal notranslate"><span class="pre">graph_evaluation.evaluate_graph(G,</span> <span class="pre">name)</span></code> summarizes a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">networkx.Graph</span></code> with spectral, topological, and structural complexity
+metrics and returns a one-row transposed <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p>
+<p>The metric implementations below are ported from the QuVINE complexity modules
+(<code class="docutils literal notranslate"><span class="pre">graph.py</span></code> + <code class="docutils literal notranslate"><span class="pre">graph_enhanced.py</span></code>) and are self-contained here so that
+QBioCode owns the graph-complexity math directly (no <code class="docutils literal notranslate"><span class="pre">quvine.complexity</span></code>
+dependency). The heavy embedding machinery lives separately under
+<code class="docutils literal notranslate"><span class="pre">qbiocode.apps.quvine</span></code>.</p>
+<p>Optional dependencies:
+- <code class="docutils literal notranslate"><span class="pre">ripser</span></code>            -&gt; persistent Betti / persistence-entropy metrics
+- <code class="docutils literal notranslate"><span class="pre">python-louvain</span></code> (<code class="docutils literal notranslate"><span class="pre">community</span></code>) -&gt; modularity / community metrics
+Both are guarded; missing them degrades gracefully to defaults.</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Classes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig" title="qbiocode.evaluation.graph_evaluation.ComplexityConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComplexityConfig</span></code></a></p></td>
+<td><p>Runtime and approximation settings for scalable metrics.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Functions:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compare_graph_complexities" title="qbiocode.evaluation.graph_evaluation.compare_graph_complexities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_graph_complexities</span></code></a></p></td>
+<td><p>Compare complexity metrics across multiple graphs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_adjacency_spectral_metrics" title="qbiocode.evaluation.graph_evaluation.compute_adjacency_spectral_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_adjacency_spectral_metrics</span></code></a></p></td>
+<td><p>Compute IPR of band-edge eigenvectors of the unsigned adjacency matrix A.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_algebraic_connectivity" title="qbiocode.evaluation.graph_evaluation.compute_algebraic_connectivity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_algebraic_connectivity</span></code></a></p></td>
+<td><p>Compute algebraic connectivity (Fiedler value).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_approx_path_length_metric" title="qbiocode.evaluation.graph_evaluation.compute_approx_path_length_metric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_approx_path_length_metric</span></code></a></p></td>
+<td><p>Approximate average shortest-path length using sampled BFS sources.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_betti_numbers" title="qbiocode.evaluation.graph_evaluation.compute_betti_numbers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_betti_numbers</span></code></a></p></td>
+<td><p>Compute persistent Betti numbers β₀, β₁, β₂ using Ripser.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_centrality_concentration_metrics" title="qbiocode.evaluation.graph_evaluation.compute_centrality_concentration_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_centrality_concentration_metrics</span></code></a></p></td>
+<td><p>Approximate betweenness Gini and PageRank Gini.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_community_metrics" title="qbiocode.evaluation.graph_evaluation.compute_community_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_community_metrics</span></code></a></p></td>
+<td><p>Compute modularity and approximate conductance from detected communities.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_complexity_table" title="qbiocode.evaluation.graph_evaluation.compute_complexity_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_complexity_table</span></code></a></p></td>
+<td><p>Compute a pandas DataFrame of complexity metrics for many graphs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_core_metrics" title="qbiocode.evaluation.graph_evaluation.compute_core_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_core_metrics</span></code></a></p></td>
+<td><p>k-core concentration as a scalable core-periphery proxy.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_cycle_metrics" title="qbiocode.evaluation.graph_evaluation.compute_cycle_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_cycle_metrics</span></code></a></p></td>
+<td><p>Compute transitivity, normalized cycle density, and nonbacktracking spectral radius.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_cyclomatic_number" title="qbiocode.evaluation.graph_evaluation.compute_cyclomatic_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_cyclomatic_number</span></code></a></p></td>
+<td><p>Compute cyclomatic number (circuit rank / first Betti number of 1-skeleton).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_degree_metrics" title="qbiocode.evaluation.graph_evaluation.compute_degree_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_degree_metrics</span></code></a></p></td>
+<td><p>Degree heterogeneity, hub dominance, and assortativity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_effective_resistance" title="qbiocode.evaluation.graph_evaluation.compute_effective_resistance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_effective_resistance</span></code></a></p></td>
+<td><p>Compute effective resistance between two nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics" title="qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_enhanced_complexity_metrics</span></code></a></p></td>
+<td><p>Compute the enhanced QuVINE complexity metrics for a single graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_estrada_index" title="qbiocode.evaluation.graph_evaluation.compute_estrada_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_estrada_index</span></code></a></p></td>
+<td><p>Compute the Laplacian Estrada index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_feature_dirichlet_energy" title="qbiocode.evaluation.graph_evaluation.compute_feature_dirichlet_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_feature_dirichlet_energy</span></code></a></p></td>
+<td><p>Compute normalized feature Dirichlet energy Tr(X^T L X) / Tr(X^T X).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics" title="qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_graph_complexity_metrics</span></code></a></p></td>
+<td><p>Compute comprehensive complexity metrics for a graph.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_heat_kernel_traces" title="qbiocode.evaluation.graph_evaluation.compute_heat_kernel_traces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_heat_kernel_traces</span></code></a></p></td>
+<td><p>Compute normalized heat kernel traces tr(exp(-t L)) / n via the Hutchinson estimator with Rademacher probe vectors and scipy.sparse.linalg.expm_multiply.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_inverse_participation_ratio" title="qbiocode.evaluation.graph_evaluation.compute_inverse_participation_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_inverse_participation_ratio</span></code></a></p></td>
+<td><p>Compute the mean Inverse Participation Ratio (IPR) over all Laplacian eigenmodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_index" title="qbiocode.evaluation.graph_evaluation.compute_kirchhoff_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_kirchhoff_index</span></code></a></p></td>
+<td><p>Compute Kirchhoff index (total effective resistance).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_stats" title="qbiocode.evaluation.graph_evaluation.compute_kirchhoff_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_kirchhoff_stats</span></code></a></p></td>
+<td><p>Compute Kirchhoff index and normalized variants.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_label_homophily" title="qbiocode.evaluation.graph_evaluation.compute_label_homophily"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_label_homophily</span></code></a></p></td>
+<td><p>Fraction of edges connecting nodes with identical labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_centrality_complexity" title="qbiocode.evaluation.graph_evaluation.compute_laplacian_centrality_complexity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_laplacian_centrality_complexity</span></code></a></p></td>
+<td><p>Compute centrality-based complexity metrics from the Laplacian.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_spectrum" title="qbiocode.evaluation.graph_evaluation.compute_laplacian_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_laplacian_spectrum</span></code></a></p></td>
+<td><p>Compute the eigenvalues of the graph Laplacian.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_nonbacktracking_spectral_radius" title="qbiocode.evaluation.graph_evaluation.compute_nonbacktracking_spectral_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_nonbacktracking_spectral_radius</span></code></a></p></td>
+<td><p>Approximate spectral radius of the Hashimoto/non-backtracking matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_odd_girth_metric" title="qbiocode.evaluation.graph_evaluation.compute_odd_girth_metric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_odd_girth_metric</span></code></a></p></td>
+<td><p>Compute log(1 + shortest_odd_cycle_length).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_orc_per_edge" title="qbiocode.evaluation.graph_evaluation.compute_orc_per_edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_orc_per_edge</span></code></a></p></td>
+<td><p>Compute Ollivier-Ricci curvature approximations for every edge.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_orc_proxy_metrics" title="qbiocode.evaluation.graph_evaluation.compute_orc_proxy_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_orc_proxy_metrics</span></code></a></p></td>
+<td><p>Compute scalable ORC-inspired edge bottleneck proxies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_orc_stats" title="qbiocode.evaluation.graph_evaluation.compute_orc_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_orc_stats</span></code></a></p></td>
+<td><p>Aggregate ORC statistics over all edges.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_participation_ratio" title="qbiocode.evaluation.graph_evaluation.compute_participation_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_participation_ratio</span></code></a></p></td>
+<td><p>Compute the mean Participation Ratio (PR) over all Laplacian eigenmodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_persistence_entropy" title="qbiocode.evaluation.graph_evaluation.compute_persistence_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_persistence_entropy</span></code></a></p></td>
+<td><p>Compute persistence entropy for each homological dimension.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_advantage_metrics" title="qbiocode.evaluation.graph_evaluation.compute_quantum_advantage_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_quantum_advantage_metrics</span></code></a></p></td>
+<td><p>Compute metrics that predict quantum advantage in graph algorithms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_complexity" title="qbiocode.evaluation.graph_evaluation.compute_quantum_complexity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_quantum_complexity</span></code></a></p></td>
+<td><p>Compute quantum complexity metric inspired by QBioCode.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_size_density_metrics" title="qbiocode.evaluation.graph_evaluation.compute_size_density_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_size_density_metrics</span></code></a></p></td>
+<td><p>Compute scale and density controls.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_sparse_spectral_metrics" title="qbiocode.evaluation.graph_evaluation.compute_sparse_spectral_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_sparse_spectral_metrics</span></code></a></p></td>
+<td><p>Compute scalable spectral descriptors using sparse Lanczos on the normalized Laplacian.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_concentration" title="qbiocode.evaluation.graph_evaluation.compute_spectral_concentration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_spectral_concentration</span></code></a></p></td>
+<td><p>Compute spectral concentration from the Laplacian eigenvalue distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_entropy" title="qbiocode.evaluation.graph_evaluation.compute_spectral_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_spectral_entropy</span></code></a></p></td>
+<td><p>Compute spectral entropy based on Laplacian eigenvalues.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_gap" title="qbiocode.evaluation.graph_evaluation.compute_spectral_gap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_spectral_gap</span></code></a></p></td>
+<td><p>Compute the spectral gap (difference between first and second eigenvalues).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_topological_metrics" title="qbiocode.evaluation.graph_evaluation.compute_topological_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_topological_metrics</span></code></a></p></td>
+<td><p>Compute all topological/geometric complexity metrics.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_von_neumann_entropy" title="qbiocode.evaluation.graph_evaluation.compute_von_neumann_entropy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_von_neumann_entropy</span></code></a></p></td>
+<td><p>Compute von Neumann entropy of the graph.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_wl_compression_ratio" title="qbiocode.evaluation.graph_evaluation.compute_wl_compression_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_wl_compression_ratio</span></code></a></p></td>
+<td><p>WL color compression ratio after a few 1-WL refinement iterations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.evaluate_graph" title="qbiocode.evaluation.graph_evaluation.evaluate_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_graph</span></code></a></p></td>
+<td><p>Summarize a graph's complexity as a one-row DataFrame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.fiedler_eigenvalue_sparse" title="qbiocode.evaluation.graph_evaluation.fiedler_eigenvalue_sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fiedler_eigenvalue_sparse</span></code></a></p></td>
+<td><p>Compute Fiedler eigenvalue and eigenvector using sparse matrix methods.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.get_nodelist" title="qbiocode.evaluation.graph_evaluation.get_nodelist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodelist</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.get_sparse_adjacency" title="qbiocode.evaluation.graph_evaluation.get_sparse_adjacency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sparse_adjacency</span></code></a></p></td>
+<td><p>Sparse adjacency with explicit nodelist for reproducibility.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.get_sparse_laplacian" title="qbiocode.evaluation.graph_evaluation.get_sparse_laplacian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_sparse_laplacian</span></code></a></p></td>
+<td><p>Sparse Laplacian with explicit nodelist for reproducibility.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.gini_coefficient" title="qbiocode.evaluation.graph_evaluation.gini_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gini_coefficient</span></code></a></p></td>
+<td><p>Compute Gini coefficient for a nonnegative vector.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.rank_graphs_by_complexity" title="qbiocode.evaluation.graph_evaluation.rank_graphs_by_complexity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank_graphs_by_complexity</span></code></a></p></td>
+<td><p>Rank graphs by a specific complexity metric.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.safe_eigsh" title="qbiocode.evaluation.graph_evaluation.safe_eigsh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safe_eigsh</span></code></a></p></td>
+<td><p>Robust wrapper around scipy.sparse.linalg.eigsh.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.safe_float" title="qbiocode.evaluation.graph_evaluation.safe_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safe_float</span></code></a></p></td>
+<td><p>Coerce <code class="docutils literal notranslate"><span class="pre">x</span></code> to a finite float, returning <code class="docutils literal notranslate"><span class="pre">default</span></code> if it is not one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.sanitize_graph" title="qbiocode.evaluation.graph_evaluation.sanitize_graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sanitize_graph</span></code></a></p></td>
+<td><p>Return a simple NetworkX graph suitable for undirected complexity metrics.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_laplacian_spectrum">
+<span class="sig-name descname"><span class="pre">compute_laplacian_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_laplacian_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_spectrum" title="Link to this definition">#</a></dt>
+<dd><p>Compute the eigenvalues of the graph Laplacian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use normalized Laplacian; otherwise use unnormalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>eigenvalues</strong> – Sorted eigenvalues of the Laplacian (ascending order)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_spectral_gap">
+<span class="sig-name descname"><span class="pre">compute_spectral_gap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_spectral_gap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_gap" title="Link to this definition">#</a></dt>
+<dd><p>Compute the spectral gap (difference between first and second eigenvalues).</p>
+<p>The spectral gap is related to graph connectivity and mixing time.
+Larger gaps indicate better connectivity and faster mixing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use normalized Laplacian</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral gap (lambda_2 - lambda_1)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.fiedler_eigenvalue_sparse">
+<span class="sig-name descname"><span class="pre">fiedler_eigenvalue_sparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#fiedler_eigenvalue_sparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.fiedler_eigenvalue_sparse" title="Link to this definition">#</a></dt>
+<dd><p>Compute Fiedler eigenvalue and eigenvector using sparse matrix methods.</p>
+<p>This is more efficient for large graphs than computing the full spectrum.
+The Fiedler eigenvalue is the second smallest eigenvalue of the Laplacian,
+and its eigenvector (Fiedler vector) is useful for graph partitioning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=False</em>) – If True, use normalized Laplacian; otherwise use unnormalized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>lambda2</strong> (<em>float</em>) – Fiedler eigenvalue (second smallest eigenvalue)</p></li>
+<li><p><strong>fiedler_vec</strong> (<em>np.ndarray</em>) – Fiedler eigenvector</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_algebraic_connectivity">
+<span class="sig-name descname"><span class="pre">compute_algebraic_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_algebraic_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_algebraic_connectivity" title="Link to this definition">#</a></dt>
+<dd><p>Compute algebraic connectivity (Fiedler value).</p>
+<p>This is the second smallest eigenvalue of the unnormalized Laplacian matrix.
+Higher values indicate better connectivity and robustness to node removal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Algebraic connectivity (lambda_2)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_spectral_entropy">
+<span class="sig-name descname"><span class="pre">compute_spectral_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_spectral_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_entropy" title="Link to this definition">#</a></dt>
+<dd><p>Compute spectral entropy based on Laplacian eigenvalues.</p>
+<p>Spectral entropy measures the complexity/randomness of the graph structure
+by treating the normalized positive eigenvalues as a probability distribution.
+Higher entropy indicates more complex or random structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use normalized Laplacian</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral entropy H = -sum(p_i * log(p_i)) where p_i = lambda_i / sum(lambda)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_von_neumann_entropy">
+<span class="sig-name descname"><span class="pre">compute_von_neumann_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_von_neumann_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_von_neumann_entropy" title="Link to this definition">#</a></dt>
+<dd><p>Compute von Neumann entropy of the graph.</p>
+<p>Implements the Passerini-Severini (2008) definition: the graph is
+associated with a density matrix rho = L / Tr(L), where L is the
+combinatorial (unnormalized) Laplacian and Tr(L) = sum of (weighted)
+degrees. The von Neumann entropy is then:</p>
+<blockquote>
+<div><p>S = -Tr(rho log2 rho) = -sum_i (lambda_i / Tr(L)) * log2(lambda_i / Tr(L))</p>
+</div></blockquote>
+<p>where the sum is over non-zero eigenvalues of L.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Von Neumann entropy S in bits (log base 2)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_estrada_index">
+<span class="sig-name descname"><span class="pre">compute_estrada_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_estrada_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_estrada_index" title="Link to this definition">#</a></dt>
+<dd><p>Compute the Laplacian Estrada index.</p>
+<p>The Laplacian Estrada Index (LEE) is defined as:</p>
+<blockquote>
+<div><p>LEE = sum_i exp(lambda_i)</p>
+</div></blockquote>
+<p>where lambda_i are the eigenvalues of the unnormalized Laplacian.
+It is related to the number of closed walks in the graph and captures
+the overall “folding” or connectivity complexity.</p>
+<p>Note: For large dense graphs the exponentials can be very large. This
+implementation uses log-space accumulation when any eigenvalue exceeds
+500 to avoid float64 overflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Laplacian Estrada index LEE = sum exp(lambda_i)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_quantum_complexity">
+<span class="sig-name descname"><span class="pre">compute_quantum_complexity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_quantum_complexity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_complexity" title="Link to this definition">#</a></dt>
+<dd><p>Compute quantum complexity metric inspired by QBioCode.</p>
+<p>This combines spectral properties to measure how “quantum” or complex
+the graph structure is. Higher values indicate more complex structures
+that may benefit from quantum walks.</p>
+<p>The metric is a weighted combination (weights: 0.3, 0.3, 0.4) of:
+- Spectral gap ratio (gap / spectral radius)
+- Spectral participation ratio (fraction of active modes)
+- Normalised von Neumann entropy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Quantum complexity score in [0, 1]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_spectral_concentration">
+<span class="sig-name descname"><span class="pre">compute_spectral_concentration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_spectral_concentration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_concentration" title="Link to this definition">#</a></dt>
+<dd><p>Compute spectral concentration from the Laplacian eigenvalue distribution.</p>
+<p>Measures how concentrated the spectral energy is among the eigenvalues:</p>
+<blockquote>
+<div><p>SC = sum(lambda_i^4) / (sum(lambda_i^2))^2</p>
+</div></blockquote>
+<p>This is analogous to an inverse participation ratio applied to the
+eigenvalue spectrum (not eigenvectors). Values near 1/k (where k is the
+number of non-zero eigenvalues) indicate uniform spectral spread; values
+near 1 indicate extreme spectral concentration in a few modes.</p>
+<p>Note: this metric operates on eigenvalues and measures the shape of the
+spectrum. For eigenvector-based localization, see
+compute_inverse_participation_ratio().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use normalized Laplacian eigenvalues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Spectral concentration in [1/k, 1] where k = number of non-zero eigenvalues</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_inverse_participation_ratio">
+<span class="sig-name descname"><span class="pre">compute_inverse_participation_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_inverse_participation_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_inverse_participation_ratio" title="Link to this definition">#</a></dt>
+<dd><p>Compute the mean Inverse Participation Ratio (IPR) over all Laplacian eigenmodes.</p>
+<p>For each normalised eigenvector v of the Laplacian, the IPR is defined as:</p>
+<blockquote>
+<div><p>IPR(v) = sum_j v_j^4</p>
+</div></blockquote>
+<p>Because the eigenvectors are L2-normalised (sum v_j^2 = 1), IPR(v) lies in
+[1/n, 1].  A value of 1/n corresponds to a perfectly delocalised mode
+(uniform over all n nodes), while IPR = 1 means the mode is entirely
+concentrated on a single node (Anderson localisation limit).</p>
+<p>This function returns the mean IPR averaged over all n eigenmodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use the normalised Laplacian; otherwise use the combinatorial
+(unnormalised) Laplacian</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean IPR in [1/n, 1]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_participation_ratio">
+<span class="sig-name descname"><span class="pre">compute_participation_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_participation_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_participation_ratio" title="Link to this definition">#</a></dt>
+<dd><p>Compute the mean Participation Ratio (PR) over all Laplacian eigenmodes.</p>
+<p>The Participation Ratio is the inverse of the IPR for each eigenmode:</p>
+<blockquote>
+<div><p>PR(v) = 1 / IPR(v) = 1 / sum_j v_j^4</p>
+</div></blockquote>
+<p>PR(v) estimates the effective number of nodes over which eigenmode v is
+spread. It ranges from 1 (fully localised on one node) to n (perfectly
+delocalised across all nodes). The mean over all modes is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use the normalised Laplacian; otherwise use the combinatorial
+Laplacian</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean participation ratio in [1, n]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_effective_resistance">
+<span class="sig-name descname"><span class="pre">compute_effective_resistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_effective_resistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_effective_resistance" title="Link to this definition">#</a></dt>
+<dd><p>Compute effective resistance between two nodes.</p>
+<p>Effective resistance is related to random walk commute time and
+provides a distance metric on the graph.</p>
+<blockquote>
+<div><p>R(i, j) = L^+_ii + L^+_jj - 2 L^+_ij</p>
+</div></blockquote>
+<p>where L^+ is the Moore-Penrose pseudoinverse of the Laplacian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>source</strong> (<em>int</em>) – Source node</p></li>
+<li><p><strong>target</strong> (<em>int</em>) – Target node</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Effective resistance (non-negative)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_laplacian_centrality_complexity">
+<span class="sig-name descname"><span class="pre">compute_laplacian_centrality_complexity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_laplacian_centrality_complexity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_centrality_complexity" title="Link to this definition">#</a></dt>
+<dd><p>Compute centrality-based complexity metrics from the Laplacian.</p>
+<p>Uses the Fiedler vector (eigenvector of the second-smallest eigenvalue)
+as a node-centrality proxy and characterises its distribution via entropy,
+variance, Gini coefficient, and range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>normalized</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, use normalized Laplacian</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of centrality complexity metrics including:
+- centrality_entropy: Shannon entropy of the Fiedler-vector distribution
+- centrality_variance: Variance of absolute Fiedler-vector entries
+- centrality_gini: Gini coefficient of absolute Fiedler-vector entries
+- centrality_range: Range (max - min) of absolute entries
+- dominant_eigenvector_centrality: Max entry of the largest-eigenvalue eigenvector</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics">
+<span class="sig-name descname"><span class="pre">compute_graph_complexity_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_graph_complexity_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute comprehensive complexity metrics for a graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of complexity metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compare_graph_complexities">
+<span class="sig-name descname"><span class="pre">compare_graph_complexities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compare_graph_complexities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compare_graph_complexities" title="Link to this definition">#</a></dt>
+<dd><p>Compare complexity metrics across multiple graphs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graphs</strong> (<em>dict</em>) – Dictionary mapping graph names to NetworkX graphs</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary mapping graph names to their complexity metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_quantum_advantage_metrics">
+<span class="sig-name descname"><span class="pre">compute_quantum_advantage_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_quantum_advantage_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_advantage_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute metrics that predict quantum advantage in graph algorithms.</p>
+<p>These metrics help identify when quantum walks are likely to outperform
+classical random walks based on graph structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary including:
+- spectral_dimension: Effective number of active eigenvalues
+- modularity: Community structure strength (Louvain greedy)
+- path_length_ratio: avg_path_length / diameter
+- clustering_mean/std: Local clustering statistics
+- degree_heterogeneity: Coefficient of variation of degree sequence
+- quantum_advantage_score: Weighted composite prediction score</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.rank_graphs_by_complexity">
+<span class="sig-name descname"><span class="pre">rank_graphs_by_complexity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'quantum_complexity'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#rank_graphs_by_complexity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.rank_graphs_by_complexity" title="Link to this definition">#</a></dt>
+<dd><p>Rank graphs by a specific complexity metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graphs</strong> (<em>dict</em>) – Dictionary mapping graph names to NetworkX graphs</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>default='quantum_complexity'</em>) – Metric to use for ranking</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of (name, score) tuples sorted by complexity (descending)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_orc_per_edge">
+<span class="sig-name descname"><span class="pre">compute_orc_per_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_orc_per_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_orc_per_edge" title="Link to this definition">#</a></dt>
+<dd><p>Compute Ollivier-Ricci curvature approximations for every edge.</p>
+<p>Two approximations are computed:</p>
+<ol class="arabic simple">
+<li><p><strong>Generalized Jaccard (gJC)</strong>: Fast O(d) proxy
+gJC(u, v) = <code class="docutils literal notranslate"><span class="pre">|N(u)</span> <span class="pre">∩</span> <span class="pre">N(v)|</span></code> / <code class="docutils literal notranslate"><span class="pre">|N(u)</span> <span class="pre">∪</span> <span class="pre">N(v)|</span></code></p></li>
+<li><p><strong>Jost-Liu lower bound (κ_LB)</strong>: Tighter spectral bound
+κ_LB(u, v) = Δ / max(dᵤ, d_v) + 1/dᵤ + 1/d_v − 1</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping (u, v) → {‘gJC’: float, ‘kappa_LB’: float, ‘triangles’: int}</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_orc_stats">
+<span class="sig-name descname"><span class="pre">compute_orc_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_orc_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_orc_stats" title="Link to this definition">#</a></dt>
+<dd><p>Aggregate ORC statistics over all edges.</p>
+<p>Returns mean, min, max, std for both gJC and κ_LB, plus the fraction
+of edges with negative κ_LB (bottleneck indicator).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ORC statistics with keys:
+- orc_gJC_mean, orc_gJC_min, orc_gJC_max, orc_gJC_std
+- orc_kLB_mean, orc_kLB_min, orc_kLB_max, orc_kLB_std
+- orc_negative_fraction (fraction of edges with κ_LB &lt; 0)
+- orc_num_edges</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_cyclomatic_number">
+<span class="sig-name descname"><span class="pre">compute_cyclomatic_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_cyclomatic_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_cyclomatic_number" title="Link to this definition">#</a></dt>
+<dd><p>Compute cyclomatic number (circuit rank / first Betti number of 1-skeleton).</p>
+<p>μ(G) = m − n + c</p>
+<p>where m = <code class="docutils literal notranslate"><span class="pre">|E|</span></code>, n = <code class="docutils literal notranslate"><span class="pre">|V|</span></code>, c = number of connected components.</p>
+<p>Interpretation:
+- μ = 0 iff G is a forest (no cycles)
+- μ counts minimum edges to remove to make G acyclic
+- Dimension of cycle space H₁(G; ℤ₂)
+- For quantum walks: counts interference-generating loops</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Non-negative cyclomatic number</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_kirchhoff_index">
+<span class="sig-name descname"><span class="pre">compute_kirchhoff_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_kirchhoff_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_index" title="Link to this definition">#</a></dt>
+<dd><p>Compute Kirchhoff index (total effective resistance).</p>
+<p>R_K = n · Σᵢ 1/λᵢ</p>
+<p>summing over all positive eigenvalues λᵢ of the Laplacian.</p>
+<p>Interpretation:
+- For disconnected graphs: R_K = ∞
+- Classical random-walk mixing time ∝ R_K
+- Large R_K indicates bottlenecked topology → potential quantum speedup
+- Complete graph K_n: R_K = n−1
+- Path graph P_n: R_K = n(n²−1)/6</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Eigenvalue threshold for filtering zero mode</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kirchhoff index, or np.inf for disconnected graphs</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_kirchhoff_stats">
+<span class="sig-name descname"><span class="pre">compute_kirchhoff_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_kirchhoff_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_stats" title="Link to this definition">#</a></dt>
+<dd><p>Compute Kirchhoff index and normalized variants.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Eigenvalue threshold</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>kirchhoff_index: Raw R_K</p></li>
+<li><p>kirchhoff_per_pair: R_K / C(n, 2) (mean effective resistance)</p></li>
+<li><p>kirchhoff_normalised: R_K / R_K(P_n) (fraction of path-graph value)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_betti_numbers">
+<span class="sig-name descname"><span class="pre">compute_betti_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxdim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_betti_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_betti_numbers" title="Link to this definition">#</a></dt>
+<dd><p>Compute persistent Betti numbers β₀, β₁, β₂ using Ripser.</p>
+<p>Uses hop-count shortest-path distance matrix for Vietoris-Rips filtration.</p>
+<p>At filtration scale ε = 1 (one hop = one edge):
+- β₀ = number of connected components
+- β₁ = number of independent cycles in clique complex
+- β₂ = voids (unfilled tetrahedra) in clique complex</p>
+<p>Relationship to cyclomatic number μ:
+- μ counts all cycles in 1-skeleton (graph edges only)
+- β₁ counts cycles not filled by triangles
+- β₁ ≤ μ (triangles reduce cycle count)
+- β₁ = μ iff G is triangle-free</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>maxdim</strong> (<em>int</em><em>, </em><em>default=2</em>) – Maximum homological dimension</p></li>
+<li><p><strong>filtration_scale</strong> (<em>float</em><em>, </em><em>default=1.0</em>) – ε at which Betti numbers are evaluated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>betti_0, betti_1, betti_2: Betti numbers at filtration_scale</p></li>
+<li><p>persistence_diagrams: list of numpy arrays</p></li>
+<li><p>betti_sum: β₀ + β₁ + β₂</p></li>
+<li><p>euler_characteristic: β₀ − β₁ + β₂</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_persistence_entropy">
+<span class="sig-name descname"><span class="pre">compute_persistence_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxdim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_persistence_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_persistence_entropy" title="Link to this definition">#</a></dt>
+<dd><p>Compute persistence entropy for each homological dimension.</p>
+<p>For persistence diagram D_k = {(bᵢ, dᵢ)}, persistence entropy is:</p>
+<p>H_k = −Σᵢ (lᵢ / L) · log(lᵢ / L)</p>
+<p>where lᵢ = dᵢ − bᵢ is persistence lifetime and L = Σᵢ lᵢ.</p>
+<p>Measures complexity of multi-scale topological structure:
+- High H_k: many cycles with diverse lifetimes
+- Low H_k: one dominant topological feature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>maxdim</strong> (<em>int</em><em>, </em><em>default=2</em>) – Maximum dimension</p></li>
+<li><p><strong>filtration_scale</strong> (<em>float</em>) – Unused (entropy computed over all features)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>persistence_entropy_H0, persistence_entropy_H1, persistence_entropy_H2</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_topological_metrics">
+<span class="sig-name descname"><span class="pre">compute_topological_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_betti</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_persistence_entropy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxdim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_topological_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_topological_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute all topological/geometric complexity metrics.</p>
+<p>Metrics computed:
+- ORC (Ollivier-Ricci curvature): gJC and κ_LB approximations
+- Cyclomatic number: Circuit rank μ
+- Kirchhoff index: Total effective resistance R_K
+- Betti numbers: β₀, β₁, β₂ (if include_betti=True)
+- Persistence entropy: H₀, H₁, H₂ (if include_persistence_entropy=True)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>include_betti</strong> (<em>bool</em><em>, </em><em>default=True</em>) – Compute Betti numbers (expensive for large graphs)</p></li>
+<li><p><strong>include_persistence_entropy</strong> (<em>bool</em><em>, </em><em>default=True</em>) – Compute persistence entropy (requires include_betti=True)</p></li>
+<li><p><strong>maxdim</strong> (<em>int</em><em>, </em><em>default=2</em>) – Maximum homological dimension</p></li>
+<li><p><strong>filtration_scale</strong> (<em>float</em><em>, </em><em>default=1.0</em>) – ε at which Betti numbers are evaluated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>All topological metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ComplexityConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectral_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_num_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">betweenness_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wl_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonbacktracking_max_directed_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_largest_cc_for_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagerank_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagerank_max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagerank_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_kernel_t_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">10.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_kernel_n_probes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odd_girth_max_sources</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odd_girth_min_cycle_break</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#ComplexityConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Runtime and approximation settings for scalable metrics.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.spectral_k">
+<span class="sig-name descname"><span class="pre">spectral_k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.spectral_k" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.eig_tol">
+<span class="sig-name descname"><span class="pre">eig_tol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.eig_tol" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.path_num_sources">
+<span class="sig-name descname"><span class="pre">path_num_sources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.path_num_sources" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.betweenness_k">
+<span class="sig-name descname"><span class="pre">betweenness_k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.betweenness_k" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.wl_iterations">
+<span class="sig-name descname"><span class="pre">wl_iterations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.wl_iterations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.nonbacktracking_max_directed_edges">
+<span class="sig-name descname"><span class="pre">nonbacktracking_max_directed_edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000000</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.nonbacktracking_max_directed_edges" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.random_state">
+<span class="sig-name descname"><span class="pre">random_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.random_state" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.use_largest_cc_for_path">
+<span class="sig-name descname"><span class="pre">use_largest_cc_for_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.use_largest_cc_for_path" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_alpha">
+<span class="sig-name descname"><span class="pre">pagerank_alpha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.85</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_alpha" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_max_iter">
+<span class="sig-name descname"><span class="pre">pagerank_max_iter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">200</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_max_iter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_tol">
+<span class="sig-name descname"><span class="pre">pagerank_tol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-06</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_tol" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_t_values">
+<span class="sig-name descname"><span class="pre">heat_kernel_t_values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">,</span> <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(1.0,</span> <span class="pre">10.0)</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_t_values" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_n_probes">
+<span class="sig-name descname"><span class="pre">heat_kernel_n_probes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_n_probes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_max_sources">
+<span class="sig-name descname"><span class="pre">odd_girth_max_sources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_max_sources" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_min_cycle_break">
+<span class="sig-name descname"><span class="pre">odd_girth_min_cycle_break</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_min_cycle_break" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.sanitize_graph">
+<span class="sig-name descname"><span class="pre">sanitize_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_undirected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_selfloops</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#sanitize_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.sanitize_graph" title="Link to this definition">#</a></dt>
+<dd><p>Return a simple NetworkX graph suitable for undirected complexity metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.safe_float">
+<span class="sig-name descname"><span class="pre">safe_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#safe_float"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.safe_float" title="Link to this definition">#</a></dt>
+<dd><p>Coerce <code class="docutils literal notranslate"><span class="pre">x</span></code> to a finite float, returning <code class="docutils literal notranslate"><span class="pre">default</span></code> if it is not one.</p>
+<p>Deliberately broad on the coercion: this is called on values from many metric
+backends, and <code class="docutils literal notranslate"><span class="pre">float()</span></code> raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> for a None or a sequence,
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> for an unparsable string, and <code class="docutils literal notranslate"><span class="pre">OverflowError</span></code> for an
+out-of-range value. Not logged – it runs once per metric value, and the
+caller decides what a missing metric means.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.gini_coefficient">
+<span class="sig-name descname"><span class="pre">gini_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#gini_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.gini_coefficient" title="Link to this definition">#</a></dt>
+<dd><p>Compute Gini coefficient for a nonnegative vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.get_nodelist">
+<span class="sig-name descname"><span class="pre">get_nodelist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#get_nodelist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.get_nodelist" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.get_sparse_laplacian">
+<span class="sig-name descname"><span class="pre">get_sparse_laplacian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#get_sparse_laplacian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.get_sparse_laplacian" title="Link to this definition">#</a></dt>
+<dd><p>Sparse Laplacian with explicit nodelist for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">csr_matrix</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.get_sparse_adjacency">
+<span class="sig-name descname"><span class="pre">get_sparse_adjacency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#get_sparse_adjacency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.get_sparse_adjacency" title="Link to this definition">#</a></dt>
+<dd><p>Sparse adjacency with explicit nodelist for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">csr_matrix</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.safe_eigsh">
+<span class="sig-name descname"><span class="pre">safe_eigsh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">which</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_eigenvectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#safe_eigsh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.safe_eigsh" title="Link to this definition">#</a></dt>
+<dd><p>Robust wrapper around scipy.sparse.linalg.eigsh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_size_density_metrics">
+<span class="sig-name descname"><span class="pre">compute_size_density_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_size_density_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_size_density_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute scale and density controls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_sparse_spectral_metrics">
+<span class="sig-name descname"><span class="pre">compute_sparse_spectral_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_sparse_spectral_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_sparse_spectral_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute scalable spectral descriptors using sparse Lanczos on the
+normalized Laplacian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Existing keys (unchanged semantics):</dt><dd><ul class="simple">
+<li><p>normalized_spectral_gap</p></li>
+<li><p>laplacian_effective_rank_partial</p></li>
+<li><p>ipr_low_mean</p></li>
+<li><p>ipr_high_mean</p></li>
+<li><p>spectral_degeneracy_fraction (BUG-FIXED: within-block gaps only)</p></li>
+</ul>
+</dd>
+<dt>New keys:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>bipartite_proximity<span class="classifier">max(0, 2 - lambda_n^(L_norm)).</span></dt><dd><p>Equals 0 iff a bipartite component exists.</p>
+</dd>
+</dl>
+</li>
+<li><p>algebraic_connectivity_ratio   : lambda_2 / lambda_n^(L_norm).</p></li>
+<li><dl class="simple">
+<dt>spectral_entropy_partial<span class="classifier">Shannon entropy of normalized partial spectrum,</span></dt><dd><p>normalized to [0,1].</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_adjacency_spectral_metrics">
+<span class="sig-name descname"><span class="pre">compute_adjacency_spectral_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_adjacency_spectral_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_adjacency_spectral_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute IPR of band-edge eigenvectors of the unsigned adjacency matrix A.</p>
+<p>Theoretically motivated for QW pathways that use H = A (rather than H = L),
+and complementary to Laplacian-IPR because adjacency eigenvectors are not
+degree-normalized; localization signals on hubs survive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_heat_kernel_traces">
+<span class="sig-name descname"><span class="pre">compute_heat_kernel_traces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_heat_kernel_traces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_heat_kernel_traces" title="Link to this definition">#</a></dt>
+<dd><p>Compute normalized heat kernel traces tr(exp(-t L)) / n via the Hutchinson
+estimator with Rademacher probe vectors and scipy.sparse.linalg.expm_multiply.</p>
+<p>Theoretically motivated: tr(exp(-t L)) = sum_i exp(-t lambda_i) is the smooth
+spectral observable that integrates the diffusion behavior the relevant QW vs
+classical mixing bounds depend on. At small t it is dominated by the bulk
+spectrum; at large t it is dominated by the spectral gap.</p>
+<p>Each call is ~O(n_probes * matvec * scipy_internal_steps).
+For n=5000 with sparse L, this is at most a few seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_odd_girth_metric">
+<span class="sig-name descname"><span class="pre">compute_odd_girth_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_odd_girth_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_odd_girth_metric" title="Link to this definition">#</a></dt>
+<dd><p>Compute log(1 + shortest_odd_cycle_length).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Procedure:</dt><dd><ol class="arabic simple">
+<li><p>If G is bipartite, return NaN (no odd cycle exists).</p></li>
+<li><p>Fast triangle existence check via shared-neighbor scan; if any triangle
+exists, return log(1 + 3).</p></li>
+<li><p>Otherwise, BFS from up to <cite>odd_girth_max_sources</cite> sampled sources;
+for each source s, scan all edges and identify same-level closures
+(level u == level v), giving an odd cycle of length 2 * level + 1
+passing through s. Track the minimum.</p></li>
+</ol>
+</dd>
+</dl>
+<p>Returns NaN if no odd cycle is found within the source budget.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_approx_path_length_metric">
+<span class="sig-name descname"><span class="pre">compute_approx_path_length_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_approx_path_length_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_approx_path_length_metric" title="Link to this definition">#</a></dt>
+<dd><p>Approximate average shortest-path length using sampled BFS sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Also returns:</dt><dd><ul class="simple">
+<li><p>largest_cc_fraction</p></li>
+<li><p>closeness_gini_approx (NEW; free byproduct of same BFS calls).</p></li>
+</ul>
+</dd>
+</dl>
+<p>For disconnected graphs, the metric is computed on the largest connected
+component when use_largest_cc_for_path is True.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_community_metrics">
+<span class="sig-name descname"><span class="pre">compute_community_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_community_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_community_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute modularity and approximate conductance from detected communities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_degree_metrics">
+<span class="sig-name descname"><span class="pre">compute_degree_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_degree_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_degree_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Degree heterogeneity, hub dominance, and assortativity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_centrality_concentration_metrics">
+<span class="sig-name descname"><span class="pre">compute_centrality_concentration_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_centrality_concentration_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_centrality_concentration_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Approximate betweenness Gini and PageRank Gini.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_cycle_metrics">
+<span class="sig-name descname"><span class="pre">compute_cycle_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_cycle_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_cycle_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute transitivity, normalized cycle density, and nonbacktracking spectral radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_nonbacktracking_spectral_radius">
+<span class="sig-name descname"><span class="pre">compute_nonbacktracking_spectral_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_nonbacktracking_spectral_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_nonbacktracking_spectral_radius" title="Link to this definition">#</a></dt>
+<dd><p>Approximate spectral radius of the Hashimoto/non-backtracking matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_orc_proxy_metrics">
+<span class="sig-name descname"><span class="pre">compute_orc_proxy_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_orc_proxy_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_orc_proxy_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute scalable ORC-inspired edge bottleneck proxies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Uses the Jost-Liu style lower-bound proxy:</dt><dd><p>kappa_LB(u,v) = Delta/max(d_u,d_v) + 1/d_u + 1/d_v - 1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_wl_compression_ratio">
+<span class="sig-name descname"><span class="pre">compute_wl_compression_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_wl_compression_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_wl_compression_ratio" title="Link to this definition">#</a></dt>
+<dd><p>WL color compression ratio after a few 1-WL refinement iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_core_metrics">
+<span class="sig-name descname"><span class="pre">compute_core_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_core_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_core_metrics" title="Link to this definition">#</a></dt>
+<dd><p>k-core concentration as a scalable core-periphery proxy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_label_homophily">
+<span class="sig-name descname"><span class="pre">compute_label_homophily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_label_homophily"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_label_homophily" title="Link to this definition">#</a></dt>
+<dd><p>Fraction of edges connecting nodes with identical labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_feature_dirichlet_energy">
+<span class="sig-name descname"><span class="pre">compute_feature_dirichlet_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalized_laplacian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_feature_dirichlet_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_feature_dirichlet_energy" title="Link to this definition">#</a></dt>
+<dd><p>Compute normalized feature Dirichlet energy Tr(X^T L X) / Tr(X^T X).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics">
+<span class="sig-name descname"><span class="pre">compute_enhanced_complexity_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sanitize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_enhanced_complexity_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Compute the enhanced QuVINE complexity metrics for a single graph.</p>
+<p>This function computes 36 comprehensive metrics (27 original + 9 new theory-grade
+metrics) that characterize graph structure and predict quantum advantage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>labels</strong> (<em>optional</em>) – Node labels for computing label homophily</p></li>
+<li><p><strong>features</strong> (<em>optional</em>) – Node features for computing feature Dirichlet energy</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig" title="qbiocode.evaluation.graph_evaluation.ComplexityConfig"><em>ComplexityConfig</em></a>) – Configuration for approximation parameters</p></li>
+<li><p><strong>sanitize</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, convert to simple undirected graph and remove self-loops</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing all 36 complexity metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.compute_complexity_table">
+<span class="sig-name descname"><span class="pre">compute_complexity_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ComplexityConfig(spectral_k=64,</span> <span class="pre">eig_tol=1e-05,</span> <span class="pre">path_num_sources=64,</span> <span class="pre">betweenness_k=256,</span> <span class="pre">wl_iterations=3,</span> <span class="pre">nonbacktracking_max_directed_edges=1000000,</span> <span class="pre">random_state=0,</span> <span class="pre">use_largest_cc_for_path=True,</span> <span class="pre">pagerank_alpha=0.85,</span> <span class="pre">pagerank_max_iter=200,</span> <span class="pre">pagerank_tol=1e-06,</span> <span class="pre">heat_kernel_t_values=(1.0,</span> <span class="pre">10.0),</span> <span class="pre">heat_kernel_n_probes=20,</span> <span class="pre">odd_girth_max_sources=32,</span> <span class="pre">odd_girth_min_cycle_break=5)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#compute_complexity_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.compute_complexity_table" title="Link to this definition">#</a></dt>
+<dd><p>Compute a pandas DataFrame of complexity metrics for many graphs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graphs</strong> (<em>dict</em>) – Dictionary mapping graph names to NetworkX graphs</p></li>
+<li><p><strong>labels</strong> (<em>optional</em>) – Dictionary mapping graph names to node labels</p></li>
+<li><p><strong>features</strong> (<em>optional</em>) – Dictionary mapping graph names to node features</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig" title="qbiocode.evaluation.graph_evaluation.ComplexityConfig"><em>ComplexityConfig</em></a>) – Configuration for approximation parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame with one row per graph and columns for each metric</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.evaluation.graph_evaluation.evaluate_graph">
+<span class="sig-name descname"><span class="pre">evaluate_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/evaluation/graph_evaluation.html#evaluate_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.evaluation.graph_evaluation.evaluate_graph" title="Link to this definition">#</a></dt>
+<dd><p>Summarize a graph’s complexity as a one-row DataFrame.</p>
+<p>Mirrors <a class="reference internal" href="qbiocode.evaluation.dataset_evaluation.html#qbiocode.evaluation.dataset_evaluation.evaluate" title="qbiocode.evaluation.dataset_evaluation.evaluate"><code class="xref py py-func docutils literal notranslate"><span class="pre">qbiocode.evaluation.dataset_evaluation.evaluate()</span></code></a>: it runs the
+core spectral/topological metrics (<a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics" title="qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_graph_complexity_metrics()</span></code></a>)
+and the enhanced structural metrics (<a class="reference internal" href="#qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics" title="qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_enhanced_complexity_metrics()</span></code></a>),
+merges them, and returns a transposed one-row summary keyed by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>networkx.Graph</em>) – Graph to evaluate. Any networkx graph class is
+accepted; metrics undefined for the given class are omitted rather
+than raised (see Notes).</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Identifier stored in the <code class="docutils literal notranslate"><span class="pre">Graph</span></code> column of the summary.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>One-row summary of graph complexity metrics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if <code class="docutils literal notranslate"><span class="pre">G</span></code> is not a networkx graph, or <code class="docutils literal notranslate"><span class="pre">name</span></code> is not a string.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>An <strong>empty</strong> graph is a legitimate input and yields a size-only summary
+(<code class="docutils literal notranslate"><span class="pre">Graph</span></code>/<code class="docutils literal notranslate"><span class="pre">num_nodes</span></code>/<code class="docutils literal notranslate"><span class="pre">num_edges</span></code>) with a <code class="docutils literal notranslate"><span class="pre">UserWarning</span></code>. <code class="docutils literal notranslate"><span class="pre">None</span></code>
+is not: it is a caller error and raises, because the size-only summary
+previously returned for it reported “0 nodes” for a graph that was in
+fact missing.</p>
+<p>Individual metric groups degrade independently: if either the core or the
+enhanced block fails, its columns are absent from the returned frame and
+a <code class="docutils literal notranslate"><span class="pre">UserWarning</span></code> names the failure. The frame is never partially
+populated with fabricated values, so check for a column before reading
+it rather than assuming a fixed width.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qbiocode.evaluation.dataset_evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qbiocode.evaluation.dataset_evaluation module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qbiocode.evaluation.model_evaluation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">qbiocode.evaluation.model_evaluation module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_spectrum"><code class="docutils literal notranslate"><span class="pre">compute_laplacian_spectrum()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_gap"><code class="docutils literal notranslate"><span class="pre">compute_spectral_gap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.fiedler_eigenvalue_sparse"><code class="docutils literal notranslate"><span class="pre">fiedler_eigenvalue_sparse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_algebraic_connectivity"><code class="docutils literal notranslate"><span class="pre">compute_algebraic_connectivity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_entropy"><code class="docutils literal notranslate"><span class="pre">compute_spectral_entropy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_von_neumann_entropy"><code class="docutils literal notranslate"><span class="pre">compute_von_neumann_entropy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_estrada_index"><code class="docutils literal notranslate"><span class="pre">compute_estrada_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_complexity"><code class="docutils literal notranslate"><span class="pre">compute_quantum_complexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_spectral_concentration"><code class="docutils literal notranslate"><span class="pre">compute_spectral_concentration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_inverse_participation_ratio"><code class="docutils literal notranslate"><span class="pre">compute_inverse_participation_ratio()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_participation_ratio"><code class="docutils literal notranslate"><span class="pre">compute_participation_ratio()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_effective_resistance"><code class="docutils literal notranslate"><span class="pre">compute_effective_resistance()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_laplacian_centrality_complexity"><code class="docutils literal notranslate"><span class="pre">compute_laplacian_centrality_complexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_graph_complexity_metrics"><code class="docutils literal notranslate"><span class="pre">compute_graph_complexity_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compare_graph_complexities"><code class="docutils literal notranslate"><span class="pre">compare_graph_complexities()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_quantum_advantage_metrics"><code class="docutils literal notranslate"><span class="pre">compute_quantum_advantage_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.rank_graphs_by_complexity"><code class="docutils literal notranslate"><span class="pre">rank_graphs_by_complexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_orc_per_edge"><code class="docutils literal notranslate"><span class="pre">compute_orc_per_edge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_orc_stats"><code class="docutils literal notranslate"><span class="pre">compute_orc_stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_cyclomatic_number"><code class="docutils literal notranslate"><span class="pre">compute_cyclomatic_number()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_index"><code class="docutils literal notranslate"><span class="pre">compute_kirchhoff_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_kirchhoff_stats"><code class="docutils literal notranslate"><span class="pre">compute_kirchhoff_stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_betti_numbers"><code class="docutils literal notranslate"><span class="pre">compute_betti_numbers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_persistence_entropy"><code class="docutils literal notranslate"><span class="pre">compute_persistence_entropy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_topological_metrics"><code class="docutils literal notranslate"><span class="pre">compute_topological_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.spectral_k"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.spectral_k</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.eig_tol"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.eig_tol</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.path_num_sources"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.path_num_sources</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.betweenness_k"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.betweenness_k</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.wl_iterations"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.wl_iterations</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.nonbacktracking_max_directed_edges"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.nonbacktracking_max_directed_edges</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.random_state"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.random_state</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.use_largest_cc_for_path"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.use_largest_cc_for_path</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_alpha"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.pagerank_alpha</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_max_iter"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.pagerank_max_iter</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.pagerank_tol"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.pagerank_tol</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_t_values"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.heat_kernel_t_values</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.heat_kernel_n_probes"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.heat_kernel_n_probes</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_max_sources"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.odd_girth_max_sources</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.ComplexityConfig.odd_girth_min_cycle_break"><code class="docutils literal notranslate"><span class="pre">ComplexityConfig.odd_girth_min_cycle_break</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.sanitize_graph"><code class="docutils literal notranslate"><span class="pre">sanitize_graph()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.safe_float"><code class="docutils literal notranslate"><span class="pre">safe_float()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.gini_coefficient"><code class="docutils literal notranslate"><span class="pre">gini_coefficient()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.get_nodelist"><code class="docutils literal notranslate"><span class="pre">get_nodelist()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.get_sparse_laplacian"><code class="docutils literal notranslate"><span class="pre">get_sparse_laplacian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.get_sparse_adjacency"><code class="docutils literal notranslate"><span class="pre">get_sparse_adjacency()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.safe_eigsh"><code class="docutils literal notranslate"><span class="pre">safe_eigsh()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_size_density_metrics"><code class="docutils literal notranslate"><span class="pre">compute_size_density_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_sparse_spectral_metrics"><code class="docutils literal notranslate"><span class="pre">compute_sparse_spectral_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_adjacency_spectral_metrics"><code class="docutils literal notranslate"><span class="pre">compute_adjacency_spectral_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_heat_kernel_traces"><code class="docutils literal notranslate"><span class="pre">compute_heat_kernel_traces()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_odd_girth_metric"><code class="docutils literal notranslate"><span class="pre">compute_odd_girth_metric()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_approx_path_length_metric"><code class="docutils literal notranslate"><span class="pre">compute_approx_path_length_metric()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_community_metrics"><code class="docutils literal notranslate"><span class="pre">compute_community_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_degree_metrics"><code class="docutils literal notranslate"><span class="pre">compute_degree_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_centrality_concentration_metrics"><code class="docutils literal notranslate"><span class="pre">compute_centrality_concentration_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_cycle_metrics"><code class="docutils literal notranslate"><span class="pre">compute_cycle_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_nonbacktracking_spectral_radius"><code class="docutils literal notranslate"><span class="pre">compute_nonbacktracking_spectral_radius()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_orc_proxy_metrics"><code class="docutils literal notranslate"><span class="pre">compute_orc_proxy_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_wl_compression_ratio"><code class="docutils literal notranslate"><span class="pre">compute_wl_compression_ratio()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_core_metrics"><code class="docutils literal notranslate"><span class="pre">compute_core_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_label_homophily"><code class="docutils literal notranslate"><span class="pre">compute_label_homophily()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_feature_dirichlet_energy"><code class="docutils literal notranslate"><span class="pre">compute_feature_dirichlet_energy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_enhanced_complexity_metrics"><code class="docutils literal notranslate"><span class="pre">compute_enhanced_complexity_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.compute_complexity_table"><code class="docutils literal notranslate"><span class="pre">compute_complexity_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.evaluation.graph_evaluation.evaluate_graph"><code class="docutils literal notranslate"><span class="pre">evaluate_graph()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

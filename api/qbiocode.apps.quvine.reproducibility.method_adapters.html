@@ -1,0 +1,1345 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>qbiocode.apps.quvine.reproducibility.method_adapters module &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/qbiocode.apps.quvine.reproducibility.method_adapters';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qbiocode.apps.quvine.reproducibility.method_runner module" href="qbiocode.apps.quvine.reproducibility.method_runner.html" />
+    <link rel="prev" title="qbiocode.apps.quvine.reproducibility.graph_generator module" href="qbiocode.apps.quvine.reproducibility.graph_generator.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">qbiocode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="qbiocode.html">qbiocode package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.version.html">qbiocode.version module</a></li>
+<li class="toctree-l3 current active"><a class="reference internal" href="qbiocode.apps.html">qbiocode.apps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.data_generation.html">qbiocode.data_generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.embeddings.html">qbiocode.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.evaluation.html">qbiocode.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.learning.html">qbiocode.learning package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.utils.html">qbiocode.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.visualization.html">qbiocode.visualization package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_overview.html" class="nav-link">API Overview</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">qbiocode</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.html" class="nav-link">qbiocode package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.html" class="nav-link">qbiocode.apps package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.html" class="nav-link">qbiocode.apps.quvine package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.reproducibility.html" class="nav-link">qbiocode.apps.quvine.reproducibility package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.reproducibility.method_adapters module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-qbiocode.apps.quvine.reproducibility.method_adapters">
+<span id="qbiocode-apps-quvine-reproducibility-method-adapters-module"></span><h1>qbiocode.apps.quvine.reproducibility.method_adapters module<a class="headerlink" href="#module-qbiocode.apps.quvine.reproducibility.method_adapters" title="Link to this heading">#</a></h1>
+<p>Method Adapters for Reproducible Benchmarking Pipeline</p>
+<p>This module provides adapter functions that wrap all 42 QuVINE methods
+to work with the reproducible pipeline interface.</p>
+<p>Each adapter:
+1. Accepts pre-generated graph and split
+2. Uses the provided canonical seed
+3. Returns standardized metrics
+4. Does NOT modify input data or create its own splits</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Functions:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_link_prediction" title="qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_link_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_link_prediction</span></code></a></p></td>
+<td><p>Evaluate link prediction using dot product similarity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_node_ranking" title="qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_node_ranking"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_node_ranking</span></code></a></p></td>
+<td><p>Evaluate node ranking task.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.generate_quantum_targets_from_walks" title="qbiocode.apps.quvine.reproducibility.method_adapters.generate_quantum_targets_from_walks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_quantum_targets_from_walks</span></code></a></p></td>
+<td><p>Generate quantum walk targets for filter calibration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.get_method_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.get_method_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_method_adapter</span></code></a></p></td>
+<td><p>Get the adapter function for a method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_appnp_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_appnp_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_appnp_adapter</span></code></a></p></td>
+<td><p>Adapter for APPNP method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_baseline_filter_adapter</span></code></a></p></td>
+<td><p>Adapter for generic baseline filter (defaults to heat kernel).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_baseline_filter_heat_adapter</span></code></a></p></td>
+<td><p>Adapter for baseline heat kernel filter (no quantum calibration).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_baseline_filter_poly_adapter</span></code></a></p></td>
+<td><p>Adapter for baseline polynomial filter (no quantum calibration).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_gcnmf_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_gcnmf_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_baseline_gcnmf_adapter</span></code></a></p></td>
+<td><p>Adapter for baseline GCN-MF (no quantum calibration).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_ctqw_fusion_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_ctqw_fusion_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_ctqw_fusion_adapter</span></code></a></p></td>
+<td><p>Fusion method combining CTQW-based embeddings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_dtqw_fusion_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_dtqw_fusion_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_dtqw_fusion_adapter</span></code></a></p></td>
+<td><p>Fusion method combining DTQW-based embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_filter_ctqw_heat_adapter</span></code></a></p></td>
+<td><p>Adapter for CTQW + heat kernel filter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_filter_ctqw_poly_adapter</span></code></a></p></td>
+<td><p>Adapter for CTQW + polynomial filter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_filter_rwr_heat_adapter</span></code></a></p></td>
+<td><p>Adapter for RWR + heat kernel filter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_filter_rwr_poly_adapter</span></code></a></p></td>
+<td><p>Adapter for RWR + polynomial filter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_adapter</span></code></a></p></td>
+<td><p>Generic GAT adapter that handles all 12 GAT variants.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_baseline_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_baseline_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_baseline_adapter</span></code></a></p></td>
+<td><p>GAT with raw structural features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_ctqw_adapter</span></code></a></p></td>
+<td><p>GAT with direct CTQW features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_ctqw_heat_adapter</span></code></a></p></td>
+<td><p>GAT with CTQW-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_ctqw_poly_adapter</span></code></a></p></td>
+<td><p>GAT with CTQW-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_dtqw_adapter</span></code></a></p></td>
+<td><p>GAT with direct DTQW features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_dtqw_heat_adapter</span></code></a></p></td>
+<td><p>GAT with DTQW-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_dtqw_poly_adapter</span></code></a></p></td>
+<td><p>GAT with DTQW-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_heat_adapter</span></code></a></p></td>
+<td><p>GAT with fixed heat kernel features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_poly_adapter</span></code></a></p></td>
+<td><p>GAT with fixed polynomial features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_rwr_adapter</span></code></a></p></td>
+<td><p>GAT with RWR walk features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_rwr_heat_adapter</span></code></a></p></td>
+<td><p>GAT with RWR-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_gat_rwr_poly_adapter</span></code></a></p></td>
+<td><p>GAT with RWR-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_adapter</span></code></a></p></td>
+<td><p>Generic GraphGPS adapter that handles all 12 GraphGPS variants.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_baseline_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_baseline_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_baseline_adapter</span></code></a></p></td>
+<td><p>GraphGPS with raw structural features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_ctqw_adapter</span></code></a></p></td>
+<td><p>GraphGPS with direct CTQW features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_ctqw_heat_adapter</span></code></a></p></td>
+<td><p>GraphGPS with CTQW-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_ctqw_poly_adapter</span></code></a></p></td>
+<td><p>GraphGPS with CTQW-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_dtqw_adapter</span></code></a></p></td>
+<td><p>GraphGPS with direct DTQW features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_dtqw_heat_adapter</span></code></a></p></td>
+<td><p>GraphGPS with DTQW-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_dtqw_poly_adapter</span></code></a></p></td>
+<td><p>GraphGPS with DTQW-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_heat_adapter</span></code></a></p></td>
+<td><p>GraphGPS with fixed heat kernel features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_poly_adapter</span></code></a></p></td>
+<td><p>GraphGPS with fixed polynomial features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_rwr_adapter</span></code></a></p></td>
+<td><p>GraphGPS with RWR walk features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_heat_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_heat_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_rwr_heat_adapter</span></code></a></p></td>
+<td><p>GraphGPS with RWR-calibrated heat kernel features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_poly_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_poly_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphgps_rwr_poly_adapter</span></code></a></p></td>
+<td><p>GraphGPS with RWR-calibrated polynomial features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphsage_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphsage_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_graphsage_adapter</span></code></a></p></td>
+<td><p>Adapter for GraphSAGE method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_netmf_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_netmf_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_netmf_adapter</span></code></a></p></td>
+<td><p>Adapter for NetMF method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_node2vec_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_node2vec_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_node2vec_adapter</span></code></a></p></td>
+<td><p>Adapter for Node2Vec method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_ctqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_ctqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_quvine_ctqw_adapter</span></code></a></p></td>
+<td><p>Adapter for QuVINE CTQW (Continuous-Time Quantum Walk + SGNS).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_dtqw_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_dtqw_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_quvine_dtqw_adapter</span></code></a></p></td>
+<td><p>Adapter for QuVINE DTQW (Discrete-Time Quantum Walk + SGNS).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_rwr_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_rwr_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_quvine_rwr_adapter</span></code></a></p></td>
+<td><p>Adapter for QuVINE RWR (Random Walk with Restart + SGNS).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_sgns" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_sgns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_quvine_sgns</span></code></a></p></td>
+<td><p>Run QuVINE SGNS embedding with specified walk type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_rwr_fusion_adapter" title="qbiocode.apps.quvine.reproducibility.method_adapters.run_rwr_fusion_adapter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_rwr_fusion_adapter</span></code></a></p></td>
+<td><p>Fusion method combining RWR-based embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.reproducibility.method_adapters.train_classifier" title="qbiocode.apps.quvine.reproducibility.method_adapters.train_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_classifier</span></code></a></p></td>
+<td><p>Train a logistic regression classifier on embeddings.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.train_classifier">
+<span class="sig-name descname"><span class="pre">train_classifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#train_classifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.train_classifier" title="Link to this definition">#</a></dt>
+<dd><p>Train a logistic regression classifier on embeddings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embeddings</strong> (<em>np.ndarray</em>) – Node embeddings [N, d]</p></li>
+<li><p><strong>train_idx</strong> (<em>np.ndarray</em>) – Training indices</p></li>
+<li><p><strong>val_idx</strong> (<em>np.ndarray</em>) – Validation indices</p></li>
+<li><p><strong>test_idx</strong> (<em>np.ndarray</em>) – Test indices</p></li>
+<li><p><strong>labels</strong> (<em>np.ndarray</em>) – Node labels</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Classification metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_link_prediction">
+<span class="sig-name descname"><span class="pre">evaluate_link_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_test_edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#evaluate_link_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_link_prediction" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate link prediction using dot product similarity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embeddings</strong> (<em>np.ndarray</em>) – Node embeddings [N, d]</p></li>
+<li><p><strong>test_edges</strong> (<em>list</em>) – Positive test edges</p></li>
+<li><p><strong>neg_test_edges</strong> (<em>list</em>) – Negative test edges</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Link prediction metrics: <code class="docutils literal notranslate"><span class="pre">auc_roc</span></code>, <code class="docutils literal notranslate"><span class="pre">auc_pr</span></code>, <code class="docutils literal notranslate"><span class="pre">f1</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Ranking metrics are undefined unless both classes are present. When either
+<code class="docutils literal notranslate"><span class="pre">test_edges</span></code> or <code class="docutils literal notranslate"><span class="pre">neg_test_edges</span></code> is empty the three metrics are returned
+as <code class="docutils literal notranslate"><span class="pre">nan</span></code> – not as 0.5 – because 0.5 is an achievable score and reporting
+it would make an undefined evaluation indistinguishable from a genuinely
+chance-level one, and would drag any average over methods toward chance.
+Aggregate these with <code class="docutils literal notranslate"><span class="pre">np.nanmean</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If both edge lists are empty, or if an edge references a node index
+    outside <code class="docutils literal notranslate"><span class="pre">embeddings</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_node_ranking">
+<span class="sig-name descname"><span class="pre">evaluate_node_ranking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[10,</span> <span class="pre">20,</span> <span class="pre">50]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#evaluate_node_ranking"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_node_ranking" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate node ranking task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>embeddings</strong> (<em>np.ndarray</em>) – Node embeddings [N, d]</p></li>
+<li><p><strong>seed_nodes</strong> (<em>list</em>) – Seed node indices</p></li>
+<li><p><strong>target_nodes</strong> (<em>list</em>) – Target node indices</p></li>
+<li><p><strong>k_values</strong> (<em>list</em>) – K values for precision&#64;k</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ranking metrics</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_node2vec_adapter">
+<span class="sig-name descname"><span class="pre">run_node2vec_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_node2vec_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_node2vec_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for Node2Vec method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_netmf_adapter">
+<span class="sig-name descname"><span class="pre">run_netmf_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_netmf_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_netmf_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for NetMF method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphsage_adapter">
+<span class="sig-name descname"><span class="pre">run_graphsage_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphsage_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphsage_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for GraphSAGE method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_appnp_adapter">
+<span class="sig-name descname"><span class="pre">run_appnp_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_appnp_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_appnp_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for APPNP method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_sgns">
+<span class="sig-name descname"><span class="pre">run_quvine_sgns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walk_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_quvine_sgns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_sgns" title="Link to this definition">#</a></dt>
+<dd><p>Run QuVINE SGNS embedding with specified walk type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>nx.Graph</em>) – Input graph</p></li>
+<li><p><strong>walk_type</strong> (<em>str</em>) – Type of walk: ‘rwr’, ‘ctqw’, or ‘dtqw’</p></li>
+<li><p><strong>config</strong> (<em>dict</em><em>, </em><em>optional</em>) – Configuration parameters</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings (n_nodes x embedding_dim)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_rwr_adapter">
+<span class="sig-name descname"><span class="pre">run_quvine_rwr_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_quvine_rwr_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_rwr_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for QuVINE RWR (Random Walk with Restart + SGNS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_ctqw_adapter">
+<span class="sig-name descname"><span class="pre">run_quvine_ctqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_quvine_ctqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_ctqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for QuVINE CTQW (Continuous-Time Quantum Walk + SGNS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_dtqw_adapter">
+<span class="sig-name descname"><span class="pre">run_quvine_dtqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_quvine_dtqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_dtqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for QuVINE DTQW (Discrete-Time Quantum Walk + SGNS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_baseline_filter_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_baseline_filter_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for baseline heat kernel filter (no quantum calibration).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_baseline_filter_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_baseline_filter_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for baseline polynomial filter (no quantum calibration).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.generate_quantum_targets_from_walks">
+<span class="sig-name descname"><span class="pre">generate_quantum_targets_from_walks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walk_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#generate_quantum_targets_from_walks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.generate_quantum_targets_from_walks" title="Link to this definition">#</a></dt>
+<dd><p>Generate quantum walk targets for filter calibration.</p>
+<p>Samples subnetworks and computes quantum walk distributions.
+Returns targets with integer node IDs (not strings).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_filter_rwr_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_filter_rwr_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for RWR + heat kernel filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_filter_rwr_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_filter_rwr_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for RWR + polynomial filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_filter_ctqw_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_filter_ctqw_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for CTQW + heat kernel filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_filter_ctqw_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_filter_ctqw_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for CTQW + polynomial filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Generic GAT adapter that handles all 12 GAT variants.</p>
+<p>GAT variants differ only in their input features:
+- gat_baseline: raw structural features
+- gat_heat/poly: fixed filter parameters
+- gat_rwr/ctqw/dtqw: walk-based features
+- gat_*_heat/poly: quantum-calibrated filters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_baseline_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_baseline_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_baseline_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_baseline_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with raw structural features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with fixed heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with fixed polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_rwr_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_rwr_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with RWR walk features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_ctqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_ctqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with direct CTQW features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_dtqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_dtqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with direct DTQW features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_rwr_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_rwr_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with RWR-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_rwr_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_rwr_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with RWR-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_ctqw_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_ctqw_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with CTQW-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_ctqw_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_ctqw_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with CTQW-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_dtqw_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_dtqw_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with DTQW-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_gat_dtqw_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_gat_dtqw_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GAT with DTQW-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Generic GraphGPS adapter that handles all 12 GraphGPS variants.</p>
+<p>GraphGPS variants differ only in their input features (same as GAT):
+- graphgps_baseline: raw structural features
+- graphgps_heat/poly: fixed filter parameters
+- graphgps_rwr/ctqw/dtqw: walk-based features
+- graphgps_*_heat/poly: quantum-calibrated filters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_baseline_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_baseline_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_baseline_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_baseline_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with raw structural features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with fixed heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with fixed polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_rwr_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_rwr_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with RWR walk features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_ctqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_ctqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with direct CTQW features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_dtqw_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_dtqw_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with direct DTQW features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_rwr_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_rwr_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with RWR-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_rwr_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_rwr_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with RWR-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_ctqw_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_ctqw_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with CTQW-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_ctqw_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_ctqw_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with CTQW-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_heat_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_dtqw_heat_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_dtqw_heat_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_heat_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with DTQW-calibrated heat kernel features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_poly_adapter">
+<span class="sig-name descname"><span class="pre">run_graphgps_dtqw_poly_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_graphgps_dtqw_poly_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_poly_adapter" title="Link to this definition">#</a></dt>
+<dd><p>GraphGPS with DTQW-calibrated polynomial features.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_gcnmf_adapter">
+<span class="sig-name descname"><span class="pre">run_baseline_gcnmf_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_baseline_gcnmf_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_gcnmf_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for baseline GCN-MF (no quantum calibration).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_adapter">
+<span class="sig-name descname"><span class="pre">run_baseline_filter_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_baseline_filter_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Adapter for generic baseline filter (defaults to heat kernel).</p>
+<p>This is the generic ‘baseline_filter’ method that can be configured
+to use either heat or polynomial filters via config[‘filter_type’].
+Defaults to heat kernel for backward compatibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_rwr_fusion_adapter">
+<span class="sig-name descname"><span class="pre">run_rwr_fusion_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_rwr_fusion_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_rwr_fusion_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Fusion method combining RWR-based embeddings.</p>
+<p>Combines:
+- quvine_rwr (SGNS with RWR)
+- filter_rwr_heat (RWR-calibrated heat kernel)
+- filter_rwr_poly (RWR-calibrated polynomial)</p>
+<p>Uses SVD-based fusion to combine the three views.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_ctqw_fusion_adapter">
+<span class="sig-name descname"><span class="pre">run_ctqw_fusion_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_ctqw_fusion_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_ctqw_fusion_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Fusion method combining CTQW-based embeddings.</p>
+<p>Combines:
+- quvine_ctqw (SGNS with CTQW)
+- filter_ctqw_heat (CTQW-calibrated heat kernel)
+- filter_ctqw_poly (CTQW-calibrated polynomial)</p>
+<p>Uses SVD-based fusion to combine the three views.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.run_dtqw_fusion_adapter">
+<span class="sig-name descname"><span class="pre">run_dtqw_fusion_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#run_dtqw_fusion_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_dtqw_fusion_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Fusion method combining DTQW-based embeddings.</p>
+<p>Combines:
+- quvine_dtqw (SGNS with DTQW)
+- Baseline heat kernel (as DTQW doesn’t have filter variants)
+- Baseline polynomial (as DTQW doesn’t have filter variants)</p>
+<p>Uses SVD-based fusion to combine the three views.
+Note: DTQW doesn’t have dedicated filter variants, so we use baseline filters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.reproducibility.method_adapters.get_method_adapter">
+<span class="sig-name descname"><span class="pre">get_method_adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/reproducibility/method_adapters.html#get_method_adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.reproducibility.method_adapters.get_method_adapter" title="Link to this definition">#</a></dt>
+<dd><p>Get the adapter function for a method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>method_name</strong> (<em>str</em>) – Name of the method</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Adapter function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – If method is not yet implemented</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qbiocode.apps.quvine.reproducibility.graph_generator.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.reproducibility.graph_generator module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qbiocode.apps.quvine.reproducibility.method_runner.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.reproducibility.method_runner module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.train_classifier"><code class="docutils literal notranslate"><span class="pre">train_classifier()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_link_prediction"><code class="docutils literal notranslate"><span class="pre">evaluate_link_prediction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.evaluate_node_ranking"><code class="docutils literal notranslate"><span class="pre">evaluate_node_ranking()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_node2vec_adapter"><code class="docutils literal notranslate"><span class="pre">run_node2vec_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_netmf_adapter"><code class="docutils literal notranslate"><span class="pre">run_netmf_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphsage_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphsage_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_appnp_adapter"><code class="docutils literal notranslate"><span class="pre">run_appnp_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_sgns"><code class="docutils literal notranslate"><span class="pre">run_quvine_sgns()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_rwr_adapter"><code class="docutils literal notranslate"><span class="pre">run_quvine_rwr_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_ctqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_quvine_ctqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_quvine_dtqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_quvine_dtqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_baseline_filter_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_baseline_filter_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.generate_quantum_targets_from_walks"><code class="docutils literal notranslate"><span class="pre">generate_quantum_targets_from_walks()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_filter_rwr_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_rwr_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_filter_rwr_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_filter_ctqw_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_filter_ctqw_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_filter_ctqw_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_baseline_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_baseline_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_rwr_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_ctqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_dtqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_rwr_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_rwr_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_rwr_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_ctqw_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_ctqw_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_ctqw_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_dtqw_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_gat_dtqw_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_gat_dtqw_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_baseline_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_baseline_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_rwr_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_ctqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_dtqw_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_rwr_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_rwr_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_rwr_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_ctqw_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_ctqw_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_ctqw_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_heat_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_dtqw_heat_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_graphgps_dtqw_poly_adapter"><code class="docutils literal notranslate"><span class="pre">run_graphgps_dtqw_poly_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_gcnmf_adapter"><code class="docutils literal notranslate"><span class="pre">run_baseline_gcnmf_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_baseline_filter_adapter"><code class="docutils literal notranslate"><span class="pre">run_baseline_filter_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_rwr_fusion_adapter"><code class="docutils literal notranslate"><span class="pre">run_rwr_fusion_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_ctqw_fusion_adapter"><code class="docutils literal notranslate"><span class="pre">run_ctqw_fusion_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.run_dtqw_fusion_adapter"><code class="docutils literal notranslate"><span class="pre">run_dtqw_fusion_adapter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.reproducibility.method_adapters.get_method_adapter"><code class="docutils literal notranslate"><span class="pre">get_method_adapter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

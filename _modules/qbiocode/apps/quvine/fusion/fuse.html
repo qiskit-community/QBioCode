@@ -1,0 +1,1176 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.fusion.fuse &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/fusion/fuse';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.fusion.fuse</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.fusion.fuse</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">svd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.analysis.analyze</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_row_norm</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+    <span class="n">nrm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Z</span> <span class="o">/</span> <span class="p">(</span><span class="n">nrm</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_block_standardize</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sd</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Z</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sd</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_prep_blocks</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">do_row_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">do_block_standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">Zs</span><span class="p">:</span>
+        <span class="n">Zp</span> <span class="o">=</span> <span class="n">Z</span>
+        <span class="k">if</span> <span class="n">do_row_norm</span><span class="p">:</span>
+            <span class="n">Zp</span> <span class="o">=</span> <span class="n">_row_norm</span><span class="p">(</span><span class="n">Zp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">do_block_standardize</span><span class="p">:</span>
+            <span class="n">Zp</span> <span class="o">=</span> <span class="n">_block_standardize</span><span class="p">(</span><span class="n">Zp</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Zp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<div class="viewcode-block" id="fuse_embeddings_svd">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings_svd">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings_svd</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fast early fusion:</span>
+<span class="sd">    concatenate (after per-block normalization) + SVD/PCA to shared k-dim space.</span>
+<span class="sd">    """</span>
+    <span class="n">Zcat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>            <span class="c1"># (n, sum d_v)</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">Zcat</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">k_eff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Z_fused</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k_eff</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">[:</span><span class="n">k_eff</span><span class="p">]</span>           <span class="c1"># (n,k_eff), scaled PCs</span>
+    <span class="k">if</span> <span class="n">k_eff</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="n">Z_fused</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">Z_fused</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="n">k_eff</span><span class="p">)),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'constant'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Z_fused</span></div>
+
+
+<span class="c1"># ---------- Optional: graph-regularized shared U, scalable ----------</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_apply_graph_regularization</span><span class="p">(</span><span class="n">U0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">max_cg_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">cg_tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Solve (beta*L + (1+lam)*I) u_j = u0_j for each column via sparse CG.</span>
+<span class="sd">    Returns U0 unchanged if scipy is unavailable or beta &lt;= 0.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spla</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sp</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="c1"># DO NOT densify on big graphs; pass sparse L.</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+    <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">U0</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">Aop</span> <span class="o">=</span> <span class="p">(</span><span class="n">beta</span> <span class="o">*</span> <span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">lam</span><span class="p">)</span> <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"csr"</span><span class="p">)</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">U0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">rhs</span> <span class="o">=</span> <span class="n">U0</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">uj</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">spla</span><span class="o">.</span><span class="n">cg</span><span class="p">(</span><span class="n">Aop</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">max_cg_iter</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">cg_tol</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">info</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">uj</span> <span class="o">=</span> <span class="n">rhs</span>
+        <span class="n">U</span><span class="p">[:,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">uj</span>
+    <span class="k">return</span> <span class="n">U</span>
+
+
+<div class="viewcode-block" id="fuse_embeddings_graphreg">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings_graphreg">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings_graphreg</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">max_cg_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">cg_tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Solve: argmin_U ||U - Zbar||_F^2 + beta * tr(U^T L U) + lam ||U||_F^2</span>
+<span class="sd">    where Zbar is the SVD-fused initialization projected to k dims.</span>
+
+<span class="sd">    This is a *much simpler* regularization story than your full multiview + Ws + alpha,</span>
+<span class="sd">    and it avoids over-parameterization reviewers will question.</span>
+<span class="sd">    """</span>
+    <span class="n">U0</span> <span class="o">=</span> <span class="n">fuse_embeddings_svd</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">beta</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">U0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_apply_graph_regularization</span><span class="p">(</span><span class="n">U0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">max_cg_iter</span><span class="p">,</span> <span class="n">cg_tol</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">U0</span></div>
+
+
+<div class="viewcode-block" id="fuse_embeddings_attention">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings_attention">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings_attention</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Attention-based fusion: learn attention weights for each embedding view.</span>
+
+<span class="sd">    Uses softmax attention over embedding similarities to weight each view.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Per-view quality = effective rank (exp of the spectral entropy of Z).</span>
+    <span class="c1"># The previous score ||Z_norm||_F^2 / n is identically 1 for any</span>
+    <span class="c1"># row-normalized Z, so the softmax was always uniform and this fused</span>
+    <span class="c1"># method silently collapsed to a plain mean of the views. Effective rank</span>
+    <span class="c1"># measures how much independent information a view carries and genuinely</span>
+    <span class="c1"># varies across views. (Matches fuse_embeddings_attention_fixed.)</span>
+    <span class="n">quality</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">Zs</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compute_uv</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">s</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">s2</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">quality</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">s2</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mf">1e-20</span><span class="p">))</span>
+        <span class="n">quality</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">entropy</span><span class="p">)))</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="kn">import</span> <span class="n">softmax</span>
+    <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">quality</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">)</span>
+    
+    <span class="c1"># Weighted combination</span>
+    <span class="n">Z_weighted</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">Z</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">Z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">attention_weights</span><span class="p">,</span> <span class="n">Zs</span><span class="p">))</span>
+    
+    <span class="c1"># Apply SVD for dimensionality reduction</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">Z_weighted</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">k_eff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Z_fused</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k_eff</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">[:</span><span class="n">k_eff</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">k_eff</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="n">Z_fused</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">Z_fused</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="n">k_eff</span><span class="p">)),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'constant'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Z_fused</span></div>
+
+
+
+<div class="viewcode-block" id="fuse_embeddings_hybrid">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings_hybrid">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings_hybrid</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Hybrid fusion: combines SVD and attention-based fusion.</span>
+<span class="sd">    </span>
+<span class="sd">    First applies attention-weighted fusion, then applies SVD with optional graph regularization.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Step 1: Attention-based weighting</span>
+    <span class="n">attention_fused</span> <span class="o">=</span> <span class="n">fuse_embeddings_attention</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">L</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">beta</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_apply_graph_regularization</span><span class="p">(</span><span class="n">attention_fused</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">attention_fused</span></div>
+
+
+
+<div class="viewcode-block" id="fuse_embeddings_svd_shared_private">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings_svd_shared_private">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings_svd_shared_private</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">gate_type</span><span class="o">=</span><span class="s1">'attention'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    SVD-based shared/private fusion for N ≥ 2 embedding views.</span>
+
+<span class="sd">    Each view is decomposed into a *shared* component (extracted by a joint</span>
+<span class="sd">    rank-k SVD over all views concatenated) and a *private* residual.  The</span>
+<span class="sd">    views are then recombined using one of two gating strategies:</span>
+
+<span class="sd">    ``attention`` — a per-feature sigmoid gate is applied to each view's</span>
+<span class="sd">        private component; the result is added to the mean shared component.</span>
+<span class="sd">        Good when views are complementary and private details matter.</span>
+
+<span class="sd">    ``moe`` — a per-node softmax over the V views selects a weighted</span>
+<span class="sd">        combination of all normalised views.  Good when views are exchangeable</span>
+<span class="sd">        and the model should pick the most informative one per node.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Zs : list of np.ndarray, each (n, d)</span>
+<span class="sd">        Embedding views to fuse (V ≥ 2).</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Rank for SVD approximation (typically d // 4).</span>
+<span class="sd">    gate_type : {'attention', 'moe'}</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Z_final : np.ndarray, shape (n, d)</span>
+<span class="sd">    """</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Zs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">V</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"fuse_embeddings_svd_shared_private requires at least 2 views."</span><span class="p">)</span>
+
+    <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Zs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># 1. Layer-normalise all views.</span>
+    <span class="n">Zn</span> <span class="o">=</span> <span class="p">[</span><span class="n">_layer_norm</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="k">for</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">Zs</span><span class="p">]</span>
+
+    <span class="c1"># 2. Joint SVD over the horizontally concatenated views → rank-k shared reconstruction.</span>
+    <span class="n">Z_cat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Zn</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>          <span class="c1"># (n, V*d)</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">Z_cat</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">k_eff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Z_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k_eff</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">[:</span><span class="n">k_eff</span><span class="p">])</span> <span class="o">@</span> <span class="n">Vh</span><span class="p">[:</span><span class="n">k_eff</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># (n, V*d)</span>
+
+    <span class="c1"># 3. Per-view shared and private components.</span>
+    <span class="n">Z_sh</span>   <span class="o">=</span> <span class="p">[</span><span class="n">Z_hat</span><span class="p">[:,</span> <span class="n">i</span><span class="o">*</span><span class="n">d</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="p">)]</span>   <span class="c1"># each (n, d)</span>
+    <span class="n">Z_priv</span> <span class="o">=</span> <span class="p">[</span><span class="n">Zn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">Z_sh</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="p">)]</span>   <span class="c1"># each (n, d)</span>
+
+    <span class="c1"># Mean shared component — the consensus across all views.</span>
+    <span class="n">Z_shared_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">Z_sh</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># (n, d)</span>
+
+    <span class="k">if</span> <span class="n">gate_type</span> <span class="o">==</span> <span class="s1">'attention'</span><span class="p">:</span>
+        <span class="c1"># Gate features: [all shared ‖ all private] → (n, 2V*d)</span>
+        <span class="c1"># Gate output:   (n, V*d)  — one d-dimensional sigmoid gate per view.</span>
+        <span class="n">gate_feat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Z_sh</span> <span class="o">+</span> <span class="n">Z_priv</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># (n, 2V*d)</span>
+        <span class="n">gate</span> <span class="o">=</span> <span class="n">_simple_mlp_gate</span><span class="p">(</span><span class="n">gate_feat</span><span class="p">,</span> <span class="n">V</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span>              <span class="c1"># (n, V*d)</span>
+
+        <span class="c1"># Add gated private corrections to the shared mean; average over views.</span>
+        <span class="n">private_mix</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">gate</span><span class="p">[:,</span> <span class="n">i</span><span class="o">*</span><span class="n">d</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">d</span><span class="p">]</span> <span class="o">*</span> <span class="n">Z_priv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>
+        <span class="n">Z_final</span> <span class="o">=</span> <span class="n">Z_shared_mean</span> <span class="o">+</span> <span class="n">private_mix</span> <span class="o">/</span> <span class="n">V</span>
+
+    <span class="k">elif</span> <span class="n">gate_type</span> <span class="o">==</span> <span class="s1">'moe'</span><span class="p">:</span>
+        <span class="c1"># Gate features: normalised views concatenated → (n, V*d)</span>
+        <span class="c1"># Gate output:   (n, V) softmax weights over views.</span>
+        <span class="n">gate_feat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Zn</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                 <span class="c1"># (n, V*d)</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">_simple_mlp_gate</span><span class="p">(</span><span class="n">gate_feat</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>                   <span class="c1"># (n, V) sigmoid</span>
+        <span class="n">gate_w</span> <span class="o">=</span> <span class="n">raw</span> <span class="o">/</span> <span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span> <span class="c1"># (n, V) sum-to-1</span>
+        <span class="n">Z_final</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">gate_w</span><span class="p">[:,</span> <span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Zn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>  <span class="c1"># (n, d)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown gate_type '</span><span class="si">{</span><span class="n">gate_type</span><span class="si">}</span><span class="s2">'. Use 'attention' or 'moe'."</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Z_final</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_layer_norm</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Layer normalization."""</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Z</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">std</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_simple_mlp_gate</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">input_dim</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">hidden_dim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">W1</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.01</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">)</span>
+    <span class="n">W2</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.01</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">output_dim</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">features</span> <span class="o">@</span> <span class="n">W1</span> <span class="o">+</span> <span class="n">b1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">h</span> <span class="o">@</span> <span class="n">W2</span> <span class="o">+</span> <span class="n">b2</span><span class="p">)))</span>
+
+
+<div class="viewcode-block" id="fuse_embeddings">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_embeddings</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"svd"</span><span class="p">,</span>
+                <span class="n">beta</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">svd_rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gate_type</span><span class="o">=</span><span class="s1">'attention'</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fuse multiple embeddings using various methods.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    store : EmbeddingStore</span>
+<span class="sd">        Store containing multiple embeddings</span>
+<span class="sd">    k : int, optional</span>
+<span class="sd">        Target embedding dimension</span>
+<span class="sd">    L : sparse matrix, optional</span>
+<span class="sd">        Graph Laplacian (required for 'graphreg' and 'hybrid')</span>
+<span class="sd">    method : str</span>
+<span class="sd">        Fusion method:</span>
+<span class="sd">        - "svd"              : SVD-based fusion (fast, default)</span>
+<span class="sd">        - "graphreg"         : Graph-regularized fusion (requires L)</span>
+<span class="sd">        - "attention"        : Attention-weighted fusion</span>
+<span class="sd">        - "hybrid"           : Attention + graph regularization (requires L)</span>
+<span class="sd">        - "svd_shared_priv"  : SVD shared/private decomposition with gating</span>
+<span class="sd">        - "all"              : Compute all methods (requires L)</span>
+<span class="sd">    beta : float</span>
+<span class="sd">        Graph regularization strength</span>
+<span class="sd">    lam : float</span>
+<span class="sd">        L2 regularization strength</span>
+<span class="sd">    temperature : float</span>
+<span class="sd">        Temperature for attention softmax</span>
+<span class="sd">    svd_rank : int, optional</span>
+<span class="sd">        Rank for SVD approximation in shared/private decomposition (default: k // 4)</span>
+<span class="sd">    gate_type : str</span>
+<span class="sd">        Gate type for shared/private fusion: 'attention' or 'moe'</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    embeddings : list</span>
+<span class="sd">        List of fused embeddings</span>
+<span class="sd">    names : list</span>
+<span class="sd">        List of method names</span>
+<span class="sd">    """</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">names</span><span class="p">()</span>
+    <span class="n">Zs_raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+
+    <span class="c1"># Column-normalize then row-normalize each view once.</span>
+    <span class="n">Zs</span> <span class="o">=</span> <span class="p">[</span><span class="n">normalize</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="k">for</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">Zs_raw</span><span class="p">]</span>
+    <span class="n">Zs</span> <span class="o">=</span> <span class="n">_prep_blocks</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">do_row_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">do_block_standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">Zs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"svd"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fuse_embeddings_svd</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">)],</span> <span class="p">[</span><span class="s1">'svd'</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"graphreg"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"L must be provided for method='graphreg'."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fuse_embeddings_graphreg</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">lam</span><span class="p">)],</span> <span class="p">[</span><span class="s1">'graphreg'</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"attention"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fuse_embeddings_attention</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)],</span> <span class="p">[</span><span class="s1">'attention'</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"hybrid"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"L must be provided for method='hybrid'."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fuse_embeddings_hybrid</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">lam</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)],</span> <span class="p">[</span><span class="s1">'hybrid'</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"svd_shared_priv"</span><span class="p">:</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">svd_rank</span> <span class="k">if</span> <span class="n">svd_rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="n">k</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fuse_embeddings_svd_shared_private</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">gate_type</span><span class="o">=</span><span class="n">gate_type</span><span class="p">)],</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'svd_shared_priv_</span><span class="si">{</span><span class="n">gate_type</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"all"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"L must be provided for method='graphreg' and 'hybrid'."</span><span class="p">)</span>
+        
+        <span class="n">svd_emb</span> <span class="o">=</span> <span class="n">fuse_embeddings_svd</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">graphreg_emb</span> <span class="o">=</span> <span class="n">fuse_embeddings_graphreg</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">lam</span><span class="p">)</span>
+        <span class="n">attention_emb</span> <span class="o">=</span> <span class="n">fuse_embeddings_attention</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)</span>
+        <span class="n">hybrid_emb</span> <span class="o">=</span> <span class="n">fuse_embeddings_hybrid</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">L</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">lam</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">)</span>
+        
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">svd_rank</span> <span class="k">if</span> <span class="n">svd_rank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">max</span><span class="p">(</span><span class="n">k</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">svd_sp_att</span> <span class="o">=</span> <span class="n">fuse_embeddings_svd_shared_private</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">gate_type</span><span class="o">=</span><span class="s1">'attention'</span><span class="p">)</span>
+        <span class="n">svd_sp_moe</span> <span class="o">=</span> <span class="n">fuse_embeddings_svd_shared_private</span><span class="p">(</span><span class="n">Zs</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">gate_type</span><span class="o">=</span><span class="s1">'moe'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">svd_emb</span><span class="p">,</span> <span class="n">graphreg_emb</span><span class="p">,</span> <span class="n">attention_emb</span><span class="p">,</span> <span class="n">hybrid_emb</span><span class="p">,</span> <span class="n">svd_sp_att</span><span class="p">,</span> <span class="n">svd_sp_moe</span><span class="p">],</span> \
+               <span class="p">[</span><span class="s1">'svd'</span><span class="p">,</span> <span class="s1">'graphreg'</span><span class="p">,</span> <span class="s1">'attention'</span><span class="p">,</span> <span class="s1">'hybrid'</span><span class="p">,</span> <span class="s1">'svd_shared_priv_attention'</span><span class="p">,</span> <span class="s1">'svd_shared_priv_moe'</span><span class="p">]</span>
+        
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown fusion method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># ============================================================================</span>
+<span class="c1"># Hierarchical Fusion for 39-Method System</span>
+<span class="c1"># ============================================================================</span>
+
+<span class="c1"># Define all 39 methods</span>
+<span class="n">ALL_39_METHODS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># SGNS (3)</span>
+    <span class="s1">'quvine_rwr'</span><span class="p">,</span> <span class="s1">'quvine_ctqw'</span><span class="p">,</span> <span class="s1">'quvine_dtqw'</span><span class="p">,</span>
+    <span class="c1"># Filters (6)</span>
+    <span class="s1">'baseline_filter_heat'</span><span class="p">,</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>
+    <span class="s1">'filter_rwr_heat'</span><span class="p">,</span> <span class="s1">'filter_rwr_poly'</span><span class="p">,</span>
+    <span class="s1">'filter_ctqw_heat'</span><span class="p">,</span> <span class="s1">'filter_ctqw_poly'</span><span class="p">,</span>
+    <span class="c1"># GAT (12)</span>
+    <span class="s1">'gat_baseline'</span><span class="p">,</span> <span class="s1">'gat_heat'</span><span class="p">,</span> <span class="s1">'gat_poly'</span><span class="p">,</span>
+    <span class="s1">'gat_rwr'</span><span class="p">,</span> <span class="s1">'gat_ctqw'</span><span class="p">,</span> <span class="s1">'gat_dtqw'</span><span class="p">,</span>
+    <span class="s1">'gat_rwr_heat'</span><span class="p">,</span> <span class="s1">'gat_rwr_poly'</span><span class="p">,</span>
+    <span class="s1">'gat_ctqw_heat'</span><span class="p">,</span> <span class="s1">'gat_ctqw_poly'</span><span class="p">,</span>
+    <span class="s1">'gat_dtqw_heat'</span><span class="p">,</span> <span class="s1">'gat_dtqw_poly'</span><span class="p">,</span>
+    <span class="c1"># GraphGPS (12)</span>
+    <span class="s1">'graphgps_baseline'</span><span class="p">,</span> <span class="s1">'graphgps_heat'</span><span class="p">,</span> <span class="s1">'graphgps_poly'</span><span class="p">,</span>
+    <span class="s1">'graphgps_rwr'</span><span class="p">,</span> <span class="s1">'graphgps_ctqw'</span><span class="p">,</span> <span class="s1">'graphgps_dtqw'</span><span class="p">,</span>
+    <span class="s1">'graphgps_rwr_heat'</span><span class="p">,</span> <span class="s1">'graphgps_rwr_poly'</span><span class="p">,</span>
+    <span class="s1">'graphgps_ctqw_heat'</span><span class="p">,</span> <span class="s1">'graphgps_ctqw_poly'</span><span class="p">,</span>
+    <span class="s1">'graphgps_dtqw_heat'</span><span class="p">,</span> <span class="s1">'graphgps_dtqw_poly'</span><span class="p">,</span>
+    <span class="c1"># Classical baselines (6)</span>
+    <span class="s1">'node2vec'</span><span class="p">,</span> <span class="s1">'netmf'</span><span class="p">,</span> <span class="s1">'graphsage'</span><span class="p">,</span> <span class="s1">'appnp'</span><span class="p">,</span>
+    <span class="s1">'baseline_filter'</span><span class="p">,</span> <span class="s1">'baseline_gcnmf'</span>
+<span class="p">]</span>
+
+<span class="c1"># Define quantum methods</span>
+<span class="n">QUANTUM_METHODS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'quvine_ctqw'</span><span class="p">,</span> <span class="s1">'quvine_dtqw'</span><span class="p">,</span>
+    <span class="s1">'filter_ctqw_heat'</span><span class="p">,</span> <span class="s1">'filter_ctqw_poly'</span><span class="p">,</span>
+    <span class="s1">'gat_ctqw'</span><span class="p">,</span> <span class="s1">'gat_dtqw'</span><span class="p">,</span>
+    <span class="s1">'gat_ctqw_heat'</span><span class="p">,</span> <span class="s1">'gat_ctqw_poly'</span><span class="p">,</span>
+    <span class="s1">'gat_dtqw_heat'</span><span class="p">,</span> <span class="s1">'gat_dtqw_poly'</span><span class="p">,</span>
+    <span class="s1">'graphgps_ctqw'</span><span class="p">,</span> <span class="s1">'graphgps_dtqw'</span><span class="p">,</span>
+    <span class="s1">'graphgps_ctqw_heat'</span><span class="p">,</span> <span class="s1">'graphgps_ctqw_poly'</span><span class="p">,</span>
+    <span class="s1">'graphgps_dtqw_heat'</span><span class="p">,</span> <span class="s1">'graphgps_dtqw_poly'</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_filter_methods_by_type</span><span class="p">(</span><span class="n">method_names</span><span class="p">,</span> <span class="n">method_type</span><span class="p">,</span> <span class="n">quantum_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">classical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Filter methods by type and quantum/classical.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        method_names: List of method names to filter</span>
+<span class="sd">        method_type: 'sgns', 'filter', 'gat', 'graphgps', or 'baselines'</span>
+<span class="sd">        quantum_only: Only include quantum methods</span>
+<span class="sd">        classical_only: Only include classical methods</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        List of filtered method names</span>
+<span class="sd">    """</span>
+    <span class="c1"># Define method type patterns</span>
+    <span class="n">type_patterns</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'sgns'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'quvine_rwr'</span><span class="p">,</span> <span class="s1">'quvine_ctqw'</span><span class="p">,</span> <span class="s1">'quvine_dtqw'</span><span class="p">],</span>
+        <span class="s1">'filter'</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">'baseline_filter_heat'</span><span class="p">,</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>
+            <span class="s1">'filter_rwr_heat'</span><span class="p">,</span> <span class="s1">'filter_rwr_poly'</span><span class="p">,</span>
+            <span class="s1">'filter_ctqw_heat'</span><span class="p">,</span> <span class="s1">'filter_ctqw_poly'</span>
+        <span class="p">],</span>
+        <span class="s1">'gat'</span><span class="p">:</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ALL_39_METHODS</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'gat_'</span><span class="p">)],</span>
+        <span class="s1">'graphgps'</span><span class="p">:</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ALL_39_METHODS</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'graphgps_'</span><span class="p">)],</span>
+        <span class="s1">'baselines'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'node2vec'</span><span class="p">,</span> <span class="s1">'netmf'</span><span class="p">,</span> <span class="s1">'graphsage'</span><span class="p">,</span> <span class="s1">'appnp'</span><span class="p">,</span> <span class="s1">'baseline_filter'</span><span class="p">,</span> <span class="s1">'baseline_gcnmf'</span><span class="p">]</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Filter by type</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">method_names</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">type_patterns</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method_type</span><span class="p">,</span> <span class="p">[])]</span>
+    
+    <span class="c1"># Filter by quantum/classical</span>
+    <span class="k">if</span> <span class="n">quantum_only</span><span class="p">:</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">candidates</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">QUANTUM_METHODS</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">classical_only</span><span class="p">:</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">candidates</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">QUANTUM_METHODS</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">candidates</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fuse_via_svd</span><span class="p">(</span><span class="n">embeddings_list</span><span class="p">,</span> <span class="n">target_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fuse embeddings using SVD.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings_list: List of embedding arrays (n_nodes, embedding_dim)</span>
+<span class="sd">        target_dim: Target dimension for fused embedding (default: first embedding's dim)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Fused embedding array (n_nodes, target_dim)</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"embeddings_list cannot be empty"</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">embeddings_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Stack embeddings horizontally</span>
+    <span class="n">stacked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">embeddings_list</span><span class="p">)</span>
+    
+    <span class="c1"># SVD</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">stacked</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># Keep dimensions equal to first embedding or target_dim</span>
+    <span class="k">if</span> <span class="n">target_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target_dim</span> <span class="o">=</span> <span class="n">embeddings_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">target_dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">target_dim</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="n">fused</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">target_dim</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">target_dim</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">fused</span>
+
+
+<div class="viewcode-block" id="fuse_by_method_type">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_by_method_type">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_by_method_type</span><span class="p">(</span><span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">method_type</span><span class="p">,</span> <span class="n">quantum_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">classical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span> <span class="n">target_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fuse embeddings within a method type.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings_dict: {method_name: embedding_array}</span>
+<span class="sd">        method_type: Type of methods to fuse ('sgns', 'filter', 'gat', 'graphgps', 'baselines')</span>
+<span class="sd">        quantum_only: Only fuse quantum methods</span>
+<span class="sd">        classical_only: Only fuse classical methods</span>
+<span class="sd">        fusion_method: 'svd', 'concatenate', 'average'</span>
+<span class="sd">        target_dim: Target dimension for fused embedding</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Fused embedding array</span>
+<span class="sd">    """</span>
+    <span class="c1"># Filter methods by type and quantum/classical</span>
+    <span class="n">filtered_methods</span> <span class="o">=</span> <span class="n">_filter_methods_by_type</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">embeddings_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="n">method_type</span><span class="p">,</span>
+        <span class="n">quantum_only</span><span class="p">,</span>
+        <span class="n">classical_only</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Extract embeddings to fuse</span>
+    <span class="n">embeddings_to_fuse</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">embeddings_dict</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">filtered_methods</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">embeddings_dict</span>
+    <span class="p">]</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings_to_fuse</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No embeddings found for type=</span><span class="si">{</span><span class="n">method_type</span><span class="si">}</span><span class="s2">, "</span>
+                        <span class="sa">f</span><span class="s2">"quantum=</span><span class="si">{</span><span class="n">quantum_only</span><span class="si">}</span><span class="s2">, classical=</span><span class="si">{</span><span class="n">classical_only</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="c1"># Perform fusion</span>
+    <span class="k">if</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'svd'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_fuse_via_svd</span><span class="p">(</span><span class="n">embeddings_to_fuse</span><span class="p">,</span> <span class="n">target_dim</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'concatenate'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">embeddings_to_fuse</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'average'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">embeddings_to_fuse</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown fusion method: </span><span class="si">{</span><span class="n">fusion_method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fuse_best_across_types">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.fuse_best_across_types">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fuse_best_across_types</span><span class="p">(</span><span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">performance_scores</span><span class="p">,</span>
+                           <span class="n">quantum_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">classical_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span> <span class="n">target_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fuse best-performing method from each type.</span>
+<span class="sd">    </span>
+<span class="sd">    Steps:</span>
+
+<span class="sd">    1. For each method type (SGNS, Filter, GAT, GraphGPS):</span>
+
+<span class="sd">       - Select best-performing method based on scores</span>
+
+<span class="sd">    2. Fuse the best methods using specified fusion method</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings_dict: {method_name: embedding}</span>
+<span class="sd">        performance_scores: {method_name: score} (mean across replicates)</span>
+<span class="sd">        quantum_only: Only consider quantum methods</span>
+<span class="sd">        classical_only: Only consider classical methods</span>
+<span class="sd">        fusion_method: 'svd', 'concatenate', 'average'</span>
+<span class="sd">        target_dim: Target dimension for fused embedding</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Fused embedding from best methods across types</span>
+<span class="sd">    """</span>
+    <span class="n">method_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sgns'</span><span class="p">,</span> <span class="s1">'filter'</span><span class="p">,</span> <span class="s1">'gat'</span><span class="p">,</span> <span class="s1">'graphgps'</span><span class="p">]</span>
+    <span class="n">best_methods</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">mtype</span> <span class="ow">in</span> <span class="n">method_types</span><span class="p">:</span>
+        <span class="c1"># Get methods of this type</span>
+        <span class="n">type_methods</span> <span class="o">=</span> <span class="n">_filter_methods_by_type</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">embeddings_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="n">mtype</span><span class="p">,</span>
+            <span class="n">quantum_only</span><span class="p">,</span>
+            <span class="n">classical_only</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Find best-performing method</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">type_methods</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">best_method</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                <span class="n">type_methods</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">performance_scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">best_methods</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_method</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_methods</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No methods found to fuse"</span><span class="p">)</span>
+    
+    <span class="c1"># Fuse best methods</span>
+    <span class="n">best_embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">embeddings_dict</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">best_methods</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'svd'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_fuse_via_svd</span><span class="p">(</span><span class="n">best_embeddings</span><span class="p">,</span> <span class="n">target_dim</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'concatenate'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">best_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fusion_method</span> <span class="o">==</span> <span class="s1">'average'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">best_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown fusion method: </span><span class="si">{</span><span class="n">fusion_method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="hierarchical_fusion">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.fusion.fuse.html#qbiocode.apps.quvine.fusion.fuse.hierarchical_fusion">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">hierarchical_fusion</span><span class="p">(</span><span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">performance_scores</span><span class="p">,</span> <span class="n">target_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Perform hierarchical fusion strategy for all 39 methods.</span>
+<span class="sd">    </span>
+<span class="sd">    Strategy:</span>
+
+<span class="sd">    1. Within-type fusion:</span>
+
+<span class="sd">       - Fuse quantum methods per type → fused_quantum_{type}</span>
+<span class="sd">       - Fuse classical methods per type → fused_classical_{type}</span>
+
+<span class="sd">    2. Cross-type fusion:</span>
+
+<span class="sd">       - Select best quantum method per type</span>
+<span class="sd">       - Select best classical method per type</span>
+<span class="sd">       - Fuse best quantum methods → fused_q</span>
+<span class="sd">       - Fuse best classical methods → fused_c</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings_dict: {method_name: embedding_array}</span>
+<span class="sd">        performance_scores: {method_name: score}</span>
+<span class="sd">        target_dim: Target dimension for fused embeddings</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Fused embeddings, under these keys</span>
+
+<span class="sd">            - 'fused_quantum_sgns', 'fused_classical_sgns'</span>
+<span class="sd">            - 'fused_quantum_filter', 'fused_classical_filter'</span>
+<span class="sd">            - 'fused_quantum_gat', 'fused_classical_gat'</span>
+<span class="sd">            - 'fused_quantum_graphgps', 'fused_classical_graphgps'</span>
+<span class="sd">            - 'fused_q' (best quantum across types)</span>
+<span class="sd">            - 'fused_c' (best classical across types)</span>
+<span class="sd">    """</span>
+    <span class="n">fused_embeddings</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">method_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sgns'</span><span class="p">,</span> <span class="s1">'filter'</span><span class="p">,</span> <span class="s1">'gat'</span><span class="p">,</span> <span class="s1">'graphgps'</span><span class="p">]</span>
+    
+    <span class="c1"># Step 1: Within-type fusion</span>
+    <span class="k">for</span> <span class="n">mtype</span> <span class="ow">in</span> <span class="n">method_types</span><span class="p">:</span>
+        <span class="c1"># Quantum fusion</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fused_q</span> <span class="o">=</span> <span class="n">fuse_by_method_type</span><span class="p">(</span>
+                <span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">mtype</span><span class="p">,</span>
+                <span class="n">quantum_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span>
+                <span class="n">target_dim</span><span class="o">=</span><span class="n">target_dim</span>
+            <span class="p">)</span>
+            <span class="n">fused_embeddings</span><span class="p">[</span><span class="sa">f</span><span class="s1">'fused_quantum_</span><span class="si">{</span><span class="n">mtype</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fused_q</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>  <span class="c1"># No quantum methods for this type</span>
+        
+        <span class="c1"># Classical fusion</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fused_c</span> <span class="o">=</span> <span class="n">fuse_by_method_type</span><span class="p">(</span>
+                <span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">mtype</span><span class="p">,</span>
+                <span class="n">classical_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span>
+                <span class="n">target_dim</span><span class="o">=</span><span class="n">target_dim</span>
+            <span class="p">)</span>
+            <span class="n">fused_embeddings</span><span class="p">[</span><span class="sa">f</span><span class="s1">'fused_classical_</span><span class="si">{</span><span class="n">mtype</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fused_c</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>  <span class="c1"># No classical methods for this type</span>
+    
+    <span class="c1"># Step 2: Cross-type fusion</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fused_q</span> <span class="o">=</span> <span class="n">fuse_best_across_types</span><span class="p">(</span>
+            <span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">performance_scores</span><span class="p">,</span>
+            <span class="n">quantum_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span>
+            <span class="n">target_dim</span><span class="o">=</span><span class="n">target_dim</span>
+        <span class="p">)</span>
+        <span class="n">fused_embeddings</span><span class="p">[</span><span class="s1">'fused_q'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fused_q</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">fused_c</span> <span class="o">=</span> <span class="n">fuse_best_across_types</span><span class="p">(</span>
+            <span class="n">embeddings_dict</span><span class="p">,</span> <span class="n">performance_scores</span><span class="p">,</span>
+            <span class="n">classical_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fusion_method</span><span class="o">=</span><span class="s1">'svd'</span><span class="p">,</span>
+            <span class="n">target_dim</span><span class="o">=</span><span class="n">target_dim</span>
+        <span class="p">)</span>
+        <span class="n">fused_embeddings</span><span class="p">[</span><span class="s1">'fused_c'</span><span class="p">]</span> <span class="o">=</span> <span class="n">fused_c</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="k">return</span> <span class="n">fused_embeddings</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

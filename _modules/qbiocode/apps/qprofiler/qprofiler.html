@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.qprofiler.qprofiler &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/qprofiler/qprofiler';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.qprofiler.qprofiler</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.qprofiler.qprofiler</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="c1"># ====== Base class imports ======</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="c1"># ====== Hydra imports ======</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hydra</span>
+
+<span class="c1"># ====== Scikit-learn imports ======</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># ====== Qiskit imports ======</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_algorithms.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">algorithm_globals</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1">#: Best-effort guess at the checkout root, kept because ``folder_path`` in every</span>
+<span class="c1">#: shipped config is written relative to it. The substitution only lands when the</span>
+<span class="c1">#: current directory really does sit under one literally named ``QBioCode``, which</span>
+<span class="c1">#: is not true of a GitHub source zip (``QBioCode-main``), a lowercase clone, or a</span>
+<span class="c1">#: pip install -- hence ``_resolve_input_folder`` below rather than this alone.</span>
+<span class="c1">#:</span>
+<span class="c1">#: :meta private:</span>
+<span class="c1">#:</span>
+<span class="c1">#: Private to autodoc deliberately: its value is whatever directory the *documenting*</span>
+<span class="c1">#: process ran in, so publishing it wrote the doc builder's own absolute filesystem</span>
+<span class="c1">#: path into the API page on GitHub Pages.</span>
+<span class="n">dir_home</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span> <span class="s1">'QBioCode.*'</span><span class="p">,</span> <span class="s1">'QBioCode'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_home</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">dir_home</span> <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_resolve_input_folder</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return an existing directory for ``folder_path``, or ``None``.</span>
+
+<span class="sd">    Candidates, in order:</span>
+
+<span class="sd">    1. ``folder_path`` itself -- absolute, or relative to the current directory.</span>
+<span class="sd">    2. ``folder_path`` under each ancestor of the current directory. This is what</span>
+<span class="sd">       makes the tutorials work from a checkout whose top directory is not called</span>
+<span class="sd">       ``QBioCode``: run from ``QBioCode-main/tutorial/QProfiler`` with</span>
+<span class="sd">       ``folder_path: tutorial/QProfiler/data/ld_data``, candidate 1 points two</span>
+<span class="sd">       levels too deep and the ``QBioCode``-derived root below does not exist,</span>
+<span class="sd">       while the ancestor walk finds the real one.</span>
+<span class="sd">    3. ``folder_path`` under a checkout root derived from the *current* directory.</span>
+<span class="sd">    4. ``folder_path`` under ``dir_home``, the same root derived from the directory</span>
+<span class="sd">       this module was imported from. Last, deliberately: ``dir_home`` is frozen at</span>
+<span class="sd">       import time, so in a long-lived process (a notebook kernel, a test session)</span>
+<span class="sd">       it can name a different checkout than the one the caller is standing in, and</span>
+<span class="sd">       ranking it above the ancestor walk let a stale root silently win.</span>
+<span class="sd">    """</span>
+    <span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">folder_path</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">))</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">here</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="o">==</span> <span class="n">here</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">here</span> <span class="o">=</span> <span class="n">parent</span>
+    <span class="n">derived</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">"QBioCode.*"</span><span class="p">,</span> <span class="s2">"QBioCode"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()))</span>
+    <span class="n">candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">derived</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">))</span>
+    <span class="n">candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_home</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">candidate</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">candidate</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># ====== Scaling and encoding functions imports ======</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">scale_train_test</span><span class="p">,</span> <span class="n">feature_encoding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_embeddings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_embedding_name</span>
+<span class="c1"># ====== Evaluation functions imports ====</span>
+<span class="c1">#from qmlbench.evaluation.dataset_evaluation_no_var_threshold import evaluate2 # use this for moons/circles data, otherwise you'll run into an error with finding no features with minimum variance threshold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">model_run</span>
+
+<span class="c1">#: Config keys ``main`` reads unconditionally. Reported together rather than one</span>
+<span class="c1">#: KeyError at a time, so a hand-written config can be fixed in a single pass.</span>
+<span class="n">_REQUIRED_CONFIG_KEYS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"folder_path"</span><span class="p">,</span> <span class="s2">"file_dataset"</span><span class="p">,</span> <span class="s2">"embeddings"</span><span class="p">,</span> <span class="s2">"n_components"</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">,</span>
+    <span class="s2">"seed"</span><span class="p">,</span> <span class="s2">"q_seed"</span><span class="p">,</span> <span class="s2">"test_size"</span><span class="p">,</span> <span class="s2">"iter"</span><span class="p">,</span> <span class="s2">"scaling"</span><span class="p">,</span> <span class="s2">"backend"</span><span class="p">,</span> <span class="s2">"n_jobs"</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_resolve_scaling</span><span class="p">(</span><span class="n">scaling</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Resolve the ``scaling`` config value to a scaler name for ``scale_train_test``.</span>
+
+<span class="sd">    The shipped config writes ``scaling: ['True']`` and the original code tested</span>
+<span class="sd">    it with ``'True' in args['scaling']``. That substring test accepted</span>
+<span class="sd">    ``'MinMaxScalerTrue'``, silently ignored ``['true']``, and raised</span>
+<span class="sd">    ``TypeError: argument of type 'bool' is not iterable`` for the most natural</span>
+<span class="sd">    YAML of all -- ``scaling: true``. All four spellings are accepted here, and</span>
+<span class="sd">    anything else is named as an error instead of quietly disabling scaling.</span>
+
+<span class="sd">    The single-element unwrapping tests ``Sequence`` rather than ``list``: Hydra</span>
+<span class="sd">    hands the config over as ``omegaconf.ListConfig``, which is a ``Sequence``</span>
+<span class="sd">    but *not* a ``list`` subclass, so an ``isinstance(value, list)`` test passes</span>
+<span class="sd">    every dict-based unit test and then rejects the shipped config's own</span>
+<span class="sd">    ``scaling: ['True']`` on the real CLI path.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: ``'MinMaxScaler'``, ``'StandardScaler'`` or ``'None'``.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if the value is not a recognized flag or scaler name.</span>
+<span class="sd">    """</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">scaling</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"scaling accepts a single value; got </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">!r}</span><span class="s2">. Use "</span>
+                <span class="sa">f</span><span class="s2">"scaling: ['True'], scaling: false, or a scaler name."</span>
+            <span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"MinMaxScaler"</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s2">"None"</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">lowered</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">lowered</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"true"</span><span class="p">,</span> <span class="s2">"yes"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">"MinMaxScaler"</span>
+        <span class="k">if</span> <span class="n">lowered</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"false"</span><span class="p">,</span> <span class="s2">"no"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"none"</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">"None"</span>
+        <span class="k">if</span> <span class="n">lowered</span> <span class="o">==</span> <span class="s2">"minmaxscaler"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"MinMaxScaler"</span>
+        <span class="k">if</span> <span class="n">lowered</span> <span class="o">==</span> <span class="s2">"standardscaler"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"StandardScaler"</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Unrecognized scaling </span><span class="si">{</span><span class="n">scaling</span><span class="si">!r}</span><span class="s2">. Accepted: true/false (or ['True'] / "</span>
+        <span class="sa">f</span><span class="s2">"['False'] as the shipped config writes it), 'MinMaxScaler', "</span>
+        <span class="sa">f</span><span class="s2">"'StandardScaler', or 'None'."</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_config</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">log</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Check the whole config before any dataset is read.</span>
+
+<span class="sd">    A QProfiler run is long: loading data, splitting, embedding and fitting</span>
+<span class="sd">    quantum models takes minutes to hours. Every check below used to fire deep</span>
+<span class="sd">    into that run, or not at all -- an empty ``embeddings`` list, or an ``iter``</span>
+<span class="sd">    of 0, simply produced no results and exited 0, which is indistinguishable</span>
+<span class="sd">    from a run whose models all failed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the resolved scaler name, so ``main`` does not re-derive it.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: naming the offending key, the value received, and what is</span>
+<span class="sd">            accepted.</span>
+<span class="sd">    """</span>
+    <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_REQUIRED_CONFIG_KEYS</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Config is missing required key(s): </span><span class="si">{</span><span class="n">missing</span><span class="si">}</span><span class="s2">. Start from the "</span>
+            <span class="sa">f</span><span class="s2">"packaged configs/config.yaml, which defines all of "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">_REQUIRED_CONFIG_KEYS</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"iter"</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"iter"</span><span class="p">],</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="n">args</span><span class="p">[</span><span class="s2">"iter"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"iter is the number of train/test splits and must be a positive "</span>
+            <span class="sa">f</span><span class="s2">"integer; got </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'iter'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">. A value of 0 produces no results at "</span>
+            <span class="sa">f</span><span class="s2">"all while still exiting successfully."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"test_size"</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"test_size is a proportion and must be strictly between 0 and 1; "</span>
+            <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'test_size'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">."</span>
+        <span class="p">)</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s2">"n_components"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">n_components</span> <span class="o">&lt;</span> <span class="mi">1</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"n_components is the embedding width and must be a positive integer; "</span>
+            <span class="sa">f</span><span class="s2">"got </span><span class="si">{</span><span class="n">n_components</span><span class="si">!r}</span><span class="s2">."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"n_jobs"</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">args</span><span class="p">[</span><span class="s2">"n_jobs"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"n_jobs must be a non-zero integer (-1 means all cores); got "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'n_jobs'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">."</span>
+        <span class="p">)</span>
+
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"embeddings"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">embeddings</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"embeddings is empty; there is nothing to profile. Use ['none'] to "</span>
+            <span class="s2">"run the models on the unreduced features."</span>
+        <span class="p">)</span>
+    <span class="c1"># Validated as a set, up front: a typo in the last of six embeddings used to</span>
+    <span class="c1"># surface only after the first five had been embedded and modelled.</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">:</span>
+        <span class="n">check_embedding_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">models</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"model"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">models</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"model is empty; there is nothing to fit. See "</span>
+            <span class="s2">"qbiocode.evaluation.model_run for the available model names."</span>
+        <span class="p">)</span>
+
+    <span class="n">scaler_name</span> <span class="o">=</span> <span class="n">_resolve_scaling</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"scaling"</span><span class="p">])</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Feature scaling resolved to: </span><span class="si">{</span><span class="n">scaler_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scaler_name</span>
+
+
+<span class="c1"># Begin the main function and instatiate Hydra class</span>
+<span class="c1"># config_path=None allows --config-dir to work properly</span>
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../../../api/qbiocode.apps.qprofiler.qprofiler.html#qbiocode.apps.qprofiler.qprofiler.main">[docs]</a>
+<span class="nd">@hydra</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s1">'config'</span><span class="p">,</span> <span class="n">version_base</span><span class="o">=</span><span class="s1">'1.1'</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Main function to run the qprofiler. It initializes logging, sets up the environment, and processes datasets.</span>
+<span class="sd">    The function reads datasets from the specified folder, applies feature encoding, splits the data into training and test sets,</span>
+<span class="sd">    applies scaling and embeddings, and evaluates the models using various quantum machine learning methods.</span>
+<span class="sd">    It logs the results and saves them in a structured format for further analysis. </span>
+<span class="sd">    The function also handles parallel processing of multiple machine learning methods and datasets.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        args (dict): Configuration parameters for the profiler, including dataset paths, model parameters, and evaluation settings.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+<span class="sd">    """</span>
+    <span class="n">beg_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> 
+    <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Main program initiated"</span><span class="p">)</span>
+    <span class="c1"># Validate before touching args, not after. These three log lines used to sit</span>
+    <span class="c1"># above this call and indexed 'n_jobs', 'model' and 'backend' directly, so a</span>
+    <span class="c1"># config missing any of them died with a bare KeyError raised from a logging</span>
+    <span class="c1"># statement -- the exact "error attributed to the wrong thing" that</span>
+    <span class="c1"># _validate_config exists to replace, and it reported one missing key where</span>
+    <span class="c1"># the validator reports all of them at once.</span>
+    <span class="n">scaler_name</span> <span class="o">=</span> <span class="n">_validate_config</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The number of ML methods being parallelized is </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'n_jobs'</span><span class="p">],</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Chosen backend for quantum algorithms is: </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'backend'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># Normalize path separators for cross-platform compatibility</span>
+    <span class="n">folder_path</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">'folder_path'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\\</span><span class="s1">'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
+    <span class="n">path_to_input</span> <span class="o">=</span> <span class="n">_resolve_input_folder</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">path_to_input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"folder_path </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'folder_path'</span><span class="p">]</span><span class="si">!r}</span><span class="s2"> is not a directory. It was looked "</span>
+            <span class="sa">f</span><span class="s2">"for relative to the current directory (</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">!r}</span><span class="s2">), relative to "</span>
+            <span class="sa">f</span><span class="s2">"the derived checkout root (</span><span class="si">{</span><span class="n">dir_home</span><span class="si">!r}</span><span class="s2">), and under every parent of "</span>
+            <span class="sa">f</span><span class="s2">"the current directory. Give an absolute path, or run from a directory "</span>
+            <span class="sa">f</span><span class="s2">"from which the relative path resolves."</span>
+        <span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reading datasets from </span><span class="si">{</span><span class="n">path_to_input</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s1">'file_dataset'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'ALL'</span><span class="p">:</span>
+        <span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path_to_input</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'csv'</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path_to_input</span><span class="p">)</span> <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="s1">'file_dataset'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'csv'</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_files</span><span class="p">:</span>
+        <span class="c1"># Previously this produced a successful run with no output whatsoever,</span>
+        <span class="c1"># which reads exactly like a run whose models all silently failed.</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">"every .csv file"</span> <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s1">'file_dataset'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'ALL'</span>
+            <span class="k">else</span> <span class="sa">f</span><span class="s2">"file_dataset=</span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'file_dataset'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">"</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"No input datasets matched </span><span class="si">{</span><span class="n">selector</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">path_to_input</span><span class="si">!r}</span><span class="s2">. "</span>
+            <span class="sa">f</span><span class="s2">"Directory contents: </span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path_to_input</span><span class="p">))[:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+
+    <span class="c1"># need to populate raw data evaluation for each file, so start an empty list</span>
+    <span class="n">appended_raw_data_eval</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># start looping over datasets</span>
+    <span class="c1"># start count</span>
+    <span class="n">file_count</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">input_files</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Processing file: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="c1"># this is where the seed needs to be set so the splits are consistent</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'seed'</span><span class="p">])</span> 
+        <span class="n">algorithm_globals</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">'q_seed'</span><span class="p">]</span>
+
+        <span class="n">dataset_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">model_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'Dataset'</span><span class="p">:</span><span class="n">file</span><span class="p">})</span>
+        <span class="n">model_results</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'Dataset'</span><span class="p">:</span><span class="n">file</span><span class="p">})</span>
+        
+        <span class="c1"># Load data with optional index column support</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'index_col'</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="c1"># First column contains row names/IDs</span>
+            <span class="n">rawdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_input</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\t|,'</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded dataset with row names from first column"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Standard loading without index column</span>
+            <span class="n">rawdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_to_input</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\t|,'</span><span class="p">)</span>
+        
+        <span class="n">X</span> <span class="o">=</span> <span class="n">rawdata</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">rawdata</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">y_encoded</span> <span class="o">=</span> <span class="n">feature_encoding</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">feature_encoding</span><span class="o">=</span><span class="s1">'OrdinalEncoder'</span><span class="p">)</span>
+        <span class="n">y_encoded</span> <span class="o">=</span> <span class="n">y_encoded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_encoded</span> <span class="o">=</span> <span class="n">y_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">y_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">y_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'label_mapping'</span><span class="p">:</span> <span class="n">y_map</span><span class="p">})</span>
+        
+        <span class="c1"># Check for binary classification</span>
+        <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_encoded</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n_classes</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> has </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2"> classes. QProfiler is currently optimized for binary classification."</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Multi-class classification support is experimental. Results may vary."</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">⚠️  WARNING: Dataset '</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">' has </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2"> classes."</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   QProfiler is currently optimized for binary classification."</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   Multi-class support is experimental. Proceed with caution.</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="c1"># call and run evaluation functions</span>
+        <span class="n">df_dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">raw_data_eval</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">df_dataset</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+        <span class="n">appended_raw_data_eval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">raw_data_eval</span><span class="p">)</span>
+
+        <span class="c1"># create csv file storing the evaluation of the raw, unembedded data</span>
+        <span class="n">all_raw_data_evaluation</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">appended_raw_data_eval</span><span class="p">)</span>
+        <span class="n">all_raw_data_evaluation</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'RawDataEvaluation.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># log info</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Started processing data set </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset has </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2"> classes: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_encoded</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+        <span class="n">use_stratify</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'stratify'</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">test_size</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">'test_size'</span><span class="p">]</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># makes number of iterations an argument from config</span>
+        <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'iter'</span><span class="p">]):</span>
+        <span class="c1">## run all this in a loop N_times, while leaving the seed fixed above. The train_test_split will change at each iteration, but will be based on the seed.</span>
+            <span class="nb">iter</span><span class="o">=</span><span class="nb">iter</span><span class="o">+</span><span class="mi">1</span>
+            <span class="c1"># track iteration time</span>
+            <span class="n">iter_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            
+            <span class="c1"># Apply stratification based on config</span>
+            <span class="c1"># stratify can be: ['y'], ['Y'], or empty list/None for no stratification</span>
+            <span class="c1"># Distinct-but-reproducible split per iteration: random_state = seed + iter makes</span>
+            <span class="c1"># every split different from the others, yet deterministic across reruns and</span>
+            <span class="c1"># independent of any other RNG consumers (embeddings etc.) that run before it.</span>
+            <span class="n">split_seed</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">'seed'</span><span class="p">]</span> <span class="o">+</span> <span class="nb">iter</span>
+            <span class="k">if</span> <span class="n">use_stratify</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">use_stratify</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                    <span class="n">X</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_encoded</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">split_seed</span>
+                <span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Begin processing iteration (split) </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'iter'</span><span class="p">]</span><span class="si">}</span><span class="s2"> with stratified sampling"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                    <span class="n">X</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">split_seed</span>
+                <span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Begin processing iteration (split) </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">args</span><span class="p">[</span><span class="s1">'iter'</span><span class="p">]</span><span class="si">}</span><span class="s2"> without stratification"</span><span class="p">)</span>
+            <span class="c1"># Scale the features: fit one scaler on TRAIN and apply it to TEST (never fit a</span>
+            <span class="c1"># separate scaler on the test set -- that would use test-set statistics).</span>
+            <span class="k">if</span> <span class="n">scaler_name</span> <span class="o">!=</span> <span class="s1">'None'</span><span class="p">:</span>
+                <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">scale_train_test</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="n">scaler_name</span><span class="p">)</span>
+        
+            <span class="c1"># Embed the training data and test data separately</span>
+            <span class="k">for</span> <span class="n">embed</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="s1">'embeddings'</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">embed</span> <span class="o">==</span> <span class="s1">'none'</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No feature reduction (embedding) applied in this iteration"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Feature reduction (embedding) applied with </span><span class="si">{</span><span class="n">embed</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>    
+                <span class="n">X_train_emb</span><span class="p">,</span> <span class="n">X_test_emb</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">(</span>
+                    <span class="n">embed</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span>
+                    <span class="n">n_neighbors</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"n_neighbors"</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+                    <span class="n">n_components</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s2">"n_components"</span><span class="p">],</span>
+                    <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">quvine_args</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"quvine_args"</span><span class="p">,</span> <span class="p">{}),</span>
+                <span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'embeddings'</span><span class="p">:</span> <span class="n">embed</span><span class="p">})</span>
+                <span class="n">model_results</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'embeddings'</span><span class="p">:</span> <span class="n">embed</span><span class="p">})</span>
+                
+                <span class="c1"># TODO: move PQK here as an embedding?</span>
+
+                <span class="c1"># call and run evalution functions again if data is embedded, save outputs in the log file</span>
+                <span class="n">df_dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_emb</span><span class="p">)</span>
+                <span class="n">evaluate_data</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">df_dataset</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+                <span class="n">evaluate_data_listofdict</span> <span class="o">=</span> <span class="n">evaluate_data</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">'records'</span><span class="p">)</span>
+                <span class="n">evaluate_data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">evaluate_data_listofdict</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="c1"># print(evaluate_data_dict)</span>
+                <span class="n">model_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">evaluate_data_dict</span><span class="p">)</span>
+                <span class="c1">#log.info(f"\nThe characteristics of the embedding train dataset are: \n{evaluate_data}")</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'iteration'</span><span class="p">:</span> <span class="nb">iter</span><span class="p">})</span>
+                <span class="n">model_results</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'iteration'</span><span class="p">:</span> <span class="nb">iter</span><span class="p">})</span>
+                <span class="n">data_key</span> <span class="o">=</span> <span class="s1">'_'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span> <span class="sa">r</span><span class="s1">'\..*'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">file</span> <span class="p">),</span> <span class="n">embed</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">"n_components"</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">iter</span><span class="p">)])</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_run</span><span class="p">(</span><span class="n">X_train_emb</span><span class="p">,</span> <span class="n">X_test_emb</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">data_key</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+                <span class="c1"># print(summary)</span>
+                <span class="k">for</span> <span class="n">outerkey</span><span class="p">,</span> <span class="n">outervalue</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="c1"># print (outerkey, outervalue)</span>
+                    <span class="k">if</span> <span class="n">outerkey</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"results_"</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">inner_key</span><span class="p">,</span> <span class="n">inner_value</span> <span class="ow">in</span> <span class="n">outervalue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="c1"># print(f"{inner_key}: {inner_value}")</span>
+                            <span class="c1"># model_results[inner_key]=inner_value</span>
+                            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="n">inner_key</span><span class="p">:</span><span class="n">inner_value</span><span class="p">}</span>
+                            <span class="n">model_results</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">update</span><span class="p">)</span>
+                            <span class="c1"># Save model_results data</span>
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'ModelResults.csv'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+                            <span class="n">model_results_write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">csvfile</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">model_results_write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                            <span class="n">model_results_write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                <span class="c1"># Read existing summary data from the file, if any</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"results.pkl"</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">pklfile</span><span class="p">:</span>
+                        <span class="n">results</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pklfile</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="c1"># #Append the list with new summary data</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+                <span class="c1"># Save summary data</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'results.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">pklfile</span><span class="p">:</span>
+                    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">pklfile</span><span class="p">)</span>
+            <span class="n">iter_run_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">iter_start_time</span>
+            
+        <span class="c1"># start logging times</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The run time for iteration (split) </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s2"> is: </span><span class="si">{</span><span class="n">iter_run_time</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            
+        <span class="n">file_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">dataset_run_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">dataset_start_time</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The total run time for data set </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> is: </span><span class="se">\n</span><span class="si">{</span><span class="n">dataset_run_time</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Program has processed </span><span class="si">{</span><span class="n">file_count</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">input_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> data sets"</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Program has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">input_files</span><span class="p">)</span><span class="o">-</span><span class="n">file_count</span><span class="si">}</span><span class="s2"> data sets left to process"</span><span class="p">)</span>
+    
+    <span class="c1"># log total run time of entire job</span>
+    <span class="n">total_run_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">beg_time</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">The total run time of program is: </span><span class="se">\n</span><span class="si">{</span><span class="n">total_run_time</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

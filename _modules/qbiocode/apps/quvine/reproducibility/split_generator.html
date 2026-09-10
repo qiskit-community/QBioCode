@@ -1,0 +1,1209 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.reproducibility.split_generator &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/reproducibility/split_generator';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.reproducibility.split_generator</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.reproducibility.split_generator</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Task Split Generator for QuVINE</span>
+
+<span class="sd">Generates and saves task-specific data splits to ensure all methods use identical splits.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_to_degree_dict</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Create a plain degree dictionary compatible with static type checking."""</span>
+    <span class="n">graph_any</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">graph_any</span><span class="o">.</span><span class="n">degree</span><span class="p">[</span><span class="n">node</span><span class="p">])</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_to_index_list</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Convert numpy arrays or iterables to plain Python int lists."""</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="s2">"tolist"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.seed_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeedManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.dataset_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetRegistry</span>
+
+
+<div class="viewcode-block" id="SplitGenerator">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SplitGenerator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generates and saves task-specific splits for reproducible benchmarking.</span>
+<span class="sd">    </span>
+<span class="sd">    All splits are pre-generated once and saved to disk.</span>
+<span class="sd">    Methods then load these pre-generated splits instead of creating their own.</span>
+<span class="sd">    </span>
+<span class="sd">    Supports three tasks:</span>
+<span class="sd">    1. Node Classification: train/val/test node indices + labels</span>
+<span class="sd">    2. Link Prediction: train/val/test edge splits + negative samples</span>
+<span class="sd">    3. Node Ranking: target nodes for ranking evaluation</span>
+<span class="sd">    """</span>
+    
+<div class="viewcode-block" id="SplitGenerator.__init__">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">seed_manager</span><span class="p">:</span> <span class="n">SeedManager</span><span class="p">,</span>
+        <span class="n">registry</span><span class="p">:</span> <span class="n">DatasetRegistry</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Initialize split generator.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        output_dir : Path</span>
+<span class="sd">            Root directory for saving splits</span>
+<span class="sd">        seed_manager : SeedManager</span>
+<span class="sd">            Seed manager for reproducible split generation</span>
+<span class="sd">        registry : DatasetRegistry</span>
+<span class="sd">            Dataset registry to update with split paths</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span> <span class="o">=</span> <span class="n">seed_manager</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">registry</span></div>
+
+    
+<div class="viewcode-block" id="SplitGenerator.generate_all_splits">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.generate_all_splits">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_all_splits</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+        <span class="n">tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"node_classification"</span><span class="p">,</span> <span class="s2">"link_prediction"</span><span class="p">,</span> <span class="s2">"node_ranking"</span><span class="p">],</span>
+        <span class="n">disease_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">split_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Generate all task splits for a dataset.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        G : nx.Graph</span>
+<span class="sd">            Graph to generate splits for</span>
+<span class="sd">        tasks : List[str]</span>
+<span class="sd">            Tasks to generate splits for</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict[str, Path]</span>
+<span class="sd">            Mapping from task name to split file path</span>
+<span class="sd">        """</span>
+        <span class="n">split_paths</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="n">task_config</span> <span class="o">=</span> <span class="n">task_config</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">split_base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">split_base_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">split_base_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span> <span class="o">==</span> <span class="s2">"node_classification"</span><span class="p">:</span>
+                <span class="n">split_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_node_classification_split</span><span class="p">(</span>
+                    <span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="n">repetition_id</span><span class="p">,</span>
+                    <span class="n">G</span><span class="p">,</span>
+                    <span class="n">disease_nodes</span><span class="o">=</span><span class="n">disease_nodes</span><span class="p">,</span>
+                    <span class="n">split_base_dir</span><span class="o">=</span><span class="n">split_base_dir</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">task_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"node_classification"</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">task</span> <span class="o">==</span> <span class="s2">"link_prediction"</span><span class="p">:</span>
+                <span class="n">split_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_link_prediction_split</span><span class="p">(</span>
+                    <span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="n">repetition_id</span><span class="p">,</span>
+                    <span class="n">G</span><span class="p">,</span>
+                    <span class="n">disease_nodes</span><span class="o">=</span><span class="n">disease_nodes</span><span class="p">,</span>
+                    <span class="n">split_base_dir</span><span class="o">=</span><span class="n">split_base_dir</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">task_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"link_prediction"</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">task</span> <span class="o">==</span> <span class="s2">"node_ranking"</span><span class="p">:</span>
+                <span class="n">split_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_node_ranking_split</span><span class="p">(</span>
+                    <span class="n">dataset_name</span><span class="p">,</span>
+                    <span class="n">repetition_id</span><span class="p">,</span>
+                    <span class="n">G</span><span class="p">,</span>
+                    <span class="n">disease_nodes</span><span class="o">=</span><span class="n">disease_nodes</span><span class="p">,</span>
+                    <span class="n">split_base_dir</span><span class="o">=</span><span class="n">split_base_dir</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">task_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"node_ranking"</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown task: </span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            
+            <span class="n">split_paths</span><span class="p">[</span><span class="n">task</span><span class="p">]</span> <span class="o">=</span> <span class="n">split_path</span>
+            
+            <span class="c1"># Update registry</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">add_split</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">split_path</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">split_paths</span></div>
+
+    
+<div class="viewcode-block" id="SplitGenerator.generate_node_classification_split">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.generate_node_classification_split">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_node_classification_split</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+        <span class="n">train_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+        <span class="n">val_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">test_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">min_class_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">disease_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">positive_class_definition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"disease_seed_or_target"</span><span class="p">,</span>
+        <span class="n">negative_class_definition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"non_disease_nodes"</span><span class="p">,</span>
+        <span class="n">split_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"stratified"</span><span class="p">,</span>
+        <span class="n">split_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Generate node classification split with synthetic labels.</span>
+<span class="sd">        </span>
+<span class="sd">        Labels are generated using community detection (Louvain).</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        G : nx.Graph</span>
+<span class="sd">            Graph</span>
+<span class="sd">        train_ratio : float</span>
+<span class="sd">            Training set ratio</span>
+<span class="sd">        val_ratio : float</span>
+<span class="sd">            Validation set ratio</span>
+<span class="sd">        test_ratio : float</span>
+<span class="sd">            Test set ratio</span>
+<span class="sd">        min_class_size : int</span>
+<span class="sd">            Minimum nodes per class</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Path</span>
+<span class="sd">            Path to saved split file</span>
+<span class="sd">        """</span>
+        <span class="n">canonical_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_seed</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_component_seed</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="s2">"node_classification_split"</span>
+        <span class="p">)</span>
+
+        <span class="n">nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">disease_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">seed_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seed_node_ids"</span><span class="p">,</span> <span class="p">[])))</span>
+            <span class="n">target_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"target_node_ids"</span><span class="p">,</span> <span class="p">[])))</span>
+            <span class="n">positive_nodes</span> <span class="o">=</span> <span class="n">seed_nodes</span> <span class="o">|</span> <span class="n">target_nodes</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="ow">in</span> <span class="n">positive_nodes</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+            <span class="n">pos_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">neg_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_idx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_idx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Insufficient class support for PPI node classification split generation."</span><span class="p">)</span>
+
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+            <span class="n">train_idx</span><span class="p">,</span> <span class="n">temp_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)),</span>
+                <span class="n">train_size</span><span class="o">=</span><span class="n">train_ratio</span><span class="p">,</span>
+                <span class="n">stratify</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span>
+            <span class="p">)</span>
+            <span class="n">val_size</span> <span class="o">=</span> <span class="n">val_ratio</span> <span class="o">/</span> <span class="p">(</span><span class="n">val_ratio</span> <span class="o">+</span> <span class="n">test_ratio</span><span class="p">)</span>
+            <span class="n">val_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">temp_idx</span><span class="p">,</span>
+                <span class="n">train_size</span><span class="o">=</span><span class="n">val_size</span><span class="p">,</span>
+                <span class="n">stratify</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">temp_idx</span><span class="p">],</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">)</span>
+
+            <span class="n">split_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+                <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">repetition_id</span><span class="p">,</span>
+                <span class="s2">"task"</span><span class="p">:</span> <span class="s2">"node_classification"</span><span class="p">,</span>
+                <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"canonical_seed"</span><span class="p">:</span> <span class="n">canonical_seed</span><span class="p">,</span>
+                <span class="s2">"nodes"</span><span class="p">:</span> <span class="n">nodes</span><span class="p">,</span>
+                <span class="s2">"labels"</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">labels</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
+                <span class="s2">"train_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">train_idx</span><span class="p">),</span>
+                <span class="s2">"val_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">val_idx</span><span class="p">),</span>
+                <span class="s2">"test_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">test_idx</span><span class="p">),</span>
+                <span class="s2">"num_classes"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">"train_ratio"</span><span class="p">:</span> <span class="n">train_ratio</span><span class="p">,</span>
+                <span class="s2">"val_ratio"</span><span class="p">:</span> <span class="n">val_ratio</span><span class="p">,</span>
+                <span class="s2">"test_ratio"</span><span class="p">:</span> <span class="n">test_ratio</span><span class="p">,</span>
+                <span class="s2">"positive_class_definition"</span><span class="p">:</span> <span class="n">positive_class_definition</span><span class="p">,</span>
+                <span class="s2">"negative_class_definition"</span><span class="p">:</span> <span class="n">negative_class_definition</span><span class="p">,</span>
+                <span class="s2">"split_seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"split_strategy"</span><span class="p">:</span> <span class="n">split_strategy</span><span class="p">,</span>
+                <span class="s2">"class_distribution"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"train"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"positive"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                        <span class="s2">"negative"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_idx</span><span class="p">)</span> <span class="o">-</span> <span class="n">labels</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                    <span class="p">},</span>
+                    <span class="s2">"validation"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"positive"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                        <span class="s2">"negative"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_idx</span><span class="p">)</span> <span class="o">-</span> <span class="n">labels</span><span class="p">[</span><span class="n">val_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                    <span class="p">},</span>
+                    <span class="s2">"test"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"positive"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                        <span class="s2">"negative"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_idx</span><span class="p">)</span> <span class="o">-</span> <span class="n">labels</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                <span class="s2">"disease_seed_nodes"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">seed_nodes</span><span class="p">),</span>
+                <span class="s2">"disease_target_nodes"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">),</span>
+                <span class="s2">"label_generation_method"</span><span class="p">:</span> <span class="s2">"ppi_disease_labeling"</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+            <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.evaluation.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_community_labels</span>
+
+            <span class="n">labels_dict</span> <span class="o">=</span> <span class="n">generate_community_labels</span><span class="p">(</span>
+                <span class="n">G</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">'louvain'</span><span class="p">,</span>
+                <span class="n">min_community_size</span><span class="o">=</span><span class="n">min_class_size</span><span class="p">,</span>
+                <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span>
+            <span class="p">)</span>
+
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">])</span>
+
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+            <span class="n">train_idx</span><span class="p">,</span> <span class="n">temp_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)),</span>
+                <span class="n">train_size</span><span class="o">=</span><span class="n">train_ratio</span><span class="p">,</span>
+                <span class="n">stratify</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span>
+            <span class="p">)</span>
+
+            <span class="n">val_size</span> <span class="o">=</span> <span class="n">val_ratio</span> <span class="o">/</span> <span class="p">(</span><span class="n">val_ratio</span> <span class="o">+</span> <span class="n">test_ratio</span><span class="p">)</span>
+            <span class="n">val_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">temp_idx</span><span class="p">,</span>
+                <span class="n">train_size</span><span class="o">=</span><span class="n">val_size</span><span class="p">,</span>
+                <span class="n">stratify</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">temp_idx</span><span class="p">],</span>
+                <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">)</span>
+
+            <span class="n">split_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+                <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">repetition_id</span><span class="p">,</span>
+                <span class="s2">"task"</span><span class="p">:</span> <span class="s2">"node_classification"</span><span class="p">,</span>
+                <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"canonical_seed"</span><span class="p">:</span> <span class="n">canonical_seed</span><span class="p">,</span>
+                <span class="s2">"nodes"</span><span class="p">:</span> <span class="n">nodes</span><span class="p">,</span>
+                <span class="s2">"labels"</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="s1">'tolist'</span><span class="p">)</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels</span><span class="p">))],</span>
+                <span class="s2">"train_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">train_idx</span><span class="p">),</span>
+                <span class="s2">"val_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">val_idx</span><span class="p">),</span>
+                <span class="s2">"test_idx"</span><span class="p">:</span> <span class="n">_to_index_list</span><span class="p">(</span><span class="n">test_idx</span><span class="p">),</span>
+                <span class="s2">"num_classes"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="s2">"train_ratio"</span><span class="p">:</span> <span class="n">train_ratio</span><span class="p">,</span>
+                <span class="s2">"val_ratio"</span><span class="p">:</span> <span class="n">val_ratio</span><span class="p">,</span>
+                <span class="s2">"test_ratio"</span><span class="p">:</span> <span class="n">test_ratio</span><span class="p">,</span>
+                <span class="s2">"split_seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"split_strategy"</span><span class="p">:</span> <span class="n">split_strategy</span><span class="p">,</span>
+                <span class="s2">"label_generation_method"</span><span class="p">:</span> <span class="s2">"louvain_community_detection"</span>
+            <span class="p">}</span>
+        
+        <span class="c1"># Save split with task-specific filename</span>
+        <span class="k">if</span> <span class="n">split_base_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># split_base_dir already includes the full path, don't add dataset_name/rep again</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="n">split_base_dir</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Default: output_dir / dataset_name / rep_XX</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="n">dataset_name</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"rep_</span><span class="si">{</span><span class="n">repetition_id</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">split_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># Save as pickle (primary format)</span>
+        <span class="n">split_path_pkl</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"node_classification_split.pkl"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_pkl</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        
+        <span class="c1"># Also save as JSON for inspection</span>
+        <span class="n">split_path_json</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"node_classification_split.json"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_json</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">split_path_pkl</span></div>
+
+    
+<div class="viewcode-block" id="SplitGenerator.generate_link_prediction_split">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.generate_link_prediction_split">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_link_prediction_split</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+        <span class="n">train_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span><span class="p">,</span>
+        <span class="n">val_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">test_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.10</span><span class="p">,</span>
+        <span class="n">negative_sampling_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">disease_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">protect_disease_edges</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">split_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"random_edge_split"</span><span class="p">,</span>
+        <span class="n">negative_sampling_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"random"</span><span class="p">,</span>
+        <span class="n">split_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Generate link prediction split with held-out edges and negative samples.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        G : nx.Graph</span>
+<span class="sd">            Graph</span>
+<span class="sd">        train_ratio : float</span>
+<span class="sd">            Training edges ratio</span>
+<span class="sd">        val_ratio : float</span>
+<span class="sd">            Validation edges ratio</span>
+<span class="sd">        test_ratio : float</span>
+<span class="sd">            Test edges ratio</span>
+<span class="sd">        negative_sampling_ratio : float</span>
+<span class="sd">            Ratio of negative to positive samples</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Path</span>
+<span class="sd">            Path to saved split file</span>
+<span class="sd">        """</span>
+        <span class="n">canonical_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_seed</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_component_seed</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="s2">"link_prediction_edge_split"</span>
+        <span class="p">)</span>
+        <span class="n">negative_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_component_seed</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="s2">"negative_edge_sampling"</span>
+        <span class="p">)</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+        <span class="n">protected_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">disease_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">protect_disease_edges</span><span class="p">:</span>
+            <span class="n">disease_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seed_node_ids"</span><span class="p">,</span> <span class="p">[])))</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"target_node_ids"</span><span class="p">,</span> <span class="p">[])))</span>
+            <span class="n">protected_edges</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))))</span>
+                <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span>
+                <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="ow">in</span> <span class="n">disease_set</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">disease_set</span>
+            <span class="p">}</span>
+
+        <span class="n">removable_edges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">retained_train_edges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">normalized</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))))</span>
+            <span class="k">if</span> <span class="n">normalized</span> <span class="ow">in</span> <span class="n">protected_edges</span><span class="p">:</span>
+                <span class="n">retained_train_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">removable_edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+
+        <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">removable_edges</span><span class="p">)</span>
+        <span class="n">n_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">removable_edges</span><span class="p">)</span>
+        <span class="n">n_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_ratio</span> <span class="o">*</span> <span class="n">n_edges</span><span class="p">)</span>
+        <span class="n">n_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val_ratio</span> <span class="o">*</span> <span class="n">n_edges</span><span class="p">)</span>
+
+        <span class="n">train_edges</span> <span class="o">=</span> <span class="n">retained_train_edges</span> <span class="o">+</span> <span class="n">removable_edges</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]</span>
+        <span class="n">val_edges</span> <span class="o">=</span> <span class="n">removable_edges</span><span class="p">[</span><span class="n">n_train</span><span class="p">:</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">n_val</span><span class="p">]</span>
+        <span class="n">test_edges</span> <span class="o">=</span> <span class="n">removable_edges</span><span class="p">[</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">n_val</span><span class="p">:]</span>
+
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.evaluation.link_prediction</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_negative_edges</span>
+
+        <span class="n">existing_edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+        <span class="n">n_neg_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_edges</span><span class="p">)</span> <span class="o">*</span> <span class="n">negative_sampling_ratio</span><span class="p">)</span>
+        <span class="n">n_neg_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_edges</span><span class="p">)</span> <span class="o">*</span> <span class="n">negative_sampling_ratio</span><span class="p">)</span>
+        <span class="n">n_neg_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_edges</span><span class="p">)</span> <span class="o">*</span> <span class="n">negative_sampling_ratio</span><span class="p">)</span>
+
+        <span class="c1"># Sample the three negative sets so they are mutually DISJOINT: each</span>
+        <span class="c1"># draw excludes the true edges plus any negative already assigned to an</span>
+        <span class="c1"># earlier split. Without this, the same non-edge could appear as both a</span>
+        <span class="c1"># train negative and a test negative, leaking test labels into training.</span>
+        <span class="n">neg_train_edges</span> <span class="o">=</span> <span class="n">sample_negative_edges</span><span class="p">(</span>
+            <span class="n">G</span><span class="p">,</span> <span class="n">n_neg_train</span><span class="p">,</span> <span class="n">existing_edges</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">negative_sampling_strategy</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">negative_seed</span>
+        <span class="p">)</span>
+        <span class="n">neg_val_edges</span> <span class="o">=</span> <span class="n">sample_negative_edges</span><span class="p">(</span>
+            <span class="n">G</span><span class="p">,</span> <span class="n">n_neg_val</span><span class="p">,</span> <span class="n">existing_edges</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">neg_train_edges</span><span class="p">),</span>
+            <span class="n">strategy</span><span class="o">=</span><span class="n">negative_sampling_strategy</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">negative_seed</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="n">neg_test_edges</span> <span class="o">=</span> <span class="n">sample_negative_edges</span><span class="p">(</span>
+            <span class="n">G</span><span class="p">,</span> <span class="n">n_neg_test</span><span class="p">,</span> <span class="n">existing_edges</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">neg_train_edges</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">neg_val_edges</span><span class="p">),</span>
+            <span class="n">strategy</span><span class="o">=</span><span class="n">negative_sampling_strategy</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">negative_seed</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="n">G_train</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">G_train</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">val_edges</span> <span class="o">+</span> <span class="n">test_edges</span><span class="p">)</span>
+
+        <span class="n">split_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+            <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">repetition_id</span><span class="p">,</span>
+            <span class="s2">"task"</span><span class="p">:</span> <span class="s2">"link_prediction"</span><span class="p">,</span>
+            <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+            <span class="s2">"canonical_seed"</span><span class="p">:</span> <span class="n">canonical_seed</span><span class="p">,</span>
+            <span class="s2">"train_edges"</span><span class="p">:</span> <span class="n">train_edges</span><span class="p">,</span>
+            <span class="s2">"val_edges"</span><span class="p">:</span> <span class="n">val_edges</span><span class="p">,</span>
+            <span class="s2">"test_edges"</span><span class="p">:</span> <span class="n">test_edges</span><span class="p">,</span>
+            <span class="s2">"neg_train_edges"</span><span class="p">:</span> <span class="n">neg_train_edges</span><span class="p">,</span>
+            <span class="s2">"neg_val_edges"</span><span class="p">:</span> <span class="n">neg_val_edges</span><span class="p">,</span>
+            <span class="s2">"neg_test_edges"</span><span class="p">:</span> <span class="n">neg_test_edges</span><span class="p">,</span>
+            <span class="s2">"train_ratio"</span><span class="p">:</span> <span class="n">train_ratio</span><span class="p">,</span>
+            <span class="s2">"val_ratio"</span><span class="p">:</span> <span class="n">val_ratio</span><span class="p">,</span>
+            <span class="s2">"test_ratio"</span><span class="p">:</span> <span class="n">test_ratio</span><span class="p">,</span>
+            <span class="s2">"negative_sampling_ratio"</span><span class="p">:</span> <span class="n">negative_sampling_ratio</span><span class="p">,</span>
+            <span class="s2">"split_seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+            <span class="s2">"negative_sampling_seed"</span><span class="p">:</span> <span class="n">negative_seed</span><span class="p">,</span>
+            <span class="s2">"split_strategy"</span><span class="p">:</span> <span class="n">split_strategy</span><span class="p">,</span>
+            <span class="s2">"negative_sampling_strategy"</span><span class="p">:</span> <span class="n">negative_sampling_strategy</span><span class="p">,</span>
+            <span class="s2">"is_directed"</span><span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">is_directed</span><span class="p">(),</span>
+            <span class="s2">"protected_edge_count"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">protected_edges</span><span class="p">),</span>
+            <span class="s2">"protect_disease_edges"</span><span class="p">:</span> <span class="n">protect_disease_edges</span><span class="p">,</span>
+            <span class="s2">"num_train_edges"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_edges</span><span class="p">),</span>
+            <span class="s2">"num_val_edges"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_edges</span><span class="p">),</span>
+            <span class="s2">"num_test_edges"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_edges</span><span class="p">),</span>
+            <span class="s2">"num_train_nodes"</span><span class="p">:</span> <span class="n">G_train</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span>
+            <span class="s2">"num_train_graph_edges"</span><span class="p">:</span> <span class="n">G_train</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Save split with task-specific filename</span>
+        <span class="k">if</span> <span class="n">split_base_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># split_base_dir already includes the full path, don't add dataset_name/rep again</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="n">split_base_dir</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Default: output_dir / dataset_name / rep_XX</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="n">dataset_name</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"rep_</span><span class="si">{</span><span class="n">repetition_id</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">split_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># Save as pickle (primary format) - includes G_train in split_data</span>
+        <span class="n">split_data</span><span class="p">[</span><span class="s1">'train_graph'</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_train</span>  <span class="c1"># Include training graph in split data</span>
+        <span class="n">split_path_pkl</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"link_prediction_split.pkl"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_pkl</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        
+        <span class="c1"># Also save as JSON for inspection (without graph)</span>
+        <span class="n">split_data_json</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">split_data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">'train_graph'</span><span class="p">}</span>
+        <span class="n">split_path_json</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"link_prediction_split.json"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_json</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data_json</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">split_path_pkl</span></div>
+
+    
+<div class="viewcode-block" id="SplitGenerator.generate_node_ranking_split">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.generate_node_ranking_split">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_node_ranking_split</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repetition_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+        <span class="n">n_targets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target_selection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"high_degree"</span><span class="p">,</span>
+        <span class="n">n_seeds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">seed_selection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"random"</span><span class="p">,</span>
+        <span class="n">disease_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">excluded_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">selection_rule</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">split_base_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Generate node ranking split with seed and target nodes.</span>
+<span class="sd">        </span>
+<span class="sd">        For PPI networks, this should use disease-specific seeds/targets.</span>
+<span class="sd">        For synthetic networks, generates synthetic seeds/targets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset_name : str</span>
+<span class="sd">            Dataset name</span>
+<span class="sd">        repetition_id : int</span>
+<span class="sd">            Repetition ID</span>
+<span class="sd">        G : nx.Graph</span>
+<span class="sd">            Graph</span>
+<span class="sd">        n_targets : int, optional</span>
+<span class="sd">            Number of target nodes (default: 10% of nodes)</span>
+<span class="sd">        target_selection : str</span>
+<span class="sd">            Target selection strategy ('high_degree', 'random', 'central')</span>
+<span class="sd">        n_seeds : int, optional</span>
+<span class="sd">            Number of seed nodes (default: 5% of nodes)</span>
+<span class="sd">        seed_selection : str</span>
+<span class="sd">            Seed selection strategy ('random', 'high_degree')</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Path</span>
+<span class="sd">            Path to saved split file</span>
+<span class="sd">        """</span>
+        <span class="n">canonical_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_seed</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">)</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_component_seed</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="s2">"node_ranking"</span>
+        <span class="p">)</span>
+        <span class="n">target_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_manager</span><span class="o">.</span><span class="n">get_component_seed</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span> <span class="n">repetition_id</span><span class="p">,</span> <span class="s2">"node_ranking_target_selection"</span>
+        <span class="p">)</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">target_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">target_seed</span><span class="p">)</span>
+
+        <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+        <span class="n">n_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">excluded_nodes</span> <span class="o">=</span> <span class="n">excluded_nodes</span> <span class="ow">or</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">disease_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">seed_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seed_node_ids"</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+            <span class="n">target_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"target_node_ids"</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+
+            <span class="n">missing_seed_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seed_node_ids"</span><span class="p">,</span> <span class="p">[]))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">seed_nodes</span><span class="p">))</span>
+            <span class="n">missing_target_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">disease_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"target_node_ids"</span><span class="p">,</span> <span class="p">[]))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">missing_seed_nodes</span> <span class="ow">or</span> <span class="n">missing_target_nodes</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Disease nodes missing from graph. Missing seeds: </span><span class="si">{</span><span class="n">missing_seed_nodes</span><span class="si">}</span><span class="s2">; "</span>
+                    <span class="sa">f</span><span class="s2">"missing targets: </span><span class="si">{</span><span class="n">missing_target_nodes</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+
+            <span class="n">candidate_universe</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded_nodes</span><span class="p">]</span>
+            <span class="n">split_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+                <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">repetition_id</span><span class="p">,</span>
+                <span class="s2">"task"</span><span class="p">:</span> <span class="s2">"node_ranking"</span><span class="p">,</span>
+                <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"canonical_seed"</span><span class="p">:</span> <span class="n">canonical_seed</span><span class="p">,</span>
+                <span class="s2">"seed_nodes"</span><span class="p">:</span> <span class="n">seed_nodes</span><span class="p">,</span>
+                <span class="s2">"target_nodes"</span><span class="p">:</span> <span class="n">target_nodes</span><span class="p">,</span>
+                <span class="s2">"candidate_node_universe"</span><span class="p">:</span> <span class="n">candidate_universe</span><span class="p">,</span>
+                <span class="s2">"excluded_nodes"</span><span class="p">:</span> <span class="n">excluded_nodes</span><span class="p">,</span>
+                <span class="s2">"target_selection_seed"</span><span class="p">:</span> <span class="n">target_seed</span><span class="p">,</span>
+                <span class="s2">"selection_rule"</span><span class="p">:</span> <span class="n">selection_rule</span> <span class="ow">or</span> <span class="s2">"use_preserved_disease_seed_and_target_nodes"</span><span class="p">,</span>
+                <span class="s2">"n_seeds"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">seed_nodes</span><span class="p">),</span>
+                <span class="s2">"n_targets"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">),</span>
+                <span class="s2">"seed_selection"</span><span class="p">:</span> <span class="s2">"disease_seed_nodes"</span><span class="p">,</span>
+                <span class="s2">"target_selection"</span><span class="p">:</span> <span class="s2">"disease_target_nodes"</span><span class="p">,</span>
+                <span class="s2">"all_nodes"</span><span class="p">:</span> <span class="n">nodes</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n_targets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">n_targets</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">n_nodes</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">n_seeds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">n_seeds</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="n">n_nodes</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">seed_selection</span> <span class="o">==</span> <span class="s2">"random"</span><span class="p">:</span>
+                <span class="n">seed_nodes</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_seeds</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">seed_selection</span> <span class="o">==</span> <span class="s2">"high_degree"</span><span class="p">:</span>
+                <span class="n">degrees</span> <span class="o">=</span> <span class="n">_to_degree_dict</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+                <span class="n">sorted_nodes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">degrees</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">seed_nodes</span> <span class="o">=</span> <span class="n">sorted_nodes</span><span class="p">[:</span><span class="n">n_seeds</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown seed selection strategy: </span><span class="si">{</span><span class="n">seed_selection</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="n">candidate_targets</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seed_nodes</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">target_selection</span> <span class="o">==</span> <span class="s2">"random"</span><span class="p">:</span>
+                <span class="n">target_nodes</span> <span class="o">=</span> <span class="n">target_rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">candidate_targets</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">n_targets</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidate_targets</span><span class="p">)),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">target_selection</span> <span class="o">==</span> <span class="s2">"high_degree"</span><span class="p">:</span>
+                <span class="n">degrees</span> <span class="o">=</span> <span class="n">_to_degree_dict</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+                <span class="n">sorted_candidates</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">candidate_targets</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">degrees</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">target_nodes</span> <span class="o">=</span> <span class="n">sorted_candidates</span><span class="p">[:</span><span class="n">n_targets</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">target_selection</span> <span class="o">==</span> <span class="s2">"central"</span><span class="p">:</span>
+                <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_nodes</span><span class="p">))</span>
+                <span class="n">sorted_candidates</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">candidate_targets</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">centrality</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">target_nodes</span> <span class="o">=</span> <span class="n">sorted_candidates</span><span class="p">[:</span><span class="n">n_targets</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown target selection strategy: </span><span class="si">{</span><span class="n">target_selection</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="n">split_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"dataset_name"</span><span class="p">:</span> <span class="n">dataset_name</span><span class="p">,</span>
+                <span class="s2">"repetition_id"</span><span class="p">:</span> <span class="n">repetition_id</span><span class="p">,</span>
+                <span class="s2">"task"</span><span class="p">:</span> <span class="s2">"node_ranking"</span><span class="p">,</span>
+                <span class="s2">"seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                <span class="s2">"canonical_seed"</span><span class="p">:</span> <span class="n">canonical_seed</span><span class="p">,</span>
+                <span class="s2">"seed_nodes"</span><span class="p">:</span> <span class="n">seed_nodes</span><span class="p">,</span>
+                <span class="s2">"target_nodes"</span><span class="p">:</span> <span class="n">target_nodes</span><span class="p">,</span>
+                <span class="s2">"candidate_node_universe"</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span>
+                <span class="s2">"excluded_nodes"</span><span class="p">:</span> <span class="n">excluded_nodes</span><span class="p">,</span>
+                <span class="s2">"target_selection_seed"</span><span class="p">:</span> <span class="n">target_seed</span><span class="p">,</span>
+                <span class="s2">"selection_rule"</span><span class="p">:</span> <span class="n">selection_rule</span> <span class="ow">or</span> <span class="s2">"synthetic_selection"</span><span class="p">,</span>
+                <span class="s2">"n_seeds"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">seed_nodes</span><span class="p">),</span>
+                <span class="s2">"n_targets"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">),</span>
+                <span class="s2">"seed_selection"</span><span class="p">:</span> <span class="n">seed_selection</span><span class="p">,</span>
+                <span class="s2">"target_selection"</span><span class="p">:</span> <span class="n">target_selection</span><span class="p">,</span>
+                <span class="s2">"all_nodes"</span><span class="p">:</span> <span class="n">nodes</span>
+            <span class="p">}</span>
+        
+        <span class="c1"># Save split with task-specific filename</span>
+        <span class="k">if</span> <span class="n">split_base_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># split_base_dir already includes the full path, don't add dataset_name/rep again</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="n">split_base_dir</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Default: output_dir / dataset_name / rep_XX</span>
+            <span class="n">split_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="n">dataset_name</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"rep_</span><span class="si">{</span><span class="n">repetition_id</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">split_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="c1"># Save as pickle (primary format)</span>
+        <span class="n">split_path_pkl</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"node_ranking_split.pkl"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_pkl</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        
+        <span class="c1"># Also save as JSON for inspection</span>
+        <span class="n">split_path_json</span> <span class="o">=</span> <span class="n">split_dir</span> <span class="o">/</span> <span class="s2">"node_ranking_split.json"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path_json</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">split_path_pkl</span></div>
+
+    
+<div class="viewcode-block" id="SplitGenerator.load_split">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.reproducibility.split_generator.html#qbiocode.apps.quvine.reproducibility.split_generator.SplitGenerator.load_split">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Load a pre-generated split from disk.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        split_path : Path</span>
+<span class="sd">            Path to split file</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Split data</span>
+<span class="sd">        """</span>
+        <span class="c1"># Try pickle first (faster)</span>
+        <span class="n">pkl_path</span> <span class="o">=</span> <span class="n">split_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">'.pkl'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkl_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pkl_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        
+        <span class="c1"># Fall back to JSON</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">split_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+</div>
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

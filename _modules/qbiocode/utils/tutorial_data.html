@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.utils.tutorial_data &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/utils/tutorial_data';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.utils.tutorial_data</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.utils.tutorial_data</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""Locate the fixture files the tutorial notebooks read.</span>
+
+<span class="sd">The notebooks live in one tree, ``tutorial/``, but their fixtures are spread</span>
+<span class="sd">across three directories inside it, because several are shared between notebooks</span>
+<span class="sd">and are deliberately committed only once:</span>
+
+<span class="sd">============================= ===================================================</span>
+<span class="sd">``tutorial/QuVINE/datasets/`` the graph benchmarks (``pbmc5k_graph_*``) and the</span>
+<span class="sd">                              balanced per-task subsets</span>
+<span class="sd">``tutorial/QProfiler/data/``  ``pbmc5k_small_cd4_vs_cd8.h5ad`` and the</span>
+<span class="sd">                              ``sc_binary/*.csv`` exports</span>
+<span class="sd">``tutorial/QSage/data/``      ``qprofiler_benchmarks.csv``, the QProfiler results</span>
+<span class="sd">                              table QSage trains on</span>
+<span class="sd">============================= ===================================================</span>
+
+<span class="sd">A notebook cannot simply read ``./data``, then: the file it needs may belong to a</span>
+<span class="sd">sibling notebook's directory. It also cannot read the copy Sphinx renders --</span>
+<span class="sd">``docs/source/tutorials/`` is generated from this tree at build time *without* the</span>
+<span class="sd">fixtures, since ``nbsphinx_execute = 'never'`` means nothing runs there.</span>
+
+<span class="sd">Every notebook previously derived its own path with</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    _REPO = os.path.dirname(os.path.dirname(os.path.abspath(qbiocode.__file__)))</span>
+<span class="sd">    H5AD_DIR = os.environ.get("QBC_DATA", os.path.join(_REPO, "tutorial", "QuVINE", "datasets"))</span>
+
+<span class="sd">which has three faults this module fixes. It assumes an **editable** install --</span>
+<span class="sd">for a normal ``pip install qbiocode`` the derived root is ``site-packages`` and</span>
+<span class="sd">the path simply does not exist. It knows about exactly one of the three fixture</span>
+<span class="sd">directories, so a file that is committed once and shared is unreachable from the</span>
+<span class="sd">notebook that does not own it. And when the path is wrong the failure surfaces as</span>
+<span class="sd">whatever ``anndata.read_h5ad`` says about a missing file, naming neither the</span>
+<span class="sd">override that would fix it nor the directories that were tried.</span>
+
+<span class="sd">:func:`tutorial_data_path` is the single resolution path. In order:</span>
+
+<span class="sd">1. every directory in the ``QBC_DATA`` environment variable</span>
+<span class="sd">   (``os.pathsep``-separated, so several may be listed);</span>
+<span class="sd">2. the three directories above, relative to a source checkout -- located from the</span>
+<span class="sd">   installed package *and* by walking up from the current working directory, so</span>
+<span class="sd">   it resolves whether the notebook runs from a clone with the package installed</span>
+<span class="sd">   editable, or from a clone with the package installed normally;</span>
+<span class="sd">3. the notebook-local conventions ``./data``, ``./datasets`` and ``.``.</span>
+
+<span class="sd">If nothing matches, the raised :class:`FileNotFoundError` lists every directory</span>
+<span class="sd">searched and how to point at the data explicitly.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#: Fixture directories, relative to the root of a source checkout, in the order</span>
+<span class="c1">#: they are searched. Paths are stored as tuples of components so they build</span>
+<span class="c1">#: correctly on Windows.</span>
+<span class="n">REPO_DATA_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">"tutorial"</span><span class="p">,</span> <span class="s2">"QuVINE"</span><span class="p">,</span> <span class="s2">"datasets"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"tutorial"</span><span class="p">,</span> <span class="s2">"QProfiler"</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"tutorial"</span><span class="p">,</span> <span class="s2">"QSage"</span><span class="p">,</span> <span class="s2">"data"</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1">#: Directories relative to the *current working directory*, which for a notebook</span>
+<span class="c1">#: is the directory the notebook itself lives in.</span>
+<span class="n">LOCAL_DATA_DIRS</span> <span class="o">=</span> <span class="p">((</span><span class="s2">"data"</span><span class="p">,),</span> <span class="p">(</span><span class="s2">"datasets"</span><span class="p">,),</span> <span class="p">())</span>
+
+<span class="c1">#: How far up from the current working directory to look for a checkout root.</span>
+<span class="n">_MAX_PARENTS</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1">#: Environment variable holding one or more override directories.</span>
+<span class="n">DATA_ENV_VAR</span> <span class="o">=</span> <span class="s2">"QBC_DATA"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_package_root</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""The directory containing the ``qbiocode`` package directory."""</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_looks_like_checkout</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Whether ``path`` is the root of a QBioCode source checkout.</span>
+
+<span class="sd">    Checked structurally rather than by name so a renamed clone still resolves.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"qbiocode"</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"tutorial"</span><span class="p">))</span>
+        <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">))</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_candidate_roots</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Plausible checkout roots, nearest first, without duplicates."""</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">real</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">real</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+            <span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+
+    <span class="c1"># The package's own parent: correct for an editable install, harmless</span>
+    <span class="c1"># (it is site-packages, and _looks_like_checkout rejects it) otherwise.</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">_package_root</span><span class="p">())</span>
+
+    <span class="c1"># Walking up from the cwd covers a normal install used from inside a clone,</span>
+    <span class="c1"># which is the case the old notebook path could not handle at all.</span>
+    <span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_MAX_PARENTS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">here</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">here</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="o">==</span> <span class="n">here</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">here</span> <span class="o">=</span> <span class="n">parent</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">root</span> <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span> <span class="k">if</span> <span class="n">_looks_like_checkout</span><span class="p">(</span><span class="n">root</span><span class="p">)]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_env_dirs</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Directories listed in ``QBC_DATA``, in order, ignoring empty entries."""</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">DATA_ENV_VAR</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">part</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="p">)</span> <span class="k">if</span> <span class="n">part</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="tutorial_data_dirs">
+<a class="viewcode-back" href="../../../api/qbiocode.utils.tutorial_data.html#qbiocode.utils.tutorial_data.tutorial_data_dirs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tutorial_data_dirs</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Return the directories :func:`tutorial_data_path` searches, in order.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list of str</span>
+<span class="sd">        Absolute paths. Directories that do not exist are kept, so callers and</span>
+<span class="sd">        error messages can report exactly where the search looked.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from qbiocode.utils import tutorial_data_dirs</span>
+<span class="sd">    &gt;&gt;&gt; any("QuVINE" in d for d in tutorial_data_dirs())      # doctest: +SKIP</span>
+<span class="sd">    True</span>
+<span class="sd">    """</span>
+    <span class="n">dirs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">absolute</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">absolute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">absolute</span><span class="p">)</span>
+            <span class="n">dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">absolute</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">_env_dirs</span><span class="p">():</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">_candidate_roots</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">parts</span> <span class="ow">in</span> <span class="n">REPO_DATA_DIRS</span><span class="p">:</span>
+            <span class="n">add</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="o">*</span><span class="n">parts</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">parts</span> <span class="ow">in</span> <span class="n">LOCAL_DATA_DIRS</span><span class="p">:</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="o">*</span><span class="n">parts</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">dirs</span></div>
+
+
+
+<div class="viewcode-block" id="tutorial_data_path">
+<a class="viewcode-back" href="../../../api/qbiocode.utils.tutorial_data.html#qbiocode.utils.tutorial_data.tutorial_data_path">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tutorial_data_path</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">search_dirs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the absolute path of a tutorial fixture.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Fixture file name, e.g. ``"pbmc5k_small_cd4_vs_cd8.h5ad"``. An absolute</span>
+<span class="sd">        path, or a relative path that already resolves from the current working</span>
+<span class="sd">        directory, is returned unchanged -- so a notebook may hard-code a path</span>
+<span class="sd">        when it has one and still call this function.</span>
+<span class="sd">    search_dirs : sequence of str, optional</span>
+<span class="sd">        Directories to search instead of :func:`tutorial_data_dirs`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Absolute path to an existing file.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If no directory holds ``filename``. The message lists every directory</span>
+<span class="sd">        searched and how to override the location.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    When ``QBC_DATA`` is set but does not contain ``filename`` and a repository</span>
+<span class="sd">    directory does, the fixture is still returned -- and the substitution is</span>
+<span class="sd">    logged at ``WARNING``. Resolving silently against a directory the caller did</span>
+<span class="sd">    not ask for is how a stale fixture gets read for an entire session without</span>
+<span class="sd">    anyone noticing.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import anndata as ad                                  # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; from qbiocode.utils import tutorial_data_path         # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; adata = ad.read_h5ad(tutorial_data_path("pbmc5k_small_cd4_vs_cd8.h5ad"))</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">dirs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tutorial_data_dirs</span><span class="p">())</span> <span class="k">if</span> <span class="n">search_dirs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">search_dirs</span>
+    <span class="p">]</span>
+    <span class="n">env_dirs</span> <span class="o">=</span> <span class="p">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">_env_dirs</span><span class="p">()}</span> <span class="k">if</span> <span class="n">search_dirs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+        <span class="n">candidate</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">candidate</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">env_dirs</span> <span class="ow">and</span> <span class="n">directory</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">env_dirs</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">"</span><span class="si">%s</span><span class="s2"> is set (</span><span class="si">%s</span><span class="s2">) but does not contain </span><span class="si">%r</span><span class="s2">; using </span><span class="si">%s</span><span class="s2"> instead. "</span>
+                    <span class="s2">"Set </span><span class="si">%s</span><span class="s2"> to the directory that holds the fixture if this is "</span>
+                    <span class="s2">"not the file you meant to read."</span><span class="p">,</span>
+                    <span class="n">DATA_ENV_VAR</span><span class="p">,</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">DATA_ENV_VAR</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+                    <span class="n">filename</span><span class="p">,</span>
+                    <span class="n">candidate</span><span class="p">,</span>
+                    <span class="n">DATA_ENV_VAR</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">candidate</span>
+
+    <span class="n">searched</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"  (no candidate directories)"</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Tutorial fixture </span><span class="si">{</span><span class="n">filename</span><span class="si">!r}</span><span class="s2"> was not found. Searched:</span><span class="se">\n</span><span class="si">{</span><span class="n">searched</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"Point </span><span class="si">{</span><span class="n">DATA_ENV_VAR</span><span class="si">}</span><span class="s2"> at the directory holding it "</span>
+        <span class="sa">f</span><span class="s2">"(export </span><span class="si">{</span><span class="n">DATA_ENV_VAR</span><span class="si">}</span><span class="s2">=/path/to/datasets), run the notebook from a "</span>
+        <span class="sa">f</span><span class="s2">"QBioCode checkout, or regenerate the fixtures with the preprocessing "</span>
+        <span class="sa">f</span><span class="s2">"tutorial (tutorial/Preprocessing/sc-qc.ipynb), which "</span>
+        <span class="sa">f</span><span class="s2">"writes every pbmc5k_* file from the raw 10x matrix."</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

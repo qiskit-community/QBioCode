@@ -1,0 +1,1673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>QuVINE Tutorial — quantum graph embeddings inside QBioCode &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=a35ea3b2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/QuVINE/example_quvine';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QuVINE on the CD4-vs-CD8 cell graph — a few-shot “centroid seed” study" href="quvine_sc_cd4_vs_cd8.html" />
+    <link rel="prev" title="QProfiler on the CD4-vs-CD8 T-cell task (with PQK)" href="../QProfiler/sc_binary_qprofiler.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Artificial_data_generation/example_data_generation.html">Artificial Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing/sc-qc.html">5k PBMC CITE-seq — QC &amp; preprocessing</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/example_qprofiler.html">QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_qprofiler.html">QProfiler on Single-Cell Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QuVINE - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quvine_sc_cd4_vs_cd8.html">QuVINE on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quvine_sc_t_vs_mono.html">QuVINE on T vs. Monocyte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_quvine_2x2_qprofiler.html">QuVINE Embeddings in QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QEnsemble/QEnsemble_example_blobs.html">Quantum Ensemble Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSage/qsage.html">QSage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum_Projection_Learning/QPL_example.html">Quantum Projection Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PQK%20-%20OV.html">PQK on Ovarian Cancer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">QuVINE Tutorial — quantum graph embeddings inside QBioCode</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+    /* Improve notebook cell spacing */
+    div.nbinput.container,
+    div.nboutput.container {
+        margin-bottom: 1em;
+    }
+
+    /* Better code cell styling */
+    div.highlight-ipython3 {
+        margin: 0.5em 0;
+    }
+
+    /* Improve markdown cell rendering */
+    .nbinput + .nboutput {
+        margin-top: 0.5em;
+    }
+</style><section id="QuVINE-Tutorial-—-quantum-graph-embeddings-inside-QBioCode">
+<h1>QuVINE Tutorial — quantum graph embeddings inside QBioCode<a class="headerlink" href="#QuVINE-Tutorial-—-quantum-graph-embeddings-inside-QBioCode" title="Link to this heading">#</a></h1>
+<p>This tutorial mirrors the <a class="reference internal" href="../QProfiler/example_qprofiler.html"><span class="doc">QProfiler tutorial</span></a>, but for <strong>QuVINE</strong> (Quantum View-based Network Embeddings), now vendored into QBioCode as an in-tree app.</p>
+<section id="What-is-QuVINE-(in-QBioCode)?">
+<h2>What is QuVINE (in QBioCode)?<a class="headerlink" href="#What-is-QuVINE-(in-QBioCode)?" title="Link to this heading">#</a></h2>
+<p>QProfiler characterizes a <strong>tabular dataset</strong> (samples × features) and benchmarks ML models on it. QuVINE works on a different modality — a <strong>graph</strong> — and produces <strong>node embeddings</strong>:</p>
+<ul class="simple">
+<li><p><strong>``qbiocode.apps.quvine.embed``</strong> — turn a <code class="docutils literal notranslate"><span class="pre">networkx.Graph</span></code> into a node-embedding matrix using classical or <em>quantum</em> walks (RWR / CTQW / DTQW) and a registry of comparison methods (node2vec, NetMF, APPNP, GAT, GraphGPS, quantum-calibrated filters, …).</p></li>
+<li><p><strong>``qbiocode.evaluate_graph``</strong> — the graph analogue of QProfiler’s <code class="docutils literal notranslate"><span class="pre">evaluate(df,</span> <span class="pre">y)</span></code>: a one-row summary of ~80 graph-complexity metrics (spectral, topological, structural).</p></li>
+</ul>
+<p>QuVINE ships inside QBioCode, behind the optional <code class="docutils literal notranslate"><span class="pre">[quvine]</span></code> extra (see <strong>Install</strong> below).</p>
+<section id="What-this-notebook-does">
+<h3>What this notebook does<a class="headerlink" href="#What-this-notebook-does" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Generate <strong>three graphs</strong> of increasing difficulty (small, so it runs quickly).</p></li>
+<li><p>Embed each with <strong>12 methods</strong> and score a <strong>node-classification</strong> task over <strong>5 iterations</strong>.</p></li>
+<li><p>Summarize each graph’s <strong>complexity</strong> (spectral gap, IPR, spectral degeneracy, …).</p></li>
+<li><p><strong>Correlate</strong> those complexity measures with macro-F1 and visualize the relationships.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Install.</strong> QuVINE ships behind an optional extra, so a plain <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qbiocode</span></code> does <em>not</em> pull its dependencies (gensim, hiperwalk, node2vec, torch-geometric, python-louvain, ripser, omegaconf). Install it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"qbiocode[quvine]"</span>
+</pre></div>
+</div>
+<p>Calling a <code class="docutils literal notranslate"><span class="pre">quvine_*</span></code> method without the extra raises an error naming the missing package and this exact command, rather than a bare <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+</section>
+</section>
+<section id="1.-Setup-and-imports">
+<h2>1. Setup and imports<a class="headerlink" href="#1.-Setup-and-imports" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+
+<span class="c1"># Pin OpenMP to a single thread BEFORE importing qbiocode. torch, xgboost and</span>
+<span class="c1"># qiskit-aer each vendor their own copy of libomp, and on macOS whichever one</span>
+<span class="c1"># initialises second crashes the process with a bare SIGSEGV -- no traceback,</span>
+<span class="c1"># just a dead kernel -- the first time it opens a parallel region. The</span>
+<span class="c1"># torch-backed methods below (appnp, gat_*, graphgps_*) hit it every time.</span>
+<span class="c1"># See qbiocode/utils/_openmp.py for the full analysis.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"OMP_NUM_THREADS"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span><span class="p">,</span> <span class="n">list_methods</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_graph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.evaluation.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluate_node_classification</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">"notebook"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"total QuVINE methods available:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_methods</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+total QuVINE methods available: 83
+</pre></div></div>
+</div>
+</section>
+<section id="2.-Generate-three-graphs">
+<h2>2. Generate three graphs<a class="headerlink" href="#2.-Generate-three-graphs" title="Link to this heading">#</a></h2>
+<p>We build three <strong>stochastic block models (SBMs)</strong> with 3 planted communities of 20 nodes each (60 nodes total). They differ only in the <em>between-community</em> edge probability <code class="docutils literal notranslate"><span class="pre">p_out</span></code>: as <code class="docutils literal notranslate"><span class="pre">p_out</span></code> grows the communities blur together, so the graphs go from <strong>easy → medium → hard</strong> for a community-based node-classification task.</p>
+<p>Because the communities are <em>planted</em>, we use block membership as the <strong>ground-truth labels</strong> — no label inference needed. QuVINE’s walk corpus needs <strong>string</strong> node ids, so we relabel to <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_sbm</span><span class="p">(</span><span class="n">p_out</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">p_in</span><span class="o">=</span><span class="mf">0.28</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p_in</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span> <span class="k">else</span> <span class="n">p_out</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">stochastic_block_model</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sizes</span><span class="p">),</span> <span class="n">probs</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="s2">"block"</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">}</span>          <span class="c1"># planted community = label</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">})</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">b</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">labels</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="n">G</span><span class="p">,</span> <span class="n">labels</span>
+
+<span class="c1"># Same seed + p_in for all three; only p_out (between-community density) changes,</span>
+<span class="c1"># so the difficulty gradient is a controlled comparison. All three are connected.</span>
+<span class="n">graphs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"sbm_easy"</span><span class="p">:</span>   <span class="n">make_sbm</span><span class="p">(</span><span class="n">p_out</span><span class="o">=</span><span class="mf">0.04</span><span class="p">),</span>
+    <span class="s2">"sbm_medium"</span><span class="p">:</span> <span class="n">make_sbm</span><span class="p">(</span><span class="n">p_out</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
+    <span class="s2">"sbm_hard"</span><span class="p">:</span>   <span class="n">make_sbm</span><span class="p">(</span><span class="n">p_out</span><span class="o">=</span><span class="mf">0.14</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="n">graphs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">11s</span><span class="si">}</span><span class="s2"> nodes=</span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">  edges=</span><span class="si">{</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">  "</span>
+          <span class="sa">f</span><span class="s2">"classes=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="si">}</span><span class="s2">  connected=</span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+sbm_easy    nodes=150  edges=1368  classes=3  connected=True
+sbm_medium  nodes=150  edges=1662  classes=3  connected=True
+sbm_hard    nodes=150  edges=2040  classes=3  connected=True
+</pre></div></div>
+</div>
+</section>
+<section id="3.-Choose-task-and-methods">
+<h2>3. Choose task and methods<a class="headerlink" href="#3.-Choose-task-and-methods" title="Link to this heading">#</a></h2>
+<p><strong>Task:</strong> node classification (predict each node’s community from its embedding).</p>
+<p><strong>Methods (12):</strong> three QuVINE walks, two quantum-calibrated spectral <em>filters</em>, two quantum-calibrated <em>GAT</em> variants, two quantum-calibrated <em>GraphGPS</em> variants, and three classical baselines.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># QuVINE SGNS walks</span>
+    <span class="s2">"quvine_rwr"</span><span class="p">,</span> <span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">,</span>
+    <span class="c1"># quantum-calibrated spectral filters</span>
+    <span class="s2">"filter_rwr_heat"</span><span class="p">,</span> <span class="s2">"filter_ctqw_heat"</span><span class="p">,</span>
+    <span class="c1"># quantum-calibrated GAT</span>
+    <span class="s2">"gat_rwr_poly"</span><span class="p">,</span> <span class="s2">"gat_ctqw_poly"</span><span class="p">,</span>
+    <span class="c1"># quantum-calibrated GraphGPS</span>
+    <span class="s2">"graphgps_rwr_heat"</span><span class="p">,</span> <span class="s2">"graphgps_ctqw_heat"</span><span class="p">,</span>
+    <span class="c1"># classical baselines</span>
+    <span class="s2">"node2vec"</span><span class="p">,</span> <span class="s2">"netmf"</span><span class="p">,</span> <span class="s2">"appnp"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">N_ITER</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Small/fast embedding settings -- drop these overrides for full-quality runs.</span>
+<span class="n">fast</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"train"</span><span class="p">:</span>  <span class="p">{</span><span class="s2">"embedding_dim"</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">"epochs"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"workers"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">"walks"</span><span class="p">:</span>  <span class="p">{</span><span class="s2">"num_walks"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"walk_length"</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
+    <span class="s2">"views"</span><span class="p">:</span>  <span class="p">{</span><span class="s2">"num_views"</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span><span class="si">}</span><span class="s2"> methods x </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graphs</span><span class="p">)</span><span class="si">}</span><span class="s2"> graphs x </span><span class="si">{</span><span class="n">N_ITER</span><span class="si">}</span><span class="s2"> iters = "</span>
+      <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">graphs</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">N_ITER</span><span class="si">}</span><span class="s2"> embedding runs"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+12 methods x 3 graphs x 5 iters = 180 embedding runs
+</pre></div></div>
+</div>
+</section>
+<section id="4.-Run-the-benchmark">
+<h2>4. Run the benchmark<a class="headerlink" href="#4.-Run-the-benchmark" title="Link to this heading">#</a></h2>
+<p>For every (graph, method, iteration) we embed the graph and evaluate node classification, recording <strong>macro-F1</strong> and accuracy. Each iteration uses a different seed so embeddings and the train/test split vary — giving us a spread to average over.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">gname</span><span class="p">,</span> <span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="n">graphs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">node_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_ITER</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">overrides</span><span class="o">=</span><span class="n">fast</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">42</span> <span class="o">+</span> <span class="n">it</span><span class="p">)</span>
+                <span class="n">nc</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">embedding</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">node_order</span><span class="p">,</span>
+                    <span class="n">classifier</span><span class="o">=</span><span class="s2">"logistic"</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span> <span class="o">+</span> <span class="n">it</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">"graph"</span><span class="p">:</span> <span class="n">gname</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s2">"iter"</span><span class="p">:</span> <span class="n">it</span><span class="p">,</span>
+                    <span class="s2">"macro_f1"</span><span class="p">:</span> <span class="n">nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"f1_macro"</span><span class="p">),</span> <span class="s2">"accuracy"</span><span class="p">:</span> <span class="n">nc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"accuracy"</span><span class="p">),</span>
+                    <span class="s2">"dim"</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="s2">"embed_time_s"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">execution_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                <span class="p">})</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"graph"</span><span class="p">:</span> <span class="n">gname</span><span class="p">,</span> <span class="s2">"method"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s2">"iter"</span><span class="p">:</span> <span class="n">it</span><span class="p">,</span>
+                                <span class="s2">"macro_f1"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">"accuracy"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)[:</span><span class="mi">80</span><span class="p">]})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  done: </span><span class="si">{</span><span class="n">gname</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"collected"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="s2">"rows"</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 3773.96it/s]
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+&lt;env&gt;/lib/python3.12/site-packages/node2vec/edges.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  import pkg_resources
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 111.60it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 102.82it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 109.99it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 106.54it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 107.02it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 109.45it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 101.22it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 103.81it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 3858.44it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 116.83it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 115.35it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 116.60it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 113.04it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 114.74it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 115.62it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 113.57it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 119.75it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 3865.88it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 116.67it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 116.06it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 117.78it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 118.36it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 117.76it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 114.31it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 118.09it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 117.87it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 3790.74it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 117.21it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 115.04it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 114.54it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 118.44it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 112.55it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 114.76it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 117.83it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 115.61it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 3875.67it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 116.23it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 116.73it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 116.70it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 116.67it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 116.28it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 113.61it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 110.67it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 112.14it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  done: sbm_easy
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 2582.24it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 111.42it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 109.08it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 113.51it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 110.84it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 113.04it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 113.70it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 105.77it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 109.72it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 2664.39it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 107.43it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 106.05it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 99.61it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 108.91it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 107.86it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 112.70it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 110.20it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 101.85it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 2701.01it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 110.85it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 110.64it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 110.39it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 113.22it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 112.77it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 106.40it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 104.89it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 109.23it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 2632.50it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 113.13it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 114.48it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 111.96it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 108.74it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 113.34it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 115.53it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 103.52it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 114.13it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 2605.85it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 109.49it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 106.97it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 113.95it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 107.30it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 109.12it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 106.70it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 110.68it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 109.22it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  done: sbm_medium
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 1801.87it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 105.88it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 108.36it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 107.68it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 103.32it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 104.57it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 103.50it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 106.54it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 105.21it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 1831.84it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 106.58it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 109.93it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 104.57it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 104.88it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 106.16it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 109.95it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 108.75it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 107.35it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 1834.96it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 106.49it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 106.17it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 107.88it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 105.83it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 101.44it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 108.55it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 108.38it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 107.77it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 1826.55it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 107.70it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 109.17it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 107.47it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 107.76it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 105.22it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 106.57it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 104.37it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 110.99it/s]
+Computing transition probabilities: 100%|██████████| 150/150 [00:00&lt;00:00, 1838.44it/s]
+Generating walks (CPU: 1): 100%|██████████| 2/2 [00:00&lt;00:00, 107.85it/s]
+Generating walks (CPU: 2): 100%|██████████| 2/2 [00:00&lt;00:00, 106.20it/s]
+Generating walks (CPU: 3): 100%|██████████| 1/1 [00:00&lt;00:00, 102.03it/s]
+Generating walks (CPU: 4): 100%|██████████| 1/1 [00:00&lt;00:00, 102.02it/s]
+Generating walks (CPU: 5): 100%|██████████| 1/1 [00:00&lt;00:00, 107.28it/s]
+Generating walks (CPU: 6): 100%|██████████| 1/1 [00:00&lt;00:00, 105.19it/s]
+Generating walks (CPU: 7): 100%|██████████| 1/1 [00:00&lt;00:00, 108.12it/s]
+Generating walks (CPU: 8): 100%|██████████| 1/1 [00:00&lt;00:00, 107.45it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  done: sbm_hard
+collected 180 rows
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>graph</th>
+      <th>method</th>
+      <th>iter</th>
+      <th>macro_f1</th>
+      <th>accuracy</th>
+      <th>dim</th>
+      <th>embed_time_s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sbm_easy</td>
+      <td>quvine_rwr</td>
+      <td>0</td>
+      <td>0.932542</td>
+      <td>0.933333</td>
+      <td>32</td>
+      <td>2.161</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sbm_easy</td>
+      <td>quvine_rwr</td>
+      <td>1</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>32</td>
+      <td>2.160</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sbm_easy</td>
+      <td>quvine_rwr</td>
+      <td>2</td>
+      <td>0.909370</td>
+      <td>0.911111</td>
+      <td>32</td>
+      <td>2.046</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sbm_easy</td>
+      <td>quvine_rwr</td>
+      <td>3</td>
+      <td>0.977753</td>
+      <td>0.977778</td>
+      <td>32</td>
+      <td>2.019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sbm_easy</td>
+      <td>quvine_rwr</td>
+      <td>4</td>
+      <td>0.977753</td>
+      <td>0.977778</td>
+      <td>32</td>
+      <td>2.080</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="Per-method-summary-(mean-over-graphs-&amp;-iterations)">
+<h3>Per-method summary (mean over graphs &amp; iterations)<a class="headerlink" href="#Per-method-summary-(mean-over-graphs-&-iterations)" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"method"</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">macro_f1_mean</span><span class="o">=</span><span class="p">(</span><span class="s2">"macro_f1"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+                <span class="n">macro_f1_std</span><span class="o">=</span><span class="p">(</span><span class="s2">"macro_f1"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">),</span>
+                <span class="n">accuracy_mean</span><span class="o">=</span><span class="p">(</span><span class="s2">"accuracy"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+                <span class="n">embed_time_s</span><span class="o">=</span><span class="p">(</span><span class="s2">"embed_time_s"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"macro_f1_mean"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>macro_f1_mean</th>
+      <th>macro_f1_std</th>
+      <th>accuracy_mean</th>
+      <th>embed_time_s</th>
+    </tr>
+    <tr>
+      <th>method</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>netmf</th>
+      <td>0.923</td>
+      <td>0.095</td>
+      <td>0.923</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <th>filter_ctqw_heat</th>
+      <td>0.895</td>
+      <td>0.145</td>
+      <td>0.896</td>
+      <td>0.194</td>
+    </tr>
+    <tr>
+      <th>graphgps_ctqw_heat</th>
+      <td>0.873</td>
+      <td>0.166</td>
+      <td>0.876</td>
+      <td>1.163</td>
+    </tr>
+    <tr>
+      <th>gat_ctqw_poly</th>
+      <td>0.863</td>
+      <td>0.161</td>
+      <td>0.867</td>
+      <td>1.440</td>
+    </tr>
+    <tr>
+      <th>graphgps_rwr_heat</th>
+      <td>0.863</td>
+      <td>0.180</td>
+      <td>0.864</td>
+      <td>1.144</td>
+    </tr>
+    <tr>
+      <th>gat_rwr_poly</th>
+      <td>0.862</td>
+      <td>0.148</td>
+      <td>0.864</td>
+      <td>0.967</td>
+    </tr>
+    <tr>
+      <th>filter_rwr_heat</th>
+      <td>0.860</td>
+      <td>0.148</td>
+      <td>0.861</td>
+      <td>0.179</td>
+    </tr>
+    <tr>
+      <th>appnp</th>
+      <td>0.698</td>
+      <td>0.204</td>
+      <td>0.704</td>
+      <td>0.160</td>
+    </tr>
+    <tr>
+      <th>quvine_rwr</th>
+      <td>0.675</td>
+      <td>0.245</td>
+      <td>0.680</td>
+      <td>2.179</td>
+    </tr>
+    <tr>
+      <th>node2vec</th>
+      <td>0.662</td>
+      <td>0.266</td>
+      <td>0.665</td>
+      <td>0.509</td>
+    </tr>
+    <tr>
+      <th>quvine_dtqw</th>
+      <td>0.536</td>
+      <td>0.137</td>
+      <td>0.539</td>
+      <td>3.656</td>
+    </tr>
+    <tr>
+      <th>quvine_ctqw</th>
+      <td>0.330</td>
+      <td>0.067</td>
+      <td>0.335</td>
+      <td>3.254</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Macro-F1-by-method-and-graph-difficulty">
+<h3>Macro-F1 by method and graph difficulty<a class="headerlink" href="#Macro-F1-by-method-and-graph-difficulty" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">summary</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"method"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"macro_f1"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"graph"</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">graphs</span><span class="p">),</span> <span class="n">errorbar</span><span class="o">=</span><span class="s2">"sd"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Node classification macro-F1 by method (bars = mean over 5 iters, whiskers = sd)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"macro-F1"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"random (3 classes)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_example_quvine_12_0.png" src="../../_images/tutorials_QuVINE_example_quvine_12_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="5.-Graph-complexity-metrics">
+<h2>5. Graph complexity metrics<a class="headerlink" href="#5.-Graph-complexity-metrics" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">evaluate_graph</span></code> returns ~80 metrics per graph. We pull a curated set spanning connectivity, <strong>spectral localization (IPR)</strong>, <strong>spectral degeneracy</strong>, entropy, and community structure — the kinds of measures hypothesized to track how hard a graph is to embed/classify.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">complexity_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"spectral_gap"</span><span class="p">,</span> <span class="s2">"normalized_spectral_gap"</span><span class="p">,</span> <span class="s2">"algebraic_connectivity"</span><span class="p">,</span>
+    <span class="s2">"spectral_degeneracy_fraction"</span><span class="p">,</span>                       <span class="c1"># spectral degeneracy</span>
+    <span class="s2">"inverse_participation_ratio"</span><span class="p">,</span> <span class="s2">"ipr_low_mean"</span><span class="p">,</span> <span class="s2">"ipr_high_mean"</span><span class="p">,</span>   <span class="c1"># IPR / localization</span>
+    <span class="s2">"von_neumann_entropy"</span><span class="p">,</span> <span class="s2">"spectral_entropy"</span><span class="p">,</span>
+    <span class="s2">"modularity"</span><span class="p">,</span> <span class="s2">"transitivity"</span><span class="p">,</span> <span class="s2">"degree_gini"</span><span class="p">,</span> <span class="s2">"avg_degree"</span><span class="p">,</span> <span class="s2">"density"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">gname</span><span class="p">,</span> <span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">_labels</span><span class="p">)</span> <span class="ow">in</span> <span class="n">graphs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ev</span> <span class="o">=</span> <span class="n">evaluate_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">gname</span><span class="p">)</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"graph"</span><span class="p">:</span> <span class="n">gname</span><span class="p">}</span>
+    <span class="n">row</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">c</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">complexity_cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ev</span><span class="o">.</span><span class="n">columns</span><span class="p">})</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="n">complexity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"graph"</span><span class="p">)</span>
+<span class="n">complexity</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>graph</th>
+      <th>sbm_easy</th>
+      <th>sbm_medium</th>
+      <th>sbm_hard</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>spectral_gap</th>
+      <td>0.2887</td>
+      <td>0.4719</td>
+      <td>0.6253</td>
+    </tr>
+    <tr>
+      <th>normalized_spectral_gap</th>
+      <td>0.2887</td>
+      <td>0.4719</td>
+      <td>0.6253</td>
+    </tr>
+    <tr>
+      <th>algebraic_connectivity</th>
+      <td>5.2381</td>
+      <td>9.2314</td>
+      <td>12.8869</td>
+    </tr>
+    <tr>
+      <th>spectral_degeneracy_fraction</th>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>inverse_participation_ratio</th>
+      <td>0.0194</td>
+      <td>0.0198</td>
+      <td>0.0195</td>
+    </tr>
+    <tr>
+      <th>ipr_low_mean</th>
+      <td>0.0195</td>
+      <td>0.0190</td>
+      <td>0.0194</td>
+    </tr>
+    <tr>
+      <th>ipr_high_mean</th>
+      <td>0.0194</td>
+      <td>0.0205</td>
+      <td>0.0197</td>
+    </tr>
+    <tr>
+      <th>von_neumann_entropy</th>
+      <td>7.1532</td>
+      <td>7.1608</td>
+      <td>7.1715</td>
+    </tr>
+    <tr>
+      <th>spectral_entropy</th>
+      <td>4.9788</td>
+      <td>4.9844</td>
+      <td>4.9888</td>
+    </tr>
+    <tr>
+      <th>modularity</th>
+      <td>0.4344</td>
+      <td>0.2780</td>
+      <td>0.1369</td>
+    </tr>
+    <tr>
+      <th>transitivity</th>
+      <td>0.1914</td>
+      <td>0.1827</td>
+      <td>0.1895</td>
+    </tr>
+    <tr>
+      <th>degree_gini</th>
+      <td>0.1141</td>
+      <td>0.1152</td>
+      <td>0.1066</td>
+    </tr>
+    <tr>
+      <th>avg_degree</th>
+      <td>18.2400</td>
+      <td>22.1600</td>
+      <td>27.2000</td>
+    </tr>
+    <tr>
+      <th>density</th>
+      <td>0.1224</td>
+      <td>0.1487</td>
+      <td>0.1826</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="Complexity-fingerprint-across-the-three-graphs">
+<h3>Complexity fingerprint across the three graphs<a class="headerlink" href="#Complexity-fingerprint-across-the-three-graphs" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># z-score each metric across the 3 graphs so they are visually comparable on one heatmap.</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">complexity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">z</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="n">complexity</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"vlag"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"label"</span><span class="p">:</span> <span class="s2">"z-score across graphs"</span><span class="p">},</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Graph complexity fingerprint (annotated with raw values)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_example_quvine_16_0.png" src="../../_images/tutorials_QuVINE_example_quvine_16_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="6.-Correlate-complexity-with-node-classification-performance">
+<h2>6. Correlate complexity with node-classification performance<a class="headerlink" href="#6.-Correlate-complexity-with-node-classification-performance" title="Link to this heading">#</a></h2>
+<p>We merge each graph’s complexity metrics onto every result row and compute the <strong>Spearman correlation</strong> between each complexity metric and macro-F1 across all <code class="docutils literal notranslate"><span class="pre">(graph,</span> <span class="pre">method,</span> <span class="pre">iteration)</span></code> runs. A positive value means “higher metric ⟶ easier classification”.</p>
+<blockquote>
+<div><p>With only three distinct graphs the complexity axis takes three values, so treat these correlations as <strong>illustrative of the trend</strong> (harder graphs ⟶ lower F1) rather than precise effect sizes.</p>
+</div></blockquote>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
+
+<span class="n">merged</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">complexity</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">on</span><span class="o">=</span><span class="s2">"graph"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"macro_f1"</span><span class="p">])</span>
+
+<span class="c1"># Drop metrics that are constant across the three graphs (no variance -&gt; undefined correlation).</span>
+<span class="n">constant</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">complexity_cols</span> <span class="k">if</span> <span class="n">merged</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">active</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">complexity_cols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">constant</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">constant</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"constant across these graphs (skipped):"</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+
+<span class="n">corr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">active</span><span class="p">:</span>
+    <span class="n">rho</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">merged</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">merged</span><span class="p">[</span><span class="s2">"macro_f1"</span><span class="p">])</span>
+    <span class="n">corr</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"metric"</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s2">"spearman_rho"</span><span class="p">:</span> <span class="n">rho</span><span class="p">,</span> <span class="s2">"p_value"</span><span class="p">:</span> <span class="n">pval</span><span class="p">})</span>
+<span class="n">corr_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"spearman_rho"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">corr_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+constant across these graphs (skipped): [&#39;spectral_degeneracy_fraction&#39;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>metric</th>
+      <th>spearman_rho</th>
+      <th>p_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>modularity</td>
+      <td>0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>degree_gini</td>
+      <td>0.372</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ipr_low_mean</td>
+      <td>0.248</td>
+      <td>0.001</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>transitivity</td>
+      <td>0.248</td>
+      <td>0.001</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>inverse_participation_ratio</td>
+      <td>-0.248</td>
+      <td>0.001</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ipr_high_mean</td>
+      <td>-0.248</td>
+      <td>0.001</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>spectral_gap</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>normalized_spectral_gap</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>algebraic_connectivity</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>von_neumann_entropy</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>spectral_entropy</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>avg_degree</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>density</td>
+      <td>-0.619</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="Correlation-bar-chart">
+<h3>Correlation bar chart<a class="headerlink" href="#Correlation-bar-chart" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#2a9d8f"</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"#e76f51"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">corr_df</span><span class="p">[</span><span class="s2">"spearman_rho"</span><span class="p">]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">corr_df</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">],</span> <span class="n">corr_df</span><span class="p">[</span><span class="s2">"spearman_rho"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>                                   <span class="c1"># largest positive on top</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Spearman correlation: graph complexity vs. macro-F1"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Spearman rho (macro-F1)"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">corr_df</span><span class="p">[</span><span class="s2">"spearman_rho"</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.02</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"right"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_example_quvine_20_0.png" src="../../_images/tutorials_QuVINE_example_quvine_20_0.png" />
+</div>
+</div>
+</section>
+<section id="How-performance-tracks-two-key-metrics">
+<h3>How performance tracks two key metrics<a class="headerlink" href="#How-performance-tracks-two-key-metrics" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mean macro-F1 per graph vs. a connectivity metric (spectral gap) and a localization metric (IPR).</span>
+<span class="n">per_graph</span> <span class="o">=</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"graph"</span><span class="p">)[</span><span class="s2">"macro_f1"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+             <span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s2">"macro_f1"</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">complexity</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="s2">"spectral_gap"</span><span class="p">,</span> <span class="s2">"inverse_participation_ratio"</span><span class="p">]):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">per_graph</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"macro_f1"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">per_graph</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                    <span class="n">s</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="p">(</span><span class="n">ax</span> <span class="ow">is</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">per_graph</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">metric</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">"macro_f1"</span><span class="p">]),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+                    <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"mean macro-F1 vs. </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">():</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"graph"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_example_quvine_22_0.png" src="../../_images/tutorials_QuVINE_example_quvine_22_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="7.-Command-line-interface">
+<h2>7. Command-line interface<a class="headerlink" href="#7.-Command-line-interface" title="Link to this heading">#</a></h2>
+<p>The same embedding is available as the <code class="docutils literal notranslate"><span class="pre">quvine</span></code> console script (installed with the <code class="docutils literal notranslate"><span class="pre">[quvine]</span></code> extra), mirroring <code class="docutils literal notranslate"><span class="pre">qprofiler</span></code> / <code class="docutils literal notranslate"><span class="pre">qsage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quvine<span class="w"> </span>--list-methods<span class="w">                                             </span><span class="c1"># list all methods</span>
+quvine<span class="w"> </span>--edgelist<span class="w"> </span>edges.csv<span class="w"> </span>--method<span class="w"> </span>quvine_fused<span class="w"> </span>--output<span class="w"> </span>out/<span class="w">   </span><span class="c1"># -&gt; embedding.csv + meta.json</span>
+</pre></div>
+</div>
+<p>Integer node ids in the edge list are handled automatically (coerced to strings).</p>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial you:</p>
+<ol class="arabic simple">
+<li><p>✅ Generated three graphs of increasing difficulty (planted-community SBMs)</p></li>
+<li><p>✅ Embedded them with <strong>12 methods</strong> — quantum walks, quantum-calibrated filters/GAT/GraphGPS, and classical baselines — over <strong>5 iterations</strong></p></li>
+<li><p>✅ Scored a <strong>node-classification</strong> task (macro-F1) for each</p></li>
+<li><p>✅ Summarized each graph’s <strong>complexity</strong> (spectral gap, IPR, spectral degeneracy, entropy, …) with <code class="docutils literal notranslate"><span class="pre">evaluate_graph</span></code></p></li>
+<li><p>✅ <strong>Correlated</strong> complexity with performance and visualized the trend</p></li>
+</ol>
+</section>
+<section id="See-Also">
+<h2>See Also<a class="headerlink" href="#See-Also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../QProfiler/example_qprofiler.html"><span class="doc">QProfiler Tutorial</span></a> — the tabular-data analogue of this workflow</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_methods()</span></code> — the full QuVINE registry</p></li>
+<li><p>Fused embeddings: <code class="docutils literal notranslate"><span class="pre">embed(G,</span> <span class="pre">&quot;quvine_fused&quot;)</span></code> combines all walk kinds</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../QProfiler/sc_binary_qprofiler.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">QProfiler on the CD4-vs-CD8 T-cell task (with PQK)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quvine_sc_cd4_vs_cd8.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">QuVINE on the CD4-vs-CD8 cell graph — a few-shot “centroid seed” study</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#What-is-QuVINE-(in-QBioCode)?">What is QuVINE (in QBioCode)?</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-does">What this notebook does</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Setup-and-imports">1. Setup and imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Generate-three-graphs">2. Generate three graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Choose-task-and-methods">3. Choose task and methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Run-the-benchmark">4. Run the benchmark</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Per-method-summary-(mean-over-graphs-&amp;-iterations)">Per-method summary (mean over graphs &amp; iterations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Macro-F1-by-method-and-graph-difficulty">Macro-F1 by method and graph difficulty</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Graph-complexity-metrics">5. Graph complexity metrics</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Complexity-fingerprint-across-the-three-graphs">Complexity fingerprint across the three graphs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Correlate-complexity-with-node-classification-performance">6. Correlate complexity with node-classification performance</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Correlation-bar-chart">Correlation bar chart</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#How-performance-tracks-two-key-metrics">How performance tracks two key metrics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Command-line-interface">7. Command-line interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

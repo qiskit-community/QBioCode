@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.baselines.hyperparameter_loader &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/baselines/hyperparameter_loader';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.baselines.hyperparameter_loader</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.baselines.hyperparameter_loader</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Hyperparameter Loader for Tuned Methods</span>
+
+<span class="sd">This module loads pre-tuned hyperparameters from JSON files and overrides</span>
+<span class="sd">config defaults. Each dataset has its own tuning file with task-specific</span>
+<span class="sd">parameters (node_classification, link_prediction, node_ranking).</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">fields</span><span class="p">,</span> <span class="n">replace</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="c1"># Map method names to their hyperparameter keys in JSON files</span>
+<span class="n">METHOD_TO_HYPERPARAM_KEY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># 5 Baselines - direct mappings</span>
+    <span class="s1">'node2vec'</span><span class="p">:</span> <span class="s1">'node2vec'</span><span class="p">,</span>
+    <span class="s1">'appnp'</span><span class="p">:</span> <span class="s1">'appnp'</span><span class="p">,</span>
+    <span class="s1">'graphsage'</span><span class="p">:</span> <span class="s1">'graphsage'</span><span class="p">,</span>
+    <span class="s1">'netmf'</span><span class="p">:</span> <span class="s1">'netmf'</span><span class="p">,</span>
+    <span class="s1">'baseline_gcnmf'</span><span class="p">:</span> <span class="s1">'baseline_gcnmf'</span><span class="p">,</span>
+    
+    <span class="c1"># 10 Filter variants - map to baseline_filter</span>
+    <span class="s1">'baseline_filter_heat'</span><span class="p">:</span> <span class="s1">'baseline_filter_heat'</span><span class="p">,</span>
+    <span class="s1">'baseline_filter_poly'</span><span class="p">:</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>
+    <span class="s1">'filter_rwr_heat'</span><span class="p">:</span> <span class="s1">'baseline_filter_heat'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_heat tuning</span>
+    <span class="s1">'filter_rwr_poly'</span><span class="p">:</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_poly tuning</span>
+    <span class="s1">'filter_ctqw_heat'</span><span class="p">:</span> <span class="s1">'baseline_filter_heat'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_heat tuning</span>
+    <span class="s1">'filter_ctqw_poly'</span><span class="p">:</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_poly tuning</span>
+    <span class="s1">'filter_dtqw_heat'</span><span class="p">:</span> <span class="s1">'baseline_filter_heat'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_heat tuning</span>
+    <span class="s1">'filter_dtqw_poly'</span><span class="p">:</span> <span class="s1">'baseline_filter_poly'</span><span class="p">,</span>  <span class="c1"># Use baseline_filter_poly tuning</span>
+    
+    <span class="c1"># 10 GAT variants - all map to gat_baseline</span>
+    <span class="s1">'gat_baseline'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>  <span class="c1"># Map baseline to itself</span>
+    <span class="s1">'baseline_gat'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_heat'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_poly'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_rwr'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_ctqw_heat'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_ctqw_poly'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_dtqw_heat'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_dtqw_poly'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_rwr_heat'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+    <span class="s1">'gat_rwr_poly'</span><span class="p">:</span> <span class="s1">'gat_baseline'</span><span class="p">,</span>
+
+    <span class="c1"># 10 GraphGPS variants - all map to graphgps_baseline</span>
+    <span class="s1">'graphgps_baseline'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>  <span class="c1"># Map baseline to itself</span>
+    <span class="s1">'baseline_graphgps'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_heat'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_poly'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_rwr'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_ctqw_heat'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_ctqw_poly'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_dtqw_heat'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_dtqw_poly'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_rwr_heat'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    <span class="s1">'graphgps_rwr_poly'</span><span class="p">:</span> <span class="s1">'graphgps_baseline'</span><span class="p">,</span>
+    
+    <span class="c1"># 3 SGNS (QuVINE walk-based methods)</span>
+    <span class="s1">'quvine_ctqw'</span><span class="p">:</span> <span class="s1">'quvine_ctqw'</span><span class="p">,</span>
+    <span class="s1">'quvine_dtqw'</span><span class="p">:</span> <span class="s1">'quvine_dtqw'</span><span class="p">,</span>
+    <span class="s1">'quvine_rwr'</span><span class="p">:</span> <span class="s1">'quvine_rwr'</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="HyperparameterLoader">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">HyperparameterLoader</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Loads and manages tuned hyperparameters from JSON files.</span>
+<span class="sd">    </span>
+<span class="sd">    Example JSON structure::</span>
+
+<span class="sd">        {</span>
+<span class="sd">            "node2vec": {</span>
+<span class="sd">                "node2vec": {</span>
+<span class="sd">                    "node_classification": {"best_params": {...}, "best_score": 0.5},</span>
+<span class="sd">                    "link_prediction": {"best_params": {...}, "best_score": 0.9},</span>
+<span class="sd">                    "node_ranking": {"best_params": {...}, "best_score": 0.4}</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+<span class="sd">            ...</span>
+<span class="sd">        }</span>
+<span class="sd">    """</span>
+    
+<div class="viewcode-block" id="HyperparameterLoader.__init__">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tuning_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Initialize hyperparameter loader.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            tuning_dir: Directory containing tuning JSON files</span>
+<span class="sd">            dataset_name: Name of the dataset (e.g., 'scale_free', 'BioPlex3_autism')</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tuning_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">tuning_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">tuning_dir</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span> <span class="o">=</span> <span class="n">dataset_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyperparams</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuning_dir</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_hyperparameters</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="HyperparameterLoader.load_hyperparameters">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader.load_hyperparameters">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_hyperparameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Load hyperparameters from JSON file.</span>
+<span class="sd">        </span>
+<span class="sd">        Tries multiple filename patterns:</span>
+<span class="sd">        1. {dataset_name}_tuning_by_task.json (new format)</span>
+<span class="sd">        2. {dataset_name}_aggregated.json (legacy format)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True if loaded successfully, False otherwise</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuning_dir</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Tuning directory or dataset name not provided"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        
+        <span class="c1"># Try multiple filename patterns</span>
+        <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_tuning_by_task.json"</span><span class="p">,</span>  <span class="c1"># New format</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">_aggregated.json"</span><span class="p">,</span>       <span class="c1"># Legacy format</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="n">filepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tuning_dir</span> <span class="o">/</span> <span class="n">filename</span>
+            <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">hyperparams</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded hyperparameters from </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error loading hyperparameters from </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="k">continue</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tuning file not found for dataset '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s2">' in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tuning_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tried: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+    
+<div class="viewcode-block" id="HyperparameterLoader.get_method_params">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader.get_method_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_method_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"node_classification"</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get tuned parameters for a method and task.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            method_name: Name of the method (e.g., 'node2vec', 'gat_ctqw_heat')</span>
+<span class="sd">            task: Task type ('node_classification', 'link_prediction', 'node_ranking')</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary of best parameters, or None if not found</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="c1"># Map method name to hyperparameter key</span>
+        <span class="n">hyperparam_key</span> <span class="o">=</span> <span class="n">METHOD_TO_HYPERPARAM_KEY</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hyperparam_key</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No hyperparameter mapping for method: </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        
+        <span class="c1"># Navigate JSON structure: hyperparams[key][task]['best_params']</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">method_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyperparams</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hyperparam_key</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">task_data</span> <span class="o">=</span> <span class="n">method_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">best_params</span> <span class="o">=</span> <span class="n">task_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'best_params'</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">best_params</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found tuned params for </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">best_params</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No tuned params for </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error extracting params for </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+    
+<div class="viewcode-block" id="HyperparameterLoader.override_config">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader.override_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">override_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"node_classification"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Override config object with tuned hyperparameters.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            config: Config dataclass object</span>
+<span class="sd">            method_name: Name of the method</span>
+<span class="sd">            task: Task type</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Updated config object (new instance via dataclass replace)</span>
+<span class="sd">        """</span>
+        <span class="n">tuned_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_method_params</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">config</span>
+        
+        <span class="c1"># Map JSON parameter names to config attribute names</span>
+        <span class="n">param_mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param_mapping</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+        
+        <span class="c1"># Build kwargs for dataclass replace</span>
+        <span class="n">update_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">json_key</span><span class="p">,</span> <span class="n">config_attr</span> <span class="ow">in</span> <span class="n">param_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">json_key</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="n">json_key</span><span class="p">]</span>
+                <span class="c1"># Handle string values that should be floats</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">'e-'</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">update_kwargs</span><span class="p">[</span><span class="n">config_attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="n">valid_fields</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">config</span><span class="p">)}</span>
+
+        <span class="c1"># Dimension field name varies across configs: node2vec/appnp/graphsage/netmf</span>
+        <span class="c1"># use `dimensions`, while filter/gcnmf/gat/graphgps/quvine use `embedding_dim`.</span>
+        <span class="c1"># Route the tuned `embedding_dim` to whichever this config actually has so the</span>
+        <span class="c1"># tuned dimension is applied rather than dropped.</span>
+        <span class="k">if</span> <span class="s1">'embedding_dim'</span> <span class="ow">in</span> <span class="n">tuned_params</span> <span class="ow">and</span> <span class="s1">'embedding_dim'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_fields</span> <span class="ow">and</span> <span class="s1">'dimensions'</span> <span class="ow">in</span> <span class="n">valid_fields</span><span class="p">:</span>
+            <span class="n">update_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">'embedding_dim'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">update_kwargs</span><span class="p">[</span><span class="s1">'dimensions'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'embedding_dim'</span><span class="p">]</span>
+
+        <span class="c1"># Drop any param the config doesn't accept (e.g. a method-agnostic mapping</span>
+        <span class="c1"># lists `epochs` but Node2VecConfig has none) so replace() never crashes.</span>
+        <span class="n">dropped</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">update_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_fields</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">dropped</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Dropping </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dropped</span><span class="p">)</span><span class="si">}</span><span class="s2"> tuned param(s) not on </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">: "</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="n">dropped</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="n">update_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">update_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">valid_fields</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">update_kwargs</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Overriding </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">update_kwargs</span><span class="p">)</span><span class="si">}</span><span class="s2"> params for </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">replace</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">update_kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">config</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_param_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Get mapping from JSON parameter names to config attribute names.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            method_name: Name of the method</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary mapping JSON keys to config attributes</span>
+<span class="sd">        """</span>
+        <span class="c1"># Common mappings</span>
+        <span class="n">common</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'embedding_dim'</span><span class="p">:</span> <span class="s1">'embedding_dim'</span><span class="p">,</span>
+            <span class="s1">'hidden_dim'</span><span class="p">:</span> <span class="s1">'hidden_dim'</span><span class="p">,</span>
+            <span class="s1">'n_layers'</span><span class="p">:</span> <span class="s1">'n_layers'</span><span class="p">,</span>
+            <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="s1">'lr'</span><span class="p">,</span>
+            <span class="s1">'weight_decay'</span><span class="p">:</span> <span class="s1">'weight_decay'</span><span class="p">,</span>
+            <span class="s1">'epochs'</span><span class="p">:</span> <span class="s1">'epochs'</span><span class="p">,</span>
+            <span class="s1">'dropout'</span><span class="p">:</span> <span class="s1">'dropout'</span><span class="p">,</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Method-specific mappings</span>
+        <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s1">'node2vec'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">common</span><span class="p">,</span>
+                <span class="s1">'walk_length'</span><span class="p">:</span> <span class="s1">'walk_length'</span><span class="p">,</span>
+                <span class="s1">'num_walks'</span><span class="p">:</span> <span class="s1">'num_walks'</span><span class="p">,</span>
+                <span class="s1">'p'</span><span class="p">:</span> <span class="s1">'p'</span><span class="p">,</span>
+                <span class="s1">'q'</span><span class="p">:</span> <span class="s1">'q'</span><span class="p">,</span>
+                <span class="s1">'window_size'</span><span class="p">:</span> <span class="s1">'window'</span><span class="p">,</span>
+                <span class="s1">'negative_samples'</span><span class="p">:</span> <span class="s1">'min_count'</span><span class="p">,</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s1">'appnp'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">common</span><span class="p">,</span>
+                <span class="s1">'alpha'</span><span class="p">:</span> <span class="s1">'alpha'</span><span class="p">,</span>
+                <span class="s1">'k_hops'</span><span class="p">:</span> <span class="s1">'K'</span><span class="p">,</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s1">'graphsage'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">common</span><span class="p">,</span>
+                <span class="s1">'aggregator'</span><span class="p">:</span> <span class="s1">'aggregator'</span><span class="p">,</span>  <span class="c1"># May need custom handling</span>
+                <span class="s1">'batch_size'</span><span class="p">:</span> <span class="s1">'batch_size'</span><span class="p">,</span>  <span class="c1"># May need custom handling</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="s1">'filter'</span> <span class="ow">in</span> <span class="n">method_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">'embedding_dim'</span><span class="p">:</span> <span class="s1">'embedding_dim'</span><span class="p">,</span>
+                <span class="s1">'tau'</span><span class="p">:</span> <span class="s1">'t'</span><span class="p">,</span>
+                <span class="s1">'filter_order'</span><span class="p">:</span> <span class="s1">'K'</span><span class="p">,</span>
+                <span class="s1">'alpha'</span><span class="p">:</span> <span class="s1">'alpha'</span><span class="p">,</span>  <span class="c1"># For poly filter</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="s1">'gat'</span> <span class="ow">in</span> <span class="n">method_name</span> <span class="ow">or</span> <span class="s1">'graphgps'</span> <span class="ow">in</span> <span class="n">method_name</span><span class="p">:</span>
+            <span class="c1"># These have nested configs, handle in override_config</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">'embedding_dim'</span><span class="p">:</span> <span class="s1">'embedding_dim'</span><span class="p">,</span>
+                <span class="s1">'hidden_dim'</span><span class="p">:</span> <span class="s1">'hidden_dim'</span><span class="p">,</span>  <span class="c1"># Will go to model config</span>
+                <span class="s1">'n_layers'</span><span class="p">:</span> <span class="s1">'n_layers'</span><span class="p">,</span>  <span class="c1"># Will go to model config</span>
+                <span class="s1">'n_heads'</span><span class="p">:</span> <span class="s1">'heads'</span><span class="p">,</span>  <span class="c1"># Will go to model config</span>
+                <span class="s1">'dropout'</span><span class="p">:</span> <span class="s1">'dropout'</span><span class="p">,</span>  <span class="c1"># Will go to model config</span>
+                <span class="s1">'attn_dropout'</span><span class="p">:</span> <span class="s1">'attention_dropout'</span><span class="p">,</span>  <span class="c1"># Will go to model config</span>
+                <span class="s1">'learning_rate'</span><span class="p">:</span> <span class="s1">'lr'</span><span class="p">,</span>  <span class="c1"># Will go to train config</span>
+                <span class="s1">'weight_decay'</span><span class="p">:</span> <span class="s1">'weight_decay'</span><span class="p">,</span>  <span class="c1"># Will go to train config</span>
+                <span class="s1">'epochs'</span><span class="p">:</span> <span class="s1">'epochs'</span><span class="p">,</span>  <span class="c1"># Will go to train config</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="s1">'gcnmf'</span> <span class="ow">in</span> <span class="n">method_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">common</span><span class="p">,</span>
+                <span class="s1">'mf_dim'</span><span class="p">:</span> <span class="s1">'mf_dim'</span><span class="p">,</span>
+            <span class="p">}</span>
+        
+        <span class="k">elif</span> <span class="s1">'netmf'</span> <span class="ow">in</span> <span class="n">method_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">'embedding_dim'</span><span class="p">:</span> <span class="s1">'dimensions'</span><span class="p">,</span>
+                <span class="s1">'window_size'</span><span class="p">:</span> <span class="s1">'window_size'</span><span class="p">,</span>
+                <span class="s1">'rank'</span><span class="p">:</span> <span class="s1">'rank'</span><span class="p">,</span>
+                <span class="s1">'negative_samples'</span><span class="p">:</span> <span class="s1">'negative'</span><span class="p">,</span>
+            <span class="p">}</span>
+        
+        <span class="c1"># Default: return common mappings</span>
+        <span class="k">return</span> <span class="n">common</span>
+    
+<div class="viewcode-block" id="HyperparameterLoader.override_nested_config">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.HyperparameterLoader.override_nested_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">override_nested_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"node_classification"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Override nested config objects (for GAT/GraphGPS with model and train configs).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            config: Config dataclass with nested model and train configs</span>
+<span class="sd">            method_name: Name of the method</span>
+<span class="sd">            task: Task type</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Updated config object</span>
+<span class="sd">        """</span>
+        <span class="n">tuned_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_method_params</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">config</span>
+        
+        <span class="c1"># Update model config</span>
+        <span class="n">model_updates</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">'hidden_dim'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">model_updates</span><span class="p">[</span><span class="s1">'hidden_dim'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'hidden_dim'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'n_layers'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">model_updates</span><span class="p">[</span><span class="s1">'num_layers'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'n_layers'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'n_heads'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">model_updates</span><span class="p">[</span><span class="s1">'heads'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'n_heads'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'dropout'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">model_updates</span><span class="p">[</span><span class="s1">'dropout'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'dropout'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'attn_dropout'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s1">'attention_dropout'</span><span class="p">):</span>
+                <span class="n">model_updates</span><span class="p">[</span><span class="s1">'attention_dropout'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'attn_dropout'</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s1">'attn_dropout'</span><span class="p">):</span>
+                <span class="n">model_updates</span><span class="p">[</span><span class="s1">'attn_dropout'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'attn_dropout'</span><span class="p">]</span>
+        
+        <span class="c1"># Update train config</span>
+        <span class="n">train_updates</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">'learning_rate'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">train_updates</span><span class="p">[</span><span class="s1">'lr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'learning_rate'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">'weight_decay'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'weight_decay'</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">train_updates</span><span class="p">[</span><span class="s1">'weight_decay'</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="s1">'epochs'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">train_updates</span><span class="p">[</span><span class="s1">'epochs'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'epochs'</span><span class="p">]</span>
+        
+        <span class="c1"># Update top-level config</span>
+        <span class="n">top_updates</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">'embedding_dim'</span> <span class="ow">in</span> <span class="n">tuned_params</span><span class="p">:</span>
+            <span class="n">top_updates</span><span class="p">[</span><span class="s1">'embedding_dim'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'embedding_dim'</span><span class="p">]</span>
+            <span class="c1"># Also update model output_dim</span>
+            <span class="n">model_updates</span><span class="p">[</span><span class="s1">'output_dim'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tuned_params</span><span class="p">[</span><span class="s1">'embedding_dim'</span><span class="p">]</span>
+        
+        <span class="c1"># Apply updates</span>
+        <span class="n">new_config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="k">if</span> <span class="n">model_updates</span><span class="p">:</span>
+            <span class="n">new_config</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="n">new_config</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">replace</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">model_updates</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">train_updates</span><span class="p">:</span>
+            <span class="n">new_config</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="n">new_config</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">replace</span><span class="p">(</span><span class="n">new_config</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="o">**</span><span class="n">train_updates</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">top_updates</span><span class="p">:</span>
+            <span class="n">new_config</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="n">new_config</span><span class="p">,</span> <span class="o">**</span><span class="n">top_updates</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">model_updates</span> <span class="ow">or</span> <span class="n">train_updates</span> <span class="ow">or</span> <span class="n">top_updates</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Overriding nested config for </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">: "</span>
+                       <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model_updates</span><span class="p">)</span><span class="si">}</span><span class="s2"> model, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_updates</span><span class="p">)</span><span class="si">}</span><span class="s2"> train, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">top_updates</span><span class="p">)</span><span class="si">}</span><span class="s2"> top"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">new_config</span></div>
+</div>
+
+
+
+<span class="c1"># Global loader instance (can be set by pipeline)</span>
+<span class="n">_global_loader</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HyperparameterLoader</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="set_global_loader">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.set_global_loader">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_global_loader</span><span class="p">(</span><span class="n">loader</span><span class="p">:</span> <span class="n">HyperparameterLoader</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Set the global hyperparameter loader."""</span>
+    <span class="k">global</span> <span class="n">_global_loader</span>
+    <span class="n">_global_loader</span> <span class="o">=</span> <span class="n">loader</span></div>
+
+
+
+<div class="viewcode-block" id="get_global_loader">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.get_global_loader">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_global_loader</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HyperparameterLoader</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Get the global hyperparameter loader."""</span>
+    <span class="k">return</span> <span class="n">_global_loader</span></div>
+
+
+
+<div class="viewcode-block" id="load_and_override_config">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.baselines.hyperparameter_loader.html#qbiocode.apps.quvine.baselines.hyperparameter_loader.load_and_override_config">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_and_override_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"node_classification"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Convenience function to override config with tuned hyperparameters.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        config: Config dataclass object</span>
+<span class="sd">        method_name: Name of the method</span>
+<span class="sd">        task: Task type</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Updated config object</span>
+<span class="sd">    """</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">get_global_loader</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">config</span>
+    
+    <span class="c1"># Check if config has nested structure (GAT/GraphGPS)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s1">'train'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">loader</span><span class="o">.</span><span class="n">override_nested_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">loader</span><span class="o">.</span><span class="n">override_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

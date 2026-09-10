@@ -1,0 +1,140 @@
+/* Custom CSS for improved QBioCode documentation layout */
+
+/* Improve notebook cell spacing and readability */
+div.nbinput.container,
+div.nboutput.container {
+    margin-bottom: 1.5em;
+    border-radius: 4px;
+}
+
+/* Better code cell styling */
+div.highlight-ipython3 {
+    margin: 0.5em 0;
+    border-left: 3px solid #007bff;
+    padding-left: 10px;
+}
+
+/* Improve markdown cell rendering in notebooks */
+.nbinput + .nboutput {
+    margin-top: 1em;
+}
+
+/* Better heading spacing in notebooks */
+.nboutput h1,
+.nboutput h2,
+.nboutput h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+/* Improve table of contents */
+.bd-toc {
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+}
+
+/* Better code block styling */
+pre {
+    padding: 1em;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+/* Improve parameter lists in API docs */
+dl.field-list {
+    margin-bottom: 1.5em;
+}
+
+dl.field-list dt {
+    font-weight: 600;
+    margin-top: 0.5em;
+}
+
+/* Better notebook output styling */
+.nboutput .output_area {
+    padding: 0.5em;
+}
+
+/* Improve admonition (note, warning, etc.) styling */
+.admonition {
+    margin: 1.5em 0;
+    padding: 1em;
+    border-radius: 4px;
+}
+
+/* Better link styling in notebooks */
+.nboutput a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nboutput a:hover {
+    text-decoration: underline;
+}
+
+/* Improve sidebar navigation */
+.bd-sidebar {
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 5rem);
+    overflow-y: auto;
+}
+
+/* Better spacing for notebook sections */
+.document .section {
+    margin-bottom: 2em;
+}
+
+/* Improve code cell input/output distinction */
+.nbinput {
+    background-color: #f8f9fa;
+}
+
+.nboutput {
+    background-color: #ffffff;
+}
+
+/* Better responsive design for notebooks */
+@media (max-width: 768px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Hide "Section Navigation" heading - Correct selectors from HTML */
+.bd-links__title,
+p.bd-links__title,
+nav[aria-label="Section Navigation"],
+nav[aria-label="Section Navigation"] p {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Hide the entire Section Navigation nav element */
+nav[aria-label="Section Navigation"] {
+    display: none !important;
+}
+
+/* Hide bd-toc-item content */
+.bd-toc-item {
+    display: none !important;
+}
+
+/* Also hide any WY theme navigation subsections as fallback */
+.wy-menu-vertical ul ul,
+.wy-menu-vertical li.current ul,
+.wy-menu-vertical .toctree-l2,
+.wy-menu-vertical .toctree-l3,
+.wy-menu-vertical .toctree-l4 {
+    display: none !important;
+}
+
+/* Made with Bob - v3 */

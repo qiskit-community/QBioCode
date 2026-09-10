@@ -1,0 +1,1413 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.evaluation.classification &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/evaluation/classification';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.evaluation.classification</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.evaluation.classification</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Node Classification Evaluation Module</span>
+
+<span class="sd">This module provides functions for evaluating node embeddings on node classification tasks.</span>
+<span class="sd">Includes multiple label generation strategies and comprehensive evaluation metrics.</span>
+
+<span class="sd">Label Generation Strategies:</span>
+<span class="sd">1. Community-based: Louvain, Label Propagation, Spectral Clustering</span>
+<span class="sd">2. Degree-based: Structural role binning</span>
+<span class="sd">3. Centrality-based: Betweenness, Closeness, Eigenvector, PageRank</span>
+<span class="sd">4. Core-periphery: K-core decomposition, Rich-club</span>
+<span class="sd">5. Homophily-based: Graph structure-aware labels (from Q-Caliber)</span>
+
+<span class="sd">Evaluation Metrics:</span>
+<span class="sd">- Accuracy, Precision, Recall, F1-score (macro/micro/weighted)</span>
+<span class="sd">- Confusion matrix</span>
+<span class="sd">- Per-class metrics</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="generate_community_labels">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.generate_community_labels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_community_labels</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'louvain'</span><span class="p">,</span>
+    <span class="n">min_community_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generate node labels based on community detection.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        method: Community detection method ('louvain', 'label_propagation', 'spectral')</span>
+<span class="sd">        min_community_size: Minimum nodes per community (smaller communities merged)</span>
+<span class="sd">        resolution: Resolution parameter for Louvain (higher = more communities)</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping node IDs to community labels</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'louvain'</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">community</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">community_louvain</span>
+            <span class="n">communities</span> <span class="o">=</span> <span class="n">community_louvain</span><span class="o">.</span><span class="n">best_partition</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"python-louvain not installed, falling back to label propagation"</span><span class="p">)</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="s1">'label_propagation'</span>
+    
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'label_propagation'</span><span class="p">:</span>
+        <span class="n">communities_gen</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">label_propagation_communities</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+        <span class="n">communities</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">communities_gen</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+                <span class="n">communities</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
+    
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'spectral'</span><span class="p">:</span>
+        <span class="c1"># Use spectral clustering with k determined by modularity optimization</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpectralClustering</span>
+        <span class="n">adj_matrix</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_scipy_sparse_array</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+        
+        <span class="c1"># Try different k values and pick best modularity</span>
+        <span class="n">best_k</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">best_modularity</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)):</span>
+            <span class="n">clustering</span> <span class="o">=</span> <span class="n">SpectralClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">affinity</span><span class="o">=</span><span class="s1">'precomputed'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">clustering</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">adj_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+            <span class="n">temp_communities</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())}</span>
+            <span class="n">mod</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">modularity</span><span class="p">(</span>
+                <span class="n">G</span><span class="p">,</span> 
+                <span class="p">[{</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">temp_communities</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">label</span><span class="p">}</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">labels</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">mod</span> <span class="o">&gt;</span> <span class="n">best_modularity</span><span class="p">:</span>
+                <span class="n">best_modularity</span> <span class="o">=</span> <span class="n">mod</span>
+                <span class="n">best_k</span> <span class="o">=</span> <span class="n">k</span>
+        
+        <span class="n">clustering</span> <span class="o">=</span> <span class="n">SpectralClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">best_k</span><span class="p">,</span> <span class="n">affinity</span><span class="o">=</span><span class="s1">'precomputed'</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">clustering</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">adj_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+        <span class="n">communities</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())}</span>
+    
+    <span class="c1"># Merge small communities</span>
+    <span class="n">label_counts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">communities</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">label_counts</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="n">small_labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span> <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">label_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">min_community_size</span><span class="p">}</span>
+    
+    <span class="k">if</span> <span class="n">small_labels</span><span class="p">:</span>
+        <span class="c1"># Merge small communities into largest community</span>
+        <span class="n">largest_label</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">label_counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">communities</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">:</span> <span class="p">(</span><span class="n">largest_label</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">small_labels</span> <span class="k">else</span> <span class="n">label</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">communities</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># Relabel to consecutive integers</span>
+        <span class="n">unique_labels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">communities</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">label_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">old</span><span class="p">:</span> <span class="n">new</span> <span class="k">for</span> <span class="n">new</span><span class="p">,</span> <span class="n">old</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">)}</span>
+        <span class="n">communities</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">label_map</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">communities</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    
+    <span class="k">return</span> <span class="n">communities</span></div>
+
+
+
+<div class="viewcode-block" id="generate_degree_labels">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.generate_degree_labels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_degree_labels</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'quantile'</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generate node labels based on degree binning.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        n_bins: Number of degree bins</span>
+<span class="sd">        method: Binning method ('quantile' or 'uniform')</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping node IDs to degree-based labels</span>
+<span class="sd">    """</span>
+    <span class="n">degrees</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
+    <span class="n">degree_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">degrees</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'quantile'</span><span class="p">:</span>
+        <span class="c1"># Equal-sized bins</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">degree_values</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># uniform</span>
+        <span class="c1"># Equal-width bins</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">degree_values</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">degree_values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">degree</span> <span class="ow">in</span> <span class="n">degrees</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>  <span class="c1"># Returns 0 to n_bins-1</span>
+        <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ensure max label is n_bins-1</span>
+    
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+
+
+<div class="viewcode-block" id="generate_centrality_labels">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.generate_centrality_labels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_centrality_labels</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">centrality_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'betweenness'</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generate node labels based on centrality measures.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        centrality_type: Type of centrality ('betweenness', 'closeness', 'eigenvector', 'pagerank')</span>
+<span class="sd">        n_bins: Number of centrality bins</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping node IDs to centrality-based labels</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">centrality_type</span> <span class="o">==</span> <span class="s1">'betweenness'</span><span class="p">:</span>
+        <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">centrality_type</span> <span class="o">==</span> <span class="s1">'closeness'</span><span class="p">:</span>
+        <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">centrality_type</span> <span class="o">==</span> <span class="s1">'eigenvector'</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">nx</span><span class="o">.</span><span class="n">PowerIterationFailedConvergence</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Eigenvector centrality failed to converge, using PageRank"</span><span class="p">)</span>
+            <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">centrality_type</span> <span class="o">==</span> <span class="s1">'pagerank'</span><span class="p">:</span>
+        <span class="n">centrality</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown centrality type: </span><span class="si">{</span><span class="n">centrality_type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="n">centrality_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">centrality</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">centrality_values</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">cent_value</span> <span class="ow">in</span> <span class="n">centrality</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">cent_value</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+
+
+<div class="viewcode-block" id="generate_core_periphery_labels">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.generate_core_periphery_labels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_core_periphery_labels</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'k_core'</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generate node labels based on core-periphery structure.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        method: Method ('k_core' or 'rich_club')</span>
+<span class="sd">        n_bins: Number of bins for rich-club method</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping node IDs to core-periphery labels</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'k_core'</span><span class="p">:</span>
+        <span class="c1"># Use k-core decomposition</span>
+        <span class="n">core_numbers</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">core_number</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+        <span class="n">max_core</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">core_numbers</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        
+        <span class="c1"># Create labels: 0=periphery, 1=intermediate, 2=core</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">core_numbers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">max_core</span> <span class="o">*</span> <span class="mf">0.33</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Periphery</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">max_core</span> <span class="o">*</span> <span class="mf">0.67</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Intermediate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Core</span>
+    
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">'rich_club'</span><span class="p">:</span>
+        <span class="c1"># Use rich-club coefficient</span>
+        <span class="n">degrees</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
+        <span class="n">degree_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">degrees</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">degree_values</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">degree</span> <span class="ow">in</span> <span class="n">degrees</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+
+
+<div class="viewcode-block" id="generate_homophily_labels">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.generate_homophily_labels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_homophily_labels</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">feature_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">neighbor_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">noise_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">seed_nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Generate node labels with homophily (graph structure influence).</span>
+<span class="sd">    </span>
+<span class="sd">    This strategy creates labels that respect graph structure without direct data leakage.</span>
+<span class="sd">    It combines feature-based scores with neighbor influence to create realistic labels</span>
+<span class="sd">    where similar/connected nodes tend to have similar labels.</span>
+<span class="sd">    </span>
+<span class="sd">    Strategy (from Q-Caliber notebook):</span>
+<span class="sd">    1. Create feature-based scores from embeddings or random features</span>
+<span class="sd">    2. Initialize labels based on feature scores</span>
+<span class="sd">    3. Add homophily: neighbors of positive nodes more likely positive</span>
+<span class="sd">    4. Combine feature scores (50%) with neighbor influence (50%)</span>
+<span class="sd">    5. Add noise and create final labels</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        embeddings: Node embeddings (optional, if None uses random features)</span>
+<span class="sd">        feature_weight: Weight for feature-based scores (default 0.5)</span>
+<span class="sd">        neighbor_weight: Weight for neighbor influence (default 0.5)</span>
+<span class="sd">        noise_std: Standard deviation of noise to add (default 0.15)</span>
+<span class="sd">        n_bins: Number of label classes (default 2 for binary)</span>
+<span class="sd">        seed_nodes: Optional list of nodes to force as positive class</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping node IDs to homophily-based labels</span>
+<span class="sd">    """</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    
+    <span class="n">N</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span>
+    <span class="n">node_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_list</span><span class="p">)}</span>
+    
+    <span class="c1"># Get adjacency matrix</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_scipy_sparse_array</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">nodelist</span><span class="o">=</span><span class="n">node_list</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'csr'</span><span class="p">)</span>
+    
+    <span class="c1"># Step 1: Create feature-based scores</span>
+    <span class="k">if</span> <span class="n">embeddings</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Use provided embeddings</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">embeddings</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Generate random features with graph structure influence</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="mi">32</span>
+        <span class="n">X_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+
+        <span class="c1"># Degree-normalised adjacency stays sparse: avoids O(N^2) dense broadcast.</span>
+        <span class="n">A_tilde</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'csr'</span><span class="p">)</span>
+        <span class="n">deg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A_tilde</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">D_inv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">deg</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'csr'</span><span class="p">)</span>
+        <span class="n">A_norm</span> <span class="o">=</span> <span class="n">D_inv</span> <span class="o">@</span> <span class="n">A_tilde</span>  <span class="c1"># sparse CSR, O(E) storage</span>
+
+        <span class="c1"># Two-hop smoothing as two sparse matrix multiplies over all F columns at once.</span>
+        <span class="n">X_smooth</span> <span class="o">=</span> <span class="n">A_norm</span> <span class="o">@</span> <span class="p">(</span><span class="n">A_norm</span> <span class="o">@</span> <span class="n">X_base</span><span class="p">)</span>
+
+        <span class="c1"># Mix base and smooth features with noise</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">X_base</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">X_smooth</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>  <span class="c1"># Normalize</span>
+    
+    <span class="c1"># Create decision weights and compute feature scores</span>
+    <span class="n">decision_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+    <span class="n">decision_weights</span> <span class="o">=</span> <span class="n">decision_weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">decision_weights</span><span class="p">)</span>
+    <span class="n">feature_scores</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">decision_weights</span>
+    <span class="n">feature_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_scores</span> <span class="o">-</span> <span class="n">feature_scores</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">feature_scores</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">feature_scores</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
+    
+    <span class="c1"># Step 2: Initialize labels based on features</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">feature_scores</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="c1"># Step 3: Force seed nodes to be positive (if provided)</span>
+    <span class="k">if</span> <span class="n">seed_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">seed_nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="p">:</span>
+                <span class="n">y</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">seed</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Step 4: Add homophily - neighbors of positive nodes more likely positive</span>
+    <span class="c1"># This makes graph structure useful without direct leakage</span>
+    <span class="n">y_float</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">neighbor_influence</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">y_float</span>  <span class="c1"># Sum of neighbor labels</span>
+    <span class="n">neighbor_influence</span> <span class="o">=</span> <span class="n">neighbor_influence</span> <span class="o">/</span> <span class="p">(</span><span class="n">neighbor_influence</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
+    
+    <span class="c1"># Step 5: Combine feature scores with neighbor influence</span>
+    <span class="c1"># Balance allows graph diffusion methods to be useful</span>
+    <span class="n">combined_scores</span> <span class="o">=</span> <span class="n">feature_weight</span> <span class="o">*</span> <span class="n">feature_scores</span> <span class="o">+</span> <span class="n">neighbor_weight</span> <span class="o">*</span> <span class="n">neighbor_influence</span>
+    
+    <span class="c1"># Add noise</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">noise_std</span>
+    <span class="n">noisy_scores</span> <span class="o">=</span> <span class="n">combined_scores</span> <span class="o">+</span> <span class="n">noise</span>
+    
+    <span class="c1"># Step 6: Create final labels</span>
+    <span class="k">if</span> <span class="n">n_bins</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1"># Binary classification</span>
+        <span class="n">threshold_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">noisy_scores</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">noisy_scores</span> <span class="o">&gt;</span> <span class="n">threshold_final</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Multi-class classification</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">noisy_scores</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">noisy_scores</span><span class="p">,</span> <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Re-force seed nodes to be positive (if provided)</span>
+    <span class="k">if</span> <span class="n">seed_nodes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">seed_nodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="p">:</span>
+                <span class="n">y</span><span class="p">[</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">seed</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_bins</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Positive class</span>
+    
+    <span class="c1"># Convert to dictionary</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span> <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate_node_classification">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.evaluate_node_classification">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_node_classification</span><span class="p">(</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">test_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">classifier</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'logistic'</span><span class="p">,</span>
+    <span class="n">n_splits</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate node embeddings on classification task.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        embeddings: Node embedding matrix (n_nodes x embedding_dim)</span>
+<span class="sd">        labels: Dictionary mapping node IDs to class labels</span>
+<span class="sd">        node_list: List of node IDs corresponding to embedding rows</span>
+<span class="sd">        test_size: Fraction of data for testing</span>
+<span class="sd">        classifier: Classifier type ('logistic' or 'random_forest')</span>
+<span class="sd">        n_splits: Number of cross-validation splits</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of evaluation metrics</span>
+<span class="sd">    """</span>
+    <span class="c1"># Prepare data</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">embeddings</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_list</span><span class="p">])</span>
+    
+    <span class="c1"># Check if we have enough samples per class</span>
+    <span class="n">unique_labels</span><span class="p">,</span> <span class="n">label_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">min_samples</span> <span class="o">=</span> <span class="n">label_counts</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">min_samples</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Some classes have only </span><span class="si">{</span><span class="n">min_samples</span><span class="si">}</span><span class="s2"> sample(s). Skipping evaluation."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'accuracy'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'precision_macro'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'recall_macro'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'f1_macro'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'n_classes'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">),</span>
+            <span class="s1">'error'</span><span class="p">:</span> <span class="s1">'insufficient_samples'</span>
+        <span class="p">}</span>
+    
+    <span class="c1"># Initialize classifier</span>
+    <span class="k">if</span> <span class="n">classifier</span> <span class="o">==</span> <span class="s1">'logistic'</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">classifier</span> <span class="o">==</span> <span class="s1">'random_forest'</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown classifier: </span><span class="si">{</span><span class="n">classifier</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="c1"># Single train-test split evaluation</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># FIX: Prevent data leakage - fit scaler only on training data</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>  <span class="c1"># Use transform, not fit_transform</span>
+    
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
+    
+    <span class="c1"># Compute metrics</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'accuracy'</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">'precision_macro'</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'precision_micro'</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'micro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'precision_weighted'</span><span class="p">:</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'weighted'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'recall_macro'</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'recall_micro'</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'micro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'recall_weighted'</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'weighted'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'f1_macro'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'f1_micro'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'micro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'f1_weighted'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'weighted'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="s1">'n_classes'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">),</span>
+        <span class="s1">'n_train'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span>
+        <span class="s1">'n_test'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Cross-validation if enough samples</span>
+    <span class="k">if</span> <span class="n">min_samples</span> <span class="o">&gt;=</span> <span class="n">n_splits</span><span class="p">:</span>
+        <span class="n">cv_scores</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+            <span class="n">cv_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+            <span class="n">X_train_cv_scaled</span> <span class="o">=</span> <span class="n">cv_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">)</span>
+            <span class="n">X_test_cv_scaled</span> <span class="o">=</span> <span class="n">cv_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_cv</span><span class="p">)</span>
+            <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_test_cv</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+            
+            <span class="n">clf_cv</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="n">clf_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv_scaled</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
+            <span class="n">y_pred_cv</span> <span class="o">=</span> <span class="n">clf_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cv_scaled</span><span class="p">)</span>
+            
+            <span class="n">cv_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test_cv</span><span class="p">,</span> <span class="n">y_pred_cv</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+        
+        <span class="n">results</span><span class="p">[</span><span class="s1">'f1_macro_cv_mean'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cv_scores</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'f1_macro_cv_std'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">cv_scores</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_generate_ensemble_labels</span><span class="p">(</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">label_dicts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Majority-vote ensemble across all successful label strategies.</span>
+
+<span class="sd">    Each strategy's labels are median-binarized (above median → 1) before</span>
+<span class="sd">    voting, so multi-class strategies contribute a clean binary signal.</span>
+<span class="sd">    A node is assigned class 1 when strictly more than half the strategies</span>
+<span class="sd">    voted 1 for it.</span>
+<span class="sd">    """</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_list</span><span class="p">)</span>
+    <span class="n">votes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">n_used</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">label_dicts</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">node_list</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">continue</span>  <span class="c1"># degenerate strategy — skip</span>
+        <span class="n">binary</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">votes</span> <span class="o">+=</span> <span class="n">binary</span>
+        <span class="n">n_used</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n_used</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">node_list</span><span class="p">}</span>
+    <span class="n">ensemble</span> <span class="o">=</span> <span class="p">(</span><span class="n">votes</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">n_used</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">ensemble</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_list</span><span class="p">)}</span>
+
+
+<div class="viewcode-block" id="evaluate_all_label_strategies">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.evaluate_all_label_strategies">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_all_label_strategies</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">test_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">pregenerated_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># accepted for API compat, not used in label generation</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate embeddings using all label generation strategies plus an ensemble.</span>
+
+<span class="sd">    Strategies (8 total):</span>
+<span class="sd">      1. community_louvain</span>
+<span class="sd">      2. community_label_propagation</span>
+<span class="sd">      3. degree_based</span>
+<span class="sd">      4. centrality_betweenness</span>
+<span class="sd">      5. centrality_pagerank</span>
+<span class="sd">      6. core_periphery</span>
+<span class="sd">      7. homophily_based</span>
+<span class="sd">      8. ensemble  (majority-vote across all successful strategies above)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: NetworkX graph</span>
+<span class="sd">        embeddings: Node embedding matrix</span>
+<span class="sd">        node_list: List of node IDs</span>
+<span class="sd">        test_size: Test set fraction</span>
+<span class="sd">        random_state: Random seed</span>
+<span class="sd">        pregenerated_split: Accepted for API compatibility; unused here.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary mapping strategy names to evaluation results</span>
+<span class="sd">    """</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_label_dicts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># track for ensemble</span>
+
+    <span class="c1"># 1. Community-based labels</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'louvain'</span><span class="p">,</span> <span class="s1">'label_propagation'</span><span class="p">]:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'community_</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1">'</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_community_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+            <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+                <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+            <span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+            <span class="n">_label_dicts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Community detection (</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">) failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="c1"># 2. Degree-based labels</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_degree_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+            <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'degree_based'</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+        <span class="n">_label_dicts</span><span class="p">[</span><span class="s1">'degree_based'</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Degree-based labeling failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'degree_based'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="c1"># 3. Centrality-based labels</span>
+    <span class="k">for</span> <span class="n">cent_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'betweenness'</span><span class="p">,</span> <span class="s1">'pagerank'</span><span class="p">]:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'centrality_</span><span class="si">{</span><span class="n">cent_type</span><span class="si">}</span><span class="s1">'</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_centrality_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">centrality_type</span><span class="o">=</span><span class="n">cent_type</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+                <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+            <span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+            <span class="n">_label_dicts</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Centrality-based labeling (</span><span class="si">{</span><span class="n">cent_type</span><span class="si">}</span><span class="s2">) failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="c1"># 4. Core-periphery labels</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_core_periphery_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'k_core'</span><span class="p">)</span>
+        <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+            <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'core_periphery'</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+        <span class="n">_label_dicts</span><span class="p">[</span><span class="s1">'core_periphery'</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Core-periphery labeling failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'core_periphery'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="c1"># 5. Homophily-based labels (topology-only: prevents circular dependency</span>
+    <span class="c1">#    where a method's own embedding defines the labels it is then scored on).</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_homophily_labels</span><span class="p">(</span>
+            <span class="n">G</span><span class="p">,</span>
+            <span class="n">embeddings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">feature_weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">neighbor_weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+            <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+        <span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'homophily_based'</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+        <span class="n">_label_dicts</span><span class="p">[</span><span class="s1">'homophily_based'</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Homophily-based labeling failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'homophily_based'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+    <span class="c1"># 6. Ensemble: majority-vote across all strategies that succeeded</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">_label_dicts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ensemble_labels</span> <span class="o">=</span> <span class="n">_generate_ensemble_labels</span><span class="p">(</span><span class="n">node_list</span><span class="p">,</span> <span class="n">_label_dicts</span><span class="p">)</span>
+            <span class="n">eval_results</span> <span class="o">=</span> <span class="n">evaluate_node_classification</span><span class="p">(</span>
+                <span class="n">embeddings</span><span class="p">,</span> <span class="n">ensemble_labels</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span>
+            <span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">'ensemble'</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval_results</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ensemble labeling failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">'ensemble'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">'ensemble'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'error'</span><span class="p">:</span> <span class="s1">'insufficient_strategies_for_ensemble'</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate_nc_stratified">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.evaluate_nc_stratified">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_nc_stratified</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">embeddings</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">node_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">label_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">'louvain'</span><span class="p">,</span>
+    <span class="n">n_degree_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">dist_max_bin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Evaluate node classification stratified by node degree and distance from hubs.</span>
+
+<span class="sd">    Produces one row per (bin_type, bin_label) for the primary label strategy,</span>
+<span class="sd">    reporting per-bin accuracy on the test nodes.  This mirrors the degree/</span>
+<span class="sd">    distance-matched controls used in LP and ranking evaluations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    G : nx.Graph</span>
+<span class="sd">    embeddings : np.ndarray  (n_nodes × dim)</span>
+<span class="sd">    node_list : list</span>
+<span class="sd">        Nodes in the same order as rows of *embeddings*.</span>
+<span class="sd">    label_strategy : str</span>
+<span class="sd">        Community detection method to generate labels ('louvain' or 'label_propagation').</span>
+<span class="sd">    n_degree_bins : int</span>
+<span class="sd">        Number of degree quantile bins (default 5 → Q1–Q5).</span>
+<span class="sd">    dist_max_bin : int</span>
+<span class="sd">        Distances ≥ this value are grouped into a single "{dist_max_bin}+" bin.</span>
+<span class="sd">    test_size : float</span>
+<span class="sd">        Fraction of nodes held out for evaluation.</span>
+<span class="sd">    random_state : int</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list of dicts</span>
+<span class="sd">        Each dict has keys: bin_type, bin_label, bin_n_nodes, accuracy, f1_macro.</span>
+<span class="sd">        *method* and *network_id* are added by the caller.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_community_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">label_strategy</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="c1"># label_propagation needs no optional dependency, so it is the fallback</span>
+        <span class="c1"># when the requested strategy is unavailable (python-louvain absent) or</span>
+        <span class="c1"># undefined on this graph. The first failure was previously discarded,</span>
+        <span class="c1"># which made a silently-substituted labelling indistinguishable from the</span>
+        <span class="c1"># requested one.</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">"Label strategy </span><span class="si">%r</span><span class="s2"> failed (</span><span class="si">%s</span><span class="s2">); falling back to label_propagation."</span><span class="p">,</span>
+            <span class="n">label_strategy</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_community_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'label_propagation'</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"NC stratified: label generation failed for both </span><span class="si">{</span><span class="n">label_strategy</span><span class="si">!r}</span><span class="s2"> "</span>
+                <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">) and the label_propagation fallback (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">); skipping."</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">embeddings</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">node_list</span><span class="p">])</span>
+    <span class="n">unique_labels</span><span class="p">,</span> <span class="n">label_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">label_counts</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">test_nodes</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">node_list</span><span class="p">),</span> <span class="n">test_size</span><span class="o">=</span><span class="n">test_size</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"NC stratified: train_test_split failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="c1"># Normalise: fit on train only</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train_s</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test_s</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_s</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"NC stratified: classifier fit failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_s</span><span class="p">)</span>
+
+    <span class="c1"># Degree bins — percentile thresholds on test-node degrees</span>
+    <span class="n">node_degrees</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span>
+    <span class="n">test_degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node_degrees</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">test_nodes</span><span class="p">])</span>
+    <span class="n">deg_thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">test_degrees</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_degree_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">deg_thresholds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># make the last bin right-inclusive</span>
+    <span class="n">test_deg_bins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">"Q</span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">deg_thresholds</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n_degree_bins</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">test_degrees</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Distance bins — min distance from top-sqrt(N) hub nodes</span>
+    <span class="n">hub_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">())))</span>
+    <span class="n">hubs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">node_degrees</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">node_degrees</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">hub_count</span><span class="p">]</span>
+
+    <span class="n">node_min_dist</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">hub</span> <span class="ow">in</span> <span class="n">hubs</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dists</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_shortest_path_length</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">hub</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">dist_max_bin</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">nx</span><span class="o">.</span><span class="n">NetworkXException</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="c1"># A hub that is not in G (only reachable if G was mutated between the</span>
+            <span class="c1"># degree scan and here) contributes no distances. Other hubs still do,</span>
+            <span class="c1"># so this is a skip, not a failure.</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"No distances from hub </span><span class="si">%r</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">hub</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+            <span class="n">dists</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dists</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_min_dist</span> <span class="ow">or</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">node_min_dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="n">node_min_dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+
+    <span class="n">test_dist_bins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist_max_bin</span><span class="si">}</span><span class="s2">+"</span> <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">node_min_dist</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dist_max_bin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dist_max_bin</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">dist_max_bin</span>
+        <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">node_min_dist</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dist_max_bin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dist_max_bin</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">test_nodes</span>
+    <span class="p">]</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bin_labels_deg</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Q</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_degree_bins</span><span class="p">)]</span>
+    <span class="n">bin_labels_dist</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">dist_max_bin</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist_max_bin</span><span class="si">}</span><span class="s2">+"</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dist_max_bin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">bin_type</span><span class="p">,</span> <span class="n">bin_labels</span><span class="p">,</span> <span class="n">node_bins</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">'degree'</span><span class="p">,</span>   <span class="n">bin_labels_deg</span><span class="p">,</span>  <span class="n">test_deg_bins</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'distance'</span><span class="p">,</span> <span class="n">bin_labels_dist</span><span class="p">,</span> <span class="n">test_dist_bins</span><span class="p">),</span>
+    <span class="p">]:</span>
+        <span class="k">for</span> <span class="n">bl</span> <span class="ow">in</span> <span class="n">bin_labels</span><span class="p">:</span>
+            <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_bins</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="n">bl</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">yt</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+            <span class="n">yp</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+            <span class="n">n_cls</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">yt</span><span class="p">))</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">'bin_type'</span><span class="p">:</span> <span class="n">bin_type</span><span class="p">,</span>
+                <span class="s1">'bin_label'</span><span class="p">:</span> <span class="n">bl</span><span class="p">,</span>
+                <span class="s1">'bin_n_nodes'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">),</span>
+                <span class="s1">'accuracy'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">)),</span>
+                <span class="s1">'f1_macro'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+                            <span class="k">if</span> <span class="n">n_cls</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span>
+                <span class="s1">'label_strategy'</span><span class="p">:</span> <span class="n">label_strategy</span><span class="p">,</span>
+            <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">rows</span></div>
+
+
+
+<span class="n">_CLASSIFICATION_METRIC_KEYS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'f1_macro'</span><span class="p">,</span> <span class="s1">'f1_micro'</span><span class="p">,</span> <span class="s1">'f1_weighted'</span><span class="p">,</span>
+    <span class="s1">'accuracy'</span><span class="p">,</span>
+    <span class="s1">'precision_macro'</span><span class="p">,</span> <span class="s1">'precision_weighted'</span><span class="p">,</span>
+    <span class="s1">'recall_macro'</span><span class="p">,</span> <span class="s1">'recall_weighted'</span><span class="p">,</span>
+    <span class="s1">'n_classes'</span><span class="p">,</span> <span class="s1">'n_train'</span><span class="p">,</span> <span class="s1">'n_test'</span><span class="p">,</span>
+    <span class="s1">'f1_macro_cv_mean'</span><span class="p">,</span> <span class="s1">'f1_macro_cv_std'</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="flatten_classification_results">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.flatten_classification_results">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">flatten_classification_results</span><span class="p">(</span>
+    <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+    <span class="n">network_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Flatten results from evaluate_all_label_strategies into one dict per strategy.</span>
+
+<span class="sd">    Returns one row per label strategy with columns: network_id, method,</span>
+<span class="sd">    label_strategy, f1_macro, accuracy, precision_macro, recall_macro,</span>
+<span class="sd">    n_classes, n_train, n_test. Failed strategies produce NaN values so the</span>
+<span class="sd">    schema is always consistent.</span>
+<span class="sd">    """</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">strategy</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'network_id'</span><span class="p">:</span> <span class="n">network_id</span><span class="p">,</span>
+            <span class="s1">'method'</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+            <span class="s1">'label_strategy'</span><span class="p">:</span> <span class="n">strategy</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="s1">'error'</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_CLASSIFICATION_METRIC_KEYS</span><span class="p">})</span>
+            <span class="n">row</span><span class="p">[</span><span class="s1">'error'</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">'error'</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">row</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_CLASSIFICATION_METRIC_KEYS</span><span class="p">})</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rows</span></div>
+
+
+
+<div class="viewcode-block" id="summarize_classification_results">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.evaluation.classification.html#qbiocode.apps.quvine.evaluation.classification.summarize_classification_results">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">summarize_classification_results</span><span class="p">(</span>
+    <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Summarize classification results across all label strategies.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        results: Dictionary of results from evaluate_all_label_strategies</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of summary statistics</span>
+<span class="sd">    """</span>
+    <span class="c1"># Extract F1 scores</span>
+    <span class="n">f1_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accuracy_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">strategy</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s1">'error'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">metrics</span> <span class="ow">and</span> <span class="s1">'f1_macro'</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+            <span class="n">f1_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'f1_macro'</span><span class="p">])</span>
+            <span class="n">accuracy_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">f1_scores</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">'mean_f1_macro'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'std_f1_macro'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'mean_accuracy'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'std_accuracy'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s1">'n_successful_strategies'</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'mean_f1_macro'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">),</span>
+        <span class="s1">'std_f1_macro'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">),</span>
+        <span class="s1">'max_f1_macro'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">),</span>
+        <span class="s1">'min_f1_macro'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">),</span>
+        <span class="s1">'mean_accuracy'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy_scores</span><span class="p">),</span>
+        <span class="s1">'std_accuracy'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy_scores</span><span class="p">),</span>
+        <span class="s1">'max_accuracy'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accuracy_scores</span><span class="p">),</span>
+        <span class="s1">'min_accuracy'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">accuracy_scores</span><span class="p">),</span>
+        <span class="s1">'n_successful_strategies'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">)</span>
+    <span class="p">}</span></div>
+
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

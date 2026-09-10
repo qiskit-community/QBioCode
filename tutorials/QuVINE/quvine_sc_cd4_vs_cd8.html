@@ -1,0 +1,2061 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>QuVINE on the CD4-vs-CD8 cell graph — a few-shot “centroid seed” study &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=a35ea3b2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/QuVINE/quvine_sc_cd4_vs_cd8';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QuVINE on the T-vs-Monocyte cell graph" href="quvine_sc_t_vs_mono.html" />
+    <link rel="prev" title="QuVINE Tutorial — quantum graph embeddings inside QBioCode" href="example_quvine.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Artificial_data_generation/example_data_generation.html">Artificial Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing/sc-qc.html">5k PBMC CITE-seq — QC &amp; preprocessing</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/example_qprofiler.html">QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_qprofiler.html">QProfiler on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_quvine.html">QuVINE - Getting Started</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QuVINE on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quvine_sc_t_vs_mono.html">QuVINE on T vs. Monocyte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_quvine_2x2_qprofiler.html">QuVINE Embeddings in QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QEnsemble/QEnsemble_example_blobs.html">Quantum Ensemble Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSage/qsage.html">QSage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quantum_Projection_Learning/QPL_example.html">Quantum Projection Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PQK%20-%20OV.html">PQK on Ovarian Cancer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">QuVINE on the CD4-vs-CD8 cell graph — a few-shot “centroid seed” study</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+    /* Improve notebook cell spacing */
+    div.nbinput.container,
+    div.nboutput.container {
+        margin-bottom: 1em;
+    }
+
+    /* Better code cell styling */
+    div.highlight-ipython3 {
+        margin: 0.5em 0;
+    }
+
+    /* Improve markdown cell rendering */
+    .nbinput + .nboutput {
+        margin-top: 0.5em;
+    }
+</style><section id="QuVINE-on-the-CD4-vs-CD8-cell-graph-—-a-few-shot-%22centroid-seed%22-study">
+<h1>QuVINE on the CD4-vs-CD8 cell graph — a few-shot “centroid seed” study<a class="headerlink" href="#QuVINE-on-the-CD4-vs-CD8-cell-graph-—-a-few-shot-%22centroid-seed%22-study" title="Link to this heading">#</a></h1>
+<p>Uses QuVINE (Quantum View-based Network Embeddings) on <code class="docutils literal notranslate"><span class="pre">pbmc5k_small_cd4_vs_cd8.h5ad</span></code> — 500 cells, two view-graphs (<code class="docutils literal notranslate"><span class="pre">rna_connectivities</span></code>, <code class="docutils literal notranslate"><span class="pre">protein_connectivities</span></code>), with <code class="docutils literal notranslate"><span class="pre">graph_seed</span></code> / <code class="docutils literal notranslate"><span class="pre">graph_eval</span></code> splits.</p>
+<p><strong>Why this vehicle, and why few-shot.</strong> The earlier T-vs-monocyte task <em>saturated</em>: those cell types are so separable that raw logistic regression on the node features alone hits macro-F1 ≈ 1.0 with <strong>no graph at all</strong>, and centroid ranking recovered the whole class perfectly (recall&#64;k was exactly <code class="docutils literal notranslate"><span class="pre">k/|targets|</span></code> for every method). A task the features already solve cannot discriminate graph-embedding methods. We fix this two ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Harder task</strong> — CD4 vs CD8. Both are T cells, so the classes are close (raw-LR only ≈0.95–0.97), leaving real headroom.</p></li>
+<li><p><strong>Few-shot seeding</strong> — we keep the seed <strong>centroid</strong> as the ranking anchor but shrink the number of <em>labeled</em> seeds per class to <code class="docutils literal notranslate"><span class="pre">k</span></code> and <strong>sweep ``k``</strong>. With few anchors the centroid is noisy, so recovery must lean on the embedding’s structural spread — exactly where a quantum walk can beat a classical one. This is the “centroid seed” study: performance as a function of how many seeds seed the centroid.</p></li>
+</ol>
+<p><strong>Two complementary evals, both run few-shot (same ``k``-seed subset drives every arm):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Node classification</strong> — LR trained on the <code class="docutils literal notranslate"><span class="pre">k</span></code> seed-node embeddings, predict eval. Includes a native <strong>graph label-spreading</strong> baseline that diffuses a soft-seed matrix over the graph (no embedding). Reported as a <em>curve vs ``k``</em>.</p></li>
+<li><p><strong>Node ranking (centroid seed → target)</strong> — rank non-seed nodes by cosine similarity to the <code class="docutils literal notranslate"><span class="pre">k</span></code>-seed <strong>centroid</strong> (<code class="docutils literal notranslate"><span class="pre">seed_centroid_scores</span></code>) and measure same-class eval recovery (recall&#64;K / precision&#64;K) against <strong>degree- and distance-matched null controls</strong> (<code class="docutils literal notranslate"><span class="pre">SeedTargetEvaluator</span></code>). This is the headline: the quantum walk directly, no downstream classifier.</p></li>
+</ol>
+<p><strong>Views.</strong> RNA-graph and protein-graph, embedded separately and as an early-fusion concat.</p>
+<p><strong>A subtlety worth stating:</strong> QuVINE’s <code class="docutils literal notranslate"><span class="pre">embed(...,</span> <span class="pre">seeds=...)</span></code> uses <code class="docutils literal notranslate"><span class="pre">seeds</span></code> as <em>structural, label-free calibration</em> anchors for the quantum walk. We calibrate on the full <code class="docutils literal notranslate"><span class="pre">graph_seed</span></code> node set once (identities only — no class labels leak), then vary only the <em>labeled</em> seeds used downstream. So the embeddings are fixed across the sweep; only the label budget shrinks.</p>
+<hr class="docutils" />
+<p><strong>Install.</strong> QuVINE ships behind an optional extra, so a plain <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qbiocode</span></code> does <em>not</em> pull its dependencies (gensim, hiperwalk, node2vec, torch-geometric, python-louvain, ripser, omegaconf). Install it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"qbiocode[quvine]"</span>
+</pre></div>
+</div>
+<p>Calling a <code class="docutils literal notranslate"><span class="pre">quvine_*</span></code> method without the extra raises an error naming the missing package and this exact command, rather than a bare <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+<p>This notebook also reads an <code class="docutils literal notranslate"><span class="pre">.h5ad</span></code> fixture, so it needs <code class="docutils literal notranslate"><span class="pre">anndata</span></code> — part of the base install.</p>
+<section id="1.-Configuration">
+<h2>1. Configuration<a class="headerlink" href="#1.-Configuration" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================ CONFIG ============================</span>
+<span class="n">QUICK</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># False = full training budget (fair to the quantum walks); slower (~5-10 min).</span>
+               <span class="c1"># Set True for a quick laptop demo. Either way QW_STEPS (below) controls the</span>
+               <span class="c1"># quantum-walk regime, which is the parameter that actually matters here.</span>
+
+<span class="n">TASK</span> <span class="o">=</span> <span class="s2">"binary_cd4_vs_cd8"</span>     <span class="c1"># harder vehicle: CD4 vs CD8 (both T cells -&gt; close)</span>
+<span class="n">METHODS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"node2vec"</span><span class="p">,</span> <span class="s2">"quvine_rwr"</span><span class="p">,</span> <span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">]</span>
+<span class="c1">#   node2vec         : PURE classical baseline (DeepWalk-style) -- the honest classical yardstick</span>
+<span class="c1">#   quvine_rwr       : QuVINE SGNS on a CLASSICAL random-walk-with-restart view -&gt; ABLATION</span>
+<span class="c1">#                      (same pipeline as the quantum arms, only the walk is classical);</span>
+<span class="c1">#                      NOT "the classical baseline" -- it is a hybrid control.</span>
+<span class="c1">#   quvine_ctqw/dtqw : QuVINE SGNS on continuous/discrete-time QUANTUM walk views</span>
+<span class="n">VIEWS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"rna"</span><span class="p">,</span> <span class="s2">"protein"</span><span class="p">]</span>     <span class="c1"># modality graphs to embed (and an early-fusion concat)</span>
+<span class="n">EVAL_MODE</span> <span class="o">=</span> <span class="s2">"both"</span>             <span class="c1"># "classification" | "ranking" | "both"</span>
+<span class="n">N_REPEATS</span> <span class="o">=</span> <span class="mi">3</span>                  <span class="c1"># embedding seeds -&gt; confidence intervals over the embedding</span>
+<span class="n">K_VALUES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>       <span class="c1"># recall@K / precision@K retrieval cutoffs</span>
+
+<span class="c1"># --- few-shot "centroid seed" sweep ---------------------------------------------</span>
+<span class="c1"># Keep the seed CENTROID as the ranking anchor, but shrink the number of LABELED</span>
+<span class="c1"># seeds per class to k_seeds and sweep it. Few anchors -&gt; noisy centroid -&gt; recovery</span>
+<span class="c1"># leans on the embedding's structural spread (where quantum walks can separate).</span>
+<span class="c1"># The SAME k-seed subset drives the ranking centroid, the LR classifier, and the</span>
+<span class="c1"># diffusion baseline, so all arms see the same label budget.</span>
+<span class="n">SEEDS_PER_CLASS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>   <span class="c1"># few-shot k (auto-clipped to available seeds/class)</span>
+<span class="n">N_SUBSAMPLE</span> <span class="o">=</span> <span class="mi">3</span>                        <span class="c1"># random seed draws per k -&gt; CIs over the draw</span>
+<span class="n">K_HEADLINE</span> <span class="o">=</span> <span class="mi">50</span>                        <span class="c1"># retrieval cutoff shown in the sweep curves</span>
+
+<span class="c1"># --- quantum-walk regime (the parameter that matters) ---------------------------</span>
+<span class="c1"># QW_STEPS = ctqw evolution time / dtqw coined-step count. Continuous- and discrete-time</span>
+<span class="c1"># quantum walks spread BALLISTICALLY, so LARGE step counts over-mix: the walk relaxes</span>
+<span class="c1"># toward its stationary distribution and same-class neighborhood structure is washed out</span>
+<span class="c1"># (we verified this -- raising steps 10-&gt;30 widened the quantum deficit). We therefore keep</span>
+<span class="c1"># the walk SMALL / localized. Classical node2vec &amp; quvine_rwr ignore `steps` (they use</span>
+<span class="c1"># num_walks/walk_length), so this choice tunes only the quantum arms -- it does not</span>
+<span class="c1"># handicap the classical baseline.</span>
+<span class="n">QW_STEPS</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># QuVINE embedding knobs. Walk/training budget applied EQUALLY to every method; only the</span>
+<span class="c1"># quantum arms consume QW_STEPS.</span>
+<span class="n">QUVINE_OVERRIDES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span><span class="s2">"views"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"num_views"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">"walks"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"num_walks"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"walk_length"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"steps"</span><span class="p">:</span> <span class="n">QW_STEPS</span><span class="p">},</span>
+     <span class="s2">"train"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"epochs"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">"workers"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s2">"workers"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"dimension"</span><span class="p">:</span> <span class="mi">32</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">QUICK</span> <span class="k">else</span>
+    <span class="p">{</span><span class="s2">"views"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"num_views"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="s2">"walks"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"num_walks"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"walk_length"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"steps"</span><span class="p">:</span> <span class="n">QW_STEPS</span><span class="p">},</span>
+     <span class="s2">"train"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"epochs"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">"workers"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s2">"workers"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"dimension"</span><span class="p">:</span> <span class="mi">64</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"QUICK:"</span><span class="p">,</span> <span class="n">QUICK</span><span class="p">,</span> <span class="s2">"| task:"</span><span class="p">,</span> <span class="n">TASK</span><span class="p">,</span> <span class="s2">"| methods:"</span><span class="p">,</span> <span class="n">METHODS</span><span class="p">,</span> <span class="s2">"| views:"</span><span class="p">,</span> <span class="n">VIEWS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"few-shot seeds/class:"</span><span class="p">,</span> <span class="n">SEEDS_PER_CLASS</span><span class="p">,</span> <span class="s2">"| subsamples:"</span><span class="p">,</span> <span class="n">N_SUBSAMPLE</span><span class="p">,</span>
+      <span class="s2">"| eval:"</span><span class="p">,</span> <span class="n">EVAL_MODE</span><span class="p">,</span> <span class="s2">"| emb repeats:"</span><span class="p">,</span> <span class="n">N_REPEATS</span><span class="p">,</span> <span class="s2">"| QW_STEPS:"</span><span class="p">,</span> <span class="n">QW_STEPS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"QuVINE overrides:"</span><span class="p">,</span> <span class="n">QUVINE_OVERRIDES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+QUICK: False | task: binary_cd4_vs_cd8 | methods: [&#39;node2vec&#39;, &#39;quvine_rwr&#39;, &#39;quvine_ctqw&#39;, &#39;quvine_dtqw&#39;] | views: [&#39;rna&#39;, &#39;protein&#39;]
+few-shot seeds/class: [1, 3, 5, 10, 25] | subsamples: 3 | eval: both | emb repeats: 3 | QW_STEPS: 4
+QuVINE overrides: {&#39;views&#39;: {&#39;num_views&#39;: 2}, &#39;walks&#39;: {&#39;num_walks&#39;: 10, &#39;walk_length&#39;: 10, &#39;steps&#39;: 4}, &#39;train&#39;: {&#39;epochs&#39;: 50, &#39;workers&#39;: 1}, &#39;workers&#39;: 1, &#39;dimension&#39;: 64}
+</pre></div></div>
+</div>
+</section>
+<section id="2.-Imports-&amp;-data">
+<h2>2. Imports &amp; data<a class="headerlink" href="#2.-Imports-&-data" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"OMP_NUM_THREADS"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span><span class="o">,</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.evaluation.ranking</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeedTargetEvaluator</span><span class="p">,</span> <span class="n">seed_centroid_scores</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tutorial_data_path</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+
+<span class="c1"># ---- Data path ----</span>
+<span class="c1"># tutorial_data_path() is QBioCode's single resolution path for tutorial fixtures. It</span>
+<span class="c1"># searches $QBC_DATA first, then every fixture directory of a source checkout -- located</span>
+<span class="c1"># both from the installed package and by walking up from this notebook's directory, so it</span>
+<span class="c1"># works for an editable install and for a normal install used inside a clone -- and raises</span>
+<span class="c1"># a FileNotFoundError naming every directory it tried. Fixtures shared between tutorials</span>
+<span class="c1"># are committed once and found from either tree.</span>
+<span class="n">H5AD</span> <span class="o">=</span> <span class="n">tutorial_data_path</span><span class="p">(</span><span class="s2">"pbmc5k_small_cd4_vs_cd8.h5ad"</span><span class="p">)</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">H5AD</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">n_obs</span>
+<span class="n">IDS</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"c</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>                       <span class="c1"># STRING node ids (required by QuVINE SGNS)</span>
+
+<span class="c1"># This "small" file has no precomputed label_int / Y_soft / class_order — reconstruct them.</span>
+<span class="n">lab</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">TASK</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">CLASS_ORDER</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lab</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>                      <span class="c1"># e.g. ['CD4_T', 'CD8_T']</span>
+<span class="n">lab2i</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">)}</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">lab2i</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>               <span class="c1"># 0/1 aligned to CLASS_ORDER</span>
+<span class="n">seed_m</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">"graph_seed"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">eval_m</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">"graph_eval"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+
+<span class="c1"># Soft-label matrix for the diffusion baseline: soft one-hot (alpha) on seeds, uniform on eval.</span>
+<span class="c1"># (label_spread zeroes the eval rows before propagating, so only the seed rows matter.)</span>
+<span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">Y_soft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">)),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">Y_soft</span><span class="p">[</span><span class="n">seed_m</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Y_soft</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seed_m</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">seed_m</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ALPHA</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">to_graph</span><span class="p">(</span><span class="n">adj</span><span class="p">):</span>
+    <span class="n">adj</span> <span class="o">=</span> <span class="n">adj</span><span class="o">.</span><span class="n">tocoo</span><span class="p">();</span> <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">();</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">IDS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">adj</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="n">adj</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">adj</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">IDS</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">IDS</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">G</span>
+
+<span class="n">GRAPHS</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">to_graph</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">_connectivities"</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">}</span>
+<span class="n">ADJ</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">_connectivities"</span><span class="p">]</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">}</span>
+<span class="n">seed_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IDS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seed_m</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>      <span class="c1"># calibration anchors (identities only)</span>
+
+<span class="c1"># Per-class seed pools for the few-shot sweep; clip requested k to what's available.</span>
+<span class="n">seed_pool</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seed_m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">c</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">))}</span>
+<span class="n">max_k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seed_pool</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">SEEDS_PER_CLASS</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">SEEDS_PER_CLASS</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">max_k</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2"> nodes | classes </span><span class="si">{</span><span class="n">CLASS_ORDER</span><span class="si">}</span><span class="s2"> | seeds </span><span class="si">{</span><span class="n">seed_m</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> eval </span><span class="si">{</span><span class="n">eval_m</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">cn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">cn</span><span class="si">}</span><span class="s2">: seed_pool=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">seed_pool</span><span class="p">[</span><span class="n">c</span><span class="p">])</span><span class="si">}</span><span class="s2"> eval=</span><span class="si">{</span><span class="p">(</span><span class="n">eval_m</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  few-shot k (clipped, max=</span><span class="si">{</span><span class="n">max_k</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">SEEDS_PER_CLASS</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> graph: </span><span class="si">{</span><span class="n">GRAPHS</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span><span class="si">}</span><span class="s2"> nodes, </span><span class="si">{</span><span class="n">GRAPHS</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span><span class="si">}</span><span class="s2"> edges"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+500 nodes | classes [&#39;CD4_T&#39;, &#39;CD8_T&#39;] | seeds 143 eval 357
+  CD4_T: seed_pool=76 eval=174
+  CD8_T: seed_pool=67 eval=183
+  few-shot k (clipped, max=67): [1, 3, 5, 10, 25]
+  rna graph: 500 nodes, 5141 edges
+  protein graph: 500 nodes, 5470 edges
+</pre></div></div>
+</div>
+</section>
+<section id="3.-Compute-QuVINE-embeddings">
+<h2>3. Compute QuVINE embeddings<a class="headerlink" href="#3.-Compute-QuVINE-embeddings" title="Link to this heading">#</a></h2>
+<p>Each method is embedded on each view graph, for <code class="docutils literal notranslate"><span class="pre">N_REPEATS</span></code> seeds. Calibration seeds are our labeled seed nodes. An early-fusion <strong>``concat``</strong> view (RNA ⊕ protein, standardized) is added.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">embed_view</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">base_seed</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">GRAPHS</span><span class="p">[</span><span class="n">view</span><span class="p">],</span> <span class="n">method</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="n">seed_nodes</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">base_seed</span><span class="p">,</span>
+              <span class="n">overrides</span><span class="o">=</span><span class="n">QUVINE_OVERRIDES</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># rows already align to IDS order (graph built with add_nodes_from(IDS))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">embedding</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># EMB[(method, view, seed)] -&gt; (N, d)</span>
+<span class="n">EMB</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">t_all</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">METHODS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_REPEATS</span><span class="p">):</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">EMB</span><span class="p">[(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">seed</span><span class="p">)]</span> <span class="o">=</span> <span class="n">embed_view</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span>
+            <span class="n">parts</span><span class="p">[</span><span class="n">view</span><span class="p">]</span> <span class="o">=</span> <span class="n">EMB</span><span class="p">[(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">seed</span><span class="p">)]</span>
+        <span class="c1"># early-fusion concat of the per-view embeddings (standardized)</span>
+        <span class="n">fused</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">EMB</span><span class="p">[(</span><span class="n">method</span><span class="p">,</span> <span class="s2">"concat"</span><span class="p">,</span> <span class="n">seed</span><span class="p">)]</span> <span class="o">=</span> <span class="n">fused</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  embedded </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> (all views x </span><span class="si">{</span><span class="n">N_REPEATS</span><span class="si">}</span><span class="s2"> seeds)"</span><span class="p">)</span>
+<span class="n">ALL_VIEWS</span> <span class="o">=</span> <span class="n">VIEWS</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"concat"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"done: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">EMB</span><span class="p">)</span><span class="si">}</span><span class="s2"> embeddings in </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t_all</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 2995.57it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 25.75it/s]
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 2416.95it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 27.02it/s]
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 3008.93it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 26.63it/s]
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 2460.76it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 25.79it/s]
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 2977.66it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 27.53it/s]
+Computing transition probabilities: 100%|██████████| 500/500 [00:00&lt;00:00, 2455.39it/s]
+Generating walks (CPU: 1): 100%|██████████| 10/10 [00:00&lt;00:00, 26.45it/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  embedded node2vec (all views x 3 seeds)
+  embedded quvine_rwr (all views x 3 seeds)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  embedded quvine_ctqw (all views x 3 seeds)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Exception ignored in: &#39;gensim.models.word2vec_inner.our_dot_float&#39;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  embedded quvine_dtqw (all views x 3 seeds)
+done: 36 embeddings in 290.2s
+</pre></div></div>
+</div>
+</section>
+<section id="4.-Node-classification-—-few-shot-vs-seed-budget">
+<h2>4. Node classification — few-shot vs seed budget<a class="headerlink" href="#4.-Node-classification-—-few-shot-vs-seed-budget" title="Link to this heading">#</a></h2>
+<p>Same two arm types as before, but now run <strong>few-shot</strong>: for each <code class="docutils literal notranslate"><span class="pre">k</span></code> in <code class="docutils literal notranslate"><span class="pre">SEEDS_PER_CLASS</span></code> we draw <code class="docutils literal notranslate"><span class="pre">k</span></code> labeled seeds per class (<code class="docutils literal notranslate"><span class="pre">N_SUBSAMPLE</span></code> random draws) and report a <strong>curve vs ``k``</strong>.</p>
+<ul class="simple">
+<li><p><strong>``diffusion(Y_soft)`` (no embedding)</strong> — label-spreading of the <code class="docutils literal notranslate"><span class="pre">k</span></code>-seed soft matrix over each view graph (symmetric-normalized propagation), argmax on eval. The native graph baseline.</p></li>
+<li><p><strong>embedding arms</strong> — logistic regression trained on the <code class="docutils literal notranslate"><span class="pre">k</span></code> seed-node embeddings, predict eval.</p></li>
+</ul>
+<p>If the curves separate at small <code class="docutils literal notranslate"><span class="pre">k</span></code> and converge as <code class="docutils literal notranslate"><span class="pre">k</span></code> grows, that’s the discriminating signal the saturated full-seed task couldn’t show.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">label_spread</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Symmetric-normalized label spreading (Zhou et al.): F = (1-a)Y0 + a S F."""</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">dinv</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">dinv</span><span class="p">)</span> <span class="o">@</span> <span class="n">W</span> <span class="o">@</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">dinv</span><span class="p">)</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">Y0</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">S</span> <span class="o">@</span> <span class="n">F</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">clf_scores</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">macroF1</span><span class="o">=</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">"macro"</span><span class="p">),</span>
+                <span class="n">accuracy</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+                <span class="n">auc</span><span class="o">=</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_seeds</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Draw k seed indices per class from the seed pools (few-shot subset)."""</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">seed_pool</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">))]))</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">SEEDS_PER_CLASS</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_SUBSAMPLE</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">sub</span><span class="p">)</span>
+        <span class="n">sidx</span> <span class="o">=</span> <span class="n">draw_seeds</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>                    <span class="c1"># this draw's labeled seeds</span>
+        <span class="n">smask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">bool</span><span class="p">);</span> <span class="n">smask</span><span class="p">[</span><span class="n">sidx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># (a) diffusion baseline: propagate the k-seed soft one-hot over each view graph</span>
+        <span class="n">Y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Y_soft</span><span class="p">);</span> <span class="n">Y0</span><span class="p">[</span><span class="n">sidx</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">sidx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ALPHA</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">:</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">label_spread</span><span class="p">(</span><span class="n">ADJ</span><span class="p">[</span><span class="n">view</span><span class="p">],</span> <span class="n">Y0</span><span class="p">)</span>
+            <span class="n">yp</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">eval_m</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ypr</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">eval_m</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">eval_m</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="mf">1e-12</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"method"</span><span class="p">:</span> <span class="s2">"diffusion(Y_soft)"</span><span class="p">,</span> <span class="s2">"view"</span><span class="p">:</span> <span class="n">view</span><span class="p">,</span> <span class="s2">"emb_seed"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                         <span class="s2">"k_seeds"</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"sub"</span><span class="p">:</span> <span class="n">sub</span><span class="p">,</span> <span class="o">**</span><span class="n">clf_scores</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">eval_m</span><span class="p">],</span> <span class="n">yp</span><span class="p">,</span> <span class="n">ypr</span><span class="p">)})</span>
+
+        <span class="c1"># (b) embedding arms: LR trained on the k seeds, predict eval</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">seed</span><span class="p">),</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">EMB</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="n">sidx</span><span class="p">])</span>
+            <span class="n">Xtr</span><span class="p">,</span> <span class="n">Xte</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="n">sidx</span><span class="p">]),</span> <span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="n">eval_m</span><span class="p">])</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s2">"balanced"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">sidx</span><span class="p">])</span>
+            <span class="n">yp</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xte</span><span class="p">);</span> <span class="n">ypr</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xte</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"method"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s2">"view"</span><span class="p">:</span> <span class="n">view</span><span class="p">,</span> <span class="s2">"emb_seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                         <span class="s2">"k_seeds"</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"sub"</span><span class="p">:</span> <span class="n">sub</span><span class="p">,</span> <span class="o">**</span><span class="n">clf_scores</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">eval_m</span><span class="p">],</span> <span class="n">yp</span><span class="p">,</span> <span class="n">ypr</span><span class="p">)})</span>
+
+<span class="n">clf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="n">clf_summary</span> <span class="o">=</span> <span class="p">(</span><span class="n">clf_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">"view"</span><span class="p">,</span> <span class="s2">"k_seeds"</span><span class="p">])[[</span><span class="s2">"macroF1"</span><span class="p">,</span> <span class="s2">"auc"</span><span class="p">]]</span>
+               <span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="s2">"k_seeds"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Node classification macro-F1 on eval — mean over draws &amp; emb seeds, by k seeds/class:"</span><span class="p">)</span>
+<span class="n">clf_summary</span><span class="p">[</span><span class="s2">"macroF1"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Node classification macro-F1 on eval — mean over draws &amp; emb seeds, by k seeds/class:
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k_seeds</th>
+      <th>1</th>
+      <th>3</th>
+      <th>5</th>
+      <th>10</th>
+      <th>25</th>
+    </tr>
+    <tr>
+      <th>method</th>
+      <th>view</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">diffusion(Y_soft)</th>
+      <th>protein</th>
+      <td>0.801</td>
+      <td>0.864</td>
+      <td>0.889</td>
+      <td>0.914</td>
+      <td>0.897</td>
+    </tr>
+    <tr>
+      <th>rna</th>
+      <td>0.611</td>
+      <td>0.685</td>
+      <td>0.734</td>
+      <td>0.805</td>
+      <td>0.836</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">node2vec</th>
+      <th>concat</th>
+      <td>0.569</td>
+      <td>0.793</td>
+      <td>0.838</td>
+      <td>0.901</td>
+      <td>0.928</td>
+    </tr>
+    <tr>
+      <th>protein</th>
+      <td>0.594</td>
+      <td>0.836</td>
+      <td>0.875</td>
+      <td>0.861</td>
+      <td>0.905</td>
+    </tr>
+    <tr>
+      <th>rna</th>
+      <td>0.531</td>
+      <td>0.604</td>
+      <td>0.673</td>
+      <td>0.779</td>
+      <td>0.820</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">quvine_ctqw</th>
+      <th>concat</th>
+      <td>0.530</td>
+      <td>0.772</td>
+      <td>0.879</td>
+      <td>0.891</td>
+      <td>0.945</td>
+    </tr>
+    <tr>
+      <th>protein</th>
+      <td>0.539</td>
+      <td>0.797</td>
+      <td>0.852</td>
+      <td>0.869</td>
+      <td>0.902</td>
+    </tr>
+    <tr>
+      <th>rna</th>
+      <td>0.514</td>
+      <td>0.649</td>
+      <td>0.733</td>
+      <td>0.754</td>
+      <td>0.766</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">quvine_dtqw</th>
+      <th>concat</th>
+      <td>0.494</td>
+      <td>0.797</td>
+      <td>0.821</td>
+      <td>0.869</td>
+      <td>0.922</td>
+    </tr>
+    <tr>
+      <th>protein</th>
+      <td>0.497</td>
+      <td>0.800</td>
+      <td>0.825</td>
+      <td>0.847</td>
+      <td>0.880</td>
+    </tr>
+    <tr>
+      <th>rna</th>
+      <td>0.526</td>
+      <td>0.670</td>
+      <td>0.678</td>
+      <td>0.761</td>
+      <td>0.746</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">quvine_rwr</th>
+      <th>concat</th>
+      <td>0.465</td>
+      <td>0.780</td>
+      <td>0.873</td>
+      <td>0.900</td>
+      <td>0.944</td>
+    </tr>
+    <tr>
+      <th>protein</th>
+      <td>0.502</td>
+      <td>0.795</td>
+      <td>0.845</td>
+      <td>0.885</td>
+      <td>0.901</td>
+    </tr>
+    <tr>
+      <th>rna</th>
+      <td>0.461</td>
+      <td>0.669</td>
+      <td>0.712</td>
+      <td>0.761</td>
+      <td>0.782</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="4a.-Classification-—-macro-F1-/-AUC-vs-seed-budget-(concat-view)">
+<h3>4a. Classification — macro-F1 / AUC vs seed budget (concat view)<a class="headerlink" href="#4a.-Classification-—-macro-F1-/-AUC-vs-seed-budget-(concat-view)" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"diffusion(Y_soft)"</span><span class="p">]</span> <span class="o">+</span> <span class="n">METHODS</span>
+<span class="n">view_show</span> <span class="o">=</span> <span class="s2">"concat"</span> <span class="k">if</span> <span class="s2">"concat"</span> <span class="ow">in</span> <span class="n">ALL_VIEWS</span> <span class="k">else</span> <span class="n">VIEWS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">"tab10"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">order</span><span class="p">))))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="s2">"macroF1"</span><span class="p">,</span> <span class="s2">"auc"</span><span class="p">]):</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="n">clf_df</span><span class="p">[(</span><span class="n">clf_df</span><span class="p">[</span><span class="s2">"view"</span><span class="p">]</span> <span class="o">==</span> <span class="n">view_show</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">clf_df</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">order</span><span class="p">))]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">sub</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"k_seeds"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"method"</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span>
+                 <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="p">(</span><span class="s2">"ci"</span><span class="p">,</span> <span class="mi">95</span><span class="p">),</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2"> vs seed budget (</span><span class="si">{</span><span class="n">view_show</span><span class="si">}</span><span class="s2"> view)"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"labeled seeds per class (k)"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">SEEDS_PER_CLASS</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_10_0.png" src="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_10_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="5.-Node-ranking-(centroid-seed-→-target)-—-the-headline">
+<h2>5. Node ranking (centroid seed → target) — the headline<a class="headerlink" href="#5.-Node-ranking-(centroid-seed-→-target)-—-the-headline" title="Link to this heading">#</a></h2>
+<p>For each class we build the <strong>seed centroid</strong> from just <code class="docutils literal notranslate"><span class="pre">k</span></code> labeled seeds, rank all non-seed nodes by cosine similarity to it, and measure recovery of the <strong>same-class eval nodes</strong> with recall&#64;K / precision&#64;K — sweeping <code class="docutils literal notranslate"><span class="pre">k</span></code> (the “centroid seed” budget). <code class="docutils literal notranslate"><span class="pre">SeedTargetEvaluator</span></code> also computes <strong>degree-matched</strong> and <strong>distance-matched</strong> null targets: the honest controls that separate “the walk found biology” from “the walk found hubs / nearby nodes”.</p>
+<p>This is where a good embedding earns its keep: with <code class="docutils literal notranslate"><span class="pre">k=1</span></code> the centroid is a single noisy anchor, so recall depends almost entirely on how well the embedding places same-class cells together.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rank_eval_fewshot</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">view_graph</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">seed_idx_cls</span><span class="p">,</span> <span class="n">k_values</span><span class="p">,</span> <span class="n">n_repeats</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Centroid-rank recovery of same-class eval nodes from a few-shot seed subset."""</span>
+    <span class="n">seed_c</span> <span class="o">=</span> <span class="p">[</span><span class="n">IDS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seed_idx_cls</span><span class="p">]</span>
+    <span class="n">tgt_c</span>  <span class="o">=</span> <span class="p">[</span><span class="n">IDS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">eval_m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">))[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">seed_c</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">tgt_c</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">seed_centroid_scores</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">seed_idx_cls</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">ev</span> <span class="o">=</span> <span class="n">SeedTargetEvaluator</span><span class="p">(</span><span class="n">view_graph</span><span class="p">,</span> <span class="n">seeds</span><span class="o">=</span><span class="n">seed_c</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="n">tgt_c</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="n">IDS</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ev</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">k_values</span><span class="o">=</span><span class="n">k_values</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="n">n_repeats</span><span class="p">)</span>
+
+<span class="n">rrows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">if</span> <span class="n">EVAL_MODE</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"ranking"</span><span class="p">,</span> <span class="s2">"both"</span><span class="p">):</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">seed</span><span class="p">),</span> <span class="n">Z</span> <span class="ow">in</span> <span class="n">EMB</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">gview</span> <span class="o">=</span> <span class="n">GRAPHS</span><span class="p">[</span><span class="n">VIEWS</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="n">view</span> <span class="o">==</span> <span class="s2">"concat"</span> <span class="k">else</span> <span class="n">GRAPHS</span><span class="p">[</span><span class="n">view</span><span class="p">]</span>  <span class="c1"># concat: structure from 1st view</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">SEEDS_PER_CLASS</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_SUBSAMPLE</span><span class="p">):</span>
+                <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">sub</span><span class="p">))</span>
+                <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">cname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">):</span>
+                    <span class="n">sidx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">seed_pool</span><span class="p">[</span><span class="bp">cls</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># k seeds of this class</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">rank_eval_fewshot</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">gview</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">sidx</span><span class="p">,</span> <span class="n">K_VALUES</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">for</span> <span class="n">K</span> <span class="ow">in</span> <span class="n">K_VALUES</span><span class="p">:</span>
+                        <span class="n">rrows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"method"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s2">"view"</span><span class="p">:</span> <span class="n">view</span><span class="p">,</span> <span class="s2">"emb_seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span>
+                                      <span class="s2">"k_seeds"</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"sub"</span><span class="p">:</span> <span class="n">sub</span><span class="p">,</span> <span class="s2">"class"</span><span class="p">:</span> <span class="n">cname</span><span class="p">,</span> <span class="s2">"K"</span><span class="p">:</span> <span class="n">K</span><span class="p">,</span>
+                                      <span class="s2">"recall_true"</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">"true"</span><span class="p">][</span><span class="s2">"recall"</span><span class="p">][</span><span class="n">K</span><span class="p">],</span>
+                                      <span class="s2">"recall_degctrl"</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">"degree_matched"</span><span class="p">][</span><span class="s2">"recall"</span><span class="p">][</span><span class="n">K</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                                      <span class="s2">"recall_distctrl"</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">"distance_matched"</span><span class="p">][</span><span class="s2">"recall"</span><span class="p">][</span><span class="n">K</span><span class="p">][</span><span class="mi">0</span><span class="p">]})</span>
+    <span class="n">rank_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rrows</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ranking recall@</span><span class="si">{</span><span class="n">K_HEADLINE</span><span class="si">}</span><span class="s2"> — mean over draws, emb seeds &amp; classes (concat), by k seeds/class:"</span><span class="p">)</span>
+    <span class="n">show</span> <span class="o">=</span> <span class="p">(</span><span class="n">rank_df</span><span class="p">[(</span><span class="n">rank_df</span><span class="o">.</span><span class="n">K</span> <span class="o">==</span> <span class="n">K_HEADLINE</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rank_df</span><span class="o">.</span><span class="n">view</span> <span class="o">==</span> <span class="s2">"concat"</span><span class="p">)]</span>
+            <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"method"</span><span class="p">,</span> <span class="s2">"k_seeds"</span><span class="p">])[[</span><span class="s2">"recall_true"</span><span class="p">,</span> <span class="s2">"recall_degctrl"</span><span class="p">,</span> <span class="s2">"recall_distctrl"</span><span class="p">]]</span>
+            <span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">show</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rank_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ranking skipped (EVAL_MODE=</span><span class="si">%r</span><span class="s2">)"</span> <span class="o">%</span> <span class="n">EVAL_MODE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ranking recall@50 — mean over draws, emb seeds &amp; classes (concat), by k seeds/class:
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>recall_true</th>
+      <th>recall_degctrl</th>
+      <th>recall_distctrl</th>
+    </tr>
+    <tr>
+      <th>method</th>
+      <th>k_seeds</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">node2vec</th>
+      <th>1</th>
+      <td>0.187</td>
+      <td>0.051</td>
+      <td>0.070</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.194</td>
+      <td>0.049</td>
+      <td>0.092</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.194</td>
+      <td>0.051</td>
+      <td>0.094</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.210</td>
+      <td>0.045</td>
+      <td>0.073</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.215</td>
+      <td>0.043</td>
+      <td>0.074</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">quvine_ctqw</th>
+      <th>1</th>
+      <td>0.174</td>
+      <td>0.058</td>
+      <td>0.076</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.194</td>
+      <td>0.046</td>
+      <td>0.091</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.200</td>
+      <td>0.048</td>
+      <td>0.083</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.203</td>
+      <td>0.047</td>
+      <td>0.074</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.219</td>
+      <td>0.041</td>
+      <td>0.072</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">quvine_dtqw</th>
+      <th>1</th>
+      <td>0.157</td>
+      <td>0.067</td>
+      <td>0.085</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.187</td>
+      <td>0.050</td>
+      <td>0.097</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.200</td>
+      <td>0.046</td>
+      <td>0.085</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.201</td>
+      <td>0.049</td>
+      <td>0.078</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.215</td>
+      <td>0.041</td>
+      <td>0.076</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">quvine_rwr</th>
+      <th>1</th>
+      <td>0.167</td>
+      <td>0.061</td>
+      <td>0.078</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.199</td>
+      <td>0.043</td>
+      <td>0.088</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.203</td>
+      <td>0.046</td>
+      <td>0.081</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.203</td>
+      <td>0.050</td>
+      <td>0.077</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.219</td>
+      <td>0.039</td>
+      <td>0.072</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="5a.-Ranking-—-recall&#64;K-vs-seed-budget,-against-the-null-control-(concat-view)">
+<h3>5a. Ranking — recall&#64;K vs seed budget, against the null control (concat view)<a class="headerlink" href="#5a.-Ranking-—-recall@K-vs-seed-budget,-against-the-null-control-(concat-view)" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">rank_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">view_show</span> <span class="o">=</span> <span class="s2">"concat"</span> <span class="k">if</span> <span class="s2">"concat"</span> <span class="ow">in</span> <span class="n">ALL_VIEWS</span> <span class="k">else</span> <span class="n">VIEWS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">rank_df</span><span class="p">[(</span><span class="n">rank_df</span><span class="p">[</span><span class="s2">"view"</span><span class="p">]</span> <span class="o">==</span> <span class="n">view_show</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rank_df</span><span class="p">[</span><span class="s2">"K"</span><span class="p">]</span> <span class="o">==</span> <span class="n">K_HEADLINE</span><span class="p">)]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">palette</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">METHODS</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">"tab10"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">METHODS</span><span class="p">))))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"k_seeds"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"recall_true"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"method"</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="n">METHODS</span><span class="p">,</span>
+                 <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="p">(</span><span class="s2">"ci"</span><span class="p">,</span> <span class="mi">95</span><span class="p">),</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="c1"># shared degree-matched null band, averaged over methods</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"k_seeds"</span><span class="p">)[</span><span class="s2">"recall_degctrl"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">"k--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"degree-matched null"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"labeled seeds per class (k)"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">"recall@</span><span class="si">{</span><span class="n">K_HEADLINE</span><span class="si">}</span><span class="s2"> (same-class eval recovered)"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">SEEDS_PER_CLASS</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Centroid-seed recovery vs seed budget, </span><span class="si">{</span><span class="n">view_show</span><span class="si">}</span><span class="s2"> view"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_14_0.png" src="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_14_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="6.-Graph-complexity-lens">
+<h2>6. Graph complexity lens<a class="headerlink" href="#6.-Graph-complexity-lens" title="Link to this heading">#</a></h2>
+<p>A quick spectral read on each view graph: the <strong>normalized-Laplacian spectral gap</strong> (algebraic connectivity — small = slow-mixing / strongly clustered) and <strong>greedy modularity</strong>. The heat-kernel-as-low-pass view predicts that slow-mixing, high-modularity graphs benefit most from diffusion/quantum-walk smoothing — useful context for why one view may embed better.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sla</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">networkx.algorithms.community</span><span class="w"> </span><span class="kn">import</span> <span class="n">greedy_modularity_communities</span><span class="p">,</span> <span class="n">modularity</span> <span class="k">as</span> <span class="n">nx_mod</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">spectral_gap_modularity</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">normalized_laplacian_matrix</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">"SM"</span><span class="p">,</span> <span class="n">return_eigenvectors</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">ev</span><span class="p">[</span><span class="n">ev</span> <span class="o">&gt;</span> <span class="mf">1e-9</span><span class="p">];</span> <span class="n">lam2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">lam2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">)</span>
+    <span class="n">mod</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nx_mod</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">greedy_modularity_communities</span><span class="p">(</span><span class="n">G</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">lam2</span><span class="p">,</span> <span class="n">mod</span>
+
+<span class="n">k_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">SEEDS_PER_CLASS</span><span class="p">)</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">:</span>
+    <span class="n">lam2</span><span class="p">,</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">spectral_gap_modularity</span><span class="p">(</span><span class="n">GRAPHS</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+    <span class="n">sel</span> <span class="o">=</span> <span class="n">clf_df</span><span class="p">[(</span><span class="n">clf_df</span><span class="o">.</span><span class="n">view</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">clf_df</span><span class="o">.</span><span class="n">method</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">METHODS</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">clf_df</span><span class="o">.</span><span class="n">k_seeds</span> <span class="o">==</span> <span class="n">k_max</span><span class="p">)]</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="n">sel</span><span class="p">[</span><span class="s2">"macroF1"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">comp</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"view"</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="s2">"spectral_gap"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">lam2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">"modularity"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                 <span class="sa">f</span><span class="s2">"best_embed_macroF1@k=</span><span class="si">{</span><span class="n">k_max</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="mi">3</span><span class="p">)})</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>view</th>
+      <th>spectral_gap</th>
+      <th>modularity</th>
+      <th>best_embed_macroF1@k=25</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>rna</td>
+      <td>0.0051</td>
+      <td>0.580</td>
+      <td>0.880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>protein</td>
+      <td>0.0325</td>
+      <td>0.549</td>
+      <td>0.927</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="7.-Quantum-vs-classical-—-advantage-&amp;-which-complexity-features-drive-it">
+<h2>7. Quantum vs classical — advantage &amp; which complexity features drive it<a class="headerlink" href="#7.-Quantum-vs-classical-—-advantage-&-which-complexity-features-drive-it" title="Link to this heading">#</a></h2>
+<p>Same idea as the QProfiler notebook, adapted to graphs, with a fair setup and two honest twists.</p>
+<p><strong>Fair comparison.</strong> Two things must be right for this to mean anything:</p>
+<ol class="arabic simple">
+<li><p><strong>Enough walk budget</strong> — with <code class="docutils literal notranslate"><span class="pre">QUICK=True</span></code>’s tiny params the quantum walks have too few <em>steps</em> to develop their structural spread, which sandbags them; we run <code class="docutils literal notranslate"><span class="pre">QUICK=False</span></code> (full params) applied <strong>equally</strong> to every method. (2) <strong>The right baseline</strong> — <code class="docutils literal notranslate"><span class="pre">node2vec</span></code> is the <strong>pure classical</strong> yardstick, while <code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code> is <em>QuVINE’s own pipeline on a classical walk</em>, i.e. a hybrid <strong>ablation</strong>, not “the classical baseline.” So the headline contrast is <strong>quantum walks
+(``quvine_ctqw``/``quvine_dtqw``) vs ``node2vec``</strong>, with <code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code> reported separately as the same-pipeline control.</p></li>
+</ol>
+<p><strong>A. Is there a quantum-walk advantage?</strong> Classification (§4) is close to saturated, so the <strong>ranking</strong> task (§5, recall&#64;K) is where any advantage shows. We take the per-unit advantage <code class="docutils literal notranslate"><span class="pre">Δrecall</span> <span class="pre">=</span> <span class="pre">recall(quantum)</span> <span class="pre">−</span> <span class="pre">recall(baseline)</span></code> across each <code class="docutils literal notranslate"><span class="pre">(view,</span> <span class="pre">emb_seed,</span> <span class="pre">sub,</span> <span class="pre">class)</span></code> pairing unit and summarize it as a <strong>paired Cohen’s d_z</strong> — <em>stratified by the few-shot seed budget ``k``</em>, because the thesis is that the quantum walk’s structural spread should help most at <strong>small ``k``</strong> (a noisy
+one-anchor centroid). A paired two-group contrast is exactly where Cohen’s <em>d</em> is the right tool.</p>
+<p><strong>B. Which graph-complexity feature tracks that advantage?</strong> Graph complexity (§6) only varies <em>per view</em> — 2–3 points — far too few to correlate. To get real statistical support we run a <strong>node-subsample bootstrap</strong>: repeatedly keep a random 70 % of cells, and for each subsample recompute (i) a panel of graph-complexity features on the induced subgraph and (ii) the quantum-vs-<code class="docutils literal notranslate"><span class="pre">node2vec</span></code> ranking advantage <strong>from the already-computed, fixed node embeddings</strong> (no re-embedding). Correlating the
+features against the advantage across subsamples points to <em>which complexity properties favour the quantum walk</em>.</p>
+<blockquote>
+<div><p>Honest caveat: even with a fair budget, a quantum edge is not guaranteed in every regime — e.g. at <code class="docutils literal notranslate"><span class="pre">k=1</span></code> a single noisy anchor can favour the classical embedding. We report each seed budget separately and explain the mechanism rather than hiding the unfavourable rows. Bootstrap CIs are also optimistic (subsamples overlap), so Part B flags <em>candidate</em> drivers; a <em>panel of distinct graphs</em> remains the gold standard.</p>
+</div></blockquote>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================================================</span>
+<span class="c1"># Part A — Quantum vs classical on the RANKING task (headroom), paired Cohen's d_z</span>
+<span class="c1">#   quantum   = quvine_ctqw + quvine_dtqw</span>
+<span class="c1">#   HEADLINE baseline = node2vec  (pure classical)      ABLATION = quvine_rwr (QuVINE, classical walk)</span>
+<span class="c1">#   metric    = recall_true @ K_HEADLINE                contrast axis = few-shot seed budget k</span>
+<span class="c1"># ============================================================================</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">QUANTUM_M</span>   <span class="o">=</span> <span class="p">[</span><span class="s2">"quvine_ctqw"</span><span class="p">,</span> <span class="s2">"quvine_dtqw"</span><span class="p">]</span>   <span class="c1"># quantum walks</span>
+<span class="n">CLASSICAL_M</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"node2vec"</span><span class="p">]</span>                      <span class="c1"># PURE classical baseline (headline contrast)</span>
+<span class="n">ABLATION_M</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"quvine_rwr"</span><span class="p">]</span>                    <span class="c1"># QuVINE pipeline w/ classical walk (control)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dz_ci</span><span class="p">(</span><span class="n">delta</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nb">float</span><span class="p">);</span> <span class="n">nn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dz</span> <span class="o">=</span> <span class="n">m</span> <span class="o">/</span> <span class="n">sd</span> <span class="k">if</span> <span class="n">sd</span> <span class="o">&gt;</span> <span class="mf">1e-12</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="n">se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">nn</span> <span class="o">+</span> <span class="n">dz</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">nn</span><span class="p">))</span>
+    <span class="n">p</span>  <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">pvalue</span> <span class="k">if</span> <span class="n">sd</span> <span class="o">&gt;</span> <span class="mf">1e-12</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mean_dRecall</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">cohens_dz</span><span class="o">=</span><span class="n">dz</span><span class="p">,</span> <span class="n">ci_low</span><span class="o">=</span><span class="n">dz</span> <span class="o">-</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">se</span><span class="p">,</span>
+                <span class="n">ci_high</span><span class="o">=</span><span class="n">dz</span> <span class="o">+</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">se</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nn</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">advantage_table</span><span class="p">(</span><span class="n">baseline_methods</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Paired quantum-vs-baseline advantage on recall@K_HEADLINE, by few-shot k budget."""</span>
+    <span class="n">rd</span> <span class="o">=</span> <span class="n">rank_df</span><span class="p">[</span><span class="n">rank_df</span><span class="p">[</span><span class="s2">"K"</span><span class="p">]</span> <span class="o">==</span> <span class="n">K_HEADLINE</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">rd</span> <span class="o">=</span> <span class="n">rd</span><span class="p">[</span><span class="n">rd</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">QUANTUM_M</span> <span class="o">+</span> <span class="n">baseline_methods</span><span class="p">)]</span>
+    <span class="n">rd</span><span class="p">[</span><span class="s2">"arm"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rd</span><span class="p">[</span><span class="s2">"method"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">QUANTUM_M</span><span class="p">),</span> <span class="s2">"quantum"</span><span class="p">,</span> <span class="s2">"base"</span><span class="p">)</span>
+    <span class="n">piv</span> <span class="o">=</span> <span class="p">(</span><span class="n">rd</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"view"</span><span class="p">,</span> <span class="s2">"emb_seed"</span><span class="p">,</span> <span class="s2">"k_seeds"</span><span class="p">,</span> <span class="s2">"sub"</span><span class="p">,</span> <span class="s2">"class"</span><span class="p">,</span> <span class="s2">"arm"</span><span class="p">])[</span><span class="s2">"recall_true"</span><span class="p">]</span>
+             <span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="s2">"arm"</span><span class="p">))</span>
+    <span class="n">piv</span><span class="p">[</span><span class="s2">"delta"</span><span class="p">]</span> <span class="o">=</span> <span class="n">piv</span><span class="p">[</span><span class="s2">"quantum"</span><span class="p">]</span> <span class="o">-</span> <span class="n">piv</span><span class="p">[</span><span class="s2">"base"</span><span class="p">]</span>          <span class="c1"># quantum-minus-classical recall delta</span>
+    <span class="n">piv</span> <span class="o">=</span> <span class="n">piv</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"delta"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"stratum"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="o">**</span><span class="n">dz_ci</span><span class="p">(</span><span class="n">piv</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">piv</span><span class="p">[</span><span class="s2">"k_seeds"</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"delta"</span><span class="p">])}</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">piv</span><span class="p">[</span><span class="s2">"k_seeds"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"stratum"</span><span class="p">:</span> <span class="s2">"overall"</span><span class="p">,</span> <span class="o">**</span><span class="n">dz_ci</span><span class="p">(</span><span class="n">piv</span><span class="p">[</span><span class="s2">"delta"</span><span class="p">])})</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">);</span> <span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"vs"</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span>
+
+<span class="n">advQ</span>  <span class="o">=</span> <span class="n">advantage_table</span><span class="p">(</span><span class="n">CLASSICAL_M</span><span class="p">,</span> <span class="s2">"node2vec (classical)"</span><span class="p">)</span>   <span class="c1"># headline</span>
+<span class="n">advAb</span> <span class="o">=</span> <span class="n">advantage_table</span><span class="p">(</span><span class="n">ABLATION_M</span><span class="p">,</span>  <span class="s2">"quvine_rwr (ablation)"</span><span class="p">)</span>  <span class="c1"># control</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HEADLINE — quantum walks (ctqw+dtqw) vs PURE classical node2vec, recall@</span><span class="si">{</span><span class="n">K_HEADLINE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(+) d_z =&gt; quantum recovers more same-class targets at that seed budget."</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">advQ</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ABLATION — quantum walks vs quvine_rwr (QuVINE pipeline, classical walk):"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">advAb</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># ---- forest plot: quantum recall gain over the PURE classical baseline, by seed budget ----</span>
+<span class="n">yv</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">advQ</span><span class="p">))</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#4c72b0"</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"#c44e52"</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">advQ</span><span class="p">[</span><span class="s2">"cohens_dz"</span><span class="p">]]</span>
+<span class="n">xr</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">([</span><span class="n">advQ</span><span class="p">[</span><span class="s2">"ci_high"</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">advQ</span><span class="p">[</span><span class="s2">"ci_low"</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mf">0.9</span><span class="p">]))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">0.55</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">advQ</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">xb</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">xb</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"lightgrey"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">yv</span><span class="p">,</span> <span class="n">advQ</span><span class="p">[</span><span class="s2">"ci_low"</span><span class="p">],</span> <span class="n">advQ</span><span class="p">[</span><span class="s2">"ci_high"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">advQ</span><span class="p">[</span><span class="s2">"cohens_dz"</span><span class="p">],</span> <span class="n">yv</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">yi</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">yv</span><span class="p">,</span> <span class="n">advQ</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()):</span>
+    <span class="n">star</span> <span class="o">=</span> <span class="s2">"*"</span> <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">)</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xr</span> <span class="o">*</span> <span class="mf">1.18</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Δrecall=</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">mean_dRecall</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> · d_z=</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">cohens_dz</span><span class="si">:</span><span class="s2">+.2f</span><span class="si">}{</span><span class="n">star</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yv</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">advQ</span><span class="p">[</span><span class="s2">"stratum"</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">xr</span> <span class="o">*</span> <span class="mf">1.15</span><span class="p">,</span> <span class="n">xr</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"paired Cohen's d_z  (→ quantum better · ← classical better)  ·  * p&lt;0.05"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cd4_vs_cd8 — quantum walks vs pure classical (node2vec), recall@</span><span class="si">{</span><span class="n">K_HEADLINE</span><span class="si">}</span><span class="s2"> by seed budget"</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+HEADLINE — quantum walks (ctqw+dtqw) vs PURE classical node2vec, recall@50
+(+) d_z =&gt; quantum recovers more same-class targets at that seed budget.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vs</th>
+      <th>stratum</th>
+      <th>mean_dRecall</th>
+      <th>cohens_dz</th>
+      <th>ci_low</th>
+      <th>ci_high</th>
+      <th>p</th>
+      <th>n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>node2vec (classical)</td>
+      <td>k=1</td>
+      <td>-0.013</td>
+      <td>-0.487</td>
+      <td>-0.769</td>
+      <td>-0.205</td>
+      <td>0.001</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>node2vec (classical)</td>
+      <td>k=3</td>
+      <td>0.002</td>
+      <td>0.121</td>
+      <td>-0.146</td>
+      <td>0.389</td>
+      <td>0.376</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>node2vec (classical)</td>
+      <td>k=5</td>
+      <td>0.002</td>
+      <td>0.116</td>
+      <td>-0.152</td>
+      <td>0.383</td>
+      <td>0.399</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>node2vec (classical)</td>
+      <td>k=10</td>
+      <td>-0.004</td>
+      <td>-0.250</td>
+      <td>-0.521</td>
+      <td>0.021</td>
+      <td>0.072</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>node2vec (classical)</td>
+      <td>k=25</td>
+      <td>0.004</td>
+      <td>0.395</td>
+      <td>0.118</td>
+      <td>0.672</td>
+      <td>0.005</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>node2vec (classical)</td>
+      <td>overall</td>
+      <td>-0.002</td>
+      <td>-0.093</td>
+      <td>-0.213</td>
+      <td>0.026</td>
+      <td>0.127</td>
+      <td>270</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ABLATION — quantum walks vs quvine_rwr (QuVINE pipeline, classical walk):
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>vs</th>
+      <th>stratum</th>
+      <th>mean_dRecall</th>
+      <th>cohens_dz</th>
+      <th>ci_low</th>
+      <th>ci_high</th>
+      <th>p</th>
+      <th>n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>k=1</td>
+      <td>-0.001</td>
+      <td>-0.051</td>
+      <td>-0.318</td>
+      <td>0.216</td>
+      <td>0.711</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>k=3</td>
+      <td>-0.005</td>
+      <td>-0.315</td>
+      <td>-0.588</td>
+      <td>-0.042</td>
+      <td>0.025</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>k=5</td>
+      <td>-0.002</td>
+      <td>-0.137</td>
+      <td>-0.405</td>
+      <td>0.131</td>
+      <td>0.319</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>k=10</td>
+      <td>-0.001</td>
+      <td>-0.090</td>
+      <td>-0.357</td>
+      <td>0.177</td>
+      <td>0.510</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>k=25</td>
+      <td>-0.002</td>
+      <td>-0.177</td>
+      <td>-0.445</td>
+      <td>0.092</td>
+      <td>0.200</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>quvine_rwr (ablation)</td>
+      <td>overall</td>
+      <td>-0.002</td>
+      <td>-0.150</td>
+      <td>-0.270</td>
+      <td>-0.030</td>
+      <td>0.015</td>
+      <td>270</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_18_4.png" src="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_18_4.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================================================</span>
+<span class="c1"># Part B — Which GRAPH-complexity feature tracks the quantum recall gain?</span>
+<span class="c1"># Node-subsample bootstrap: embeddings are per-node &amp; FIXED, so per subsample we</span>
+<span class="c1"># recompute (i) graph-complexity on the induced subgraph and (ii) quantum/classical</span>
+<span class="c1"># ranking recall from the existing embeddings -- no re-embedding -&gt; real n.</span>
+<span class="c1"># quantum recall gain = recall(ctqw,dtqw) − recall(node2vec)   [pure classical baseline]</span>
+<span class="c1"># ============================================================================</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sla</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">networkx.algorithms.community</span><span class="w"> </span><span class="kn">import</span> <span class="n">greedy_modularity_communities</span><span class="p">,</span> <span class="n">modularity</span> <span class="k">as</span> <span class="n">nx_mod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
+
+<span class="n">B</span><span class="p">,</span> <span class="n">FRAC</span><span class="p">,</span> <span class="n">K_B</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">K_HEADLINE</span>
+<span class="n">idx_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">graph_complexity</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Panel of graph-complexity features on an induced subgraph (None if too small)."""</span>
+    <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="ow">or</span> <span class="n">G</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">f</span>  <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">Gc</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">L</span>  <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">normalized_laplacian_matrix</span><span class="p">(</span><span class="n">Gc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">ev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sla</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Gc</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">which</span><span class="o">=</span><span class="s2">"SM"</span><span class="p">,</span>
+                               <span class="n">return_eigenvectors</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">ev</span><span class="p">[</span><span class="n">ev</span> <span class="o">&gt;</span> <span class="mf">1e-9</span><span class="p">];</span> <span class="n">f</span><span class="p">[</span><span class="s2">"spectral_gap"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">[</span><span class="s2">"spectral_gap"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">[</span><span class="s2">"modularity"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">nx_mod</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">greedy_modularity_communities</span><span class="p">(</span><span class="n">G</span><span class="p">))))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">[</span><span class="s2">"modularity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">"avg_clustering"</span><span class="p">]</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">"transitivity"</span><span class="p">]</span>   <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">transitivity</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">[</span><span class="s2">"assortativity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_assortativity_coefficient</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">[</span><span class="s2">"assortativity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">"edge_density"</span><span class="p">]</span>   <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">degs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">()],</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">"mean_degree"</span><span class="p">]</span>    <span class="o">=</span> <span class="n">degs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">f</span><span class="p">[</span><span class="s2">"degree_heterog"</span><span class="p">]</span> <span class="o">=</span> <span class="n">degs</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">degs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">if</span> <span class="n">degs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">return</span> <span class="n">f</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_recall_at_k</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">cand</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cand</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="n">cand</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">[</span><span class="n">cand</span><span class="p">])[:</span><span class="n">k</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">targets</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_method_recall</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">S_mask</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""mean recall@k over classes &amp; embedding seeds for one method on subsample S."""</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">CLASS_ORDER</span><span class="p">)):</span>
+        <span class="n">seed_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">S_mask</span> <span class="o">&amp;</span> <span class="n">seed_m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tgt_c</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">S_mask</span> <span class="o">&amp;</span> <span class="n">eval_m</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="bp">cls</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cand</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">S_mask</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">seed_m</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seed_c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">tgt_c</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">for</span> <span class="n">sd</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_REPEATS</span><span class="p">):</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">seed_centroid_scores</span><span class="p">(</span><span class="n">EMB</span><span class="p">[(</span><span class="n">method</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">sd</span><span class="p">)],</span> <span class="nb">list</span><span class="p">(</span><span class="n">seed_c</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)</span>
+            <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_recall_at_k</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">cand</span><span class="p">,</span> <span class="n">tgt_c</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="k">if</span> <span class="n">vals</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">rng</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">20240517</span><span class="p">)</span>
+<span class="n">brows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">keep</span>   <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">idx_all</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">FRAC</span> <span class="o">*</span> <span class="n">N</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">S_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">bool</span><span class="p">);</span> <span class="n">S_mask</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">keep_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">IDS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">keep</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">VIEWS</span><span class="p">:</span>                                   <span class="c1"># rna, protein (concat has no own graph)</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="n">graph_complexity</span><span class="p">(</span><span class="n">GRAPHS</span><span class="p">[</span><span class="n">view</span><span class="p">]</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">keep_ids</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">cf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">qr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">([</span><span class="n">_method_recall</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">S_mask</span><span class="p">,</span> <span class="n">K_B</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">QUANTUM_M</span><span class="p">])</span>
+        <span class="n">cr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">([</span><span class="n">_method_recall</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">S_mask</span><span class="p">,</span> <span class="n">K_B</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">CLASSICAL_M</span><span class="p">])</span>  <span class="c1"># node2vec</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">cr</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">brows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"b"</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="s2">"view"</span><span class="p">:</span> <span class="n">view</span><span class="p">,</span> <span class="s2">"quantum_gain"</span><span class="p">:</span> <span class="n">qr</span> <span class="o">-</span> <span class="n">cr</span><span class="p">,</span> <span class="o">**</span><span class="n">cf</span><span class="p">})</span>
+
+<span class="n">boot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">brows</span><span class="p">)</span>
+<span class="n">FEATURES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"spectral_gap"</span><span class="p">,</span> <span class="s2">"modularity"</span><span class="p">,</span> <span class="s2">"avg_clustering"</span><span class="p">,</span> <span class="s2">"transitivity"</span><span class="p">,</span>
+            <span class="s2">"assortativity"</span><span class="p">,</span> <span class="s2">"edge_density"</span><span class="p">,</span> <span class="s2">"mean_degree"</span><span class="p">,</span> <span class="s2">"degree_heterog"</span><span class="p">]</span>
+<span class="n">crows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">FEATURES</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[[</span><span class="n">feat</span><span class="p">,</span> <span class="s2">"quantum_gain"</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">spearmanr</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">feat</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"quantum_gain"</span><span class="p">])</span>
+        <span class="n">crows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">feat</span><span class="p">,</span> <span class="s2">"spearman_r"</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span> <span class="s2">"p"</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)})</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">crows</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">absr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="s2">"spearman_r"</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">())</span>
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"absr"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"bootstrap rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">boot</span><span class="p">)</span><span class="si">}</span><span class="s2">  (B=</span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">VIEWS</span><span class="p">)</span><span class="si">}</span><span class="s2"> views)  |  recall@</span><span class="si">{</span><span class="n">K_B</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"quantum_gain = recall(ctqw,dtqw) − recall(node2vec), avg over classes &amp; </span><span class="si">{</span><span class="n">N_REPEATS</span><span class="si">}</span><span class="s2"> emb-seeds"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># ---- plot: complexity feature vs quantum recall gain (bootstrap correlation) -----</span>
+<span class="n">yb</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">))</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">corr</span><span class="p">[</span><span class="s2">"spearman_r"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"#4c72b0"</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"#c44e52"</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mf">0.45</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">yb</span><span class="p">,</span> <span class="n">vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">yi</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">yb</span><span class="p">,</span> <span class="n">corr</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()):</span>
+    <span class="n">star</span> <span class="o">=</span> <span class="s2">"*"</span> <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">p</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">)</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="mf">0.02</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">spearman_r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">0.02</span><span class="p">),</span> <span class="n">yi</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"p=</span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">p</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}{</span><span class="n">star</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">spearman_r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"right"</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"dimgray"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yb</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">corr</span><span class="p">[</span><span class="s2">"feature"</span><span class="p">]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Spearman r  (graph-complexity feature ↔ quantum recall gain)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cd4_vs_cd8 — graph-complexity drivers of PQ-walk advantage  (bootstrap n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">boot</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+bootstrap rows: 80  (B=40 x 2 views)  |  recall@50
+quantum_gain = recall(ctqw,dtqw) − recall(node2vec), avg over classes &amp; 3 emb-seeds
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>spearman_r</th>
+      <th>p</th>
+      <th>n</th>
+      <th>absr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>modularity</td>
+      <td>0.594</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.594</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>degree_heterog</td>
+      <td>-0.656</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.656</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>spectral_gap</td>
+      <td>-0.690</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.690</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>transitivity</td>
+      <td>0.717</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.717</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>avg_clustering</td>
+      <td>0.727</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.727</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>edge_density</td>
+      <td>-0.727</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.727</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>mean_degree</td>
+      <td>-0.727</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.727</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>assortativity</td>
+      <td>0.751</td>
+      <td>0.0</td>
+      <td>80</td>
+      <td>0.751</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_19_2.png" src="../../_images/tutorials_QuVINE_quvine_sc_cd4_vs_cd8_19_2.png" />
+</div>
+</div>
+</section>
+<section id="8.-How-to-read-this">
+<h2>8. How to read this<a class="headerlink" href="#8.-How-to-read-this" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Quantum vs classical (§7) is the verdict.</strong> Part A asks <em>whether</em> the quantum walks beat the <strong>pure classical baseline ``node2vec``</strong> on ranking recall (paired Cohen’s <em>d_z</em>, stratified by seed budget — watch the small-<code class="docutils literal notranslate"><span class="pre">k</span></code> rows), with <code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code> shown separately as the same-pipeline <strong>ablation</strong>; Part B asks <em>which graph-complexity feature</em> the quantum edge tracks, via a node-subsample bootstrap. Positive <code class="docutils literal notranslate"><span class="pre">d_z</span></code> = quantum better; bootstrap bars whose CIs clear 0 flag candidate
+drivers.</p></li>
+<li><p><strong>Ranking (§5) is the headline.</strong> With a few-shot <strong>centroid seed</strong>, recall&#64;K that stays <strong>above the degree/distance-matched nulls</strong> means the embedding recovers same-class cells for real structural reasons, not by preferring hubs or near neighbors. Watch the <strong>small-``k`` end</strong> of the curve: at <code class="docutils literal notranslate"><span class="pre">k=1</span></code> the centroid is one noisy anchor, so any separation between the quantum walks (<code class="docutils literal notranslate"><span class="pre">quvine_ctqw</span></code>/<code class="docutils literal notranslate"><span class="pre">quvine_dtqw</span></code>) and the pure classical <code class="docutils literal notranslate"><span class="pre">node2vec</span></code> (with <code class="docutils literal notranslate"><span class="pre">quvine_rwr</span></code> as the same-pipeline
+ablation) is the quantum walk’s structural spread doing the work. Overlapping 95% CIs = no reproducible difference at this scale.</p></li>
+<li><p><strong>Classification (§4)</strong> is the sanity/counterpoint arm: does the LR-on-embeddings advantage (or the no-embedding <code class="docutils literal notranslate"><span class="pre">diffusion(Y_soft)</span></code> baseline) survive when the label budget is tiny? On the old T-vs-mono task every curve pinned at ~1.0; on CD4-vs-CD8 the small-<code class="docutils literal notranslate"><span class="pre">k</span></code> regime should spread them out.</p></li>
+<li><p><strong>Complexity (§6)</strong> contextualizes which view the diffusion should help on (slow-mixing, high-modularity graphs benefit most from diffusion/quantum-walk smoothing).</p></li>
+</ul>
+<p><strong>To go further:</strong> <code class="docutils literal notranslate"><span class="pre">QUICK=True</span></code> gives a fast (but quantum-sandbagging) laptop run; raise <code class="docutils literal notranslate"><span class="pre">N_REPEATS</span></code> / <code class="docutils literal notranslate"><span class="pre">N_SUBSAMPLE</span></code> for tighter CIs; extend <code class="docutils literal notranslate"><span class="pre">SEEDS_PER_CLASS</span></code> toward the full pool to see where the curves converge; swap <code class="docutils literal notranslate"><span class="pre">TASK</span></code> to <code class="docutils literal notranslate"><span class="pre">binary_lymphoid_vs_myeloid</span></code> (intermediate difficulty) or add registry methods (<code class="docutils literal notranslate"><span class="pre">gat_ctqw_heat</span></code>, <code class="docutils literal notranslate"><span class="pre">graphgps_dtqw_poly</span></code>, <code class="docutils literal notranslate"><span class="pre">filter_ctqw_heat</span></code>, …) to <code class="docutils literal notranslate"><span class="pre">METHODS</span></code> (GAT/GraphGPS train a small net — slower). This tutorial is scoped to the harder <strong>cd4_vs_cd8</strong>
+vehicle precisely because T-vs-mono saturated; the other <code class="docutils literal notranslate"><span class="pre">pbmc5k_small_*</span></code> graph files share the same layout and can be dropped in via <code class="docutils literal notranslate"><span class="pre">TASK</span></code> + <code class="docutils literal notranslate"><span class="pre">H5AD</span></code>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="example_quvine.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">QuVINE Tutorial — quantum graph embeddings inside QBioCode</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quvine_sc_t_vs_mono.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">QuVINE on the T-vs-Monocyte cell graph</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Configuration">1. Configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Imports-&amp;-data">2. Imports &amp; data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Compute-QuVINE-embeddings">3. Compute QuVINE embeddings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Node-classification-—-few-shot-vs-seed-budget">4. Node classification — few-shot vs seed budget</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#4a.-Classification-—-macro-F1-/-AUC-vs-seed-budget-(concat-view)">4a. Classification — macro-F1 / AUC vs seed budget (concat view)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Node-ranking-(centroid-seed-→-target)-—-the-headline">5. Node ranking (centroid seed → target) — the headline</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#5a.-Ranking-—-recall@K-vs-seed-budget,-against-the-null-control-(concat-view)">5a. Ranking — recall@K vs seed budget, against the null control (concat view)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Graph-complexity-lens">6. Graph complexity lens</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Quantum-vs-classical-—-advantage-&amp;-which-complexity-features-drive-it">7. Quantum vs classical — advantage &amp; which complexity features drive it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-How-to-read-this">8. How to read this</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

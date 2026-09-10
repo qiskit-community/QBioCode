@@ -1,0 +1,1136 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>qbiocode.apps.quvine.baselines.gcn_mf module &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/qbiocode.apps.quvine.baselines.gcn_mf';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qbiocode.apps.quvine.baselines.graphgps module" href="qbiocode.apps.quvine.baselines.graphgps.html" />
+    <link rel="prev" title="qbiocode.apps.quvine.baselines.gat module" href="qbiocode.apps.quvine.baselines.gat.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">qbiocode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="qbiocode.html">qbiocode package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.version.html">qbiocode.version module</a></li>
+<li class="toctree-l3 current active"><a class="reference internal" href="qbiocode.apps.html">qbiocode.apps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.data_generation.html">qbiocode.data_generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.embeddings.html">qbiocode.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.evaluation.html">qbiocode.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.learning.html">qbiocode.learning package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.utils.html">qbiocode.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.visualization.html">qbiocode.visualization package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_overview.html" class="nav-link">API Overview</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">qbiocode</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.html" class="nav-link">qbiocode package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.html" class="nav-link">qbiocode.apps package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.html" class="nav-link">qbiocode.apps.quvine package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.quvine.baselines.html" class="nav-link">qbiocode.apps.quvine.baselines package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.baselines.gcn_mf module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-qbiocode.apps.quvine.baselines.gcn_mf">
+<span id="qbiocode-apps-quvine-baselines-gcn-mf-module"></span><h1>qbiocode.apps.quvine.baselines.gcn_mf module<a class="headerlink" href="#module-qbiocode.apps.quvine.baselines.gcn_mf" title="Link to this heading">#</a></h1>
+<p>GCN-MF: Graph Convolutional Network with Matrix Factorization</p>
+<p>A baseline method for disease gene prioritization that combines:
+1. Graph Convolutional Networks (GCN) for learning node representations
+2. Matrix Factorization for capturing latent features</p>
+<p>Reference:
+- Kipf &amp; Welling (2017). Semi-Supervised Classification with Graph Convolutional Networks
+- Matrix factorization approaches for biological network analysis</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Classes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer" title="qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GCNLayer</span></code></a></p></td>
+<td><p>Single Graph Convolutional Layer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF" title="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GCNMF</span></code></a></p></td>
+<td><p>GCN-MF: Graph Convolutional Network with Matrix Factorization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF" title="qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuVINEGCNMF</span></code></a></p></td>
+<td><p>QuVINE GCN-MF: GCN-MF with precomputed quantum-calibrated features.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Functions:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_filter_embedding_wrapper" title="qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_filter_embedding_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_baseline_filter_embedding_wrapper</span></code></a></p></td>
+<td><p>Generate baseline graph filter embeddings (WITHOUT quantum calibration).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_gcnmf_embedding" title="qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_gcnmf_embedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_baseline_gcnmf_embedding</span></code></a></p></td>
+<td><p>Generate baseline GCN-MF embeddings (WITHOUT quantum calibration).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_heat_embedding" title="qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_heat_embedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_qcaliber_gcnmf_heat_embedding</span></code></a></p></td>
+<td><p>Generate QuVINE Heat+GCN-MF (HGCNMF) embeddings.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_poly_embedding" title="qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_poly_embedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_qcaliber_gcnmf_poly_embedding</span></code></a></p></td>
+<td><p>Generate QuVINE Polynomial+GCN-MF (PGCNMF) embeddings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_quvine_gcnmf_embedding" title="qbiocode.apps.quvine.baselines.gcn_mf.generate_quvine_gcnmf_embedding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_quvine_gcnmf_embedding</span></code></a></p></td>
+<td><p>Generate QuVINE GCN-MF embeddings (Heat or Poly variant).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.normalize_adjacency" title="qbiocode.apps.quvine.baselines.gcn_mf.normalize_adjacency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_adjacency</span></code></a></p></td>
+<td><p>Normalize adjacency matrix: D^(-1/2) * A * D^(-1/2)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.precompute_quantum_diffusion" title="qbiocode.apps.quvine.baselines.gcn_mf.precompute_quantum_diffusion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">precompute_quantum_diffusion</span></code></a></p></td>
+<td><p>Precompute quantum-calibrated diffusion OFFLINE (before training).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.train_gcn_mf" title="qbiocode.apps.quvine.baselines.gcn_mf.train_gcn_mf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_gcn_mf</span></code></a></p></td>
+<td><p>Train GCN-MF model.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCNLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Single Graph Convolutional Layer.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.reset_parameters">
+<span class="sig-name descname"><span class="pre">reset_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNLayer.reset_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.reset_parameters" title="Link to this definition">#</a></dt>
+<dd><p>Initialize parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNLayer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.forward" title="Link to this definition">#</a></dt>
+<dd><p>Forward pass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Node features [N, in_features]</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix [N, N] (sparse or dense)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output features [N, out_features]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCNMF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNMF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>GCN-MF: Graph Convolutional Network with Matrix Factorization.</p>
+<p>Architecture:
+1. GCN layers for learning graph-based representations
+2. Matrix factorization component for latent features
+3. Fusion of GCN and MF representations</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNMF.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Initialize GCN-MF model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_nodes</strong> – Number of nodes in the graph</p></li>
+<li><p><strong>input_dim</strong> – Input feature dimension</p></li>
+<li><p><strong>hidden_dim</strong> – Hidden layer dimension</p></li>
+<li><p><strong>output_dim</strong> – Output dimension (number of classes)</p></li>
+<li><p><strong>mf_dim</strong> – Matrix factorization embedding dimension</p></li>
+<li><p><strong>n_layers</strong> – Number of GCN layers</p></li>
+<li><p><strong>dropout</strong> – Dropout rate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNMF.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.forward" title="Link to this definition">#</a></dt>
+<dd><p>Forward pass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Node features [N, input_dim]</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix [N, N]</p></li>
+<li><p><strong>node_indices</strong> – Optional node indices for batch processing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output predictions [N, output_dim]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.get_embeddings">
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#GCNMF.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.get_embeddings" title="Link to this definition">#</a></dt>
+<dd><p>Get node embeddings (before classification layer).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Node features</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.normalize_adjacency">
+<span class="sig-name descname"><span class="pre">normalize_adjacency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#normalize_adjacency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.normalize_adjacency" title="Link to this definition">#</a></dt>
+<dd><p>Normalize adjacency matrix: D^(-1/2) * A * D^(-1/2)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>adj</strong> – Adjacency matrix (scipy sparse or numpy array)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Normalized adjacency matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.precompute_quantum_diffusion">
+<span class="sig-name descname"><span class="pre">precompute_quantum_diffusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusion_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_star</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_coeffs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#precompute_quantum_diffusion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.precompute_quantum_diffusion" title="Link to this definition">#</a></dt>
+<dd><p>Precompute quantum-calibrated diffusion OFFLINE (before training).</p>
+<p>This function should be called ONCE before training to compute diffused features.
+The result is then passed to QuVINEGCNMF during training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Original node features [N, input_dim] (numpy array or torch tensor)</p></li>
+<li><p><strong>L</strong> – Laplacian matrix (scipy sparse or numpy array)</p></li>
+<li><p><strong>diffusion_type</strong> – ‘heat’ or ‘poly’</p></li>
+<li><p><strong>t_star</strong> – Calibrated heat kernel time parameter (for heat diffusion)</p></li>
+<li><p><strong>poly_coeffs</strong> – Calibrated polynomial coefficients (for polynomial diffusion)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Diffused features [N, input_dim] (torch tensor)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>X_diffused</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Offline: Compute diffusion once</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_diffused_heat</span> <span class="o">=</span> <span class="n">precompute_quantum_diffusion</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s1">'heat'</span><span class="p">,</span> <span class="n">t_star</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_diffused_poly</span> <span class="o">=</span> <span class="n">precompute_quantum_diffusion</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="s1">'poly'</span><span class="p">,</span> <span class="n">poly_coeffs</span><span class="o">=</span><span class="n">coeffs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Online: Use in training (no diffusion computation)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">QuVINEGCNMF</span><span class="p">(</span><span class="n">n_nodes</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_diffused_heat</span><span class="p">,</span> <span class="n">adj</span><span class="p">)</span>  <span class="c1"># Fast!</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">QuVINEGCNMF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#QuVINEGCNMF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF" title="qbiocode.apps.quvine.baselines.gcn_mf.GCNMF"><code class="xref py py-class docutils literal notranslate"><span class="pre">GCNMF</span></code></a></p>
+<p>QuVINE GCN-MF: GCN-MF with precomputed quantum-calibrated features.</p>
+<p>DESIGN PHILOSOPHY:
+- Diffusion is computed ONCE offline (before training)
+- Diffused features are passed as input
+- No CPU conversion or diffusion computation during training
+- Scalable and efficient for large graphs</p>
+<p>This model expects precomputed diffused features as input, combining:
+1. Precomputed quantum-calibrated diffusion (offline)
+2. GCN layers for learning representations (online)
+3. Matrix factorization for latent features (online)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#QuVINEGCNMF.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Initialize QuVINE GCN-MF model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_nodes</strong> – Number of nodes</p></li>
+<li><p><strong>input_dim</strong> – Input feature dimension (should match diffused features)</p></li>
+<li><p><strong>hidden_dim</strong> – Hidden layer dimension</p></li>
+<li><p><strong>output_dim</strong> – Output dimension</p></li>
+<li><p><strong>mf_dim</strong> – Matrix factorization dimension</p></li>
+<li><p><strong>n_layers</strong> – Number of GCN layers</p></li>
+<li><p><strong>dropout</strong> – Dropout rate</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This model expects precomputed diffused features as input.
+Compute diffusion offline using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X_diffused</span> <span class="o">=</span> <span class="n">apply_quantum_diffusion</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">t_star</span><span class="p">,</span> <span class="n">poly_coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then pass X_diffused to forward().</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#QuVINEGCNMF.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.forward" title="Link to this definition">#</a></dt>
+<dd><p>Forward pass with precomputed diffused features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – PRECOMPUTED diffused features [N, input_dim]
+(computed offline before training)</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix [N, N]</p></li>
+<li><p><strong>node_indices</strong> – Optional node indices</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output predictions [N, output_dim]</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>x should be the result of offline diffusion:
+x = exp(-t*L) &#64; X_original  (heat kernel)
+or
+x = polynomial_filter(L, coeffs) &#64; X_original  (polynomial)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.get_embeddings">
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#QuVINEGCNMF.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.get_embeddings" title="Link to this definition">#</a></dt>
+<dd><p>Get node embeddings from precomputed diffused features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – PRECOMPUTED diffused features [N, input_dim]
+(computed offline before training)</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>x should already be diffused features from offline computation.
+No diffusion is applied here - it’s done offline!</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.train_gcn_mf">
+<span class="sig-name descname"><span class="pre">train_gcn_mf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#train_gcn_mf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.train_gcn_mf" title="Link to this definition">#</a></dt>
+<dd><p>Train GCN-MF model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – GCN-MF model</p></li>
+<li><p><strong>x</strong> – Node features</p></li>
+<li><p><strong>y</strong> – Labels</p></li>
+<li><p><strong>adj</strong> – Normalized adjacency matrix</p></li>
+<li><p><strong>train_mask</strong> – Training mask</p></li>
+<li><p><strong>val_mask</strong> – Validation mask</p></li>
+<li><p><strong>epochs</strong> – Number of training epochs</p></li>
+<li><p><strong>lr</strong> – Learning rate</p></li>
+<li><p><strong>weight_decay</strong> – Weight decay for regularization</p></li>
+<li><p><strong>patience</strong> – Early stopping patience</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with training history</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.generate_quvine_gcnmf_embedding">
+<span class="sig-name descname"><span class="pre">generate_quvine_gcnmf_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffusion_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_star</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_coeffs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_laplacian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#generate_quvine_gcnmf_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_quvine_gcnmf_embedding" title="Link to this definition">#</a></dt>
+<dd><p>Generate QuVINE GCN-MF embeddings (Heat or Poly variant).</p>
+<p>WORKFLOW:
+1. Calibrate diffusion parameters using quantum walks (if not provided)
+2. Precompute diffused features OFFLINE
+3. Train GCN-MF model with diffused features
+4. Extract final embeddings</p>
+<p>This is a HIGH-LEVEL wrapper that combines:
+- QuVINE quantum filter calibration (from quantum_filters.py)
+- Offline diffusion precomputation
+- GCN-MF training
+- Embedding extraction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> – NetworkX graph</p></li>
+<li><p><strong>q_targets</strong> – List of quantum walk targets for calibration
+Format: [{‘nodes’: […], ‘center’: int, ‘pQ’: array}, …]</p></li>
+<li><p><strong>embedding_dim</strong> – Final embedding dimension</p></li>
+<li><p><strong>diffusion_type</strong> – ‘heat’ or ‘poly’</p></li>
+<li><p><strong>t_star</strong> – Pre-calibrated heat kernel time (optional, will calibrate if None)</p></li>
+<li><p><strong>poly_coeffs</strong> – Pre-calibrated polynomial coefficients (optional)</p></li>
+<li><p><strong>K</strong> – Polynomial degree (for poly diffusion)</p></li>
+<li><p><strong>ridge</strong> – Ridge regularization for polynomial calibration</p></li>
+<li><p><strong>hidden_dim</strong> – GCN hidden dimension</p></li>
+<li><p><strong>mf_dim</strong> – Matrix factorization dimension</p></li>
+<li><p><strong>n_layers</strong> – Number of GCN layers</p></li>
+<li><p><strong>epochs</strong> – Training epochs</p></li>
+<li><p><strong>lr</strong> – Learning rate</p></li>
+<li><p><strong>weight_decay</strong> – Weight decay for regularization</p></li>
+<li><p><strong>normalize_laplacian</strong> – Whether to normalize Laplacian</p></li>
+<li><p><strong>random_state</strong> – Random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings [N, embedding_dim]
+metadata: Dictionary with calibration info and training history</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>embeddings</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.baselines.gcn_mf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_quvine_gcnmf_embedding</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate QuVINE GCN-MF (Heat) embeddings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embeddings_heat</span><span class="p">,</span> <span class="n">meta_heat</span> <span class="o">=</span> <span class="n">generate_quvine_gcnmf_embedding</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">G</span><span class="p">,</span> <span class="n">q_targets</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">diffusion_type</span><span class="o">=</span><span class="s1">'heat'</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate QuVINE GCN-MF (Poly) embeddings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embeddings_poly</span><span class="p">,</span> <span class="n">meta_poly</span> <span class="o">=</span> <span class="n">generate_quvine_gcnmf_embedding</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">G</span><span class="p">,</span> <span class="n">q_targets</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">diffusion_type</span><span class="o">=</span><span class="s1">'poly'</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">4</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_heat_embedding">
+<span class="sig-name descname"><span class="pre">generate_qcaliber_gcnmf_heat_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_star</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#generate_qcaliber_gcnmf_heat_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_heat_embedding" title="Link to this definition">#</a></dt>
+<dd><p>Generate QuVINE Heat+GCN-MF (HGCNMF) embeddings.</p>
+<p>Convenience wrapper for heat kernel variant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> – NetworkX graph</p></li>
+<li><p><strong>q_targets</strong> – Quantum walk targets for calibration</p></li>
+<li><p><strong>embedding_dim</strong> – Embedding dimension</p></li>
+<li><p><strong>t_star</strong> – Pre-calibrated time parameter (optional)</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for generate_qcaliber_gcnmf_embedding</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings [N, embedding_dim]
+metadata: Calibration and training info</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>embeddings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_poly_embedding">
+<span class="sig-name descname"><span class="pre">generate_qcaliber_gcnmf_poly_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_coeffs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#generate_qcaliber_gcnmf_poly_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_poly_embedding" title="Link to this definition">#</a></dt>
+<dd><p>Generate QuVINE Polynomial+GCN-MF (PGCNMF) embeddings.</p>
+<p>Convenience wrapper for polynomial filter variant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> – NetworkX graph</p></li>
+<li><p><strong>q_targets</strong> – Quantum walk targets for calibration</p></li>
+<li><p><strong>embedding_dim</strong> – Embedding dimension</p></li>
+<li><p><strong>poly_coeffs</strong> – Pre-calibrated coefficients (optional)</p></li>
+<li><p><strong>K</strong> – Polynomial degree</p></li>
+<li><p><strong>ridge</strong> – Ridge regularization</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments for generate_qcaliber_gcnmf_embedding</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Node embeddings [N, embedding_dim]
+metadata: Calibration and training info</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>embeddings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_gcnmf_embedding">
+<span class="sig-name descname"><span class="pre">generate_baseline_gcnmf_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mf_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#generate_baseline_gcnmf_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_gcnmf_embedding" title="Link to this definition">#</a></dt>
+<dd><p>Generate baseline GCN-MF embeddings (WITHOUT quantum calibration).</p>
+<p>This serves as a classical baseline to compare against QuVINE methods.
+Uses standard GCN-MF without any quantum-calibrated diffusion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span>) – NetworkX graph</p></li>
+<li><p><strong>embedding_dim</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Final embedding dimension</p></li>
+<li><p><strong>hidden_dim</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – GCN hidden dimension</p></li>
+<li><p><strong>mf_dim</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Matrix factorization dimension</p></li>
+<li><p><strong>n_layers</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of GCN layers</p></li>
+<li><p><strong>epochs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Training epochs</p></li>
+<li><p><strong>lr</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Learning rate</p></li>
+<li><p><strong>weight_decay</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – L2 regularization</p></li>
+<li><p><strong>random_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node embeddings [N, embedding_dim]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.baselines.gcn_mf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_baseline_gcnmf_embedding</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">generate_baseline_gcnmf_embedding</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (34, 128)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_filter_embedding_wrapper">
+<span class="sig-name descname"><span class="pre">generate_baseline_filter_embedding_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/quvine/baselines/gcn_mf.html#generate_baseline_filter_embedding_wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_filter_embedding_wrapper" title="Link to this definition">#</a></dt>
+<dd><p>Generate baseline graph filter embeddings (WITHOUT quantum calibration).</p>
+<p>Wrapper for the baseline filter function in quantum_filters.py.
+This serves as a classical baseline to compare against QuVINE methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></span>) – NetworkX graph</p></li>
+<li><p><strong>filter_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Type of filter (‘heat’ or ‘poly’)</p></li>
+<li><p><strong>t</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Time parameter for heat kernel (if filter_type=’heat’)</p></li>
+<li><p><strong>K</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Polynomial degree (if filter_type=’poly’)</p></li>
+<li><p><strong>embedding_dim</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Embedding dimension</p></li>
+<li><p><strong>normalize</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to normalize Laplacian</p></li>
+<li><p><strong>random_state</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Node embeddings [N, embedding_dim]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.baselines.gcn_mf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_baseline_filter_embedding_wrapper</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Heat kernel baseline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embeddings_heat</span> <span class="o">=</span> <span class="n">generate_baseline_filter_embedding_wrapper</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">G</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="s1">'heat'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">128</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Polynomial filter baseline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">embeddings_poly</span> <span class="o">=</span> <span class="n">generate_baseline_filter_embedding_wrapper</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">G</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="s1">'poly'</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="o">=</span><span class="mi">128</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qbiocode.apps.quvine.baselines.gat.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.baselines.gat module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qbiocode.apps.quvine.baselines.graphgps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">qbiocode.apps.quvine.baselines.graphgps module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer"><code class="docutils literal notranslate"><span class="pre">GCNLayer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.reset_parameters"><code class="docutils literal notranslate"><span class="pre">GCNLayer.reset_parameters()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNLayer.forward"><code class="docutils literal notranslate"><span class="pre">GCNLayer.forward()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF"><code class="docutils literal notranslate"><span class="pre">GCNMF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.__init__"><code class="docutils literal notranslate"><span class="pre">GCNMF.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.forward"><code class="docutils literal notranslate"><span class="pre">GCNMF.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.GCNMF.get_embeddings"><code class="docutils literal notranslate"><span class="pre">GCNMF.get_embeddings()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.normalize_adjacency"><code class="docutils literal notranslate"><span class="pre">normalize_adjacency()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.precompute_quantum_diffusion"><code class="docutils literal notranslate"><span class="pre">precompute_quantum_diffusion()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF"><code class="docutils literal notranslate"><span class="pre">QuVINEGCNMF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.__init__"><code class="docutils literal notranslate"><span class="pre">QuVINEGCNMF.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.forward"><code class="docutils literal notranslate"><span class="pre">QuVINEGCNMF.forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.QuVINEGCNMF.get_embeddings"><code class="docutils literal notranslate"><span class="pre">QuVINEGCNMF.get_embeddings()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.train_gcn_mf"><code class="docutils literal notranslate"><span class="pre">train_gcn_mf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_quvine_gcnmf_embedding"><code class="docutils literal notranslate"><span class="pre">generate_quvine_gcnmf_embedding()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_heat_embedding"><code class="docutils literal notranslate"><span class="pre">generate_qcaliber_gcnmf_heat_embedding()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_qcaliber_gcnmf_poly_embedding"><code class="docutils literal notranslate"><span class="pre">generate_qcaliber_gcnmf_poly_embedding()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_gcnmf_embedding"><code class="docutils literal notranslate"><span class="pre">generate_baseline_gcnmf_embedding()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.quvine.baselines.gcn_mf.generate_baseline_filter_embedding_wrapper"><code class="docutils literal notranslate"><span class="pre">generate_baseline_filter_embedding_wrapper()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

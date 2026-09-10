@@ -1,0 +1,1791 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Quantum Projection Learning (QPL) Tutorial &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=a35ea3b2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/Quantum_Projection_Learning/QPL_example';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Projected Quantum Kernel (PQK) Tutorial: Ovarian Cancer Survival Prediction" href="../PQK%20-%20OV.html" />
+    <link rel="prev" title="QSage Tutorial" href="../QSage/qsage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Artificial_data_generation/example_data_generation.html">Artificial Data Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Preprocessing/sc-qc.html">5k PBMC CITE-seq — QC &amp; preprocessing</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/example_qprofiler.html">QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_qprofiler.html">QProfiler on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/example_quvine.html">QuVINE - Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/quvine_sc_cd4_vs_cd8.html">QuVINE on Single-Cell Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuVINE/quvine_sc_t_vs_mono.html">QuVINE on T vs. Monocyte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QProfiler/sc_binary_quvine_2x2_qprofiler.html">QuVINE Embeddings in QProfiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QEnsemble/QEnsemble_example_blobs.html">Quantum Ensemble Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSage/qsage.html">QSage</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quantum Projection Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PQK%20-%20OV.html">PQK on Ovarian Cancer</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Quantum Projection Learning (QPL) Tutorial</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style>
+    /* Improve notebook cell spacing */
+    div.nbinput.container,
+    div.nboutput.container {
+        margin-bottom: 1em;
+    }
+
+    /* Better code cell styling */
+    div.highlight-ipython3 {
+        margin: 0.5em 0;
+    }
+
+    /* Improve markdown cell rendering */
+    .nbinput + .nboutput {
+        margin-top: 0.5em;
+    }
+</style><section id="Quantum-Projection-Learning-(QPL)-Tutorial">
+<h1>Quantum Projection Learning (QPL) Tutorial<a class="headerlink" href="#Quantum-Projection-Learning-(QPL)-Tutorial" title="Link to this heading">#</a></h1>
+<section id="Overview">
+<h2>Overview<a class="headerlink" href="#Overview" title="Link to this heading">#</a></h2>
+<p><strong>Quantum Projection Learning (QPL)</strong> is an advanced quantum machine learning technique that extends Projected Quantum Kernels (PQK) by evaluating quantum-projected data with multiple classical machine learning algorithms. Instead of using only Support Vector Machines, QPL systematically compares performance across:</p>
+<ul class="simple">
+<li><p><strong>Support Vector Classifier (SVC)</strong></p></li>
+<li><p><strong>Random Forest (RF)</strong></p></li>
+<li><p><strong>XGBoost (XGB)</strong></p></li>
+<li><p><strong>Multi-Layer Perceptron (MLP)</strong></p></li>
+<li><p><strong>Logistic Regression (LR)</strong></p></li>
+</ul>
+<p>This comprehensive approach helps identify which classical learner best exploits quantum feature representations for a given dataset.</p>
+<section id="What-You'll-Learn">
+<h3>What You’ll Learn<a class="headerlink" href="#What-You'll-Learn" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Generate synthetic classification datasets with controlled complexity</p></li>
+<li><p>Configure and run QPL experiments using QProfiler</p></li>
+<li><p>Compare quantum-enhanced vs. classical baseline performance</p></li>
+<li><p>Analyze results across multiple models and embeddings</p></li>
+<li><p>Visualize performance metrics and identify where quantum features help</p></li>
+</ul>
+</section>
+<section id="Key-Concepts">
+<h3>Key Concepts<a class="headerlink" href="#Key-Concepts" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Quantum Feature Maps</strong>: Transform classical data into quantum states</p></li>
+<li><p><strong>Quantum Projections</strong>: Extract features from quantum circuits via expectation values</p></li>
+<li><p><strong>Ensemble Learning</strong>: Combine multiple classical learners on quantum features</p></li>
+<li><p><strong>Data Complexity Analysis</strong>: Understand which datasets benefit from quantum processing</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="1.-Setup-and-Imports">
+<h2>1. Setup and Imports<a class="headerlink" href="#1.-Setup-and-Imports" title="Link to this heading">#</a></h2>
+<p>First, configure the environment and import necessary libraries.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># Set up paths</span>
+<span class="n">dir_home</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">'QBioCode.*'</span><span class="p">,</span> <span class="s1">'QBioCode'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dir_home</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_home</span><span class="p">,</span> <span class="s1">'apps'</span><span class="p">))</span>
+
+<span class="c1"># Import QBioCode</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qbiocode</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qbc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.qprofiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">qprofiler</span> <span class="k">as</span> <span class="n">profiler</span>
+
+<span class="c1"># Set plotting style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">'whitegrid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.dpi'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Environment configured successfully"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Working directory: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;env&gt;/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✓ Environment configured successfully
+✓ Working directory: &lt;repo&gt;/tutorial/Quantum_Projection_Learning
+</pre></div></div>
+</div>
+</section>
+<section id="2.-Understanding-Quantum-Projection-Learning">
+<h2>2. Understanding Quantum Projection Learning<a class="headerlink" href="#2.-Understanding-Quantum-Projection-Learning" title="Link to this heading">#</a></h2>
+<section id="What-is-QPL?">
+<h3>What is QPL?<a class="headerlink" href="#What-is-QPL?" title="Link to this heading">#</a></h3>
+<p>Quantum Projection Learning works in three stages:</p>
+<ol class="arabic simple">
+<li><p><strong>Quantum Encoding</strong>: Classical data is encoded into quantum states using parameterized quantum circuits (feature maps)</p></li>
+<li><p><strong>Quantum Projection</strong>: Expectation values of Pauli operators are measured, creating quantum-derived features</p></li>
+<li><p><strong>Classical Learning</strong>: Multiple classical ML models are trained on these quantum features</p></li>
+</ol>
+</section>
+<section id="Why-Multiple-Classifiers?">
+<h3>Why Multiple Classifiers?<a class="headerlink" href="#Why-Multiple-Classifiers?" title="Link to this heading">#</a></h3>
+<p>Different classifiers have different inductive biases:</p>
+<ul class="simple">
+<li><p><strong>SVC</strong>: Effective for high-dimensional, non-linear boundaries</p></li>
+<li><p><strong>Random Forest</strong>: Robust to noise, captures feature interactions</p></li>
+<li><p><strong>XGBoost</strong>: Excellent for structured data, handles imbalanced classes</p></li>
+<li><p><strong>MLP</strong>: Can learn complex non-linear patterns</p></li>
+<li><p><strong>Logistic Regression</strong>: Simple, interpretable baseline</p></li>
+</ul>
+<p>By testing all of them, we identify which best exploits quantum features for each dataset.</p>
+<hr class="docutils" />
+</section>
+</section>
+<section id="3.-Generate-Synthetic-Test-Data">
+<h2>3. Generate Synthetic Test Data<a class="headerlink" href="#3.-Generate-Synthetic-Test-Data" title="Link to this heading">#</a></h2>
+<p>We’ll create artificial classification datasets with controlled properties to test QPL performance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset configuration</span>
+<span class="n">type_of_data</span> <span class="o">=</span> <span class="s1">'classes'</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'data'</span><span class="p">,</span> <span class="s1">'qpl_tutorial_data'</span><span class="p">)</span>
+
+<span class="c1"># Dataset parameters. generate_data takes the *product* of these lists, so each value</span>
+<span class="c1"># added here multiplies the run time; the settings below give 4 datasets.</span>
+<span class="c1">#</span>
+<span class="c1"># Feature count is the one to be careful with. With embeddings: ['none'] the feature</span>
+<span class="c1"># map spends one qubit per feature, and simulating it costs exponentially more per</span>
+<span class="c1"># qubit -- measured on a laptop, for 100 samples:</span>
+<span class="c1">#</span>
+<span class="c1">#      6 qubits    6.3s        12 qubits    25.4s</span>
+<span class="c1">#      8 qubits    5.2s        15 qubits   138.3s</span>
+<span class="c1">#</span>
+<span class="c1"># This cell used to ask for 10-15 features across 32 datasets, which put the quantum</span>
+<span class="c1"># cell alone near three hours. Staying at 6-8 shows the same behaviour in minutes.</span>
+<span class="n">N_SAMPLES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span>                   <span class="c1"># Number of samples per dataset</span>
+<span class="n">N_FEATURES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>                 <span class="c1"># Number of features -- and so of qubits</span>
+<span class="n">N_INFORMATIVE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>                 <span class="c1"># Number of informative features</span>
+<span class="n">N_REDUNDANT</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>                   <span class="c1"># Number of redundant features</span>
+<span class="n">N_CLASSES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>                     <span class="c1"># Binary classification</span>
+<span class="n">N_CLUSTERS_PER_CLASS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>          <span class="c1"># Clusters per class</span>
+<span class="n">WEIGHTS</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]</span>  <span class="c1"># Class imbalance scenarios</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Generating synthetic datasets..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Data type: </span><span class="si">{</span><span class="n">type_of_data</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Sample sizes: </span><span class="si">{</span><span class="n">N_SAMPLES</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Feature dimensions: </span><span class="si">{</span><span class="n">N_FEATURES</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Class weights: </span><span class="si">{</span><span class="n">WEIGHTS</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Generate datasets</span>
+<span class="n">qbc</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span>
+    <span class="n">type_of_data</span><span class="o">=</span><span class="n">type_of_data</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="o">=</span><span class="n">save_path</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="n">N_SAMPLES</span><span class="p">,</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="n">N_FEATURES</span><span class="p">,</span>
+    <span class="n">n_informative</span><span class="o">=</span><span class="n">N_INFORMATIVE</span><span class="p">,</span>
+    <span class="n">n_redundant</span><span class="o">=</span><span class="n">N_REDUNDANT</span><span class="p">,</span>
+    <span class="n">n_classes</span><span class="o">=</span><span class="n">N_CLASSES</span><span class="p">,</span>
+    <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="n">N_CLUSTERS_PER_CLASS</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="n">WEIGHTS</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✓ Datasets generated and saved to: </span><span class="si">{</span><span class="n">save_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># List generated files</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_path</span><span class="p">):</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'.csv'</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="si">}</span><span class="s2"> dataset files"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Generating synthetic datasets...
+  - Data type: classes
+  - Sample sizes: [100]
+  - Feature dimensions: [6, 8]
+  - Class weights: [[0.3, 0.7], [0.5, 0.5]]
+Generating classes dataset...
+Dataset generation complete.
+
+✓ Datasets generated and saved to: data/qpl_tutorial_data
+✓ Generated 4 dataset files
+  - class_data-1.csv
+  - class_data-2.csv
+  - class_data-3.csv
+  - class_data-4.csv
+</pre></div></div>
+</div>
+</section>
+<section id="4.-Configure-QPL-Experiment">
+<h2>4. Configure QPL Experiment<a class="headerlink" href="#4.-Configure-QPL-Experiment" title="Link to this heading">#</a></h2>
+<p>QProfiler uses YAML configuration files to specify experimental parameters. Let’s examine the QPL configuration.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and display QPL configuration</span>
+<span class="n">qpl_config_path</span> <span class="o">=</span> <span class="s1">'configs/qpl.yaml'</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qpl_config_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">qpl_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"QPL Configuration:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">qpl_config</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Key Configuration Parameters:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Model: </span><span class="si">{</span><span class="n">qpl_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'model'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Backend: </span><span class="si">{</span><span class="n">qpl_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'backend'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Data directory: </span><span class="si">{</span><span class="n">qpl_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'folder_path'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Embeddings: </span><span class="si">{</span><span class="n">qpl_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'embeddings'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s1">'pqk'</span> <span class="ow">in</span> <span class="n">qpl_config</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">  PQK-specific parameters:"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">qpl_config</span><span class="p">[</span><span class="s1">'pqk'</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"    - </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+QPL Configuration:
+============================================================
+config_file_name: basic_config
+folder_path: data/qpl_tutorial_data
+file_dataset: ALL
+backend: simulator
+qiskit_json_path: ~/.qiskit/qiskit-ibm.json
+name: cleveland_clinic
+n_jobs: 9
+embeddings:
+- none
+n_components: 3
+model:
+- qpl
+average: weighted
+multi_class: raise
+seed: 42
+q_seed: 42
+shots: 1024
+resil_level: 1
+test_size: 0.3
+stratify:
+- y
+scaling:
+- &#39;True&#39;
+grid_search: false
+cross_validation: 5
+NN_depth: 1
+iter: 3
+svc_args:
+  C: 0.01
+  gamma: 0.1
+  kernel: linear
+gridsearch_svc_args:
+  C:
+  - 0.1
+  - 1
+  - 10
+  - 100
+  gamma:
+  - 0.001
+  - 0.01
+  - 0.1
+  - 1
+  kernel:
+  - linear
+  - rbf
+  - poly
+  - sigmoid
+dt_args:
+  criterion: gini
+  max_depth: null
+  min_samples_split: 2
+  min_samples_leaf: 1
+  max_features: null
+gridsearch_dt_args:
+  criterion:
+  - gini
+  - entropy
+  - log_loss
+  max_depth:
+  - null
+  - 5
+  - 10
+  - 15
+  - 20
+  min_samples_split:
+  - 2
+  - 5
+  - 10
+  - 15
+  min_samples_leaf:
+  - 1
+  - 2
+  - 4
+  - 6
+  max_features:
+  - null
+  - sqrt
+  - log2
+nb_args:
+  var_smoothing: 1.0e-09
+gridsearch_nb_args:
+  var_smoothing:
+  - 1.0e-09
+  - 1.0e-08
+  - 1.0e-07
+  - 1.0e-06
+  - 1.0e-05
+  - 0.0001
+  - 0.001
+  - 0.01
+lr_args:
+  penalty: l2
+  C: 1.0
+  solver: saga
+  max_iter: 10000
+gridsearch_lr_args:
+  penalty:
+  - l1
+  - l2
+  C:
+  - 0.001
+  - 0.01
+  - 0.1
+  - 1.0
+  - 10.0
+  - 100.0
+  - 1000.0
+  solver:
+  - liblinear
+  - saga
+  max_iter:
+  - 5000
+  - 10000
+rf_args:
+  n_estimators: 100
+  max_features: sqrt
+  max_depth: null
+  min_samples_split: 2
+  min_samples_leaf: 1
+  bootstrap: true
+gridsearch_rf_args:
+  n_estimators:
+  - 50
+  - 100
+  max_features:
+  - sqrt
+  - log2
+  max_depth:
+  - 5
+  - 10
+  - null
+  min_samples_split:
+  - 2
+  - 5
+xgb_args:
+  n_estimators: 100
+  max_depth: null
+  learning_rate: 0.5
+  subsample: 0.5
+  colsample_bytree: 1.0
+  min_child_weight: 1
+gridsearch_xgb_args:
+  n_estimators:
+  - 50
+  - 100
+  max_depth:
+  - 3
+  - 5
+  learning_rate:
+  - 0.1
+  - 0.3
+  subsample:
+  - 0.8
+  - 1.0
+mlp_args:
+  hidden_layer_sizes: 100
+  activation: relu
+  max_iter: 10000
+  solver: adam
+  alpha: 0.0001
+  learning_rate: constant
+gridsearch_mlp_args:
+  hidden_layer_sizes:
+  - - 20
+  - - 50
+  - - 100
+  activation:
+  - tanh
+  - relu
+  max_iter:
+  - 5000
+  - 10000
+  solver:
+  - sgd
+  - adam
+  alpha:
+  - 0.0001
+  - 0.05
+  learning_rate:
+  - constant
+  - adaptive
+qnn_args:
+  primitive: estimator
+  local_optimizer: COBYLA
+  encoding: ZZ
+  entanglement: linear
+  reps: 2
+  maxiter: 100
+  ansatz_type: amp
+qsvc_args:
+  C: 0.01
+  pegasos: false
+  encoding: ZZ
+  entanglement: linear
+  reps: 2
+  primitive: sampler
+vqc_args:
+  primitive: sampler
+  local_optimizer: COBYLA
+  maxiter: 100
+  encoding: ZZ
+  entanglement: linear
+  reps: 2
+  ansatz_type: amp
+qpl_args:
+  encoding: ZZ
+  entanglement: pairwise
+  primitive: estimator
+  reps: 4
+pqk_args:
+  encoding: ZZ
+  entanglement: pairwise
+  primitive: estimator
+  reps: 4
+hydra:
+  run:
+    dir: results/${config_file_name}/dataset=${file_dataset}/${backend}_${now:%Y-%m-%d_%H-%M-%S}
+
+============================================================
+
+Key Configuration Parameters:
+  - Model: [&#39;qpl&#39;]
+  - Backend: simulator
+  - Data directory: data/qpl_tutorial_data
+  - Embeddings: [&#39;none&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="5.-Run-QPL-Experiment">
+<h2>5. Run QPL Experiment<a class="headerlink" href="#5.-Run-QPL-Experiment" title="Link to this heading">#</a></h2>
+<p>Execute the QPL experiment using QProfiler. This will:</p>
+<ol class="arabic simple">
+<li><p>Load the generated datasets</p></li>
+<li><p>Apply quantum feature maps</p></li>
+<li><p>Extract quantum projections</p></li>
+<li><p>Train all 5 classical models on quantum features</p></li>
+<li><p>Evaluate performance and save results</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RUNNING QUANTUM PROJECTION LEARNING EXPERIMENT"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># QProfiler *appends* to ModelResults.csv, which is what lets the quantum run here and</span>
+<span class="c1"># the classical baselines in the next cell accumulate into one comparable table. The</span>
+<span class="c1"># same append means a second pass through this notebook would silently double every</span>
+<span class="c1"># row, so clear the previous pass's output first and start from a known state.</span>
+<span class="k">for</span> <span class="n">stale</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'ModelResults.csv'</span><span class="p">,</span> <span class="s1">'RawDataEvaluation.csv'</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">stale</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">stale</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Removed </span><span class="si">{</span><span class="n">stale</span><span class="si">}</span><span class="s2"> left by an earlier run"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">QPL projects each sample through a quantum feature map, then fits five"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"classical learners on the resulting expectation values, so this single run"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"produces qpl_svc, qpl_rf, qpl_xgb, qpl_mlp and qpl_lr rows."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Expect a few minutes: cost scales with datasets x splits x samples, and"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"exponentially with the qubit count (= feature count) chosen above.</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Run QPL experiment</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">qpl_config</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✓ QPL EXPERIMENT COMPLETED"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+================================================================================
+RUNNING QUANTUM PROJECTION LEARNING EXPERIMENT
+================================================================================
+
+QPL projects each sample through a quantum feature map, then fits five
+classical learners on the resulting expectation values, so this single run
+produces qpl_svc, qpl_rf, qpl_xgb, qpl_mlp and qpl_lr rows.
+Expect a few minutes: cost scales with datasets x splits x samples, and
+exponentially with the qubit count (= feature count) chosen above.
+
+Processing file: class_data-1.csv
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+Processing file: class_data-2.csv
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+Processing file: class_data-3.csv
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+Processing file: class_data-4.csv
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+at datapoint 0
+at datapoint 0
+qpl_rf
+qpl_mlp
+qpl_svc
+qpl_lr
+qpl_xgb
+
+================================================================================
+✓ QPL EXPERIMENT COMPLETED
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="6.-Run-Classical-Baselines-(XGBoost-and-Random-Forest)">
+<h2>6. Run Classical Baselines (XGBoost and Random Forest)<a class="headerlink" href="#6.-Run-Classical-Baselines-(XGBoost-and-Random-Forest)" title="Link to this heading">#</a></h2>
+<p>A quantum result is only interesting next to a classical one that was given the same chance, so we run two tuned baselines on the original (non-quantum) features. Both read the datasets generated above and append to the same results table, so the next section can compare all of them side by side.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RUNNING CLASSICAL BASELINES (XGBoost, Random Forest)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Two baselines rather than one. A quantum result only means something against a</span>
+<span class="c1"># classical model that was itself tuned, and rf.yaml already existed in configs/ --</span>
+<span class="c1"># fully configured, and loaded by nothing.</span>
+<span class="k">for</span> <span class="n">config_name</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'configs/xgb.yaml'</span><span class="p">,</span> <span class="s1">'configs/rf.yaml'</span><span class="p">):</span>
+    <span class="n">baseline_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">config_name</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- </span><span class="si">{</span><span class="n">config_name</span><span class="si">}</span><span class="s2"> ---"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Model: </span><span class="si">{</span><span class="n">baseline_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'model'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Data directory: </span><span class="si">{</span><span class="n">baseline_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'folder_path'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Embeddings: </span><span class="si">{</span><span class="n">baseline_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'embeddings'</span><span class="p">,</span><span class="w"> </span><span class="s1">'N/A'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Grid search: </span><span class="si">{</span><span class="n">baseline_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'grid_search'</span><span class="p">,</span><span class="w"> </span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">profiler</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">baseline_config</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✓ CLASSICAL BASELINES COMPLETED"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+================================================================================
+RUNNING CLASSICAL BASELINES (XGBoost, Random Forest)
+================================================================================
+
+--- configs/xgb.yaml ---
+  - Model: [&#39;xgb&#39;]
+  - Data directory: data/qpl_tutorial_data
+  - Embeddings: [&#39;none&#39;]
+  - Grid search: True
+
+Processing file: class_data-1.csv
+Processing file: class_data-2.csv
+Processing file: class_data-3.csv
+Processing file: class_data-4.csv
+
+--- configs/rf.yaml ---
+  - Model: [&#39;rf&#39;]
+  - Data directory: data/qpl_tutorial_data
+  - Embeddings: [&#39;none&#39;]
+  - Grid search: True
+
+Processing file: class_data-1.csv
+Processing file: class_data-2.csv
+Processing file: class_data-3.csv
+Processing file: class_data-4.csv
+
+================================================================================
+✓ CLASSICAL BASELINES COMPLETED
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="7.-Load-and-Compile-Results">
+<h2>7. Load and Compile Results<a class="headerlink" href="#7.-Load-and-Compile-Results" title="Link to this heading">#</a></h2>
+<p>Collect all results from the experiments and compile them into comprehensive DataFrames.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Loading experimental results...</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Find all result files</span>
+<span class="n">data_eval_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dp</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="s1">'RawDataEvaluation.csv'</span>
+<span class="p">]</span>
+
+<span class="n">model_result_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dp</span><span class="p">,</span> <span class="n">dn</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="s1">'ModelResults.csv'</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_eval_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> data evaluation files"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model_result_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> model result files</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Load and compile data complexity evaluations</span>
+<span class="k">if</span> <span class="n">data_eval_files</span><span class="p">:</span>
+    <span class="n">rawevals_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data_eval_files</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">rawevals_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'compiled_raw_data_evaluations.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Data evaluations compiled: </span><span class="si">{</span><span class="n">rawevals_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Saved to: compiled_raw_data_evaluations.csv"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No data evaluation files found"</span><span class="p">)</span>
+    <span class="n">rawevals_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="c1"># Load and compile model results</span>
+<span class="k">if</span> <span class="n">model_result_files</span><span class="p">:</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">model_result_files</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add useful columns for analysis</span>
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">'datatype'</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'-.*'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">'model_embed_datatype'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'_'</span> <span class="o">+</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">'embeddings'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'_'</span> <span class="o">+</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">'datatype'</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">results_df</span><span class="p">[</span><span class="s1">'model_datatype'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'_'</span> <span class="o">+</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">'datatype'</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'compiled_results.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✓ Model results compiled: </span><span class="si">{</span><span class="n">results_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Saved to: compiled_results.csv"</span><span class="p">)</span>
+
+    <span class="c1"># Display summary statistics</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Results Summary:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Unique datasets: </span><span class="si">{</span><span class="n">results_df</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Models tested: </span><span class="si">{</span><span class="n">results_df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Embeddings used: </span><span class="si">{</span><span class="n">results_df</span><span class="p">[</span><span class="s1">'embeddings'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - Metrics available: </span><span class="si">{</span><span class="p">[</span><span class="n">col</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="s1">'score'</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">'accuracy'</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">'auc'</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No model result files found"</span><span class="p">)</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="c1"># Shared by the plotting cells below. These used to be defined inside the plotting</span>
+<span class="c1"># cell's `else:` branch, so the analysis cell after it raised NameError on any run</span>
+<span class="c1"># where there were no results to plot -- exactly the run where you want the message,</span>
+<span class="c1"># not a traceback.</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="s1">'performance_summary_and_spearman_correlation_plots'</span>
+<span class="n">tag</span> <span class="o">=</span> <span class="s1">'qpl_tutorial'</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Loading experimental results...
+
+Found 1 data evaluation files
+Found 1 model result files
+
+✓ Data evaluations compiled: (4, 24)
+  Saved to: compiled_raw_data_evaluations.csv
+
+✓ Model results compiled: (84, 35)
+  Saved to: compiled_results.csv
+
+Results Summary:
+  - Unique datasets: 4
+  - Models tested: [&#39;qpl_lr&#39;, &#39;qpl_mlp&#39;, &#39;qpl_rf&#39;, &#39;qpl_svc&#39;, &#39;qpl_xgb&#39;, &#39;xgb_opt&#39;, &#39;rf_opt&#39;]
+  - Embeddings used: [&#39;none&#39;]
+  - Metrics available: [&#39;accuracy&#39;, &#39;f1_score&#39;, &#39;auc&#39;]
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="8.-Performance-Visualization">
+<h2>8. Performance Visualization<a class="headerlink" href="#8.-Performance-Visualization" title="Link to this heading">#</a></h2>
+<p>Create comprehensive visualizations comparing quantum and classical performance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">results_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No results to visualize. Please run the experiments first."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Generating performance visualizations...</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># Plot performance metrics</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'f1_score'</span><span class="p">,</span> <span class="s1">'accuracy'</span><span class="p">,</span> <span class="s1">'auc'</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"⚠ Metric '</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">' not found in results"</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+        <span class="c1"># Create boxplot</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">results_df</span><span class="p">,</span>
+            <span class="n">x</span><span class="o">=</span><span class="s1">'model_datatype'</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s1">'embeddings'</span><span class="p">,</span>
+            <span class="n">palette</span><span class="o">=</span><span class="s1">'Set2'</span>
+        <span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Model &amp; Data Type'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1"> Comparison: Quantum vs Classical'</span><span class="p">,</span>
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Embeddings'</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="c1"># Save figure</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">_boxplot.png'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Saved: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✓ All visualizations saved to: </span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s2">/"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Generating performance visualizations...
+
+✓ Saved: performance_summary_and_spearman_correlation_plots/qpl_tutorial_f1_score_boxplot.png
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_1.png" src="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✓ Saved: performance_summary_and_spearman_correlation_plots/qpl_tutorial_accuracy_boxplot.png
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_3.png" src="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✓ Saved: performance_summary_and_spearman_correlation_plots/qpl_tutorial_auc_boxplot.png
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_5.png" src="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_15_5.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+✓ All visualizations saved to: performance_summary_and_spearman_correlation_plots/
+</pre></div></div>
+</div>
+</section>
+<section id="9.-Quantum-vs.-Classical-Comparison">
+<h2>9. Quantum vs. Classical Comparison<a class="headerlink" href="#9.-Quantum-vs.-Classical-Comparison" title="Link to this heading">#</a></h2>
+<p>Identify datasets where quantum methods outperform classical baselines.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">results_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No results to analyze"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Comparing quantum and classical models...</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+    <span class="c1"># Read the quantum model names out of the results rather than hard-coding them.</span>
+    <span class="c1"># This list used to be ['pqk_lr', 'pqk_svc', 'pqk_rf', 'pqk_mlp', 'pqk_xgb'] -- the</span>
+    <span class="c1"># five QPL learner names wearing the PQK prefix, which is a set the pipeline can</span>
+    <span class="c1"># never produce under either model. Nothing matched, so `qml_winners` was always</span>
+    <span class="c1"># empty and the win rate printed 0.0% however well the quantum models did.</span>
+    <span class="n">quantum_prefixes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'qpl'</span><span class="p">,</span> <span class="s1">'pqk'</span><span class="p">,</span> <span class="s1">'qsvc'</span><span class="p">,</span> <span class="s1">'qnn'</span><span class="p">,</span> <span class="s1">'vqc'</span><span class="p">)</span>
+    <span class="n">qml_models</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">quantum_prefixes</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Quantum models in results:   </span><span class="si">{</span><span class="n">qml_models</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classical models in results: "</span>
+          <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">set</span><span class="p">(</span><span class="n">qml_models</span><span class="p">))</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># Calculate median F1 score across splits for each dataset/model combination</span>
+    <span class="n">df_median</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'Dataset'</span><span class="p">,</span> <span class="s1">'embeddings'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">])[</span><span class="s1">'f1_score'</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+    <span class="c1"># Find best model for each dataset</span>
+    <span class="n">best_per_dataset</span> <span class="o">=</span> <span class="n">df_median</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_median</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Dataset'</span><span class="p">)[</span><span class="s1">'f1_score'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+
+    <span class="c1"># Identify datasets where quantum models won</span>
+    <span class="n">qml_winners</span> <span class="o">=</span> <span class="n">best_per_dataset</span><span class="p">[</span><span class="n">best_per_dataset</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">qml_models</span><span class="p">)]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total datasets analyzed: </span><span class="si">{</span><span class="n">df_median</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Datasets where QML won: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qml_winners</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Quantum win rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qml_winners</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">df_median</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qml_winners</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Datasets where a quantum model ranked first:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">qml_winners</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2"> | F1: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'f1_score'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="c1"># Create comparison plot</span>
+        <span class="n">qml_winner_data</span> <span class="o">=</span> <span class="n">df_median</span><span class="p">[</span><span class="n">df_median</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">qml_winners</span><span class="p">[</span><span class="s1">'Dataset'</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">qml_winner_data</span><span class="p">[</span><span class="s1">'model_type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qml_winner_data</span><span class="p">[</span><span class="s1">'model'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">'Quantum'</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qml_models</span> <span class="k">else</span> <span class="s1">'Classical'</span>
+        <span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">qml_winner_data</span><span class="p">,</span>
+            <span class="n">x</span><span class="o">=</span><span class="s1">'Dataset'</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="s1">'f1_score'</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s1">'model_type'</span><span class="p">,</span>
+            <span class="n">palette</span><span class="o">=</span><span class="p">{</span><span class="s1">'Quantum'</span><span class="p">:</span> <span class="s1">'#1f77b4'</span><span class="p">,</span> <span class="s1">'Classical'</span><span class="p">:</span> <span class="s1">'#ff7f0e'</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Dataset'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'F1 Score'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Quantum vs Classical Performance on Quantum-Winning Datasets'</span><span class="p">,</span>
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Model Type'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">_quantum_vs_classical.png'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✓ Quantum vs. classical plot saved: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No datasets found where quantum models outperformed classical baselines."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   This could indicate:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   - Datasets are too simple to separate quantum from classical"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   - Classical models are well-suited for these problems"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"   - More complex quantum feature maps may be needed"</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Comparing quantum and classical models...
+
+================================================================================
+Quantum models in results:   [&#39;qpl_lr&#39;, &#39;qpl_mlp&#39;, &#39;qpl_rf&#39;, &#39;qpl_svc&#39;, &#39;qpl_xgb&#39;]
+Classical models in results: [&#39;rf_opt&#39;, &#39;xgb_opt&#39;]
+
+Total datasets analyzed: 4
+Datasets where QML won: 2
+Quantum win rate: 50.0%
+
+Datasets where a quantum model ranked first:
+--------------------------------------------------------------------------------
+  class_data-2.csv                         | qpl_svc      | F1: 0.8667
+  class_data-3.csv                         | qpl_rf       | F1: 0.8534
+
+✓ Quantum vs. classical plot saved: performance_summary_and_spearman_correlation_plots/qpl_tutorial_quantum_vs_classical.png
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_17_1.png" src="../../_images/tutorials_Quantum_Projection_Learning_QPL_example_17_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="10.-Model-Performance-Summary">
+<h2>10. Model Performance Summary<a class="headerlink" href="#10.-Model-Performance-Summary" title="Link to this heading">#</a></h2>
+<p>Generate a comprehensive summary table of all model performances.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">results_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Model Performance Summary"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+    <span class="c1"># Calculate average performance by model</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'model'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+        <span class="s1">'f1_score'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">],</span>
+        <span class="s1">'accuracy'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">],</span>
+        <span class="s1">'auc'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'std'</span><span class="p">]</span>
+    <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Average Performance by Model:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+    <span class="c1"># Identify best models</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"-"</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Best Performing Models:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'f1_score'</span><span class="p">,</span> <span class="s1">'accuracy'</span><span class="p">,</span> <span class="s1">'auc'</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">results_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">best_model</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'model'</span><span class="p">)[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+            <span class="n">best_score</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'model'</span><span class="p">)[</span><span class="n">metric</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">metric</span><span class="si">:</span><span class="s2">15s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">best_model</span><span class="si">:</span><span class="s2">15s</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">best_score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠ No results available for summary"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model Performance Summary
+================================================================================
+
+Average Performance by Model:
+        f1_score                         accuracy             auc
+            mean     std     min     max     mean     std    mean     std
+model
+qpl_lr    0.7618  0.1003  0.5662  0.8667   0.7667  0.0995  0.7373  0.0885
+qpl_mlp   0.8074  0.0826  0.6652  0.9333   0.8083  0.0818  0.7922  0.0877
+qpl_rf    0.7577  0.0982  0.5982  0.9333   0.7611  0.0983  0.7360  0.0916
+qpl_svc   0.8032  0.1039  0.5333  0.9307   0.8083  0.1036  0.7731  0.1066
+qpl_xgb   0.7176  0.0933  0.5623  0.8667   0.7222  0.0946  0.6897  0.0800
+rf_opt    0.7613  0.0631  0.6667  0.8982   0.7667  0.0651  0.7354  0.0524
+xgb_opt   0.7796  0.0682  0.6606  0.9014   0.7833  0.0674  0.7577  0.0659
+
+--------------------------------------------------------------------------------
+Best Performing Models:
+--------------------------------------------------------------------------------
+  f1_score       : qpl_mlp         (0.8074)
+  accuracy       : qpl_mlp         (0.8083)
+  auc            : qpl_mlp         (0.7922)
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="Key-Takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#Key-Takeaways" title="Link to this heading">#</a></h2>
+<section id="What-We-Learned">
+<h3>What We Learned<a class="headerlink" href="#What-We-Learned" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>QPL Workflow</strong>: Successfully applied quantum projection learning with multiple classical learners</p></li>
+<li><p><strong>Model Comparison</strong>: Systematically compared 5+ models on quantum-projected features</p></li>
+<li><p><strong>Quantum vs. Classical</strong>: Identified datasets where quantum features scored higher</p></li>
+<li><p><strong>Comprehensive Analysis</strong>: Used data complexity metrics to understand performance patterns</p></li>
+</ol>
+</section>
+<section id="Best-Practices">
+<h3>Best Practices<a class="headerlink" href="#Best-Practices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Multiple Models</strong>: Test various classifiers to find the best match for quantum features</p></li>
+<li><p><strong>Baseline Comparison</strong>: Always compare against strong classical baselines</p></li>
+<li><p><strong>Data Complexity</strong>: Analyze dataset characteristics to predict where quantum features help</p></li>
+<li><p><strong>Systematic Evaluation</strong>: Use cross-validation and multiple metrics for robust assessment</p></li>
+</ul>
+</section>
+<section id="When-to-Use-QPL">
+<h3>When to Use QPL<a class="headerlink" href="#When-to-Use-QPL" title="Link to this heading">#</a></h3>
+<p>QPL is most effective when:</p>
+<ul class="simple">
+<li><p>Dataset has complex, non-linear structure</p></li>
+<li><p>Feature interactions are important</p></li>
+<li><p>Classical methods plateau in performance</p></li>
+<li><p>You want to explore multiple learning algorithms</p></li>
+</ul>
+</section>
+<section id="Next-Steps">
+<h3>Next Steps<a class="headerlink" href="#Next-Steps" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Experiment with different quantum feature maps (Z, ZZ, Pauli)</p></li>
+<li><p>Adjust entanglement strategies (linear, full, circular, pairwise)</p></li>
+<li><p>Try different numbers of repetitions (<code class="docutils literal notranslate"><span class="pre">reps</span></code>)</p></li>
+<li><p>Test on real-world datasets (genomics, medical imaging, etc.)</p></li>
+<li><p>Explore quantum hardware execution</p></li>
+<li><p>Combine with other quantum algorithms (VQC, QNN)</p></li>
+</ul>
+</section>
+<section id="Configuration-Tips">
+<h3>Configuration Tips<a class="headerlink" href="#Configuration-Tips" title="Link to this heading">#</a></h3>
+<p><strong>For faster experiments:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulator</span>
+<span class="nt">reps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="nt">n_components</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</pre></div>
+</div>
+<p><strong>For better accuracy:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulator</span>
+<span class="nt">reps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="nt">n_components</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="nt">entanglement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pairwise</span>
+</pre></div>
+</div>
+<p><strong>For quantum hardware:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm_quantum</span>
+<span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm_brisbane</span><span class="w">  </span><span class="c1"># or your preferred device</span>
+</pre></div>
+</div>
+</section>
+<section id="References">
+<h3>References<a class="headerlink" href="#References" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://qiskit-community.github.io/QBioCode/">QBioCode Documentation</a></p></li>
+<li><p><a class="reference external" href="https://qiskit-community.github.io/QBioCode/apps/profiler.html">QProfiler Guide</a></p></li>
+<li><p><a class="reference external" href="https://qiskit.org/ecosystem/machine-learning/">Qiskit Machine Learning</a></p></li>
+<li><p><a class="reference external" href="https://qiskit.org/textbook/ch-machine-learning/quantum-feature-maps.html">Quantum Feature Maps</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Questions or Issues?</strong> Open an issue on <a class="reference external" href="https://github.com/qiskit-community/QBioCode/issues">GitHub</a></p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../QSage/qsage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">QSage Tutorial</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../PQK%20-%20OV.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Projected Quantum Kernel (PQK) Tutorial: Ovarian Cancer Survival Prediction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Overview">Overview</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#What-You'll-Learn">What You’ll Learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Key-Concepts">Key Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Setup-and-Imports">1. Setup and Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Understanding-Quantum-Projection-Learning">2. Understanding Quantum Projection Learning</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#What-is-QPL?">What is QPL?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Why-Multiple-Classifiers?">Why Multiple Classifiers?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Generate-Synthetic-Test-Data">3. Generate Synthetic Test Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Configure-QPL-Experiment">4. Configure QPL Experiment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Run-QPL-Experiment">5. Run QPL Experiment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Run-Classical-Baselines-(XGBoost-and-Random-Forest)">6. Run Classical Baselines (XGBoost and Random Forest)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Load-and-Compile-Results">7. Load and Compile Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Performance-Visualization">8. Performance Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#9.-Quantum-vs.-Classical-Comparison">9. Quantum vs. Classical Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#10.-Model-Performance-Summary">10. Model Performance Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Key-Takeaways">Key Takeaways</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#What-We-Learned">What We Learned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Best-Practices">Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#When-to-Use-QPL">When to Use QPL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Next-Steps">Next Steps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Configuration-Tips">Configuration Tips</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#References">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,861 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>qbiocode.apps.sage.sage module &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/qbiocode.apps.sage.sage';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qbiocode.data_generation package" href="qbiocode.data_generation.html" />
+    <link rel="prev" title="qbiocode.apps.sage package" href="qbiocode.apps.sage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">qbiocode</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="qbiocode.html">qbiocode package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.version.html">qbiocode.version module</a></li>
+<li class="toctree-l3 current active"><a class="reference internal" href="qbiocode.apps.html">qbiocode.apps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.data_generation.html">qbiocode.data_generation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.embeddings.html">qbiocode.embeddings package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.evaluation.html">qbiocode.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.learning.html">qbiocode.learning package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.utils.html">qbiocode.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qbiocode.visualization.html">qbiocode.visualization package</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_overview.html" class="nav-link">API Overview</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">qbiocode</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.html" class="nav-link">qbiocode package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.html" class="nav-link">qbiocode.apps package</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="qbiocode.apps.sage.html" class="nav-link">qbiocode.apps.sage package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.sage.sage module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-qbiocode.apps.sage.sage">
+<span id="qbiocode-apps-sage-sage-module"></span><h1>qbiocode.apps.sage.sage module<a class="headerlink" href="#module-qbiocode.apps.sage.sage" title="Link to this heading">#</a></h1>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Classes:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.sage.sage.QuantumSage" title="qbiocode.apps.sage.sage.QuantumSage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuantumSage</span></code></a></p></td>
+<td><p>Sage class that will run an ML model over the input data frame which would be some set of defined data characeristics and performance metrics associated to the dataset the method use.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Functions:</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qbiocode.apps.sage.sage.calculate_SLGH" title="qbiocode.apps.sage.sage.calculate_SLGH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_SLGH</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qbiocode.apps.sage.sage.main" title="qbiocode.apps.sage.sage.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a></p></td>
+<td><p>Command-line interface for QSage (Quantum Sage).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">QuantumSage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Sage class that will run an ML model over the input data frame which would be some set of defined data characeristics
+and performance metrics associated to the dataset the method use.  Right now it is focused on learning from just the data
+characteristics but it can eventual also include the model parameters as part of the input</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage.__init__" title="Link to this definition">#</a></dt>
+<dd><p>This function initializes the Sage with the input data frame that contains the data characteristics and performance metrics</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'f1_score'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage.predict" title="Link to this definition">#</a></dt>
+<dd><p>Rank every model by its predicted score on one dataset.</p>
+<p>Pass the dataset-complexity columns named by <code class="docutils literal notranslate"><span class="pre">_columns_data_features</span></code> –
+the <code class="docutils literal notranslate"><span class="pre">SLGH</span></code> feature that training derives is recomputed here, so a value
+passed in for it is ignored rather than trusted. Rows are sorted by <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">*</span> <span class="pre">r2</span></code> descending: a model
+whose surrogate fits poorly cannot reach the top on a confident-looking
+point prediction alone, so read the <code class="docutils literal notranslate"><span class="pre">r2</span></code> column alongside the score.</p>
+<p>An unknown metric, a missing feature column, an untrained sage, or an input
+that is not exactly one row each raise – earlier versions returned <code class="docutils literal notranslate"><span class="pre">None</span></code>
+for an unknown metric and ranked on the first row of a multi-row input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_data</strong> (<em>pd.DataFrame</em>) – Exactly one row, carrying at least the
+columns in <code class="docutils literal notranslate"><span class="pre">_columns_data_features</span></code>. Extra columns are ignored.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – One of the trained metrics (<code class="docutils literal notranslate"><span class="pre">f1_score</span></code>, <code class="docutils literal notranslate"><span class="pre">auc</span></code>,
+<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>One row per model, with columns</dt><dd><p><code class="docutils literal notranslate"><span class="pre">model</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;metric&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">r2</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;metric&gt;*r2</span></code>, ranked by the
+last of those.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>predictions_df (pd.DataFrame)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage.train_sub_sages">
+<span class="sig-name descname"><span class="pre">train_sub_sages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sage_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'random_forest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage.train_sub_sages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage.train_sub_sages" title="Link to this definition">#</a></dt>
+<dd><p>Train sub-sage predictors for each ML model and performance metric.</p>
+<p>This function trains regression models (Sage) that learn to predict
+model performance based on data complexity features. A separate sub-sage
+is trained for each combination of ML model and performance metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Proportion of data to use for testing (0.0 to 1.0). Default is 0.2.</p></li>
+<li><p><strong>sage_type</strong> (<em>str</em><em>, </em><em>optional</em>) – <p>Type of regressor to use as Sage. Must be one of:</p>
+<ul>
+<li><p>’random_forest’: Random Forest with hyperparameter tuning (default)</p></li>
+<li><p>’mlp’: Multi-Layer Perceptron with grid search</p></li>
+<li><p>’xgboost_optuna’: XGBoost with Optuna optimization (state-of-the-art)</p></li>
+</ul>
+<p>Only ONE sage type can be selected per training run.</p>
+</p></li>
+<li><p><strong>n_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – For Random Forest: number of hyperparameter search iterations (default: 50).
+For MLP: maximum number of training epochs (default: 1000).
+For XGBoost-Optuna: number of Optuna trials (default: 100).
+If None, uses the default for the selected sage_type.</p></li>
+<li><p><strong>cv</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of cross-validation folds for hyperparameter evaluation.
+Default is 5. Used by all sage types.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Results are stored in the internal <code class="docutils literal notranslate"><span class="pre">_results_subsages</span></code> dictionary with structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
+    'metric1': {
+        'model1': {
+            'fit_model': &lt;trained model&gt;,
+            'preds': &lt;predictions on test set&gt;,
+            'y_test': &lt;true values&gt;,
+            'params': &lt;model parameters&gt;,
+            'mae': &lt;mean absolute error&gt;,
+            'mse': &lt;mean squared error&gt;,
+            'rmse': &lt;root mean squared error&gt;,
+            'r2': &lt;R² score&gt;
+        },
+        ...
+    },
+    ...
+}
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If sage_type is not one of the valid types.</p></li>
+<li><p><strong>ImportError</strong> – If sage_type is ‘xgboost_optuna’ but XGBoost or Optuna is not installed.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function iterates over all available metrics and models, training a
+separate predictor for each combination. Progress is printed during training.</p>
+<p>Only one sage type can be used per training run. If you want to compare
+different sage types, you need to train them separately and compare results.</p>
+<p><strong>Recommended Sage Type:</strong></p>
+<p>For best performance on continuous value prediction, use ‘xgboost_optuna’,
+which combines the power of gradient boosting with advanced Bayesian
+hyperparameter optimization.</p>
+<p class="rubric">Examples</p>
+<p>Train with Random Forest (default):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sage</span><span class="o">.</span><span class="n">train_sub_sages</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">sage_type</span><span class="o">=</span><span class="s1">'random_forest'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Train with MLP:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sage</span><span class="o">.</span><span class="n">train_sub_sages</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">sage_type</span><span class="o">=</span><span class="s1">'mlp'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Train with XGBoost-Optuna (state-of-the-art):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sage</span><span class="o">.</span><span class="n">train_sub_sages</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">sage_type</span><span class="o">=</span><span class="s1">'xgboost_optuna'</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Train with custom hyperparameter search:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sage</span><span class="o">.</span><span class="n">train_sub_sages</span><span class="p">(</span><span class="n">sage_type</span><span class="o">=</span><span class="s1">'random_forest'</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_sage_random_forest</span></code></dt><dd><p>Random Forest Sage implementation</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_sage_mlp</span></code></dt><dd><p>MLP Sage implementation</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_sage_xgboost_optuna</span></code></dt><dd><p>XGBoost with Optuna Sage implementation (state-of-the-art)</p>
+</dd>
+<dt><a class="reference internal" href="#qbiocode.apps.sage.sage.QuantumSage.predict" title="qbiocode.apps.sage.sage.QuantumSage.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a></dt><dd><p>Make predictions using trained Sages</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage.plot_results">
+<span class="sig-name descname"><span class="pre">plot_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage.plot_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage.plot_results" title="Link to this definition">#</a></dt>
+<dd><p>This function plots the results of the sub-sages trained on the input data.
+It will create a bar plot for each metric showing the performance of each model, and a scatter plot of the predictions vs. true values.
+The bar plot will show the mean absolute error (mae), mean squared error (mse), root mean squared error (rmse), and R2 score (r2) for each model.
+The scatter plot will show the predictions vs. true values for each model.
+If saveFile is provided, the plots will be saved to that file. Otherwise, the plots will be shown.
+It is designed to be used after the train_sub_sages function has been called, and the sub-sages have been trained.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Size of each figure.</p></li>
+<li><p><strong>saveFile</strong> (<em>str</em>) – Base file name for the plots. One bar plot and one
+scatter plot are written per metric, with <code class="docutils literal notranslate"><span class="pre">_&lt;metric&gt;_barplot</span></code> and
+<code class="docutils literal notranslate"><span class="pre">_&lt;metric&gt;_scatterplot</span></code> inserted before the extension. If empty,
+nothing is written. Default is ‘’.</p></li>
+<li><p><strong>show</strong> (<em>bool</em><em> | </em><em>None</em>) – Whether to call <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code>. <code class="docutils literal notranslate"><span class="pre">None</span></code> (the
+default) means “show only when not saving”, which is what this
+docstring has always described; <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> used to be called
+unconditionally, so a run that saved to disk <em>also</em> blocked on a
+window under a GUI backend. It is ignored under a non-interactive
+backend either way.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the figures, in the order drawn. All
+are already closed but remain savable.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[matplotlib.figure.Figure]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.QuantumSage.set_seed">
+<span class="sig-name descname"><span class="pre">set_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#QuantumSage.set_seed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.QuantumSage.set_seed" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.calculate_SLGH">
+<span class="sig-name descname"><span class="pre">calculate_SLGH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#calculate_SLGH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.calculate_SLGH" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qbiocode.apps.sage.sage.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qbiocode/apps/sage/sage.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qbiocode.apps.sage.sage.main" title="Link to this definition">#</a></dt>
+<dd><p>Command-line interface for QSage (Quantum Sage).</p>
+<p>This CLI allows users to train QSage models from the command line using CSV data files.
+QSage learns relationships between dataset complexity measures and model performance,
+enabling prediction of model performance on new datasets.</p>
+<dl>
+<dt>Usage:</dt><dd><p>qsage –input data.csv –output results/ [options]</p>
+</dd>
+<dt>The input CSV should contain:</dt><dd><ul class="simple">
+<li><p>Dataset complexity features (# Features, # Samples, Intrinsic_Dimension, etc.)</p></li>
+<li><p>Performance metrics (accuracy, f1_score, auc)</p></li>
+<li><p>Metadata (Dataset, embeddings, model, etc.)</p></li>
+</ul>
+</dd>
+<dt>QProfiler Integration:</dt><dd><p>QSage is designed to work directly with QProfiler output. Simply use the
+compiled_results.csv file generated by QProfiler as input:</p>
+<p># Step 1: Run QProfiler
+qprofiler –config-name=config.yaml</p>
+<p># Step 2: Train QSage with QProfiler output
+qsage –input compiled_results.csv –output sage_results/</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p># Basic usage with QProfiler output
+qsage –input compiled_results.csv –output sage_results/</p>
+<p># With custom cross-validation and hyperparameter search
+qsage –input compiled_results.csv –output results/ –cv 10 –n-iter 100</p>
+<p># Train Random Forest sub-sages
+qsage –input data.csv –output results/ –model-type rf –seed 42</p>
+<p># Train MLP sub-sages
+qsage –input data.csv –output results/ –model-type mlp –n-iter 2000</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="qbiocode.apps.sage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">qbiocode.apps.sage package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qbiocode.data_generation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">qbiocode.data_generation package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage"><code class="docutils literal notranslate"><span class="pre">QuantumSage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage.__init__"><code class="docutils literal notranslate"><span class="pre">QuantumSage.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage.predict"><code class="docutils literal notranslate"><span class="pre">QuantumSage.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage.train_sub_sages"><code class="docutils literal notranslate"><span class="pre">QuantumSage.train_sub_sages()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage.plot_results"><code class="docutils literal notranslate"><span class="pre">QuantumSage.plot_results()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.QuantumSage.set_seed"><code class="docutils literal notranslate"><span class="pre">QuantumSage.set_seed()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.calculate_SLGH"><code class="docutils literal notranslate"><span class="pre">calculate_SLGH()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qbiocode.apps.sage.sage.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

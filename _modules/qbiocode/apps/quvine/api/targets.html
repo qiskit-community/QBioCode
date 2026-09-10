@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.apps.quvine.api.targets &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/apps/quvine/api/targets';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../../../_static/searchtools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.apps.quvine.api.targets</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.apps.quvine.api.targets</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">"""</span>
+<span class="sd">Quantum-target construction for quantum-calibrated registry methods.</span>
+
+<span class="sd">``build_walk_targets`` is the real, walk-based target generator used by</span>
+<span class="sd">:func:`quvine.embed`: for each calibration seed it samples a local subgraph and</span>
+<span class="sd">runs the requested walk (CTQW/DTQW via hiperwalk, or classical RWR) to produce</span>
+<span class="sd">the probability distribution ``pQ`` that the heat/poly filter is calibrated to.</span>
+<span class="sd">This is the same construction the HPC engine</span>
+<span class="sd">(``comprehensive_embedding_analysis._generate_quantum_targets``) uses, so the</span>
+<span class="sd">``ctqw``/``dtqw``/``rwr`` variants produce genuinely different calibrations.</span>
+
+<span class="sd">``select_calibration_seeds`` infers dispersed, traversal-useful calibration</span>
+<span class="sd">centers (farthest-point / k-center landmarks) when the caller passes none.</span>
+
+<span class="sd">``build_quantum_targets`` is the legacy index-distance stub, kept only for</span>
+<span class="sd">backward compatibility; ``embed()`` no longer uses it.</span>
+<span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="select_calibration_seeds">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.api.targets.html#qbiocode.apps.quvine.api.targets.select_calibration_seeds">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">select_calibration_seeds</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Select dispersed, traversal-useful calibration seeds via farthest-point</span>
+<span class="sd">    (k-center) landmark selection.</span>
+
+<span class="sd">    A naive "top-k degree" choice tends to pick mutually-adjacent hub nodes in</span>
+<span class="sd">    one dense core, giving overlapping calibration subgraphs. Instead: anchor on</span>
+<span class="sd">    the highest-degree node, then greedily add the node that is *farthest* (in</span>
+<span class="sd">    shortest-path hops) from the already-selected set, maintaining a running</span>
+<span class="sd">    nearest-landmark-distance array. This guarantees the landmarks are pairwise</span>
+<span class="sd">    non-adjacent (&gt;=2 hops) and spread across the graph.</span>
+
+<span class="sd">    Cost is K BFS sweeps total (``O(K*(V+E))``) using scipy CSR BFS; runs</span>
+<span class="sd">    per-connected-component so disconnected graphs still get coverage.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: graph.</span>
+<span class="sd">        k: number of landmarks; defaults to ``max(3, min(10, n // 20))``.</span>
+<span class="sd">        seed: reserved for reproducibility (selection is deterministic).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of node ids (the graph's own labels).</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.csgraph</span><span class="w"> </span><span class="kn">import</span> <span class="n">breadth_first_order</span>
+
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">20</span><span class="p">))</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="n">idx_of</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">)}</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_scipy_sparse_array</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">nodelist</span><span class="o">=</span><span class="n">nodes</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"csr"</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bfs_hops</span><span class="p">(</span><span class="n">src_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Unweighted shortest-path hop counts from src_i (inf if unreachable)."""</span>
+        <span class="n">order</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">breadth_first_order</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">src_i</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_predecessors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">src_i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># Reconstruct hop distance by walking predecessors in BFS order.</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">preds</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="n">dist</span>
+
+    <span class="c1"># Anchor: highest degree, deterministic id tie-break.</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">chosen</span> <span class="o">=</span> <span class="p">[</span><span class="n">first</span><span class="p">]</span>
+    <span class="n">min_dist</span> <span class="o">=</span> <span class="n">bfs_hops</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">chosen</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="c1"># Farthest node from the chosen set; ignore unreachable (inf) unless we</span>
+        <span class="c1"># must (then we still pick the max finite, else any unchosen node).</span>
+        <span class="n">candidate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">chosen</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">min_dist</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">chosen</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">min_dist</span><span class="p">[</span><span class="n">candidate</span><span class="p">])</span> <span class="ow">or</span> <span class="n">min_dist</span><span class="p">[</span><span class="n">candidate</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># No reachable node left with positive distance (e.g. another</span>
+            <span class="c1"># component): fall back to the highest-degree unchosen node.</span>
+            <span class="n">remaining</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">chosen</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">remaining</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">candidate</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">remaining</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="p">(</span><span class="n">degrees</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">chosen</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+        <span class="n">min_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">bfs_hops</span><span class="p">(</span><span class="n">candidate</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chosen</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="build_walk_targets">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.api.targets.html#qbiocode.apps.quvine.api.targets.build_walk_targets">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_walk_targets</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">seeds</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">walk_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"ctqw"</span><span class="p">,</span>
+    <span class="n">num_subgraphs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">subgraph_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Build real walk-based calibration targets.</span>
+
+<span class="sd">    For up to ``num_subgraphs`` seeds, expand a &lt;=2-hop subgraph (capped at</span>
+<span class="sd">    ``subgraph_size``, restricted to the component containing the center), run</span>
+<span class="sd">    the requested walk from the center, and record the node-probability</span>
+<span class="sd">    distribution as ``pQ``. The returned ``{"nodes","center","pQ"}`` dicts</span>
+<span class="sd">    satisfy the contract validated by ``gat.calibrate_heat_kernel`` /</span>
+<span class="sd">    ``calibrate_polynomial_filter``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G: graph.</span>
+<span class="sd">        seeds: calibration center node ids (only those present are used).</span>
+<span class="sd">        walk_type: ``"ctqw"`` | ``"dtqw"`` (need hiperwalk) | ``"rwr"`` (classical).</span>
+<span class="sd">        num_subgraphs, subgraph_size, steps: sampling controls.</span>
+<span class="sd">        seed: RNG seed for subgraph sampling (deterministic).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of target dicts, or ``None`` if no valid seed is present.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        QuvineMethodError: if ``walk_type`` is ctqw/dtqw but hiperwalk is missing.</span>
+<span class="sd">        ValueError: on unknown ``walk_type``.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.data.subgraph</span><span class="w"> </span><span class="kn">import</span> <span class="n">expand_neighborhood</span>
+
+    <span class="n">node_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">valid_seeds</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seeds</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">node_set</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_seeds</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">walk_type</span> <span class="o">==</span> <span class="s2">"ctqw"</span><span class="p">:</span>
+        <span class="n">scorer</span> <span class="o">=</span> <span class="n">_ctqw_scorer</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">walk_type</span> <span class="o">==</span> <span class="s2">"dtqw"</span><span class="p">:</span>
+        <span class="n">scorer</span> <span class="o">=</span> <span class="n">_dtqw_scorer</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">walk_type</span> <span class="o">==</span> <span class="s2">"rwr"</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.walks.rwr</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_RWR_pagerank_scores</span>
+        <span class="n">scorer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">get_RWR_pagerank_scores</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">center</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown walk_type </span><span class="si">{</span><span class="n">walk_type</span><span class="si">!r}</span><span class="s2">; choose 'ctqw', 'dtqw', or 'rwr'."</span><span class="p">)</span>
+
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">sampled</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">valid_seeds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">),</span>
+        <span class="n">size</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">num_subgraphs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_seeds</span><span class="p">)),</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">targets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">sampled</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subgraph_nodes</span> <span class="o">=</span> <span class="n">expand_neighborhood</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="p">{</span><span class="n">center</span><span class="p">},</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subgraph_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">subgraph_size</span><span class="p">:</span>
+                <span class="n">picked</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">subgraph_nodes</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">subgraph_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">subgraph_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">picked</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+                <span class="n">subgraph_nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">subgraph_nodes</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nx</span><span class="o">.</span><span class="n">is_connected</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+                <span class="n">H</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">node_connected_component</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">H</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+            <span class="n">nodes_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+            <span class="n">pQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nd</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">nd</span> <span class="ow">in</span> <span class="n">nodes_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">pQ</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">targets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"nodes"</span><span class="p">:</span> <span class="n">nodes_list</span><span class="p">,</span> <span class="s2">"center"</span><span class="p">:</span> <span class="n">center</span><span class="p">,</span> <span class="s2">"pQ"</span><span class="p">:</span> <span class="n">pQ</span> <span class="o">/</span> <span class="n">total</span><span class="p">})</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># noqa: BLE001 -- per-seed best effort</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"walk-target generation failed for seed </span><span class="si">%r</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+    <span class="k">return</span> <span class="n">targets</span> <span class="ow">or</span> <span class="kc">None</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_ctqw_scorer</span><span class="p">(</span><span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.walks.ctqw</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_ctqw_hiperwalk_scores</span>
+    <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># hiperwalk missing</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.api.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuvineMethodError</span>
+        <span class="k">raise</span> <span class="n">QuvineMethodError</span><span class="p">(</span>
+            <span class="s2">"ctqw calibration targets require the 'hiperwalk' package. Install it, "</span>
+            <span class="s2">"or use an '_rwr_' method (classical, no hiperwalk needed)."</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">generate_ctqw_hiperwalk_scores</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_dtqw_scorer</span><span class="p">(</span><span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.walks.dtqw</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_coined_hiperwalk_scores</span>
+    <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine.api.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuvineMethodError</span>
+        <span class="k">raise</span> <span class="n">QuvineMethodError</span><span class="p">(</span>
+            <span class="s2">"dtqw calibration targets require the 'hiperwalk' package. Install it, "</span>
+            <span class="s2">"or use an '_rwr_' method (classical, no hiperwalk needed)."</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">H</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">get_coined_hiperwalk_scores</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="build_quantum_targets">
+<a class="viewcode-back" href="../../../../../api/qbiocode.apps.quvine.api.targets.html#qbiocode.apps.quvine.api.targets.build_quantum_targets">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_quantum_targets</span><span class="p">(</span>
+    <span class="n">graph</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">seeds</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span>
+    <span class="n">max_support</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    DEPRECATED — use :func:`build_walk_targets`. This builds a walk-AGNOSTIC</span>
+<span class="sd">    placeholder (``pQ`` from node-index distance), so it cannot distinguish</span>
+<span class="sd">    ctqw/dtqw/rwr. Kept only for backward compatibility; ``embed()`` no longer</span>
+<span class="sd">    calls it.</span>
+
+<span class="sd">    Build per-seed quantum targets used to calibrate quantum filters.</span>
+
+<span class="sd">    For each valid seed, collect its &lt;=2-hop neighborhood (capped at</span>
+<span class="sd">    ``max_support`` nodes) and assign a normalized inverse-distance target</span>
+<span class="sd">    distribution ``pQ`` over that support.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        graph: NetworkX graph.</span>
+<span class="sd">        seeds: Seed node ids (only those present in the graph are used).</span>
+<span class="sd">        max_support: Maximum number of support nodes per seed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of ``{"nodes", "center", "pQ"}`` dicts, or ``None`` if no seed</span>
+<span class="sd">        is present in the graph.</span>
+<span class="sd">    """</span>
+    <span class="n">node_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+    <span class="n">node_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node_order</span><span class="p">)}</span>
+    <span class="n">valid_seeds</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">seeds</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">node_to_idx</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid_seeds</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">targets</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">valid_seeds</span><span class="p">:</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_shortest_path_length</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">support_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">dist</span> <span class="ow">in</span> <span class="n">lengths</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">center</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">support_nodes</span><span class="p">:</span>
+            <span class="n">support_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">support_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_support</span><span class="p">:</span>
+            <span class="n">support_nodes</span> <span class="o">=</span> <span class="n">support_nodes</span><span class="p">[:</span><span class="n">max_support</span><span class="p">]</span>
+
+        <span class="n">center_idx</span> <span class="o">=</span> <span class="n">node_to_idx</span><span class="p">[</span><span class="n">center</span><span class="p">]</span>
+        <span class="n">support_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node_to_idx</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">support_nodes</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">support_idx</span> <span class="o">-</span> <span class="n">center_idx</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">dist</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">p</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">targets</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"nodes"</span><span class="p">:</span> <span class="n">support_nodes</span><span class="p">,</span> <span class="s2">"center"</span><span class="p">:</span> <span class="n">center</span><span class="p">,</span> <span class="s2">"pQ"</span><span class="p">:</span> <span class="n">p</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">targets</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

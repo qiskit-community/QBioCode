@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qbiocode.embeddings.embed &#8212; qbiocode 0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8bc5eb03" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=95e61db4"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/qbiocode/embeddings/embed';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/QBioCode_logo.png" class="logo__image only-light" alt="qbiocode 0.2.0 documentation - Home"/>
+    <img src="../../../_static/QBioCode_logo.png" class="logo__image only-dark pst-js-only" alt="qbiocode 0.2.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../background.html">
+    Background
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../apps.html">
+    Applications
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_overview.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../citing.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../workshops/index.html">
+    Workshops
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qiskit-community/QBioCode" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">qbiocode.embeddings.embed</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for qbiocode.embeddings.embed</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2026, IBM Corporation.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">difflib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># ====== Qiskit imports ======</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pauli</span>
+
+<span class="c1"># ====== Embedding functions imports ======</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">NMF</span><span class="p">,</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="n">Isomap</span><span class="p">,</span> <span class="n">LocallyLinearEmbedding</span><span class="p">,</span> <span class="n">SpectralEmbedding</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">umap</span><span class="w"> </span><span class="kn">import</span> <span class="n">UMAP</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">qbiocode.utils.qutils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qutils</span>
+
+
+<div class="viewcode-block" id="pqk">
+<a class="viewcode-back" href="../../../api/qbiocode.embeddings.embed.html#qbiocode.embeddings.embed.pqk">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pqk</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">,</span>
+    <span class="n">args</span><span class="p">,</span>
+    <span class="n">store</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">data_key</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s2">"Z"</span><span class="p">,</span>
+    <span class="n">data_map</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">primitive</span><span class="o">=</span><span class="s2">"estimator"</span><span class="p">,</span>
+    <span class="n">entanglement</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">,</span>
+    <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This function generates quantum circuits, computes projections of the data onto these circuits.</span>
+<span class="sd">    It uses a feature map to encode the data into quantum states and then measures the expectation values</span>
+<span class="sd">    of Pauli operators to obtain the features.</span>
+<span class="sd">    This function requires a quantum backend (simulator or real quantum hardware) for execution.</span>
+<span class="sd">    It supports various configurations such as encoding methods, entanglement strategies, and repetitions</span>
+<span class="sd">    of the feature map. Optionally the results are saved to files for training and test projections.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        X_train (np.ndarray): Training data features.</span>
+<span class="sd">        X_test (np.ndarray): Test data features.</span>
+<span class="sd">        args (dict): Backend configuration. Requires ``backend`` (``'simulator'``,</span>
+<span class="sd">            ``'simulator_aer'``, or an ``'ibm_*'`` device) and, for the</span>
+<span class="sd">            simulator, ``seed`` so the statevector primitive is reproducible.</span>
+<span class="sd">        store (bool): If true projections are stored, using data_key as indefitier</span>
+<span class="sd">        data_key (str): Key for the dataset, default is ''.</span>
+<span class="sd">        encoding (str): Encoding method for the quantum circuit, default is 'Z'.</span>
+<span class="sd">        data_map (bool): If true ensures that all multiplicative factors of data features inside single qubit gates are 1.0. Not applicable for Hejsemberg feature maps</span>
+<span class="sd">        primitive (str): Primitive type to use, default is 'estimator'.</span>
+<span class="sd">        entanglement (str): Entanglement strategy, default is 'linear'.</span>
+<span class="sd">        reps (int): Number of repetitions for the feature map, default is 2.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        modeleval (dict): A dictionary containing evaluation metrics and model parameters.</span>
+<span class="sd">    """</span>
+
+    <span class="n">feat_dimension</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Shared with compute_pqk so the two PQK paths cannot drift again: the copy</span>
+    <span class="c1"># that used to live here coerced its result with float(), which qiskit's</span>
+    <span class="c1"># symbolic ParameterVector cannot satisfy, so every data_map=True call raised</span>
+    <span class="c1"># "Parameter expression with unbound parameters ... is not numeric".</span>
+    <span class="n">data_map_func</span> <span class="o">=</span> <span class="n">qutils</span><span class="o">.</span><span class="n">unit_coefficient_data_map</span> <span class="k">if</span> <span class="n">data_map</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="c1"># choose a method for mapping your features onto the circuit</span>
+    <span class="n">feature_map</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">qutils</span><span class="o">.</span><span class="n">get_feature_map</span><span class="p">(</span>
+        <span class="n">feature_map</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+        <span class="n">feat_dimension</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">,</span>
+        <span class="n">entanglement</span><span class="o">=</span><span class="n">entanglement</span><span class="p">,</span>
+        <span class="n">data_map_func</span><span class="o">=</span><span class="n">data_map_func</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Build quantum circuit</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">feature_map</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">feature_map</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">num_qubits</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span>
+
+    <span class="c1">#  Generate the backend, session and primitive</span>
+    <span class="n">backend</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">prim</span> <span class="o">=</span> <span class="n">qutils</span><span class="o">.</span><span class="n">get_backend_session</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s2">"estimator"</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="c1"># Transpile</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">"backend"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"simulator"</span><span class="p">:</span>
+            <span class="n">circuit</span> <span class="o">=</span> <span class="n">qutils</span><span class="o">.</span><span class="n">transpile_circuit</span><span class="p">(</span>
+                <span class="n">circuit</span><span class="p">,</span> <span class="n">opt_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">PT</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">initial_layout</span><span class="o">=</span><span class="kc">None</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">f_tr</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"train"</span><span class="p">,</span> <span class="s2">"test"</span><span class="p">]:</span>
+
+            <span class="k">if</span> <span class="s2">"train"</span> <span class="ow">in</span> <span class="n">f_tr</span><span class="p">:</span>
+                <span class="n">dat</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dat</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># Identity operator on all qubits</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="s2">"I"</span> <span class="o">*</span> <span class="n">feat_dimension</span>
+
+            <span class="c1"># We group all commuting observables</span>
+            <span class="c1"># These groups are the Pauli X, Y and Z operators on individual qubits</span>
+            <span class="c1"># Apply the circuit layout to the observable if mapped to device</span>
+            <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="s2">"backend"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"simulator"</span><span class="p">:</span>
+                <span class="n">observables_x</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">observables_y</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">observables_z</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">feat_dimension</span><span class="p">):</span>
+                    <span class="n">observables_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"X"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span>
+                            <span class="n">circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="n">observables_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"Y"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span>
+                            <span class="n">circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="n">observables_z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"Z"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span>
+                            <span class="n">circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">observables_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"X"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">feat_dimension</span><span class="p">)]</span>
+                <span class="n">observables_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"Y"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">feat_dimension</span><span class="p">)]</span>
+                <span class="n">observables_z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pauli</span><span class="p">(</span><span class="nb">id</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"Z"</span> <span class="o">+</span> <span class="nb">id</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">feat_dimension</span><span class="p">)]</span>
+
+            <span class="c1"># projections[i][j][k] will be the expectation value of the j-th Pauli operator (0: X, 1: Y, 2: Z)</span>
+            <span class="c1"># of datapoint i on qubit k</span>
+            <span class="n">projections</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="p">)):</span>
+
+                <span class="c1"># Get training sample</span>
+                <span class="n">parameters</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+                <span class="c1"># We define the primitive unified blocs (PUBs) consisting of the embedding circuit,</span>
+                <span class="c1"># set of observables and the circuit parameters</span>
+                <span class="n">pub_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observables_x</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+                <span class="n">pub_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observables_y</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+                <span class="n">pub_z</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observables_z</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+                <span class="n">job</span> <span class="o">=</span> <span class="n">prim</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub_x</span><span class="p">,</span> <span class="n">pub_y</span><span class="p">,</span> <span class="n">pub_z</span><span class="p">])</span>
+                <span class="n">job_result_x</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+                <span class="n">job_result_y</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+                <span class="n">job_result_z</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+
+                <span class="c1"># Record &lt;X&gt;, &lt;Y&gt; and &lt;Z&gt; on all qubits for the current datapoint</span>
+                <span class="n">projections</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">job_result_x</span><span class="p">,</span> <span class="n">job_result_y</span><span class="p">,</span> <span class="n">job_result_z</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">store</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">"pqk_projections"</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"pqk_projections"</span><span class="p">)</span>
+
+                <span class="n">file_projection</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="s2">"pqk_projections"</span><span class="p">,</span> <span class="s2">"pqk_projection_"</span> <span class="o">+</span> <span class="n">data_key</span> <span class="o">+</span> <span class="s2">"_"</span> <span class="o">+</span> <span class="n">f_tr</span> <span class="o">+</span> <span class="s2">".npy"</span>
+                <span class="p">)</span>
+
+                <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_projection</span><span class="p">,</span> <span class="n">projections</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">"train"</span> <span class="ow">in</span> <span class="n">f_tr</span><span class="p">:</span>
+                <span class="n">X_train_prj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">projections</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">projections</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X_test_prj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">projections</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">projections</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)):</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">X_train_prj</span><span class="p">,</span> <span class="n">X_test_prj</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Method catalogue</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1">#: Feature-reduction modes backed by scikit-learn / UMAP.</span>
+<span class="n">SKLEARN_METHODS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"none"</span><span class="p">,</span> <span class="s2">"pca"</span><span class="p">,</span> <span class="s2">"nmf"</span><span class="p">,</span> <span class="s2">"lle"</span><span class="p">,</span> <span class="s2">"isomap"</span><span class="p">,</span> <span class="s2">"spectral"</span><span class="p">,</span> <span class="s2">"umap"</span><span class="p">)</span>
+
+<span class="c1">#: The headline QuVINE names, for discoverability. `QUVINE_METHODS` holds all of</span>
+<span class="c1">#: them; these are the ones worth naming next to `pca`/`nmf`/`umap`.</span>
+<span class="n">QUVINE_HEADLINE_METHODS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"quvine_fused"</span><span class="p">,</span>
+    <span class="s2">"quvine_rwr"</span><span class="p">,</span>
+    <span class="s2">"quvine_dtqw"</span><span class="p">,</span>
+    <span class="s2">"quvine_ctqw"</span><span class="p">,</span>
+    <span class="s2">"node2vec"</span><span class="p">,</span>
+    <span class="s2">"netmf"</span><span class="p">,</span>
+    <span class="s2">"appnp"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Methods that cannot follow the fit-on-train / transform-on-test contract, because</span>
+<span class="c1"># they have no out-of-sample `transform`: the embedding is fit on the concatenated</span>
+<span class="c1"># train+test rows and sliced back. Test *features* therefore participate; test</span>
+<span class="c1"># *labels* never do. See `is_transductive`.</span>
+<span class="n">_TRANSDUCTIVE_SKLEARN_METHODS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span><span class="s2">"spectral"</span><span class="p">})</span>
+
+
+<span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_quvine_method_names</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""All QuVINE method names, or ``()`` if the QuVINE app cannot be imported.</span>
+
+<span class="sd">    Name resolution is stdlib-only, so this works without the ``[quvine]`` extra —</span>
+<span class="sd">    the names are listed even when running one would raise</span>
+<span class="sd">    :class:`~qbiocode.apps.quvine.QuvineDependencyError`.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_methods</span>
+
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">list_methods</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">()</span>
+
+
+<span class="c1">#: Every QuVINE method name accepted by :func:`get_embeddings`, e.g.</span>
+<span class="c1">#: ``quvine_rwr``, ``quvine_ctqw_heat``, ``node2vec``, ``graphgps_rwr_poly``.</span>
+<span class="n">QUVINE_METHODS</span> <span class="o">=</span> <span class="n">_quvine_method_names</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_quvine_method</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if ``embedding`` names a QuVINE embedding method.</span>
+
+<span class="sd">    QuVINE method names (``quvine_rwr``, ``quvine_ctqw``, ``node2vec``, ``graphsage``,</span>
+<span class="sd">    ``baseline_filter_heat``, ``filter_ctqw_heat``, ...) resolve through the QuVINE app's</span>
+<span class="sd">    ``resolve_method`` and never collide with the sklearn embedding modes handled below.</span>
+
+<span class="sd">    Returning ``False`` when the QuVINE app cannot be imported is what keeps the</span>
+<span class="sd">    ``[quvine]`` extra non-breaking: every sklearn mode still works, and a QuVINE name</span>
+<span class="sd">    falls through to the ``ValueError`` below.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_method</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># QuVINE app unavailable: treat as "not a QuVINE method" so the sklearn</span>
+        <span class="c1"># embeddings still work.</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">resolve_method</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="c1"># Unknown name -&gt; not a QuVINE method. Any other error is a real bug and propagates.</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<div class="viewcode-block" id="is_transductive">
+<a class="viewcode-back" href="../../../api/qbiocode.embeddings.embed.html#qbiocode.embeddings.embed.is_transductive">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_transductive</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if ``embedding`` is fit on the combined train and test rows.</span>
+
+<span class="sd">    Inductive methods (``pca``, ``nmf``, ``lle``, ``isomap``, ``umap``) are fit on the</span>
+<span class="sd">    training rows alone and applied to the test rows through ``transform``. Transductive</span>
+<span class="sd">    methods — ``spectral`` and every QuVINE method — have no out-of-sample ``transform``,</span>
+<span class="sd">    so the embedding is computed once over ``vstack([X_train, X_test])`` and sliced back.</span>
+
+<span class="sd">    Test *features* therefore participate in the embedding; test *labels* never reach it.</span>
+<span class="sd">    This is the standard protocol for unsupervised graph and manifold embeddings, but it</span>
+<span class="sd">    means an embedding fit this way cannot be reused on rows unseen at fit time, and a</span>
+<span class="sd">    reported test score is a transductive score. Callers that need the distinction — e.g.</span>
+<span class="sd">    to skip a method in a strictly inductive benchmark — should branch on this.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embedding (str): An embedding name accepted by :func:`get_embeddings`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True for a transductive method. Unknown names return False rather than</span>
+<span class="sd">        raising, so this is safe to call before validation.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; is_transductive("pca")</span>
+<span class="sd">        False</span>
+<span class="sd">        &gt;&gt;&gt; is_transductive("spectral")</span>
+<span class="sd">        True</span>
+<span class="sd">    """</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_TRANSDUCTIVE_SKLEARN_METHODS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">_is_quvine_method</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_warn_transductive</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Warn once per call that test features participate in the embedding."""</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Embedding </span><span class="si">{</span><span class="n">embedding</span><span class="si">!r}</span><span class="s2"> is transductive: it has no out-of-sample transform, so "</span>
+        <span class="sa">f</span><span class="s2">"it is fit on the concatenated train and test rows and then sliced back. Test "</span>
+        <span class="sa">f</span><span class="s2">"features participate in the embedding; test labels do not. Scores obtained this "</span>
+        <span class="sa">f</span><span class="s2">"way are transductive and are not comparable to a strictly inductive protocol. "</span>
+        <span class="sa">f</span><span class="s2">"Use qbiocode.embeddings.is_transductive() to branch on this."</span><span class="p">,</span>
+        <span class="ne">UserWarning</span><span class="p">,</span>
+        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_nonnegative_for_nmf</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">embedding</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Clip ``X_test`` at zero so NMF can transform it, and say how much was clipped.</span>
+
+<span class="sd">    NMF is defined only on non-negative input. A MinMaxScaler fit on the *training*</span>
+<span class="sd">    split alone -- which is the leakage-free protocol, and what QProfiler now does --</span>
+<span class="sd">    maps train into [0, 1] but leaves test free to fall outside it, so a test row</span>
+<span class="sd">    below the training minimum arrives negative and ``NMF.transform`` raises</span>
+<span class="sd">    ``ValueError: Negative values in data passed to X in NMF``. That is what made</span>
+<span class="sd">    every shipped QProfiler config crash: ``embeddings: ['pca', 'nmf', 'none']`` with</span>
+<span class="sd">    ``scaling: ['True']``.</span>
+
+<span class="sd">    Clipping at zero is the honest handling: the alternative -- scaling on train+test</span>
+<span class="sd">    together, so nothing ever falls outside [0, 1] -- is the leak this release</span>
+<span class="sd">    removed. The clip is reported rather than silent, because a large excursion means</span>
+<span class="sd">    the test split is genuinely outside the training range and the embedding is being</span>
+<span class="sd">    asked to extrapolate.</span>
+<span class="sd">    """</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">negative</span> <span class="o">=</span> <span class="n">X_test</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">negative</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2"> test entries were negative and have been "</span>
+            <span class="sa">f</span><span class="s2">"clipped to 0 for the </span><span class="si">{</span><span class="n">embedding</span><span class="si">!r}</span><span class="s2"> embedding (most negative: "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="si">:</span><span class="s2">.4g</span><span class="si">}</span><span class="s2">). NMF is only defined on non-negative input, "</span>
+            <span class="sa">f</span><span class="s2">"and a scaler fit on the training split alone -- the leakage-free "</span>
+            <span class="sa">f</span><span class="s2">"protocol -- does not bound the test split to the training range."</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X_test</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_unknown_embedding_error</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Build the error for an unrecognized embedding name, with close matches."""</span>
+    <span class="n">known</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">SKLEARN_METHODS</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">QUVINE_METHODS</span><span class="p">)</span>
+    <span class="n">suggestions</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">get_close_matches</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">hint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">" Did you mean: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">suggestions</span><span class="p">)</span><span class="si">}</span><span class="s2">?"</span> <span class="k">if</span> <span class="n">suggestions</span> <span class="k">else</span> <span class="s2">""</span>
+    <span class="n">quvine_note</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">QUVINE_METHODS</span><span class="p">:</span>
+        <span class="n">quvine_note</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">" QuVINE method names are unavailable in this environment; install them with: "</span>
+            <span class="s1">'pip install "qbiocode[quvine]".'</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Unknown embedding </span><span class="si">{</span><span class="n">embedding</span><span class="si">!r}</span><span class="s2">.</span><span class="si">{</span><span class="n">hint</span><span class="si">}</span><span class="s2"> Valid sklearn modes are "</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">SKLEARN_METHODS</span><span class="p">)</span><span class="si">}</span><span class="s2">; QuVINE methods are listed by "</span>
+        <span class="sa">f</span><span class="s2">"qbiocode.embeddings.QUVINE_METHODS (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">QUVINE_METHODS</span><span class="p">)</span><span class="si">}</span><span class="s2"> names)."</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">quvine_note</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="check_embedding_name">
+<a class="viewcode-back" href="../../../api/qbiocode.embeddings.embed.html#qbiocode.embeddings.embed.check_embedding_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_embedding_name</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Normalize and validate an embedding name, raising if it is unknown.</span>
+
+<span class="sd">    :func:`get_embeddings` calls this, so a caller that is about to run many</span>
+<span class="sd">    embeddings can validate the whole list *before* doing any work and get the</span>
+<span class="sd">    identical message. QProfiler uses it for exactly that: a typo in the sixth</span>
+<span class="sd">    entry of ``embeddings`` used to surface only after the first five had run.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embedding (str): Method name, case-insensitive, surrounding space ignored.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The normalized (lower-cased, stripped) name.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if ``embedding`` is not a string, or names no known method.</span>
+<span class="sd">            The message lists close matches and the valid sklearn modes.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"embedding must be a string naming an embedding method; got "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">embedding</span><span class="si">!r}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">). Valid options: "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">SKLEARN_METHODS</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+            <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">" plus </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">QUVINE_METHODS</span><span class="p">)</span><span class="si">}</span><span class="s2"> QuVINE methods."</span> <span class="k">if</span> <span class="n">QUVINE_METHODS</span> <span class="k">else</span> <span class="s2">"."</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">embedding</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SKLEARN_METHODS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_is_quvine_method</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">_unknown_embedding_error</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">name</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_quvine_embed</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n_components</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">quvine_args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Embed via QuVINE, treating the (train+test) feature matrix as one cell graph.</span>
+
+<span class="sd">    QuVINE is a *transductive* graph-embedding method: it embeds every node of a graph at</span>
+<span class="sd">    once (keyed by node identity), so it cannot follow sklearn's fit-on-train /</span>
+<span class="sd">    transform-on-test contract. A single kNN graph is built over the concatenated</span>
+<span class="sd">    ``[X_train, X_test]`` feature rows, all nodes are embedded once, then the rows are</span>
+<span class="sd">    sliced back into train/test by construction order. The class *label* never enters</span>
+<span class="sd">    ``embed`` -- only feature-derived graph structure -- so this is the standard</span>
+<span class="sd">    transductive protocol, not label leakage. See :func:`is_transductive`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embedding (str): QuVINE method name (e.g. ``"quvine_ctqw"``, ``"filter_ctqw_heat"``).</span>
+<span class="sd">        X_train, X_test (array-like): feature matrices; rows are samples.</span>
+<span class="sd">        n_components (int): output embedding width (drives QuVINE ``dimension``).</span>
+<span class="sd">        n_neighbors (int): neighbors for the kNN sample graph.</span>
+<span class="sd">        quvine_args (dict, optional): extra OmegaConf overrides merged onto the QuVINE config</span>
+<span class="sd">            (e.g. ``{"walks": {"steps": 4}}``). ``dimension`` is always set to ``n_components``.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: ``(Z_train, Z_test)`` each with ``n_components`` columns.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        QuvineDependencyError: if the ``[quvine]`` extra is not installed. The message names</span>
+<span class="sd">            the extra and the install command.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">kneighbors_graph</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qbiocode.apps.quvine</span><span class="w"> </span><span class="kn">import</span> <span class="n">embed</span>
+
+    <span class="n">quvine_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">quvine_args</span> <span class="ow">or</span> <span class="p">{})</span>
+
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">X_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">])</span>
+    <span class="n">node_ids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"c</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>  <span class="c1"># QuVINE SGNS requires string ids</span>
+
+    <span class="c1"># Build a symmetric kNN graph over all samples; edge weight = 1/(1+distance).</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"distance"</span><span class="p">,</span> <span class="n">include_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># symmetrize</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">node_ids</span><span class="p">)</span>
+    <span class="n">Acoo</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocoo</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Acoo</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="n">Acoo</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">Acoo</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">node_ids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">node_ids</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">d</span><span class="p">)))</span>
+
+    <span class="n">overrides</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"dimension"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_components</span><span class="p">)}</span>
+    <span class="n">overrides</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">quvine_args</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">embed</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">embedding</span><span class="p">,</span> <span class="n">overrides</span><span class="o">=</span><span class="n">overrides</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">embedding</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># rows aligned to node_ids order</span>
+
+    <span class="c1"># Safety net: some arms may not honor `dimension` exactly -&gt; reduce to n_components.</span>
+    <span class="k">if</span> <span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_components</span><span class="p">:</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="o">*</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">)))</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Z</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+
+
+<div class="viewcode-block" id="get_embeddings">
+<a class="viewcode-back" href="../../../api/qbiocode.embeddings.embed.html#qbiocode.embeddings.embed.get_embeddings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_embeddings</span><span class="p">(</span>
+    <span class="n">embedding</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">quvine_args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Apply an embedding to the training and test datasets.</span>
+
+<span class="sd">    Inductive methods are fit on ``X_train`` and applied to ``X_test`` through</span>
+<span class="sd">    ``transform``. Transductive methods (``spectral`` and every QuVINE method) have no</span>
+<span class="sd">    out-of-sample ``transform``, so they are fit once on the concatenated rows and sliced</span>
+<span class="sd">    back; a ``UserWarning`` is emitted and :func:`is_transductive` reports which is which.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        embedding (str): The embedding to use.</span>
+
+<span class="sd">            * scikit-learn / UMAP modes: ``'none'``, ``'pca'``, ``'nmf'``, ``'lle'``,</span>
+<span class="sd">              ``'isomap'``, ``'spectral'``, ``'umap'``. Listed in</span>
+<span class="sd">              :data:`SKLEARN_METHODS`.</span>
+<span class="sd">            * QuVINE graph embeddings, accepted on exactly the same footing:</span>
+<span class="sd">              ``'quvine_fused'``, ``'quvine_rwr'``, ``'quvine_dtqw'``, ``'quvine_ctqw'``,</span>
+<span class="sd">              ``'node2vec'``, ``'netmf'``, ``'appnp'`` and 76 more. The full list is</span>
+<span class="sd">              :data:`QUVINE_METHODS`; the headline names are</span>
+<span class="sd">              :data:`QUVINE_HEADLINE_METHODS`. These need the optional extra:</span>
+<span class="sd">              ``pip install "qbiocode[quvine]"``.</span>
+<span class="sd">        X_train (array-like): The training dataset.</span>
+<span class="sd">        X_test (array-like): The test dataset.</span>
+<span class="sd">        n_neighbors (int, optional): Number of neighbors for the neighbor-based embeddings</span>
+<span class="sd">            and for the QuVINE kNN sample graph. Defaults to 30.</span>
+<span class="sd">        n_components (int, optional): Width of the embedding. If None, defaults to the</span>
+<span class="sd">            number of features in ``X_train``.</span>
+<span class="sd">        method (str, optional): Method for Locally Linear Embedding. Defaults to None.</span>
+<span class="sd">        quvine_args (dict, optional): Extra config overrides forwarded to QuVINE ``embed``</span>
+<span class="sd">            when ``embedding`` is a QuVINE method, e.g.</span>
+<span class="sd">            ``{"walks": {"steps": 4}, "train": {"epochs": 10}}``. Ignored for the</span>
+<span class="sd">            sklearn modes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: ``(X_train_embedded, X_test_embedded)``.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: if ``embedding`` is not a known name (the message lists close</span>
+<span class="sd">            matches), if ``n_components`` is not a positive integer, if</span>
+<span class="sd">            ``n_components`` exceeds the feature count for an sklearn mode, or if</span>
+<span class="sd">            ``X_train``/``X_test`` are not 2-D arrays with matching widths.</span>
+<span class="sd">        QuvineDependencyError: if a QuVINE method is requested without the ``[quvine]``</span>
+<span class="sd">            extra installed. The message names the extra and the install command.</span>
+
+<span class="sd">    Warns:</span>
+<span class="sd">        UserWarning: once per call, when ``embedding`` is transductive.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; Z_tr, Z_te = get_embeddings("pca", X_train, X_test, n_components=8)</span>
+<span class="sd">        &gt;&gt;&gt; Z_tr, Z_te = get_embeddings("quvine_rwr", X_train, X_test, n_components=8)</span>
+<span class="sd">    """</span>
+
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">check_embedding_name</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+
+    <span class="c1"># Coerced and shape-checked before anything reads X_train.shape: a list of</span>
+    <span class="c1"># lists (the natural thing to pass from a notebook) otherwise failed on the</span>
+    <span class="c1"># `n_components is None` default below with "'list' object has no attribute</span>
+    <span class="c1"># 'shape'", which names neither the parameter nor the requirement.</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">X_test</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"X_train and X_test must be 2-D (n_samples, n_features); got "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">-D and </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">-D. Reshape a single sample with "</span>
+            <span class="sa">f</span><span class="s2">"X.reshape(1, -1)."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"X_train and X_test must have the same number of features -- one "</span>
+            <span class="sa">f</span><span class="s2">"embedding is fitted for both -- got </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> and "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"X_train is empty; an embedding cannot be fitted on zero samples."</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Default the embedding width to the feature count. This is the documented behavior, but</span>
+    <span class="c1"># without it `n_components=None` (the documented default!) reaches the comparison below and</span>
+    <span class="c1"># raises TypeError: '&lt;=' not supported between 'NoneType' and 'int'.</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">n_components</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Validate at the boundary: a bad width otherwise surfaces as an sklearn assertion or,</span>
+    <span class="c1"># for QuVINE, as a failure deep inside the walk code.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"n_components must be a positive integer or None; got </span><span class="si">{</span><span class="n">n_components</span><span class="si">!r}</span><span class="s2">."</span>
+        <span class="p">)</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_components</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_components must be &gt;= 1; got </span><span class="si">{</span><span class="n">n_components</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+    <span class="c1"># check_embedding_name above already rejected unknown names, so this only</span>
+    <span class="c1"># decides which of the two routes the (valid) name takes.</span>
+    <span class="n">is_quvine</span> <span class="o">=</span> <span class="n">_is_quvine_method</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">embedding</span> <span class="o">!=</span> <span class="s2">"none"</span> <span class="ow">and</span> <span class="p">(</span><span class="n">is_quvine</span> <span class="ow">or</span> <span class="n">embedding</span> <span class="ow">in</span> <span class="n">_TRANSDUCTIVE_SKLEARN_METHODS</span><span class="p">):</span>
+        <span class="n">_warn_transductive</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+
+    <span class="c1"># QuVINE methods are transductive graph embeddings; route them before the sklearn</span>
+    <span class="c1"># feature-reduction path (their output width is independent of the feature count, so the</span>
+    <span class="c1"># n_components &lt;= n_features check below does not apply).</span>
+    <span class="k">if</span> <span class="n">is_quvine</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_quvine_embed</span><span class="p">(</span>
+            <span class="n">embedding</span><span class="p">,</span>
+            <span class="n">X_train</span><span class="p">,</span>
+            <span class="n">X_test</span><span class="p">,</span>
+            <span class="n">n_components</span><span class="p">,</span>
+            <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+            <span class="n">quvine_args</span><span class="o">=</span><span class="n">quvine_args</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">n_components</span> <span class="o">&gt;</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"n_components=</span><span class="si">{</span><span class="n">n_components</span><span class="si">}</span><span class="s2"> exceeds the </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> features in "</span>
+            <span class="sa">f</span><span class="s2">"X_train; </span><span class="si">{</span><span class="n">embedding</span><span class="si">!r}</span><span class="s2"> cannot produce more components than input features."</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="s2">"none"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">embedding_model</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="s2">"pca"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"nmf"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"lle"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">LocallyLinearEmbedding</span><span class="p">(</span>
+                    <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"standard"</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">LocallyLinearEmbedding</span><span class="p">(</span>
+                    <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"modified"</span>
+                <span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"isomap"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">Isomap</span><span class="p">(</span>
+                <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"umap"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">embedding_model</span> <span class="o">=</span> <span class="n">UMAP</span><span class="p">(</span>
+                <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">"spectral"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="c1"># SpectralEmbedding has no out-of-sample `transform`, so it must be fit</span>
+            <span class="c1"># transductively on the combined train+test rows and then sliced back. Only</span>
+            <span class="c1"># feature structure is used (no labels), so no label leakage is introduced --</span>
+            <span class="c1"># the UserWarning above declares it. Same protocol as the QuVINE arms.</span>
+            <span class="n">n_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">X_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">])</span>
+            <span class="n">Z</span> <span class="o">=</span> <span class="n">SpectralEmbedding</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">eigen_solver</span><span class="o">=</span><span class="s2">"arpack"</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_all</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Z</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"nmf"</span> <span class="o">==</span> <span class="n">embedding</span><span class="p">:</span>
+            <span class="n">X_test</span> <span class="o">=</span> <span class="n">_nonnegative_for_nmf</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 IBM Research.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
