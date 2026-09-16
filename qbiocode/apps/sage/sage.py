@@ -40,6 +40,14 @@ class QuantumSage():
         self._columns_metrics = ['accuracy', 'f1_score', 'auc']
         self._columns_metadata = ['Dataset', 'embeddings','datatype', 'model_embed_datatype', 'iteration', 'model', 'BestParams_GridSearch', 'Model_Parameters']
 
+        # Grid-search and serialized model parameters are optional QProfiler
+        # outputs.  Keep the QSage input schema stable when either feature was
+        # disabled in the producing QProfiler run.
+        data_input = data_input.copy()
+        for column in ('BestParams_GridSearch', 'Model_Parameters'):
+            if column not in data_input.columns:
+                data_input[column] = None
+
         self._input_data_features_only = data_input[self._columns_data_features]
         self._input_data_metrics = data_input[self._columns_metrics]
         self._input_data_metadata = data_input[self._columns_metadata]

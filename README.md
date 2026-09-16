@@ -30,15 +30,44 @@ QBioCode requires Python **3.10 or higher** and has been tested with Python vers
 #### Install from PyPI (Recommended)
 
 ```bash
-# Install the latest stable version
+# Standard installation: QBioCode's library, applications, quantum,
+# machine-learning, visualization, and tutorial runtime dependencies
 pip install qbiocode
 
-# Install with apps support (QProfiler, QSage)
+# Backward-compatible alias; QProfiler and QSage are already included above
 pip install 'qbiocode[apps]'
 
-# Install with all optional dependencies
+# Install everything needed for application use, documentation development,
+# testing, linting, formatting, and type checking
 pip install 'qbiocode[all]'
 ```
+
+Use the standard installation when running QBioCode, QProfiler, QSage, its
+notebooks, or its library functions. The `apps` extra remains available for
+backward compatibility but currently adds no packages beyond the standard
+installation. The `all` installation is intended for contributors who need
+every optional development tool; it is not required for normal use and is not
+needed in runtime images such as the Galaxy interactive tool.
+
+More focused contributor installations are also available:
+
+```bash
+# Build the Sphinx documentation locally
+pip install -e '.[docs]'
+
+# Run tests, linters, formatters, and type checking
+pip install -e '.[dev]'
+```
+
+Building notebook documentation also requires the Pandoc executable. Install
+it with your operating system's package manager, for example
+`conda install -c conda-forge pandoc` on macOS or Linux. This is needed only
+when rebuilding the documentation, not when running QBioCode or its tutorials.
+
+A fresh repository clone already includes the prebuilt HTML documentation.
+Open `docs/_build/html/index.html` in a browser to view it without installing
+the `docs` extra or Pandoc. The current published documentation is also
+available from the Documentation link at the top of this README.
 
 #### Install with Conda
 
@@ -78,11 +107,20 @@ source .env/bin/activate  # On Windows: .env\Scripts\activate
 # Install QBioCode in editable mode
 pip install -e .
 
-# Install with apps support (QProfiler, QSage)
+# Backward-compatible alias; applications are part of the standard install
 pip install -e '.[apps]'
+
+# Install every optional contributor dependency
+pip install -e '.[all]'
 ```
 
-**macOS Users:** XGBoost requires OpenMP. Install it using Homebrew:
+**macOS Users:** XGBoost requires OpenMP. In a Conda or Miniforge
+environment, install the cross-platform runtime from conda-forge:
+```bash
+conda install -c conda-forge llvm-openmp
+```
+
+Alternatively, Homebrew users can install it with:
 ```bash
 brew install libomp
 pip install --force-reinstall xgboost

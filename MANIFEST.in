@@ -8,7 +8,6 @@ include SECURITY.md
 include SUPPORT.md
 include CHANGELOG.md
 include requirements.txt
-include requirements-base.txt
 include .zenodo.json
 
 # Include configuration files

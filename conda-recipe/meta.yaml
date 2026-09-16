@@ -14,9 +14,9 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
-    - qprofiler=apps.qprofiler.cli:main
-    - qprofiler-batch=apps.qprofiler.qprofiler_batchmode:main
-    - qsage=apps.sage.sage:main
+    - qprofiler=qbiocode.apps.qprofiler.cli:main
+    - qprofiler-batch=qbiocode.apps.qprofiler.qprofiler_batchmode:main
+    - qsage=qbiocode.apps.sage.sage:main
 
 requirements:
   host:
@@ -27,32 +27,33 @@ requirements:
     - python >=3.10,<3.13
     # Core dependencies
     - dill
-    - h5py
     - hfda
     - hydra-core
     - ipykernel
-    - networkx
     - numpy
     - optuna
-    - pandas
+    - pandas >=2,<3
     # Qiskit ecosystem
-    - qiskit ==2.2.0
-    - qiskit-aer ==0.17.0
+    - qiskit ==2.4.2
+    - qiskit-aer ==0.17.2
     - qiskit-algorithms ==0.4.0
     - qiskit-ibm-runtime ==0.44.0
-    - qiskit-ibm-transpiler ==0.11.0
-    - qiskit-machine-learning ==0.9.0
-    - qiskit-nature ==0.7.2
+    - qiskit-ibm-transpiler ==0.18.0
+    - qiskit-machine-learning ==0.9.1
     # ML and data science
     - scikit-dimension
     - scikit-learn
     - scipy
     - seaborn
-    - tensorflow
     - pytorch
     - tqdm
     - umap-learn
     - xgboost
+    # Single-cell and multi-omics tutorials
+    - anndata
+    - python-igraph
+    - leidenalg
+    - scanpy
     # Apps extras
     - joblib
 
@@ -65,8 +66,8 @@ test:
     - qbiocode.learning
     - qbiocode.utils
     - qbiocode.visualization
-    - apps.qprofiler
-    - apps.sage
+    - qbiocode.apps.qprofiler
+    - qbiocode.apps.sage
   commands:
     - qprofiler --help
     - qsage --help

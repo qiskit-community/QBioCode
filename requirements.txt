@@ -1,48 +1,34 @@
+# Core scientific and application stack
 dill
-h5py
 hfda
 hydra-core
 ipykernel
-networkx
-numpy
+joblib
+matplotlib>=3.9
+numpy>=2,<2.3
 optuna
-pandas
-qiskit==2.2.0
-qiskit-aer==0.17.0
-qiskit-algorithms==0.4.0
-qiskit-ibm-runtime==0.44.0
-qiskit-ibm-transpiler==0.11.0
-qiskit-machine-learning==0.9.0
-qiskit-nature==0.7.2
+pandas>=2,<3
+pyyaml
+requests
 scikit-dimension
-scikit-learn
-scipy
+scikit-learn>=1.6
+scipy>=1.14
 seaborn
-tensorflow
 torch
-tqdm
+tqdm>=4.67.1
 umap-learn
 xgboost
 
-# Single-cell / multi-omics tutorials (sc-qc preprocessing, QProfiler single-cell)
-scanpy
-anndata
-leidenalg
-igraph
-# Imported directly by tutorial notebooks (also available transitively; pinned here to be explicit)
-matplotlib
-pyyaml
-requests
+# Shared Qiskit stack validated with FCC, tetrahedral, and QTF on Python 3.12
+qiskit==2.4.2
+qiskit-aer==0.17.2
+qiskit-algorithms==0.4.0
+qiskit-ibm-runtime==0.44.0
+qiskit-ibm-transpiler==0.18.0
+qiskit-machine-learning==0.9.1
 
-# Documentation
-sphinx
-sphinx-autodoc-typehints 
-sphinx_rtd_theme
-myst_parser
-better_apidoc
-nbsphinx
-myst_nb
-furo
-pydata-sphinx-theme
-pandoc
-sphinx-design
+# Single-cell and multi-omics tutorials
+anndata
+igraph
+leidenalg
+scanpy

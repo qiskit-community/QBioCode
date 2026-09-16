@@ -127,7 +127,7 @@ exclude = ["tests*", "docs*", "archive*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "qbiocode.version.__version__"}
-dependencies = {file = ["requirements-base.txt"]}
+dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.package-data]
 qbiocode = ["py.typed"]

@@ -55,7 +55,7 @@ def pqk(
 
     if data_map:
         #  This function ensures that all multiplicative factors of data features inside single qubit gates are 1.0
-        def data_map_func(x: np.ndarray) -> float:
+        def data_map_func(x: np.ndarray):
             """
             Define a function map from R^n to R.
 
@@ -63,10 +63,12 @@ def pqk(
                 x: data
 
             Returns:
-                float: the mapped value
+                The mapped numeric value or symbolic Qiskit expression.
             """
             coeff = x[0] / 2 if len(x) == 1 else reduce(lambda m, n: (m * n) / 2, x)
-            return float(coeff)
+            # Qiskit calls this function with ParameterExpression objects while
+            # constructing the feature map, so preserve symbolic expressions.
+            return coeff
 
     else:
         data_map_func = None

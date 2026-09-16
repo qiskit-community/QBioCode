@@ -4,7 +4,7 @@
 config_file_name: 'basic_config'
 
 # specify output directory where input datasets are located
-folder_path: 'tutorial/QProfiler/data/ld_data'
+folder_path: 'data/ld_data'
 file_dataset: 'ALL'
 # or use a list as below, to only select a few datasets
 # file_dataset: ['file1', 'file2', 'file3', etc]
