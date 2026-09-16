@@ -35,7 +35,7 @@ Ready to dive into the world of quantum healthcare and life sciences?
 
 
 .. note::
-    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://ibm.github.io/QBioCode/installation.html>`_ guide.
+    Before you start, make sure that you have installed QBioCode correctly by following the  `Installation <https://qiskit-community.github.io/QBioCode/installation.html>`_ guide.
 
 
 .. toctree::

@@ -2,7 +2,7 @@
 
 **A comprehensive suite of computational resources for quantum machine learning applications in healthcare and life sciences.**
 
-[![PyPI version](https://badge.fury.io/py/qbiocode.svg)](https://badge.fury.io/py/qbiocode) [![Minimum Python Version](https://img.shields.io/badge/Python-%3E=%203.10-blue)](https://www.python.org/downloads/) [![Maximum Python Version Tested](https://img.shields.io/badge/Python-%3C=%203.12-blueviolet)](https://www.python.org/downloads/) [![Supported Python Versions](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/downloads/) [![GitHub Pages](https://img.shields.io/badge/docs-sphinx-blue)](https://ibm.github.io/QBioCode/)
+[![PyPI version](https://badge.fury.io/py/qbiocode.svg)](https://badge.fury.io/py/qbiocode) [![Minimum Python Version](https://img.shields.io/badge/Python-%3E=%203.10-blue)](https://www.python.org/downloads/) [![Maximum Python Version Tested](https://img.shields.io/badge/Python-%3C=%203.12-blueviolet)](https://www.python.org/downloads/) [![Supported Python Versions](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/downloads/) [![GitHub Pages](https://img.shields.io/badge/docs-sphinx-blue)](https://qiskit-community.github.io/QBioCode/)
 
 <img src="docs/source/img/QBioCode_logo.png" width="300" />
 
@@ -14,7 +14,7 @@ QBioCode provides tools for benchmarking quantum and classical machine learning 
 - **QSage**: Meta-learning tool for intelligent model selection
 - **Data Generation**: Create artificial datasets with controlled complexity
 - **Quantum ML Support**: QSVC, PQK, VQC, QNN, Quantum Ensemble implementations
-- **Classical ML Baselines**: RF, SVM, LR, DT, NB, MLP, XGBoost
+- **Classical ML Baselines**: RF, SVM, LR, DT, NB, MLP, XGBoost, CatBoost, and TabPFN (a pretrained tabular transformer, via the optional `[tabpfn]` extra)
 - **Comprehensive Documentation**: Detailed tutorials and API reference
 
 ## 📋 Requirements
@@ -37,37 +37,37 @@ pip install qbiocode
 # Backward-compatible alias; QProfiler and QSage are already included above
 pip install 'qbiocode[apps]'
 
-# Install everything needed for application use, documentation development,
-# testing, linting, formatting, and type checking
+# Install with QuVINE graph embeddings (quvine_rwr, quvine_dtqw, node2vec, ...)
+pip install 'qbiocode[quvine]'
+
+# Install with all optional dependencies
 pip install 'qbiocode[all]'
 ```
 
-Use the standard installation when running QBioCode, QProfiler, QSage, its
-notebooks, or its library functions. The `apps` extra remains available for
-backward compatibility but currently adds no packages beyond the standard
-installation. The `all` installation is intended for contributors who need
-every optional development tool; it is not required for normal use and is not
-needed in runtime images such as the Galaxy interactive tool.
+<details>
+<summary><b>Optional dependency extras</b></summary>
 
-More focused contributor installations are also available:
+A plain `pip install qbiocode` gives you the full classical and quantum pipeline.
+Everything below is additive, and extras combine (`'qbiocode[apps,quvine]'`).
 
-```bash
-# Build the Sphinx documentation locally
-pip install -e '.[docs]'
+| Extra | Command | What it adds |
+| --- | --- | --- |
+| *(none)* | `pip install qbiocode` | Core library: embeddings (`pca`, `nmf`, `umap`, `tsne`, `spectral`, ...), PQK, classical + quantum models, `evaluate_graph`, `scale_train_test` |
+| `apps` | `pip install 'qbiocode[apps]'` | Hydra-driven CLIs for the QProfiler and QSage apps |
+| `quvine` | `pip install 'qbiocode[quvine]'` | QuVINE quantum/classical graph embeddings — 83 methods via `get_embeddings("quvine_*", ...)` |
+| `docs` | `pip install 'qbiocode[docs]'` | Sphinx toolchain for building the documentation |
+| `dev` | `pip install 'qbiocode[dev]'` | `pytest`, `pytest-cov`, `black`, `isort`, `flake8`, `mypy` |
+| `all` | `pip install 'qbiocode[all]'` | Union of every extra above |
 
-# Run tests, linters, formatters, and type checking
-pip install -e '.[dev]'
-```
+QuVINE is deliberately one all-or-nothing extra: its dependencies overlap across
+the walk, spectral and neural method families, so a partial install would leave
+most method names resolving and a few raising at call time. Without it,
+`import qbiocode` and all classical embeddings still work — only the
+`quvine_*` names raise, with a message naming the missing module and the exact
+install command. See
+[Installation](https://qiskit-community.github.io/QBioCode/installation.html) for details.
 
-Building notebook documentation also requires the Pandoc executable. Install
-it with your operating system's package manager, for example
-`conda install -c conda-forge pandoc` on macOS or Linux. This is needed only
-when rebuilding the documentation, not when running QBioCode or its tutorials.
-
-A fresh repository clone already includes the prebuilt HTML documentation.
-Open `docs/_build/html/index.html` in a browser to view it without installing
-the `docs` extra or Pandoc. The current published documentation is also
-available from the Documentation link at the top of this README.
+</details>
 
 #### Install with Conda
 
@@ -97,7 +97,7 @@ pip install qbiocode
 
 ```bash
 # Clone the repository
-git clone https://github.com/IBM/QBioCode.git
+git clone https://github.com/qiskit-community/QBioCode.git
 cd QBioCode
 
 # Create virtual environment
@@ -110,8 +110,8 @@ pip install -e .
 # Backward-compatible alias; applications are part of the standard install
 pip install -e '.[apps]'
 
-# Install every optional contributor dependency
-pip install -e '.[all]'
+# Install with QuVINE graph embeddings
+pip install -e '.[quvine]'
 ```
 
 **macOS Users:** XGBoost requires OpenMP. In a Conda or Miniforge
@@ -126,7 +126,7 @@ brew install libomp
 pip install --force-reinstall xgboost
 ```
 
-For detailed installation instructions, see the [Installation Guide](https://ibm.github.io/QBioCode/installation.html).
+For detailed installation instructions, see the [Installation Guide](https://qiskit-community.github.io/QBioCode/installation.html).
 
 ### Running Tests
 
@@ -170,7 +170,7 @@ qprofiler.main(config)
 
 QProfiler provides a comprehensive benchmarking pipeline that:
 - Evaluates both classical and quantum ML models
-- Computes 15+ data complexity metrics
+- Computes 125 data complexity metrics (pyMFE + QBioCode-native)
 - Correlates model performance with data characteristics
 - Generates detailed performance reports and visualizations
 
@@ -212,7 +212,7 @@ from qbiocode.apps.qprofiler import qprofiler
 qprofiler.main(config)
 ```
 
-[📖 QProfiler Documentation](https://ibm.github.io/QBioCode/apps/profiler.html) | [📓 Tutorial](tutorial/QProfiler/example_qprofiler.ipynb)
+[📖 QProfiler Documentation](https://qiskit-community.github.io/QBioCode/apps/profiler.html) | [📓 Tutorial](tutorial/QProfiler/example_qprofiler.ipynb)
 
 ### QSage
 
@@ -235,7 +235,75 @@ sage = QuantumSage(data=benchmark_df, features=features, metrics=metrics)
 predictions = sage.predict(new_dataset_features)
 ```
 
-[📖 QSage Documentation](https://ibm.github.io/QBioCode/apps/sage.html) | [📓 Tutorial](tutorial/QSage/qsage.ipynb)
+[📖 QSage Documentation](https://qiskit-community.github.io/QBioCode/apps/sage.html) | [📓 Tutorial](tutorial/QSage/qsage.ipynb)
+
+### QuVINE
+
+**Quantum View-based Network Embeddings**
+
+QuVINE embeds the **nodes of a graph** — a different modality from QProfiler's
+tabular datasets — by combining classical and quantum random walks with
+SGNS-based representation learning:
+- Multi-view graph construction from a single input graph
+- Random walk with restart (RWR) plus discrete- and continuous-time quantum walks
+- Quantum-calibrated filter / GAT / GraphGPS variants, and classical baselines
+  (node2vec, NetMF, APPNP) for comparison
+- 83 named methods selectable with a single `method` string
+- Usable through `qbiocode.get_embeddings` alongside `pca`, `nmf` and `umap`
+
+**Installation.** QuVINE's dependencies (gensim, hiperwalk, node2vec,
+torch-geometric, python-louvain, ripser, omegaconf) are heavy, so they sit behind
+an optional extra:
+
+```bash
+pip install "qbiocode[quvine]"
+```
+
+A plain `pip install qbiocode` still imports fine; requesting a QuVINE method
+then raises a `QuvineDependencyError` naming the extra and the missing module.
+
+**Usage:**
+```bash
+# List every available method (unavailable ones are reported, not hidden)
+quvine --list-methods
+
+# Embed a graph given as a 2- or 3-column edge list
+quvine --edgelist edges.csv --method quvine_fused --output out/
+
+# A classical baseline on a tab-separated, weighted edge list
+quvine --edgelist edges.tsv --sep '\t' --weighted --method node2vec --output out/
+```
+
+Writes `embedding.csv` (index `node`, columns `dim_0`…`dim_{d-1}`),
+`embedding_meta.json`, and `embedding.npy` with `--npy`.
+
+```python
+# Python API
+import networkx as nx
+from qbiocode.apps.quvine import embed
+
+G = nx.karate_club_graph()
+result = embed(G, "quvine_fused", base_seed=0)
+print(result.embedding.shape)          # (n_nodes, dim)
+```
+
+```python
+# As a QBioCode embedding, anywhere pca/nmf/umap works — including
+# QProfiler's `embeddings:` config list. Note: QuVINE methods are
+# transductive; get_embeddings emits a UserWarning saying so.
+from qbiocode import get_embeddings
+X_train_emb, X_test_emb = get_embeddings("quvine_rwr", X_train, X_test, n_components=8)
+```
+
+Graph-complexity metrics are deliberately *not* part of the app — `evaluate_graph`
+is core QBioCode and needs only the base install:
+
+```python
+from qbiocode import evaluate_graph
+metrics = evaluate_graph(G, name="karate")   # 1 x 88 DataFrame
+```
+
+[📖 QuVINE Documentation](https://qiskit-community.github.io/QBioCode/apps/quvine.html) | [⚙️ Configuration Guide](https://qiskit-community.github.io/QBioCode/apps/quvine_config.html) | [📊 Graph-Complexity Measures](https://qiskit-community.github.io/QBioCode/apps/quvine.html#graph-complexity-measures) | [📓 Tutorial](tutorial/QuVINE/example_quvine.ipynb)
 
 ## 📖 Tutorials
 
@@ -248,7 +316,14 @@ Learn how to create synthetic datasets with controlled properties:
 - High-dimensional classification data
 - Customizable complexity parameters
 
-### 2. [QProfiler Tutorial](tutorial/QProfiler/example_qprofiler.ipynb)
+### 2. [Single-Cell Preprocessing & QC](tutorial/Preprocessing/sc-qc.ipynb)
+The provenance notebook — it generates the balanced PBMC `h5ad` fixtures that the
+single-cell notebooks below read:
+- Quality control and filtering of raw single-cell data
+- Leakage-safe highly-variable-gene selection
+- Building balanced per-task subsets
+
+### 3. [QProfiler Tutorial](tutorial/QProfiler/example_qprofiler.ipynb)
 Step-by-step guide to benchmarking ML models:
 - Data generation and preparation
 - Configuration setup
@@ -256,22 +331,69 @@ Step-by-step guide to benchmarking ML models:
 - Analyzing results and visualizations
 - Understanding data complexity metrics
 
-### 3. [QSage Tutorial](tutorial/QSage/qsage.ipynb)
-Learn to use meta-learning for model selection:
-- Loading pre-trained QSage models
-- Making predictions on new datasets
-- Analyzing prediction accuracy
-- Understanding feature importance
+### 4. [QProfiler on Single-Cell Data](tutorial/QProfiler/sc_binary_qprofiler.ipynb)
+QProfiler on a real benchmark — **CD4 vs CD8** T-cell classification from PBMC data:
+- Benchmark classical baselines against the projected quantum kernel (PQK)
+- Tune a shallow, linearly-entangled ZZ feature map to avoid kernel concentration
+- Quantify the quantum-vs-classical gap with a paired Cohen's *d_z*
+- Explain task difficulty from data-complexity measures
 
-### 4. [Quantum Ensemble Learning](tutorial/QEnsemble/QEnsemble_example_blobs.ipynb)
+### 5. [QuVINE — Getting Started](tutorial/QuVINE/example_quvine.ipynb)
+12 embedding methods on synthetic graphs — fully self-contained, no data files:
+- Turn a `networkx.Graph` into an embedding matrix with `qbiocode.apps.quvine.embed`
+- Score node classification across 12 methods × 3 stochastic block models × 5 iterations
+- Summarize a graph with `evaluate_graph` (88 spectral, topological and structural metrics)
+- Correlate complexity (spectral gap, IPR, spectral degeneracy, entropy) with macro-F1
+
+### 6. [QuVINE on Single-Cell Data](tutorial/QuVINE/quvine_sc_cd4_vs_cd8.ipynb)
+Multi-view graph embeddings on the CD4 vs CD8 task:
+- Build a graph from single-cell data and inspect it with `evaluate_graph`
+- Run classical (node2vec, NetMF, APPNP) and quantum-calibrated walk embeddings
+- Fuse multiple graph views into a single embedding
+- Compare classical vs. quantum embeddings on a downstream classification task
+
+### 7. [QuVINE on T vs. Monocyte](tutorial/QuVINE/quvine_sc_t_vs_mono.ipynb)
+A transductive, semi-supervised task on an 800-cell two-view graph with soft seeds:
+- Embed two view-graphs separately and as an early-fusion concatenation
+- Compare against a no-embedding label-spreading baseline on the same graph
+- Rank nodes by seed similarity and score recall@k / precision@k
+- Read degree- and distance-matched null controls that separate real recovery
+  from a preference for hubs
+
+### 8. [QuVINE Embeddings in QProfiler](tutorial/QProfiler/sc_binary_quvine_2x2_qprofiler.ipynb)
+Drive QuVINE through `qbiocode.get_embeddings` like any other embedding:
+- A 2×2 design crossing a classical and a quantum walk with a classical and a
+  quantum learner
+- Why graph embeddings are *transductive* — test features join graph
+  construction, test labels never do
+
+### 9. [Quantum Ensemble Learning](tutorial/QEnsemble/QEnsemble_example_blobs.ipynb)
 Learn quantum ensemble methods for improved classification:
 - Fixed swap-based ensemble approach
 - Random unitary-based ensemble approach
 - Quantum superposition for evaluating multiple training configurations
 - Comparison with classical ensemble methods
 
-### 5. [Quantum Projection Learning](tutorial/Quantum_Projection_Learning/QPL_example.ipynb)
-Advanced quantum ML techniques with classical baselines.
+### 10. [QSage Tutorial](tutorial/QSage/qsage.ipynb)
+Learn to use meta-learning for model selection:
+- Loading pre-trained QSage models
+- Making predictions on new datasets
+- Analyzing prediction accuracy
+- Understanding feature importance
+
+### 11. [Quantum Projection Learning](tutorial/Quantum_Projection_Learning/QPL_example.ipynb)
+Advanced quantum ML techniques with classical baselines:
+- Apply quantum feature maps to create quantum projections
+- Train SVC, RF, XGBoost, CatBoost, MLP and LR on quantum features
+- Compare quantum-enhanced against classical baselines
+
+### 12. [PQK on Ovarian Cancer](tutorial/PQK%20-%20OV.ipynb)
+Projected Quantum Kernels on real multi-omics cancer genomics:
+- Automatically download and process TCGA ovarian-cancer multi-omics data
+- Create 3-year survival labels from clinical data
+- Compare quantum-enhanced against classical SVM performance across four modalities
+
+All twelve are also rendered on the [documentation site](https://qiskit-community.github.io/QBioCode/tutorials.html).
 
 ## 🔧 Core Modules
 
@@ -295,6 +417,9 @@ qbc.generate_data(type_of_data='classes', ...)
 - Naive Bayes (NB)
 - Multi-Layer Perceptron (MLP)
 - XGBoost
+- CatBoost
+- TabPFN — pretrained tabular transformer (needs the `[tabpfn]` extra; no API key or
+  license acceptance, as QBioCode pins the commercially-usable `v2` weights)
 
 **Quantum Models:**
 - Quantum Support Vector Classifier (QSVC)
@@ -362,12 +487,12 @@ num_configs, used_files = generate_qml_experiment_configs(
 
 ## 📊 Documentation
 
-Full documentation is available at: **[https://ibm.github.io/QBioCode/](https://ibm.github.io/QBioCode/)**
+Full documentation is available at: **[https://qiskit-community.github.io/QBioCode/](https://qiskit-community.github.io/QBioCode/)**
 
-- [Installation Guide](https://ibm.github.io/QBioCode/installation.html)
-- [API Reference](https://ibm.github.io/QBioCode/api/qbiocode.html)
-- [Tutorials](https://ibm.github.io/QBioCode/tutorials.html)
-- [Background](https://ibm.github.io/QBioCode/background.html)
+- [Installation Guide](https://qiskit-community.github.io/QBioCode/installation.html)
+- [API Reference](https://qiskit-community.github.io/QBioCode/api/qbiocode.html)
+- [Tutorials](https://qiskit-community.github.io/QBioCode/tutorials.html)
+- [Background](https://qiskit-community.github.io/QBioCode/background.html)
 
 ## 🤝 Contributing
 
@@ -387,7 +512,7 @@ If you use QBioCode in your research, please cite:
   author = {Raubenolt, Bryan and Bose, Aritra and Rhrissorrakrai, Kahn and 
             Utro, Filippo and Mohan, Akhil and Blankenberg, Daniel and Parida, Laxmi},
   year = {2024},
-  url = {https://github.com/IBM/QBioCode}
+  url = {https://github.com/qiskit-community/QBioCode}
 }
 ```
 
@@ -408,8 +533,8 @@ See [CITATION.cff](CITATION.cff) for more details.
 ## 📞 Support
 
 For questions, issues, or feature requests:
-- Open an issue on [GitHub](https://github.com/IBM/QBioCode/issues)
-- Check the [documentation](https://ibm.github.io/QBioCode/)
+- Open an issue on [GitHub](https://github.com/qiskit-community/QBioCode/issues)
+- Check the [documentation](https://qiskit-community.github.io/QBioCode/)
 - Contact the authors
 
 ---

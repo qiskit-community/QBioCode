@@ -4,6 +4,11 @@
 config_file_name: 'basic_config'
 
 # specify output directory where input datasets are located
+# The datasets this notebook generates in its own first code cell. This used to
+# read 'tutorial/QProfiler/data/ld_data', which is output from a *different*
+# notebook (example_qprofiler.ipynb), is gitignored, and is committed nowhere --
+# so from a fresh clone the run died on a folder that had never existed, having
+# just generated four datasets it then ignored.
 folder_path: 'data/qpl_tutorial_data'
 file_dataset: 'ALL'
 # or use a list as below, to only select a few datasets
@@ -32,7 +37,14 @@ embeddings: ['none']
 n_components: 3
 
 # ML models to generate
-model: ['pqk']
+# 'qpl', not 'pqk'. Both project the data through the same quantum feature
+# map, but compute_pqk then fits a single SVC and reports one row named
+# 'pqk', while compute_qpl fits five classical learners on the projections
+# and reports 'qpl_svc', 'qpl_rf', 'qpl_xgb', 'qpl_mlp' and 'qpl_lr'. The
+# five-learner comparison is what this notebook is about and what its
+# quantum-advantage cell looks for, so 'pqk' left that analysis with nothing
+# to match and a permanent 0% win rate.
+model: ['qpl']
 
 average: 'weighted'
 multi_class: 'raise'
@@ -52,6 +64,26 @@ scaling: ['True']
 
 # this turns on a grid search (hyperparameter tuning) for the CML methods
 grid_search: False
+
+# Which search to run when grid_search is on.
+#   optuna -- sample n_trials configurations with Optuna's TPE sampler (default)
+#   grid   -- fit every combination, the exhaustive sweep used before Optuna
+tuner: optuna
+
+# Trial budget for the optuna tuner. Automatically lowered when the values below
+# describe fewer distinct combinations than this. Ignored when tuner: grid.
+n_trials: 50
+
+# Also tune the QUANTUM models (qsvc, vqc, qnn, pqk, qpl). Off by default: each trial
+# is a quantum fit, so this multiplies their cost by n_trials_quantum. Needs a
+# gridsearch_<model>_args block for every quantum model in `model` above.
+tune_quantum: False
+n_trials_quantum: 10
+
+# Fraction of the training data held out to score each quantum candidate on. Quantum
+# candidates are scored on one stratified holdout rather than k folds, because a
+# quantum fit is expensive enough that k-fold would multiply the search by k.
+validation_split: 0.25
 
 # n-fold cross validation
 cross_validation: 5
@@ -119,13 +151,13 @@ rf_args: {'n_estimators': 100,
           'bootstrap': True
           }
 
-gridsearch_rf_args: {'n_estimators': [10, 50, 100, 200],
+# Trimmed for the same reason as the XGBoost grid above: 4 x 2 x 4 x 3 x 3 x 2 = 576
+# combinations x 5-fold CV = 2,880 random-forest fits per (dataset, iteration).
+gridsearch_rf_args: {'n_estimators': [50, 100],
                      'max_features': ['sqrt', 'log2'],
-                     'max_depth': [10, 20, 30, null],
-                     'min_samples_split': [2, 5, 10],
-                     'min_samples_leaf': [1, 2, 4],
-                     'bootstrap': [True, False]
-                     }
+                     'max_depth': [5, 10, null],
+                     'min_samples_split': [2, 5]
+                    }
 
 # begin XGB arguments
 xgb_args: {'n_estimators': 100,
@@ -136,13 +168,19 @@ xgb_args: {'n_estimators': 100,
           'min_child_weight' : 1,
           }
 
-gridsearch_xgb_args: {'n_estimators': [50, 100, 200, 300],
-                      'max_depth': [5, 10, 20, 30, null],
-                      'learning_rate': [0.01, 0.1, 0.2],
-                      'subsample': [0.7, 0.8, 1.0],
-                      'colsample_bytree': [0.7, 0.8, 1.0],
-                      'min_child_weight': [1, 3, 5],
-                      'bootstrap': [True, False]
+# Trimmed to a demo-sized grid. The full search this tutorial used to ship --
+# 3 x 5 x 3 x 3 x 3 x 3 x 2 = 2430 combinations x 5-fold CV = 12,150 fits -- costs
+# 265s for a single (dataset, iteration) on a laptop, so cell 6 alone ran for over
+# six hours across the datasets generated below. 16 combinations cost 0.2s and still
+# demonstrate tuning. Widen this back out for a real study, not for a first read.
+#
+# 'bootstrap' is gone as well. XGBoost's sklearn wrapper accepts unknown keyword
+# arguments without complaint, so it was never an error -- it silently doubled the
+# search while changing nothing about the fitted model.
+gridsearch_xgb_args: {'n_estimators': [50, 100],
+                      'max_depth': [3, 5],
+                      'learning_rate': [0.1, 0.3],
+                      'subsample': [0.8, 1.0]
                      }
 
 
@@ -199,6 +237,17 @@ vqc_args: {'primitive': 'sampler',
            'ansatz_type' : 'amp'
            }
 
+# Begin QPL arguments
+# QPL reuses the PQK projection step, so these mirror pqk_args below. The block has
+# to exist under its own name: model_run reads `args[method + "_args"]`, so with only
+# a `pqk_args` block present QPL fell back to its signature defaults (Z encoding,
+# linear entanglement, reps 2) while the config appeared to ask for something else.
+qpl_args: {'encoding': ZZ,
+           'entanglement': 'pairwise',
+           'primitive': 'estimator',
+           'reps': 4
+           }
+
 # Begin PQK arguments
 pqk_args: {'encoding': ZZ,
            'entanglement': 'pairwise',
@@ -210,3 +259,39 @@ pqk_args: {'encoding': ZZ,
 hydra:
   run:
     dir: results/${config_file_name}/dataset=${file_dataset}/${backend}_${now:%Y-%m-%d_%H-%M-%S}
+
+# ---------------------------------------------------------------------------
+# Quantum hyperparameter tuning (needs grid_search: True AND tune_quantum: True)
+# ---------------------------------------------------------------------------
+# Same syntax as the classical blocks: a list is a choice, a {low, high} mapping is a
+# range. Keep these small -- every trial is a quantum fit, so the cost is n_trials_quantum
+# times the cost of one ordinary run of that model.
+gridsearch_qsvc_args: {'encoding': ['Z', 'ZZ'],
+                       'reps': [1, 2],
+                       'entanglement': ['linear', 'full'],
+                       'C': {low: 1.0e-2, high: 1.0e+2, log: true}
+                      }
+
+gridsearch_vqc_args: {'encoding': ['Z', 'ZZ'],
+                      'reps': [1, 2],
+                      'ansatz_type': ['amp'],
+                      'local_optimizer': ['COBYLA', 'L_BFGS_B'],
+                      'maxiter': {low: 50, high: 200}
+                     }
+
+gridsearch_qnn_args: {'encoding': ['Z', 'ZZ'],
+                      'reps': [1, 2],
+                      'ansatz_type': ['amp'],
+                      'local_optimizer': ['COBYLA', 'L_BFGS_B'],
+                      'maxiter': {low: 50, high: 200}
+                     }
+
+gridsearch_pqk_args: {'encoding': ['Z', 'ZZ'],
+                      'reps': [1, 2],
+                      'entanglement': ['linear', 'full']
+                     }
+
+gridsearch_qpl_args: {'encoding': ['Z', 'ZZ'],
+                      'reps': [1, 2],
+                      'entanglement': ['linear', 'full']
+                     }

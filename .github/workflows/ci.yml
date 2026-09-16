@@ -53,6 +53,67 @@ jobs:
         name: codecov-${{ matrix.os }}-py${{ matrix.python-version }}
       continue-on-error: true
 
+  # The `test` job installs .[dev], which brings the [quvine] extra along with it,
+  # so it can never tell whether the extra is genuinely optional. That is the one
+  # property the extra exists for: `import qbiocode` and every classical embedding
+  # must work without gensim, hiperwalk, node2vec, torch-geometric, python-louvain
+  # or ripser installed. This job proves it from both sides. (omegaconf is not on
+  # that list: hydra-core is a base dependency and requires it, so omegaconf is
+  # present in a bare install too.)
+  #
+  # The bare leg is the interesting one. It must pass with the QuVINE tests
+  # *skipping*, not failing -- every one of them is behind `importorskip`, and
+  # `tests/integration/test_package_surface.py` asserts in a subprocess that
+  # importing qbiocode leaves all six of those modules unimported. If someone adds
+  # an eager `import gensim` anywhere on the import path, this leg goes red and the
+  # `test` job stays green.
+  install-matrix:
+    name: Install "${{ matrix.install }}" and run the suite
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # No extras at all: the published default install.
+          - install: "."
+          # Everything the [quvine] extra pulls in, and nothing else.
+          - install: ".[quvine]"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+
+    # The test tooling is installed on its own rather than through [dev]: [dev]
+    # would drag in the very dependencies this job is checking are absent.
+    # nbformat/nbclient are test infrastructure, not package dependencies, and
+    # without them the 21 notebook tests would skip rather than run here.
+    - name: Install ${{ matrix.install }}
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e "${{ matrix.install }}"
+        pip install pytest nbformat nbclient
+
+    - name: Import the package
+      run: python -c "import qbiocode; print(len(qbiocode.__all__), 'public names')"
+
+    - name: Every console script answers --help
+      run: |
+        qprofiler --help > /dev/null
+        qsage --help > /dev/null
+        quvine --help > /dev/null
+
+    # -rs so the log says which tests skipped and why. On the bare leg the QuVINE
+    # tests must appear there; a silent pass with nothing skipped would mean the
+    # extra was installed after all.
+    - name: Run tests
+      run: python -m pytest -q -rs
+
   lint:
     name: Code Quality Checks
     runs-on: ubuntu-latest
@@ -96,7 +157,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
-        python-version: '3.10'
+        # 3.12, not 3.10, because the [docs] extra pins `sphinx<9` --
+        # better_apidoc imports `get_documenter`, which Sphinx 9 renamed -- and
+        # Sphinx 8.2 requires Python >= 3.11. On 3.10 that pin silently resolves
+        # to Sphinx 8.1.3 instead: a different toolchain from the one this build
+        # is verified against, picked by pip's backtracking rather than by
+        # anyone. The supported-Python floor is asserted by the test matrix
+        # above; this job only has to build the site reproducibly.
+        python-version: '3.12'
         cache: 'pip'
     
     - name: Install dependencies
@@ -109,15 +177,67 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y pandoc
     
+    # No continue-on-error: a docs build that fails is a broken docs build. This
+    # catches unresolved toctree refs, missing API pages and import errors in
+    # conf.py, none of which are visible from the rendered site.
     - name: Build documentation
       run: |
         cd docs
         make html
-      continue-on-error: true
-    
+
+    # deploy-docs consumes this artifact instead of rebuilding, so it must not be
+    # allowed to fail silently.
     - name: Upload documentation artifacts
       uses: actions/upload-artifact@v6
       with:
         name: documentation
         path: docs/build/html/
-      continue-on-error: true
+
+  # Publishes the built HTML to the gh-pages branch, which is what
+  # https://qiskit-community.github.io/QBioCode serves (Pages source = "Deploy from a branch",
+  # branch gh-pages). peaceiris/actions-gh-pages is used rather than
+  # actions/deploy-pages because the latter requires flipping the repository's
+  # Pages source to "GitHub Actions"; pushing the branch keeps the existing
+  # setting working untouched.
+  #
+  # Before this job existed the rendered site was committed to the repository
+  # under docs/_build/html/ and copied over by hand. That build output has been
+  # removed from source control (see .gitignore); this job replaces it.
+  deploy-docs:
+    name: Deploy Documentation to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: docs
+    # main only, and never on a pull request -- a PR from a fork must not be able
+    # to publish to the live site.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    # Reuses the artifact built by the `docs` job rather than building a second
+    # time; `needs: docs` already guarantees that build was clean.
+    - name: Download documentation artifact
+      uses: actions/download-artifact@v6
+      with:
+        name: documentation
+        path: site
+
+    # Without this, Pages runs the output through Jekyll, which drops every
+    # directory whose name starts with an underscore -- i.e. all of Sphinx's
+    # _static/, _images/, _sources/ and _modules/.
+    - name: Disable Jekyll processing
+      run: touch site/.nojekyll
+
+    - name: Publish to gh-pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./site
+        # Sphinx output is fully regenerated each build, so stale files from a
+        # previous version must not linger.
+        force_orphan: true
+        commit_message: "Update documentation (${{ github.sha }})"

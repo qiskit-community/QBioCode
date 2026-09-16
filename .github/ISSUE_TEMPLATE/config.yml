@@ -4,6 +4,6 @@ contact_links:
     url: https://qbiocode.readthedocs.io/
     about: Check our documentation for guides and API reference
   - name: 💬 Discussions
-    url: https://github.com/IBM/QBioCode/discussions
+    url: https://github.com/qiskit-community/QBioCode/discussions
     about: Ask questions and discuss ideas with the community
 

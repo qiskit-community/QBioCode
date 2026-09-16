@@ -70,7 +70,49 @@ QBioCode provides quantum machine learning models that leverage quantum computin
 
 Each quantum model has an alternative function where grid search parameters and quantum-specific configurations can be provided as input. Details can be found in the specific :mod:`qbiocode.learning` submodules.
 
+Preprocessing
+"""""""""""""
 
+Feature scaling is fitted on the **training** split only and then applied to the
+test split, so no test-set statistic can reach the transform. QProfiler routes all
+of its scaling through this helper:
+
+.. autosummary::
+    ~qbiocode.utils.helper_fn.scale_train_test
+
+
+
+Graph Embeddings (QuVINE)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The QuVINE app (:mod:`qbiocode.apps.quvine`) embeds the nodes of a graph using
+classical and quantum random walks combined with SGNS representation learning.
+Its dependencies ship behind an optional extra -- ``pip install "qbiocode[quvine]"`` --
+so ``import qbiocode`` and every classical embedding keep working without it.
+
+.. autosummary::
+    ~qbiocode.apps.quvine.embed
+    ~qbiocode.apps.quvine.list_methods
+    ~qbiocode.apps.quvine.resolve_method
+
+Every QuVINE method is also reachable through the ordinary embedding entry point,
+exactly like ``pca`` / ``nmf`` / ``umap``: ``get_embeddings("quvine_rwr", ...)``.
+Because graph embeddings have no out-of-sample ``transform``, they are
+*transductive* -- test **features** take part in building the graph, test
+**labels** never do. :func:`qbiocode.embeddings.is_transductive` reports which
+methods behave this way, and each such call emits a ``UserWarning`` saying so.
+
+.. autosummary::
+    ~qbiocode.embeddings.is_transductive
+
+Graph-complexity metrics for the input graph are provided separately by
+:mod:`qbiocode.evaluation.graph_evaluation` -- run it on the same graph to
+characterise it:
+
+.. autosummary::
+    ~qbiocode.evaluation.graph_evaluation.evaluate_graph
+
+See the :doc:`QuVINE application guide <apps/quvine>` for usage details.
 
 Visualisation
 ^^^^^^^^^^^^^
@@ -291,3 +333,17 @@ Generated datasets are saved with:
 
 References
 ^^^^^^^^^^
+
+
+Full module reference
+---------------------
+
+Every module, generated from the source tree:
+
+* :doc:`api/qbiocode`
+
+.. toctree::
+   :hidden:
+   :maxdepth: 4
+
+   api/modules

@@ -1,9 +1,5 @@
 Quantum Machine Learning for Multi-omics Analysis (ISMB 2025)
-============================================================
-
-.. image:: ../_static/qml_multiomics.png
-   :align: center
-   :width: 80%
+=============================================================
 
 **ISMB/ECCB 2025 Tutorial**
 
@@ -26,8 +22,8 @@ This tutorial introduced:
 Materials
 ---------
 
-- 🔗 GitHub (integrated): `<https://github.com/IBM/QBioCode/tree/main/tutorial>`_
-- 🔗 QBioCode repository: `<https://github.com/IBM/QBioCode>`_
+- 🔗 GitHub (integrated): `<https://github.com/qiskit-community/QBioCode/tree/main/tutorial>`_
+- 🔗 QBioCode repository: `<https://github.com/qiskit-community/QBioCode>`_
 
 ----
 
@@ -42,7 +38,7 @@ Agenda
 ----
 
 Session I — Foundations
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. dropdown:: 1. Introduction to Quantum Computing
    :icon: info
@@ -61,15 +57,17 @@ Session I — Foundations
 
    **Materials**
    - 📄 Slides:
-        - `Intro to Quantum <../_static/workshops/Intro_to_Quantum.pdf>`_ 
-        - `QML Overview <../_static/workshops/QML.pdf>`_
+
+     - `Intro to Quantum <../_static/workshops/Intro_to_Quantum.pdf>`_
+     - `QML Overview <../_static/workshops/QML.pdf>`_
+
    - 💻 Notebook: `Intro to Qiskit <../_static/workshops/IntrotoQiskit.ipynb>`_
-   - 📘 Background: `Quantum Machine Learning <https://ibm.github.io/QBioCode/background.html>`_
+   - 📘 Background: `Quantum Machine Learning <https://qiskit-community.github.io/QBioCode/background.html>`_
 
 ----
 
 Session II — Data & Benchmarking
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. dropdown:: 1. Artificial Data Generation
    :icon: database
@@ -77,7 +75,7 @@ Session II — Data & Benchmarking
    Generate synthetic datasets with controlled complexity for benchmarking ML models.
 
    **Materials**
-   - 💻 Notebook: `<https://ibm.github.io/QBioCode/tutorials/Artificial_data_generation/example_data_generation.html>`_
+   - 💻 Notebook: `<https://qiskit-community.github.io/QBioCode/tutorials/Artificial_data_generation/example_data_generation.html>`_
    
 
 .. dropdown:: 2. QProfiler — Benchmarking ML Models
@@ -88,16 +86,17 @@ Session II — Data & Benchmarking
    - comparison of embeddings and algorithms  
 
    **Materials**
-   - 💻 Notebook: `Tutorial QProfiler <https://github.com/IBM/QBioCode/blob/main/tutorial/QProfiler/example_qprofiler.ipynb>`_
+   - 💻 Notebook: `Tutorial QProfiler <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QProfiler/example_qprofiler.ipynb>`_
    - 📄 Slides: `QBC <../_static/workshops/qbiocode.pdf>`_
-   - 📘 Documentation: 
-      - `QProfiler <https://ibm.github.io/QBioCode/apps/profiler.html>`_ 
-      - `Configuration Guide <https://ibm.github.io/QBioCode/apps/config.html>`_
+   - 📘 Documentation:
+
+     - `QProfiler <https://qiskit-community.github.io/QBioCode/apps/profiler.html>`_
+     - `Configuration Guide <https://qiskit-community.github.io/QBioCode/apps/config.html>`_
 
 ----
 
 Session III — Model Selection & Meta-learning
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. dropdown:: 1. QSage — Meta-learning for Model Selection
    :icon: light-bulb
@@ -105,9 +104,9 @@ Session III — Model Selection & Meta-learning
    Predict which ML models perform best using data complexity features.
 
    **Materials**
-   - 💻 Notebook: `Tutorial QSage <https://github.com/IBM/QBioCode/blob/main/tutorial/QSage/qsage.ipynb>`_
+   - 💻 Notebook: `Tutorial QSage <https://github.com/qiskit-community/QBioCode/blob/main/tutorial/QSage/qsage.ipynb>`_
    - 📄 Slides: `QBC <../_static/workshops/qbiocode.pdf>`_
-   - 📘 Documentation: `QSage <https://ibm.github.io/QBioCode/apps/sage.html>`_
+   - 📘 Documentation: `QSage <https://qiskit-community.github.io/QBioCode/apps/sage.html>`_
 
 
 
@@ -121,13 +120,13 @@ Session III — Model Selection & Meta-learning
 
    **Materials**
    - 📄 Slides: `Characterizing Data Complexity in Machine Learning <../_static/workshops/datacomplex.pdf>`_
-   - 📘 Background: `Data complexity documentation <https://ibm.github.io/QBioCode/apps/profiler.html#data-complexity-measures>`_
+   - 📘 Background: `Data complexity documentation <https://qiskit-community.github.io/QBioCode/apps/profiler.html#data-complexity-measures>`_
 
 
 ----
 
 Session IV — Quantum-enhanced Pipelines
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. dropdown:: 1. Quantum Projection Learning (QPL)
    :icon: cpu
@@ -135,7 +134,7 @@ Session IV — Quantum-enhanced Pipelines
    Apply quantum feature maps to enhance classical ML performance.
 
    **Materials**
-   - 💻 Tutorial: `<https://ibm.github.io/QBioCode/tutorials/Quantum_Projection_Learning/QPL_example.html>`_
+   - 💻 Tutorial: `<https://qiskit-community.github.io/QBioCode/tutorials/Quantum_Projection_Learning/QPL_example.html>`_
    
 
 
@@ -184,6 +183,6 @@ Run all materials locally:
 
 .. code-block:: bash
 
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
    pip install -e .

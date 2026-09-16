@@ -1,3 +1,16 @@
+"""Convolutional autoencoder embedding.
+
+Importing this module maps torch -- and so torch's copy of ``libomp`` -- into the
+process. On macOS that must not happen before xgboost's copy is initialised or
+XGBoost model fitting segfaults; see ``qbiocode.utils._openmp`` for the full
+diagnosis. The preload below makes this module safe to import on its own, in any
+order, rather than relying on the caller having imported ``qbiocode`` first.
+"""
+
+from qbiocode.utils._openmp import preload_openmp_libraries
+
+preload_openmp_libraries()
+
 import torch
 import torch.nn as nn
 import torch.optim as optim

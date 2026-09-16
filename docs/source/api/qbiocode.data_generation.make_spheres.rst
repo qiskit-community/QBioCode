@@ -7,7 +7,7 @@ qbiocode.data_generation.make_spheres module
 .. currentmodule:: qbiocode.data_generation.make_spheres
 
 .. automodule:: qbiocode.data_generation.make_spheres
-    :members: DIM, N_SAMPLES, RAD, generate_points_in_nd_sphere, my_make_spheres
+    :members: DIM, N_SAMPLES, RAD, generate_points_in_nd_sphere, generate_spheres_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -21,7 +21,7 @@ qbiocode.data_generation.make_spheres module
         :nosignatures:
 
         generate_points_in_nd_sphere
-        my_make_spheres
+        generate_spheres_datasets
 
 
 

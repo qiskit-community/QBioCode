@@ -40,7 +40,18 @@
 {%- set exceptions = get_members(typ='exception', in_list='__all__', include_imported=True, out_format='table') -%}
 {%- set classes = get_members(typ='class', in_list='__all__', include_imported=True, out_format='table') -%}
 {%- set functions = get_members(typ='function', in_list='__all__', include_imported=True, out_format='table') -%}
-{%- set data = get_members(typ='data', in_list='__all__', include_imported=True, out_format='table') -%}
+{#- Data entries are listed as bare cross-references, not as a two-column
+    table like the callables above. better_apidoc fills a table's summary
+    column from the object's ``__doc__``, and a module-level constant that is
+    a plain dict or list has no ``__doc__`` of its own -- it inherits
+    ``dict.__doc__``. That put "dict() -> new empty dictionary ..." in the
+    summary cell for UNAVAILABLE and PUBLICATION_STYLE, which is both wrong
+    (it describes dict, not the constant) and malformed: the ``dict(**kwargs)``
+    in that text opens an inline-strong that never closes, which docutils
+    reports as a warning and ``-W`` turns into a failed build. The real
+    description comes from the ``#:`` comment above the assignment and is
+    rendered in the Reference section below either way. -#}
+{%- set data = get_members(typ='data', in_list='__all__', include_imported=True, out_format='refs') -%}
 {%- set private_exceptions = get_members(typ='exception', in_list='__private__', out_format='table') -%}
 {%- set private_classes = get_members(typ='class', in_list='__private__', out_format='table') -%}
 {%- set private_functions = get_members(typ='function', in_list='__private__', out_format='table') -%}
@@ -100,8 +111,8 @@
 
     ``__all__`` Data:
 
-{% for line in data %}
-    {{ line }}
+{% for item in data %}
+    * {{ item }}
 {%- endfor %}
     {%- endif %}
 

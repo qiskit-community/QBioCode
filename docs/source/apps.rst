@@ -29,11 +29,31 @@ QSage is an intelligent meta-learning system that predicts which machine learnin
 
 See the :doc:`QSage documentation <apps/sage>` for detailed usage instructions.
 
+QuVINE
+------
+
+QuVINE (Quantum View-based Network Embeddings) turns a graph into low-dimensional node embeddings, combining classical and quantum random walks with SGNS-based representation learning. It is provided as an in-tree app (``qbiocode.apps.quvine``) plus a ``quvine`` command-line tool.
+
+* Multi-view graph construction from a single input graph
+* Classical and quantum random walks (RWR, discrete- and continuous-time quantum walks)
+* SGNS-based embedding learning, with quantum-calibrated filter / GAT / GraphGPS variants
+* Classical baselines (node2vec, NetMF, APPNP) for comparison
+* Reproducible, iterative evaluation pipelines
+* 83 named methods selectable by a single ``method`` string
+* Usable through :func:`qbiocode.get_embeddings` alongside ``pca``, ``nmf`` and ``umap``
+
+QuVINE's dependencies are optional, so install it with ``pip install "qbiocode[quvine]"``.
+
+Graph-complexity metrics are intentionally *not* part of the embedding app; they live in :func:`qbiocode.evaluate_graph` (``qbiocode.evaluation.graph_evaluation``). All 88 of them are grouped and described under :ref:`Graph-Complexity Measures <graph-complexity-measures>`.
+
+See the :doc:`QuVINE documentation <apps/quvine>` for detailed usage instructions, and the :doc:`QuVINE Configuration Guide <apps/quvine_config>` for the shipped YAML config.
+
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    QProfiler <apps/profiler>
    QSage <apps/sage>
+   QuVINE <apps/quvine>
 
 .. Made with Bob

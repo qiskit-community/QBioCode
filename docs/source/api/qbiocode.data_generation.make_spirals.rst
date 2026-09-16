@@ -7,7 +7,7 @@ qbiocode.data_generation.make_spirals module
 .. currentmodule:: qbiocode.data_generation.make_spirals
 
 .. automodule:: qbiocode.data_generation.make_spirals
-    :members: DIM, NOISE, N_CLASSES, N_SAMPLES, make_spirals, my_make_spirals
+    :members: DIM, NOISE, N_CLASSES, N_SAMPLES, generate_spirals_datasets, make_spirals
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,8 +20,8 @@ qbiocode.data_generation.make_spirals module
     .. autosummary::
         :nosignatures:
 
+        generate_spirals_datasets
         make_spirals
-        my_make_spirals
 
 
 

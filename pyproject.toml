@@ -57,81 +57,122 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/IBM/qbiocode"
-Documentation = "https://ibm.github.io/QBioCode/"
-Repository = "https://github.com/IBM/qbiocode"
-"Bug Tracker" = "https://github.com/IBM/qbiocode/issues"
+Homepage = "https://github.com/qiskit-community/qbiocode"
+Documentation = "https://qiskit-community.github.io/QBioCode/"
+Repository = "https://github.com/qiskit-community/qbiocode"
+"Bug Tracker" = "https://github.com/qiskit-community/qbiocode/issues"
 
 [project.optional-dependencies]
+# Mirrors of the tiered files in requirements/ -- tests/test_requirements_consistency.py
+# asserts that `quvine`, `tabpfn` and `docs` here match requirements-quvine.txt,
+# requirements-tabpfn.txt and requirements-docs.txt exactly, so they cannot drift apart.
 apps = [
     "hydra-core",
     "joblib",
 ]
+# QuVINE embedding app (qbiocode.apps.quvine). One all-or-nothing extra: with it
+# installed, every `get_embeddings("quvine_*", ...)` method resolves; without it,
+# `import qbiocode` and all classical embeddings still work.
+quvine = [
+    # node2vec imports the deprecated `pkg_resources`, removed in setuptools>=81.
+    "setuptools<81",
+    # gensim>=4.4 drops `scipy.triu` (removed in scipy 1.13); an older gensim would
+    # force numpy<2.0, conflicting with qiskit-machine-learning==0.9.0 (numpy>=2.0).
+    "gensim>=4.4",
+    "hiperwalk",
+    "node2vec",
+    "omegaconf",
+    "python-louvain",
+    "ripser",
+    "torch-geometric",
+]
+# TabPFN classical learner (qbiocode.learning.compute_tabpfn). An extra rather than a base
+# dependency because of its weight -- it brings torch's ecosystem plus mlx, lightgbm,
+# huggingface-hub and safetensors, and `import qbiocode` must not pull torch in. No API
+# token or license acceptance is needed: QBioCode pins model version v2, whose weights are
+# under the Prior Labs License (Apache 2.0 plus attribution); the newer v2.5/v2.6/v3
+# checkpoints are non-commercial and are opt-in via `model_version`. `import qbiocode` and
+# every other model work without this extra, and compute_tabpfn raises an ImportError
+# naming it when the model is selected. See requirements/requirements-tabpfn.txt.
+tabpfn = [
+    "tabpfn",
+]
+# `pandoc` is intentionally not listed: it is a system binary, not a Python
+# package. Install it with brew/apt -- see requirements/requirements-docs.txt.
 docs = [
-    "sphinx",
+    # `sphinx<9`, not bare `sphinx`: better_apidoc imports `get_documenter` from
+    # `sphinx.ext.autosummary`, which Sphinx 9 renamed to `_get_documenter`. conf.py's
+    # `run_apidoc` reports that ImportError at info level and falls back to the
+    # committed docs/source/api/*.rst pages, so on Sphinx 9 the build still succeeds
+    # and CI stays green while the API reference silently stops regenerating -- it
+    # freezes at whatever was last committed. Lift the pin when better_apidoc
+    # supports Sphinx 9, or when the api/ pages move to sphinx.ext.apidoc. pip
+    # backtracks sphinx-autodoc-typehints to a Sphinx 8-compatible release to
+    # satisfy this, which is intended -- its newest release requires Sphinx >= 9.1.
+    "sphinx<9",
     "sphinx-autodoc-typehints",
     "sphinx_rtd_theme",
+    "sphinx-design",
     "myst_parser",
-    "better_apidoc",
-    "nbsphinx",
     "myst_nb",
+    "nbsphinx",
+    "better_apidoc",
     "furo",
     "pydata-sphinx-theme",
-    "pandoc",
-    "sphinx-design",
 ]
 dev = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
+    # tests/integration/test_notebook_execution.py executes every tracked
+    # notebook through these two. Undeclared, they were reached by
+    # ``pytest.importorskip`` and 21 notebook tests skipped silently in any
+    # environment that happened not to have them.
+    "nbclient>=0.7",
+    "nbformat>=5.0",
+    # tests/integration/test_distribution_contents.py builds a real sdist and wheel
+    # and inspects what they carry. It guards on `build` and says the [dev] extra
+    # provides it -- which was not true until this line, so the guard could only
+    # ever skip.
+    "build>=1.0",
     "black>=23.0",
     "isort>=5.0",
     "flake8>=6.0",
     "mypy>=1.0",
     "types-PyYAML",
 ]
+# Union of every extra above. Keep in sync when adding to any tier.
 all = [
-    "hydra-core",
-    "joblib",
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "sphinx_rtd_theme",
-    "myst_parser",
-    "better_apidoc",
-    "nbsphinx",
-    "myst_nb",
-    "furo",
-    "pydata-sphinx-theme",
-    "pandoc",
-    "sphinx-design",
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "black>=23.0",
-    "isort>=5.0",
-    "flake8>=6.0",
-    "mypy>=1.0",
-    "types-PyYAML",
+    "qbiocode[apps,quvine,tabpfn,docs,dev]",
 ]
 
 [project.scripts]
 qprofiler = "qbiocode.apps.qprofiler.cli:main"
 qprofiler-batch = "qbiocode.apps.qprofiler.qprofiler_batchmode:main"
 qsage = "qbiocode.apps.sage.sage:main"
+quvine = "qbiocode.apps.quvine.cli:main"
 
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["qbiocode*", "apps*"]
+include = ["qbiocode*"]
 exclude = ["tests*", "docs*", "archive*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "qbiocode.version.__version__"}
-dependencies = {file = ["requirements.txt"]}
+dependencies = {file = ["requirements/requirements-base.txt"]}
 
 [tool.setuptools.package-data]
-qbiocode = ["py.typed"]
+# No `qbiocode = ["py.typed"]` here. The marker was declared and the file has
+# never existed, so setuptools silently shipped nothing -- but had anyone created
+# it to "fix" the declaration, the claim would have been false: py.typed tells a
+# consumer's type checker that this package's annotations are complete and
+# authoritative, and `disallow_untyped_defs = false` below says they are not.
+# Downstream users would then get confident `error:` lines derived from `Any`.
+# Add the marker when the tree is fully annotated, not before.
 "qbiocode.apps.qprofiler" = ["configs/*.yaml"]
+"qbiocode.apps.quvine" = ["configs/*.yaml"]
 
 [tool.black]
 line-length = 100
@@ -147,7 +188,18 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --cov=qbiocode --cov-report=html --cov-report=term"
+# No --cov here on purpose: it made a bare `pytest` fail outright in any
+# environment without pytest-cov, which is every environment that installed
+# qbiocode rather than the [dev] extra. CI passes --cov explicitly.
+# The default deselection keeps the matrix fast; run the excluded tiers with
+#   pytest -m slow            (notebook execution)
+#   pytest -m requires_quantum (anything needing a real backend)
+addopts = "-v -m 'not slow and not requires_quantum'"
+
+markers = [
+    "slow: minutes-long tests, e.g. executing a tutorial notebook end to end",
+    "requires_quantum: needs a real quantum backend and network credentials",
+]
 
 [tool.mypy]
 python_version = "3.10"

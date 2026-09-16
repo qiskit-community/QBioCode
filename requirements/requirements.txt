@@ -1,0 +1,67 @@
+# ==========================================================================
+# QBioCode -- complete development environment
+# ==========================================================================
+# Everything: core runtime + the QuVINE embedding app + the TabPFN learner + the
+# Sphinx toolchain + the test/lint tooling, plus QBioCode itself in editable mode.
+#
+# Installing the tabpfn tier makes the model importable; it does not accept its
+# license for you, so a fit still needs TABPFN_TOKEN set once. Tests that would
+# fit it skip themselves when the weights are unreachable.
+#
+# --------------------------------------------------------------------------
+# Create the environment (Python 3.12; tested on 3.12.4)
+# --------------------------------------------------------------------------
+#   cd <repo root>            # MUST be the repo root: the trailing "-e .[dev]"
+#                             # below is resolved relative to the CWD, not to
+#                             # this file.
+#   python3.12 -m venv .venv
+#   source .venv/bin/activate            # Windows: .venv\Scripts\activate
+#   python -m pip install --upgrade pip
+#   pip install -r requirements/requirements.txt
+#
+# The final "-e .[dev]" installs QBioCode (editable) plus the dev extra, so no
+# separate "pip install -e ." step is needed.
+#
+# Verify:
+#   python -c "import qbiocode; print(qbiocode.__version__)"
+#   python -c "from qbiocode.apps.quvine import list_methods; print(len(list_methods()), 'methods')"
+#   python -m pytest tests/ -o addopts=""
+#
+# Pandoc is a system binary and is NOT installed by pip; see
+# requirements-docs.txt for the platform command.
+# --------------------------------------------------------------------------
+# Reproducing a byte-exact environment
+# --------------------------------------------------------------------------
+# No lock file is committed, deliberately. A `pip freeze` is specific to one
+# operating system, one CPU architecture and one Python minor version, and
+# QBioCode is tested on three of each; a single lock file would be wrong on
+# eight of the nine combinations while looking authoritative on all nine. It
+# also silently outlives the tiers above -- the lock inherited from the
+# development repository still pinned tensorflow and keras long after nothing
+# in the tree imported either.
+#
+# If you need one for your own deployment, generate it where you deploy:
+#
+#   python3.12 -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements/requirements.txt
+#   python -m pytest -o addopts=""          # confirm the resolve actually works
+#   pip freeze --exclude-editable > requirements/requirements-lock.txt
+#
+# Then install from it with:
+#   pip install -r requirements/requirements-lock.txt && pip install -e . --no-deps
+#
+# `requirements/requirements-lock.txt` is gitignored, so a generated lock stays
+# local to the environment that produced it.
+# --------------------------------------------------------------------------
+# This file only aggregates the tiered lists -- edit those, never duplicate
+# a pin here.
+# ==========================================================================
+
+-r requirements-base.txt
+-r requirements-quvine.txt
+-r requirements-tabpfn.txt
+-r requirements-docs.txt
+
+# QBioCode itself (editable) + the [dev] extra from pyproject.toml.
+# Resolved relative to the CWD, so run pip from the repo root.
+-e .[dev]

@@ -497,8 +497,8 @@ For detailed API documentation, see the [API Overview](api_overview.rst).
 Quantum kernels compute similarity measures between data points in high-dimensional Hilbert spaces, offering advantages over classical kernels for complex pattern recognition.
 
 **Implementations:**
-- **Projected Quantum Kernel (PQK)** - [compute_pqk](api/qbiocode.learning.rst#module-qbiocode.learning.compute_pqk): Projects data into quantum feature space for enhanced separability in classification tasks.
-- **Quantum Support Vector Classifier (QSVC)** - [compute_qsvc](api/qbiocode.learning.rst#module-qbiocode.learning.compute_qsvc): Quantum analog of SVM using quantum kernels for binary and multi-class classification.
+- **Projected Quantum Kernel (PQK)** - {py:mod}`compute_pqk <qbiocode.learning.compute_pqk>`: Projects data into quantum feature space for enhanced separability in classification tasks.
+- **Quantum Support Vector Classifier (QSVC)** - {py:mod}`compute_qsvc <qbiocode.learning.compute_qsvc>`: Quantum analog of SVM using quantum kernels for binary and multi-class classification.
 
 ```{note}
 **Biological Applications:** Quantum kernels have shown promise in cell classification, CpG prediction, and [T cell receptor classification](https://arxiv.org/abs/2507.22710), where they can capture complex nonlinear relationships in biological data.
@@ -509,8 +509,8 @@ Quantum kernels compute similarity measures between data points in high-dimensio
 Variational quantum algorithms use parameterized quantum circuits optimized through hybrid quantum-classical loops, analogous to neural networks but leveraging quantum computational advantages.
 
 **Implementations:**
-- **Variational Quantum Classifier (VQC)** - [compute_vqc](api/qbiocode.learning.rst#module-qbiocode.learning.compute_vqc): Trainable quantum circuit for classification with gradient-based optimization.
-- **Quantum Neural Networks (QNN)** - [compute_qnn](api/qbiocode.learning.rst#module-qbiocode.learning.compute_qnn): Quantum analog of neural networks with parameterized quantum gates as trainable layers.
+- **Variational Quantum Classifier (VQC)** - {py:mod}`compute_vqc <qbiocode.learning.compute_vqc>`: Trainable quantum circuit for classification with gradient-based optimization.
+- **Quantum Neural Networks (QNN)** - {py:mod}`compute_qnn <qbiocode.learning.compute_qnn>`: Quantum analog of neural networks with parameterized quantum gates as trainable layers.
 
 ```{note}
 **Biological Applications:** Quantum variational autoencoders have been applied to trajectory inference, perturbation modeling, and multi-omics integration, addressing challenges like learning uninformative latent representations and sensitivity to noisy data that affect classical variational autoencoders.
@@ -520,12 +520,12 @@ Variational quantum algorithms use parameterized quantum circuits optimized thro
 
 QBioCode provides classical machine learning models for rigorous benchmarking and comparison:
 
-- **Support Vector Classifier (SVC)** - [compute_svc](api/qbiocode.learning.rst#module-qbiocode.learning.compute_svc): Classical kernel-based classifier for comparison with quantum kernels.
-- **Random Forest (RF)** - [compute_rf](api/qbiocode.learning.rst#module-qbiocode.learning.compute_rf): Ensemble method combining multiple decision trees for robust predictions.
-- **Logistic Regression (LR)** - [compute_lr](api/qbiocode.learning.rst#module-qbiocode.learning.compute_lr): Linear model providing interpretable baseline for binary classification.
-- **Decision Tree (DT)** - [compute_dt](api/qbiocode.learning.rst#module-qbiocode.learning.compute_dt): Tree-based model offering interpretable decision rules.
-- **Naive Bayes (NB)** - [compute_nb](api/qbiocode.learning.rst#module-qbiocode.learning.compute_nb): Probabilistic classifier based on Bayes' theorem with feature independence assumption.
-- **Multi-layer Perceptron (MLP)** - [compute_mlp](api/qbiocode.learning.rst#module-qbiocode.learning.compute_mlp): Classical neural network for comparison with quantum neural networks.
+- **Support Vector Classifier (SVC)** - {py:mod}`compute_svc <qbiocode.learning.compute_svc>`: Classical kernel-based classifier for comparison with quantum kernels.
+- **Random Forest (RF)** - {py:mod}`compute_rf <qbiocode.learning.compute_rf>`: Ensemble method combining multiple decision trees for robust predictions.
+- **Logistic Regression (LR)** - {py:mod}`compute_lr <qbiocode.learning.compute_lr>`: Linear model providing interpretable baseline for binary classification.
+- **Decision Tree (DT)** - {py:mod}`compute_dt <qbiocode.learning.compute_dt>`: Tree-based model offering interpretable decision rules.
+- **Naive Bayes (NB)** - {py:mod}`compute_nb <qbiocode.learning.compute_nb>`: Probabilistic classifier based on Bayes' theorem with feature independence assumption.
+- **Multi-layer Perceptron (MLP)** - {py:mod}`compute_mlp <qbiocode.learning.compute_mlp>`: Classical neural network for comparison with quantum neural networks.
 
 ```{important}
 **Benchmarking Strategy:** Comparing quantum algorithms against these classical baselines is essential for demonstrating quantum advantage. QBioCode's unified interface enables fair comparisons across all methods using identical data preprocessing and evaluation metrics.
@@ -609,6 +609,8 @@ For comprehensive video tutorials, lectures, and demonstrations on quantum compu
 **Recommended Playlist**: [Understanding Quantum Information and Computation](https://www.youtube.com/playlist?list=PLOFEBzvs-VvqKKMXX4vbi4EB1uaErFMSO) - Essential foundation for quantum computing concepts used throughout QBioCode.
 ```
 
----
-
-*This background material is designed to provide context for using QBioCode in quantum machine learning research and applications. For hands-on tutorials, see the [Tutorials](tutorials.md) section.*
+```{seealso}
+This background material provides context for using QBioCode in quantum
+machine learning research and applications. For hands-on tutorials, see
+the [Tutorials](tutorials.md) section.
+```

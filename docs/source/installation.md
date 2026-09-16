@@ -23,6 +23,12 @@ Install with apps support (QProfiler, QSage):
 pip install 'qbiocode[apps]'
 ```
 
+Install with QuVINE graph embeddings (`quvine_rwr`, `quvine_dtqw`, `node2vec`, ...):
+
+```bash
+pip install 'qbiocode[quvine]'
+```
+
 Install with all optional dependencies:
 
 ```bash
@@ -31,6 +37,156 @@ pip install 'qbiocode[all]'
 
 ```{note}
 **For zsh users:** The quotes around `'qbiocode[apps]'` are required because zsh interprets square brackets as glob patterns. Bash users can omit quotes, but using them works in both shells.
+```
+
+## Optional dependency extras
+
+A plain `pip install qbiocode` gives you the full classical and quantum pipeline:
+data generation, all scikit-learn embeddings, PQK, and the classical/quantum
+models. Everything below is additive.
+
+| Extra | Command | What it adds |
+| --- | --- | --- |
+| *(none)* | `pip install qbiocode` | Core library: embeddings (`pca`, `nmf`, `umap`, `tsne`, `spectral`, ...), PQK, classical + quantum models, `evaluate_graph`, `scale_train_test` |
+| `apps` | `pip install 'qbiocode[apps]'` | Hydra-driven CLIs for the QProfiler and QSage apps (`hydra-core`, `joblib`) |
+| `quvine` | `pip install 'qbiocode[quvine]'` | QuVINE quantum/classical graph embeddings — 83 methods reachable through `get_embeddings("quvine_*", ...)` |
+| `tabpfn` | `pip install 'qbiocode[tabpfn]'` | The `tabpfn` classical model — a pretrained tabular transformer. No API key or license acceptance needed for the pinned default; see below |
+| `docs` | `pip install 'qbiocode[docs]'` | Sphinx toolchain for building this documentation locally |
+| `dev` | `pip install 'qbiocode[dev]'` | `pytest`, `pytest-cov`, `black`, `isort`, `flake8`, `mypy` |
+| `all` | `pip install 'qbiocode[all]'` | Union of every extra above |
+
+Extras combine, so `pip install 'qbiocode[apps,quvine]'` is valid.
+
+`catboost` is *not* an extra: it is a core dependency, so the `catboost` model
+works from a plain `pip install qbiocode` exactly as `xgb` does.
+
+### QuVINE graph embeddings
+
+QuVINE ships as a single all-or-nothing extra rather than one extra per method
+family. Its dependencies (`gensim`, `hiperwalk`, `node2vec`, `omegaconf`,
+`python-louvain`, `ripser`, `torch-geometric`) overlap heavily across the walk,
+spectral and neural methods, so a partial install would leave most method names
+resolving and a handful raising at call time — harder to reason about than a
+single yes/no.
+
+Without the extra, `import qbiocode` and every classical embedding keep working;
+only the QuVINE method names are affected, and they raise an actionable error
+naming the missing module and the exact install command:
+
+```python
+>>> import qbiocode as qbc
+>>> qbc.get_embeddings("quvine_rwr", X_train, X_test)
+QuvineDependencyError: QuVINE method 'quvine_rwr' requires the optional 'quvine'
+extra. Install it with: pip install "qbiocode[quvine]"
+(missing: gensim, provided by gensim>=4.4)
+```
+
+`QuvineDependencyError` subclasses `ImportError`, so `except ImportError` already
+catches it. `qbiocode.embeddings.QUVINE_METHODS` lists the method names, and
+`qbiocode.apps.quvine.missing_dependencies()` reports which optional packages are
+absent without raising.
+
+```{note}
+`torch` is already a base dependency, so the `quvine` extra does not pull in a
+second deep-learning stack. On macOS, `pip install 'qbiocode[quvine]'` may need
+`brew install cmake` first for `ripser`.
+```
+
+```{warning}
+The `quvine` extra pins `setuptools<81` because `node2vec` imports
+`pkg_resources`, which setuptools 81 removed. If you install QuVINE into an
+environment that needs a newer setuptools, use a separate virtual environment.
+```
+
+### TabPFN
+
+TabPFN is an extra because of its weight: it brings `mlx`, `lightgbm`, `huggingface-hub`,
+`safetensors`, `einops` and `httpx` along with torch's ecosystem, and `import qbiocode` must
+not pull torch in. That is the only reason — it needs **no API key and no license
+acceptance**:
+
+```bash
+pip install 'qbiocode[tabpfn]'
+```
+
+QBioCode pins `model_version: v2`, whose weights are published under the Prior Labs License
+(Apache 2.0 plus an attribution clause) and download anonymously on first fit. So a first
+run needs network access, and nothing else.
+
+```{warning}
+**The model version is a licensing choice.** Only `v2` permits commercial use. The newer
+`v2.5`, `v2.6` and `v3` checkpoints are under per-version **non-commercial and
+non-production** licenses, and additionally require accepting that license against a Prior
+Labs account — which upstream does interactively, so they cannot be fetched unattended and
+an API key alone is not sufficient. Selecting one with `model_version` warns and names the
+license. See the table in the [configuration guide](apps/config.md).
+
+`v2` is the default because QBioCode is Apache-2.0 software whose users include companies.
+```
+
+```{note}
+**macOS:** a TabPFN fit maps torch's OpenMP runtime into a process that already has
+xgboost's, and the second one to open a parallel region dies below Python — exit 139, no
+traceback, a notebook reporting only "kernel died". QBioCode sets `OMP_NUM_THREADS=1` before
+importing TabPFN to prevent this, and warns that it has. Set the variable yourself before
+importing `qbiocode` to choose differently. CatBoost is unaffected: it uses its own thread
+pool.
+```
+
+### Supplying an API key (only for the restricted versions)
+
+If you opt into `v2.5`, `v2.6` or `v3`, accept the license at <https://ux.priorlabs.ai>
+(Licenses tab) and copy the API key from the Account page. Store it in a file **outside the
+repository**, which is both convenient (it survives a new shell and a notebook kernel
+started from a launcher) and the only way it cannot be committed:
+
+```bash
+python -c "from qbiocode.utils import write_token_template; print(write_token_template())"
+# -> ~/.config/qbiocode/tabpfn.json, created mode 0600
+# paste the key into its "token" field
+```
+
+QProfiler reads it automatically when `tabpfn` is in the model list, via the
+`tabpfn_json_path` config key. Elsewhere, call `qbiocode.utils.load_tabpfn_token()` before
+fitting. Exporting `TABPFN_TOKEN` still works and takes precedence.
+
+After that it runs unattended like any other model. To stay fully offline, point
+`model_path` at an already-downloaded checkpoint instead.
+
+```{warning}
+Keep the key out of the checkout. `~/.config/qbiocode/tabpfn.json` is the supported
+location precisely because a gitignored file inside the tree is *unlikely* to be
+committed, not unable to be. QBioCode never logs or prints the token;
+`qbiocode.utils.describe_token_source()` reports only whether one is configured and where
+it came from.
+```
+
+Without the extra, `import qbiocode` and every other model keep working; only `tabpfn`
+is affected, and it raises an actionable error naming the extra:
+
+```python
+>>> import qbiocode as qbc
+>>> qbc.compute_tabpfn(X_train, X_test, y_train, y_test, args)
+ImportError: TabPFN is not installed. It is an optional extra rather than a core
+dependency because of its weight: it brings torch's ecosystem along with
+mlx, lightgbm, huggingface-hub and safetensors.
+
+Install it with:
+  pip install "qbiocode[tabpfn]"
+
+No API key or license acceptance is needed: QBioCode pins model_version 'v2',
+whose weights are under the Prior Labs License (Apache 2.0 plus attribution)
+and download anonymously on first fit.
+```
+
+`qbiocode.learning.compute_tabpfn.tabpfn_is_available()` reports whether the extra is
+present without importing it — and importantly without importing `torch`, which
+QBioCode deliberately keeps out of processes that do not need it (see the OpenMP note
+below).
+
+```{note}
+TabPFN supports at most **10 classes**. Unlike its row and feature limits, that ceiling
+is fixed by the checkpoint and is not waived by `ignore_pretraining_limits`.
 ```
 
 ## Install with Conda
@@ -67,7 +223,7 @@ pip install qbiocode
 pip install 'qbiocode[apps]'
 ```
 
-**Note**: See [docs/CONDA_SUBMISSION.md](../CONDA_SUBMISSION.md) for information about the conda submission process.
+**Note**: See [docs/CONDA_SUBMISSION.md](https://github.com/qiskit-community/QBioCode/blob/main/docs/CONDA_SUBMISSION.md) for information about the conda submission process.
 
 ## Install from Source
 
@@ -113,7 +269,7 @@ Once the activated, you'll see `(venv)` at the beginning of your terminal promt.
    
    ```bash
    # Clone the repository first
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
    
    # Install in editable mode
@@ -121,6 +277,12 @@ Once the activated, you'll see `(venv)` at the beginning of your terminal promt.
    
    # Or install with apps support
    pip install -e ".[apps]"
+
+   # Or with QuVINE graph embeddings
+   pip install -e ".[quvine]"
+
+   # Or everything
+   pip install -e ".[all]"
    ```
 
 5. **macOS Users: Install OpenMP for XGBoost (Required)**
@@ -260,7 +422,7 @@ If you need the latest version of QBioCode with the most recent features and bug
 
    ```bash
    # Clone the repository
-   git clone https://github.com/IBM/QBioCode.git
+   git clone https://github.com/qiskit-community/QBioCode.git
    cd QBioCode
    
    # Install QBioCode (this will upgrade the pre-installed version)
@@ -327,6 +489,16 @@ pip install .
 import qbiocode
 ```
 
+**Issue: a notebook kernel dies with no traceback on macOS**
+
+`xgboost`, `torch` and `qiskit-aer` each vendor their own copy of `libomp.dylib` under
+the same install name, and whichever OpenMP runtime initialises second can kill the
+process below Python — so there is no traceback, only "kernel died". `qbiocode`
+initialises xgboost's first (see `qbiocode.utils._openmp`), and `compute_tabpfn`
+imports `tabpfn` lazily so that merely importing QBioCode never maps torch's runtime
+in. If you hit it anyway, set `OMP_NUM_THREADS=1` **before** importing `qbiocode` or
+`torch`. CatBoost is unaffected: it uses its own thread pool rather than OpenMP.
+
 **Issue: XGBoost errors on macOS**
 ```bash
 # Install OpenMP library
@@ -343,9 +515,9 @@ pip install --force-reinstall xgboost
 
 Another cloud-based option is [Google Colab](https://colab.research.google.com/):
 
-```python
+```text
 # In a Colab notebook cell:
-!git clone https://github.com/IBM/QBioCode.git
+!git clone https://github.com/qiskit-community/QBioCode.git
 %cd QBioCode
 !pip install .
 ```

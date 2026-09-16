@@ -7,7 +7,7 @@ qbiocode.data_generation.make_circles module
 .. currentmodule:: qbiocode.data_generation.make_circles
 
 .. automodule:: qbiocode.data_generation.make_circles
-    :members: NOISE, N_SAMPLES, my_make_classification
+    :members: NOISE, N_SAMPLES, generate_circles_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,7 @@ qbiocode.data_generation.make_circles module
     .. autosummary::
         :nosignatures:
 
-        my_make_classification
+        generate_circles_datasets
 
 
 

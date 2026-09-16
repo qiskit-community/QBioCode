@@ -1,3 +1,17 @@
+# Copyright 2026, IBM Corporation.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 Helper Functions for Data Preprocessing and Model Evaluation
 ============================================================
@@ -72,6 +86,45 @@ def scaler_fn(X, scaling: Literal["None", "StandardScaler", "MinMaxScaler"] = "N
         return scaler.fit_transform(X)
     else:  # scaling == 'None'
         return X
+
+
+def scale_train_test(
+    X_train, X_test, scaling: Literal["None", "StandardScaler", "MinMaxScaler"] = "None"
+):
+    """Scale train and test with a single scaler fit on the training set only.
+
+    Unlike calling :func:`scaler_fn` separately on each split (which fits a fresh scaler on
+    the test set using test-set statistics), this fits one scaler on ``X_train`` and applies
+    it to both. That is the correct protocol: the test set is transformed with train-derived
+    statistics, exactly as a deployed model would see unseen data.
+
+    Args:
+        X_train, X_test (array-like): train / test feature matrices.
+        scaling ({'None', 'StandardScaler', 'MinMaxScaler'}): scaler to fit on ``X_train``.
+
+    Returns:
+        tuple: ``(X_train_scaled, X_test_scaled)``. When ``scaling='None'`` the inputs are
+        returned unchanged.
+
+    Raises:
+        ValueError: if ``scaling`` is not one of the three accepted names. A
+            mistyped name used to fall through to the ``'None'`` branch, so
+            ``scaling='minmaxscaler'`` returned unscaled data and reported success.
+    """
+    if scaling == "MinMaxScaler":
+        scaler = MinMaxScaler()
+    elif scaling == "StandardScaler":
+        scaler = StandardScaler()
+    elif scaling == "None":
+        return X_train, X_test
+    else:
+        raise ValueError(
+            f"Unrecognized scaling {scaling!r}. Expected one of 'None', "
+            f"'MinMaxScaler', 'StandardScaler' (case-sensitive)."
+        )
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    return X_train_scaled, X_test_scaled
 
 
 def feature_encoding(

@@ -7,7 +7,7 @@ qbiocode.data_generation.make_swiss_roll module
 .. currentmodule:: qbiocode.data_generation.make_swiss_roll
 
 .. automodule:: qbiocode.data_generation.make_swiss_roll
-    :members: HOLE, NOISE, N_SAMPLES, my_make_swiss_roll
+    :members: HOLE, NOISE, N_SAMPLES, generate_swiss_roll_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,7 @@ qbiocode.data_generation.make_swiss_roll module
     .. autosummary::
         :nosignatures:
 
-        my_make_swiss_roll
+        generate_swiss_roll_datasets
 
 
 

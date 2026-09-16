@@ -7,13 +7,20 @@ qbiocode.visualization.visualize_correlation module
 .. currentmodule:: qbiocode.visualization.visualize_correlation
 
 .. automodule:: qbiocode.visualization.visualize_correlation
-    :members: compute_results_correlation, plot_results_correlation
+    :members: CorrelationFigures, PUBLICATION_STYLE, compute_results_correlation, plot_results_correlation, publication_style
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
 
     Summary
     -------
+
+    Classes:
+
+    .. autosummary::
+        :nosignatures:
+
+        CorrelationFigures
 
     Functions:
 
@@ -22,6 +29,7 @@ qbiocode.visualization.visualize_correlation module
 
         compute_results_correlation
         plot_results_correlation
+        publication_style
 
 
 

@@ -53,12 +53,13 @@ def generate_blobs_datasets(
     Returns
     -------
     dict
-        Dictionary containing generated datasets with keys as configuration strings
-        and values as tuples of (X, y) where:
-        - X : pd.DataFrame, shape (n_samples, n_features)
-            Feature matrix
-        - y : pd.Series, shape (n_samples,)
-            Target labels
+        Dictionary containing generated datasets with keys as configuration
+        strings and values as ``(X, y)`` tuples, where
+
+        - ``X`` is the feature matrix, a ``pd.DataFrame`` of shape
+          ``(n_samples, n_features)``
+        - ``y`` holds the target labels, a ``pd.Series`` of shape
+          ``(n_samples,)``
     
     Notes
     -----
@@ -101,8 +102,8 @@ def generate_blobs_datasets(
     
     References
     ----------
-    .. [1] Pedregosa et al., "Scikit-learn: Machine Learning in Python",
-           JMLR 12, pp. 2825-2830, 2011.
+    Pedregosa et al., "Scikit-learn: Machine Learning in Python",
+    JMLR 12, pp. 2825-2830, 2011.
     """
     dataset_config = {}
     

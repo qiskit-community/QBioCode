@@ -7,7 +7,7 @@ qbiocode.data_generation.make_s_curve module
 .. currentmodule:: qbiocode.data_generation.make_s_curve
 
 .. automodule:: qbiocode.data_generation.make_s_curve
-    :members: NOISE, N_SAMPLES, my_make_s_curve
+    :members: NOISE, N_SAMPLES, generate_s_curve_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,7 @@ qbiocode.data_generation.make_s_curve module
     .. autosummary::
         :nosignatures:
 
-        my_make_s_curve
+        generate_s_curve_datasets
 
 
 

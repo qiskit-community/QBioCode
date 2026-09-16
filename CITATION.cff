@@ -41,8 +41,8 @@ authors:
     email: parida@us.ibm.com
     orcid: https://orcid.org/0000-0002-7872-5074
     affiliation: 'IBM Research, Yorktown Heights, NY, USA'
-repository-code: 'https://github.com/IBM/QBioCode'
-url: 'https://ibm.github.io/QBioCode/'
+repository-code: 'https://github.com/qiskit-community/QBioCode'
+url: 'https://qiskit-community.github.io/QBioCode/'
 abstract: >-
   QBioCode is a comprehensive suite of computational resources for quantum machine learning 
   applications in healthcare and life sciences. It provides tools for benchmarking quantum 

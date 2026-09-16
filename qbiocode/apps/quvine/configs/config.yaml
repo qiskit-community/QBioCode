@@ -1,0 +1,314 @@
+
+# ------------------------------------------------------------
+# Input data (Hydra pipeline only)
+# ------------------------------------------------------------
+# This file ships inside the wheel as the default config, so every path in it is
+# relative: it used to name an absolute /dccstor/... research filesystem, which
+# no installed copy could resolve. Relative paths are read from the working
+# directory you launch from -- point data_path at your own layout, or pass
+# `--config my_config.yaml` to the `quvine` CLI.
+#
+# data_path/, graph.* and disease.* are read only by the Hydra research pipeline
+# (`python -m qbiocode.apps.quvine.main`), which expects the layout below. The
+# `quvine` CLI and the `embed()` API take their graph from the caller and ignore
+# these three sections entirely:
+#
+#   ${data_path}/networks/<graph.name>/edges_list_ncbi.csv
+#   ${data_path}/gwas_gene_pvals/<disease.name>/filtered_ncbi_PEGASUS_<disease.name>_gwas_data.csv
+#   ${data_path}/gene_seeds/<disease.name>_ncbi_seeds.json
+#   ${data_path}/gwas_catalog_targets/<disease.name>_targets_gene2ncbi.json
+data_path: ./data
+
+graph:
+  name: my_network
+  path: ${data_path}/networks/${graph.name}/edges_list_ncbi.csv
+  
+#walker: rwr
+
+disease: 
+  name: my_phenotype
+
+# ------------------------------------------------------------
+# Project / runtime
+# ------------------------------------------------------------
+runtime:
+  name: qune
+  # ${now:...} is a Hydra resolver, so it only interpolates under `main.py`. The
+  # embed() API never reads run_name, and OmegaConf resolves lazily, so loading
+  # this file outside Hydra is fine as long as nothing asks for it.
+  run_name: ${now:%Y-%m-%d_%H-%M-%S}
+  run_dir: ${graph.name}
+  output_dir: ./outputs/${runtime.run_dir}/${runtime.run_name}
+  n_jobs: 16
+  chunk_size: 30
+
+hydra:
+  run:
+    dir: ${runtime.output_dir}
+  sweep:
+    dir: ${runtime.output_dir}
+
+# ------------------------------------------------------------
+# Experiment control
+# ------------------------------------------------------------
+experiment:
+  iterations: 2        # number of stochastic repetitions
+  base_seed: 42          # iteration i uses base_seed + i
+
+# ------------------------------------------------------------
+# Global seed (used before iteration loop)
+# ------------------------------------------------------------
+seed: 42
+
+draw:
+  graph: True
+  verbose: False
+
+# ------------------------------------------------------------
+# Handling Embeddings
+# ------------------------------------------------------------
+
+save_embeddings: True 
+compare_embeddings: True
+
+# ------------------------------------------------------------
+# Preprocessing
+# ------------------------------------------------------------
+preprocess:
+  # NOTE: the pipeline reads preprocess.subsample.{enabled,max_nodes,radius}
+  # (see Pipeline._preprocess_graph -> PrepareGraphConfig). The older
+  # "subgraph"/"num_nodes"/"max_hops" schema is not read and crashed the run.
+  subsample:
+    enabled: True
+    max_nodes: 400
+    radius: 4
+
+  sparsify:
+    enabled: true
+    retain_ratio: 0.4
+    max_degree: 40
+    scoring: common_neighbors
+    
+
+verbose: True
+plots: True
+# ------------------------------------------------------------
+# Views
+# ------------------------------------------------------------
+
+views:
+  num_views: 8
+  constrained: true
+  max_degree: 9
+  max_nodes: 80
+  max_edges: 350
+  degree_norm: True 
+  degree_alpha: 0.7
+
+# ------------------------------------------------------------
+# Walks
+# ------------------------------------------------------------
+
+walks: 
+  kinds:
+  - rwr
+  - ctqw
+  - dtqw
+  num_walks: 10
+  walk_length: 8
+  restart_prob: 0.35
+  steps: 20
+  time: 1.2
+  coin: grover
+  max_iter: 1000
+
+# ------------------------------------------------------------
+# Training
+# ------------------------------------------------------------
+
+dimension: 64
+window: 5
+min_count: 1 
+workers: 8 
+
+train: 
+  embedding_dim: ${dimension}
+  window: ${window}
+  sg: 1
+  negative: 10
+  workers: ${workers}
+  min_count: ${min_count}
+  epochs: 100
+
+# ------------------------------------------------------------
+# Baselines
+# ------------------------------------------------------------
+
+baselines:
+  node2vec:
+    enabled: true
+    dimensions: ${dimension}
+    walk_length: 8
+    num_walks: 10
+    p: 1
+    q: 0.5
+    window: ${window}
+    min_count: ${min_count}
+    workers: ${workers}
+    seed: ${seed}
+
+  # GAT variants
+  gat_baseline:
+    enabled: false
+    variant: raw
+    embedding_dim: ${dimension}
+  gat_heat:
+    enabled: false
+    variant: heat_fixed
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  gat_poly:
+    enabled: false
+    variant: poly_fixed
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  gat_rwr:
+    enabled: false
+    variant: rwr
+    embedding_dim: ${dimension}
+    rwr_alpha: 0.15
+    rwr_steps: 50
+  gat_ctqw_heat:
+    enabled: false
+    variant: heat_qcal_ctqw
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  gat_ctqw_poly:
+    enabled: false
+    variant: poly_qcal_ctqw
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  gat_dtqw_heat:
+    enabled: false
+    variant: heat_qcal_dtqw
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  gat_dtqw_poly:
+    enabled: false
+    variant: poly_qcal_dtqw
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  gat_rwr_heat:
+    enabled: false
+    variant: heat_qcal_rwr
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+    rwr_alpha: 0.15
+    rwr_steps: 50
+  gat_rwr_poly:
+    enabled: false
+    variant: poly_qcal_rwr
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+    rwr_alpha: 0.15
+    rwr_steps: 50
+
+  # GraphGPS variants
+  graphgps_baseline:
+    enabled: false
+    variant: raw
+    embedding_dim: ${dimension}
+  graphgps_heat:
+    enabled: false
+    variant: heat_fixed
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  graphgps_poly:
+    enabled: false
+    variant: poly_fixed
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  graphgps_rwr:
+    enabled: false
+    variant: rwr
+    embedding_dim: ${dimension}
+    rwr_alpha: 0.15
+    rwr_steps: 50
+  graphgps_ctqw_heat:
+    enabled: false
+    variant: heat_qcal_ctqw
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  graphgps_ctqw_poly:
+    enabled: false
+    variant: poly_qcal_ctqw
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  graphgps_dtqw_heat:
+    enabled: false
+    variant: heat_qcal_dtqw
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+  graphgps_dtqw_poly:
+    enabled: false
+    variant: poly_qcal_dtqw
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+  graphgps_rwr_heat:
+    enabled: false
+    variant: heat_qcal_rwr
+    embedding_dim: ${dimension}
+    heat_t: 1.0
+    rwr_alpha: 0.15
+    rwr_steps: 50
+  graphgps_rwr_poly:
+    enabled: false
+    variant: poly_qcal_rwr
+    embedding_dim: ${dimension}
+    poly_K: 4
+    poly_ridge: 1.0e-5
+    rwr_alpha: 0.15
+    rwr_steps: 50
+
+# ------------------------------------------------------------
+# Fusion
+# ------------------------------------------------------------
+fusion:
+  enabled: True
+  # NOTE: the programmatic embed() fused path uses fuse.fuse_embeddings, whose
+  # supported methods are svd/graphreg/attention/hybrid/svd_shared_priv/all
+  # (not "concatenate"). svd is its default and works out of the box.
+  method: svd
+  k: 10
+  
+
+# ------------------------------------------------------------
+# Analysis
+# ------------------------------------------------------------
+
+analysis:
+  cca_components: 10 
+  knn_k: 5
+
+# ------------------------------------------------------------
+# Evaluation
+# ------------------------------------------------------------
+
+evaluation: 
+  enabled: false
+  k_values:
+  - 20
+  - 40
+  - 80
+  n_repeats: 20
+  deg_tol: 0.1
+  centroid: false
+  max_seed: true  
+  

@@ -1,0 +1,65 @@
+# ==========================================================================
+# QBioCode core runtime dependencies
+# ==========================================================================
+# This is the SINGLE SOURCE OF TRUTH for the package's install_requires:
+# pyproject.toml declares `dynamic = ["version", "dependencies"]` and reads
+# this file via [tool.setuptools.dynamic]. It therefore MUST ship in the
+# sdist (see MANIFEST.in) or building from an sdist yields an empty
+# dependency list.
+#
+# Keep this list to what `import qbiocode` and the console scripts actually
+# need. Optional tiers live in sibling files:
+#   requirements-quvine.txt  -> the [quvine] extra (QuVINE embeddings)
+#   requirements-tabpfn.txt  -> the [tabpfn] extra (TabPFN classical learner)
+#   requirements-docs.txt    -> the [docs] extra (Sphinx toolchain)
+#   requirements.txt         -> everything, for development environments
+#
+# catboost is here rather than in an extra because it is an unconditional
+# scikit-learn-compatible estimator with no gate of any kind, so `compute_catboost`
+# can be a plain sibling of `compute_xgb`. tabpfn is NOT here either, but for a
+# different reason: weight. It brings torch's ecosystem plus mlx, lightgbm,
+# huggingface-hub and safetensors, and `import qbiocode` must not pull torch in --
+# see requirements-tabpfn.txt.
+#
+# Do NOT add build-time tooling here (e.g. setuptools). A build-time pin
+# declared as a runtime dependency is a published-metadata bug; see the
+# docstring in setup.py.
+# ==========================================================================
+
+catboost
+dill
+h5py
+hfda
+hydra-core
+ipykernel
+joblib
+matplotlib>=3.9
+networkx
+numpy>=2,<2.3
+optuna
+pandas>=2,<3
+# pyMFE supplies the dataset-complexity meta-features used by
+# qbiocode.evaluation.evaluate (see qbiocode/evaluation/mfe_features.py).
+# It pulls in `gower`; every other dependency of it is already declared here.
+pymfe
+pyyaml
+qiskit==2.4.2
+qiskit-aer==0.17.2
+qiskit-algorithms==0.4.0
+qiskit-ibm-runtime==0.44.0
+qiskit-ibm-transpiler==0.18.0
+qiskit-machine-learning==0.9.1
+scikit-dimension
+scikit-learn>=1.6
+scipy>=1.14
+seaborn
+torch
+tqdm>=4.67.1
+umap-learn
+xgboost
+
+# Single-cell / multi-omics tutorials (sc-qc preprocessing, QProfiler single-cell)
+scanpy
+anndata
+leidenalg
+igraph

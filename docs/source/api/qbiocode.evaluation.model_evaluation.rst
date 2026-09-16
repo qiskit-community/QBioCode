@@ -7,7 +7,7 @@ qbiocode.evaluation.model_evaluation module
 .. currentmodule:: qbiocode.evaluation.model_evaluation
 
 .. automodule:: qbiocode.evaluation.model_evaluation
-    :members: modeleval
+    :members: evaluation_metrics, modeleval
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,6 +20,7 @@ qbiocode.evaluation.model_evaluation module
     .. autosummary::
         :nosignatures:
 
+        evaluation_metrics
         modeleval
 
 

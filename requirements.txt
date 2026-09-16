@@ -1,34 +1,18 @@
-# Core scientific and application stack
-dill
-hfda
-hydra-core
-ipykernel
-joblib
-matplotlib>=3.9
-numpy>=2,<2.3
-optuna
-pandas>=2,<3
-pyyaml
-requests
-scikit-dimension
-scikit-learn>=1.6
-scipy>=1.14
-seaborn
-torch
-tqdm>=4.67.1
-umap-learn
-xgboost
+# ==========================================================================
+# QBioCode requirements -- pointer file
+# ==========================================================================
+# The dependency lists moved into requirements/ and are now tiered:
+#
+#   requirements/requirements-base.txt    core runtime (read by pyproject.toml)
+#   requirements/requirements-quvine.txt  the [quvine] extra
+#   requirements/requirements-docs.txt    the [docs] extra
+#   requirements/requirements.txt         everything, for development
+#
+# This file is kept so that the documented
+#     pip install -r requirements.txt
+# still installs a complete development environment. Run it from the repo
+# root -- requirements/requirements.txt ends in "-e .[dev]", which pip
+# resolves relative to the current directory.
+# ==========================================================================
 
-# Shared Qiskit stack validated with FCC, tetrahedral, and QTF on Python 3.12
-qiskit==2.4.2
-qiskit-aer==0.17.2
-qiskit-algorithms==0.4.0
-qiskit-ibm-runtime==0.44.0
-qiskit-ibm-transpiler==0.18.0
-qiskit-machine-learning==0.9.1
-
-# Single-cell and multi-omics tutorials
-anndata
-igraph
-leidenalg
-scanpy
+-r requirements/requirements.txt

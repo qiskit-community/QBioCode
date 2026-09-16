@@ -51,18 +51,41 @@ This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participatin
 3. **Install in Development Mode**
    ```bash
    pip install -e .
-   pip install -r requirements.txt
    ```
+   `pyproject.toml` reads the runtime dependencies from
+   `requirements/requirements-base.txt`, so this one command installs them too --
+   there is no separate `pip install -r requirements.txt` step.
 
-4. **Install Development Dependencies** (optional)
+4. **Install Optional Tiers** (as needed)
    ```bash
-   pip install -e ".[dev]"
+   pip install -e ".[dev]"     # pytest, nbclient, black, mypy, build
+   pip install -e ".[quvine]"  # the QuVINE embedding methods
+   pip install -e ".[docs]"    # the Sphinx toolchain (pandoc is a system binary)
+   pip install -e ".[all]"     # every tier at once
+   ```
+   Or install the complete development environment in one step, from the repo root:
+   ```bash
+   pip install -r requirements.txt
    ```
 
 5. **Verify Installation**
    ```bash
    python -c "import qbiocode; print(qbiocode.__version__)"
    ```
+
+6. **Building Distribution Artifacts Locally**
+   ```bash
+   rm -rf dist build *.egg-info && python -m build
+   ```
+   The `rm -rf` is not housekeeping. setuptools *unions* the previous
+   `qbiocode.egg-info/SOURCES.txt` into each new sdist rather than recomputing it,
+   so a checkout that ever built with a broader `MANIFEST.in` keeps shipping files
+   `MANIFEST.in` no longer names -- and because `MANIFEST.in` globs the working
+   tree, notebook run output under `tutorial/**/data/` lands in the archive too.
+   Both make the artifact a function of your shell history rather than of the
+   commit. `.github/workflows/release.yml` avoids this by construction, since a
+   fresh `actions/checkout` has no stale metadata;
+   `tests/integration/test_distribution_contents.py` guards it for everyone else.
 
 ## How to Contribute
 
@@ -285,7 +308,7 @@ make clean
 make html
 ```
 
-View documentation at `docs/_build/html/index.html`
+View documentation at `docs/build/html/index.html`
 
 ### Documentation Guidelines
 
@@ -297,11 +320,19 @@ View documentation at `docs/_build/html/index.html`
 
 ### Adding Tutorials
 
-1. Create Jupyter notebook in `tutorial/` directory
-2. Copy to `docs/source/tutorials/` directory
-3. Update `docs/source/tutorials.md` with description
-4. Test notebook execution
-5. Commit both versions
+1. Create the Jupyter notebook in the `tutorial/` directory -- the single source.
+   Do **not** copy it into `docs/source/tutorials/`: that tree is generated from
+   `tutorial/` by `_sync_tutorials()` in `docs/source/conf.py` on every build, and
+   is gitignored. Hand-maintaining a second copy is exactly how the two trees
+   drifted before.
+2. Add it to the hidden toctree at the bottom of `docs/source/tutorials.md`, as
+   `tutorials/<subdir>/<name>`, and write its gallery entry in the same file.
+   A notebook that no toctree names becomes an orphan page, which fails the
+   `-W` docs build; `tests/test_docs_structure.py` catches it first.
+3. Read fixtures through `qbiocode.utils.tutorial_data_path("<file>")` rather than
+   a hand-built relative path, so the notebook runs from any working directory.
+4. Test notebook execution, and commit it with its outputs -- `nbsphinx_execute`
+   is `'never'`, so the committed outputs are what the site publishes.
 
 ## Testing
 

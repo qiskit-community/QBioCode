@@ -1,0 +1,36 @@
+# ==========================================================================
+# QuVINE embedding app -- the [quvine] extra
+# ==========================================================================
+# Installs the dependency set for qbiocode.apps.quvine, which exposes the
+# quantum view-based network embeddings as `get_embeddings("quvine_*", ...)`
+# alongside the classical pca/nmf/umap methods.
+#
+#   pip install "qbiocode[quvine]"        # from a release/checkout
+#   pip install -r requirements/requirements-quvine.txt
+#
+# All-or-nothing by design: there is one extra, not per-walk sub-extras, so
+# that every QuVINE method resolves once the extra is present.
+#
+# This list mirrors the `quvine` entry in pyproject.toml's
+# [project.optional-dependencies]; tests/test_requirements_consistency.py
+# asserts the two stay identical.
+# ==========================================================================
+
+# node2vec imports the deprecated `pkg_resources` module, which setuptools>=81
+# removed. Modern venvs ship setuptools>=81, so without this pin
+# `import node2vec` raises ModuleNotFoundError.
+setuptools<81
+
+# gensim>=4.4 drops the old `scipy.triu` dependency (removed in scipy 1.13),
+# so it works with modern scipy/numpy. Pinning gensim<4.4 instead would force
+# numpy<2.0, which conflicts with qiskit-machine-learning==0.9.0 (numpy>=2.0).
+gensim>=4.4
+
+hiperwalk
+node2vec
+omegaconf
+python-louvain
+ripser
+# torch itself is NOT listed here: qbiocode.embeddings imports it eagerly, so it
+# is a base dependency. torch-geometric needs it and finds it there.
+torch-geometric

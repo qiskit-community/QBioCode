@@ -7,7 +7,7 @@ qbiocode.data_generation.make_class module
 .. currentmodule:: qbiocode.data_generation.make_class
 
 .. automodule:: qbiocode.data_generation.make_class
-    :members: N_CLASSES, N_CLUSTERS_PER_CLASS, N_FEATURES, N_INFORMATIVE, N_REDUNDANT, N_SAMPLES, WEIGHTS, dataset_config, my_make_classification
+    :members: N_CLASSES, N_CLUSTERS_PER_CLASS, N_FEATURES, N_INFORMATIVE, N_REDUNDANT, N_SAMPLES, WEIGHTS, dataset_config, generate_classification_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,7 @@ qbiocode.data_generation.make_class module
     .. autosummary::
         :nosignatures:
 
-        my_make_classification
+        generate_classification_datasets
 
 
 

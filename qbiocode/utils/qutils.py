@@ -5,6 +5,7 @@ import logging
 import math
 import os
 import re
+from functools import reduce
 
 import numpy as np
 import pandas as pd
@@ -51,6 +52,25 @@ def get_backend_session(args: dict, primitive: str, num_qubits: int):
     backend = None
     session = None
     prim = None
+
+    # Checked here rather than left to a bare ``KeyError: 'seed'`` several frames
+    # into a notebook: these keys are the caller's contract, and the message has
+    # to name which one is missing and what it is for.
+    required = ["backend"]
+    if args.get("backend") == "simulator":
+        required.append("seed")
+        if primitive != "estimator":
+            required.append("shots")
+    missing = [key for key in required if key not in args]
+    if missing:
+        raise ValueError(
+            f"args is missing the required key(s) {missing} for the "
+            f"{args.get('backend')!r} backend with the {primitive!r} primitive. "
+            f"'backend' selects where circuits run ('simulator', 'simulator_aer', "
+            f"or an 'ibm_*' device), 'seed' seeds the statevector primitive so "
+            f"runs are reproducible, and 'shots' sets the sampler's shot count. "
+            f"Got keys: {sorted(args)}."
+        )
 
     if args["backend"] == "simulator":
 
@@ -235,6 +255,56 @@ def get_ansatz(ansatz_type, feat_dimension, reps=1, entanglement="linear"):
     return ansatz
 
 
+#: Feature-map names accepted by :func:`get_feature_map`, in the spelling the
+#: config files use. Exported so callers can validate at their own boundary --
+#: e.g. :func:`qbiocode.learning.compute_pqk.compute_pqk` rejects a mistyped
+#: ``encoding`` before it creates directories or reads a projection cache.
+SUPPORTED_FEATURE_MAPS = ("Z", "ZZ", "P")
+
+#: Entanglement patterns accepted by qiskit's ZZ/Pauli feature maps. Validated
+#: because qiskit itself reports an unknown pattern as
+#: "Something went wrong in Rust space", which names neither the parameter nor
+#: the value. A callable or an explicit index list is also valid and is passed
+#: through to qiskit unchecked.
+SUPPORTED_ENTANGLEMENTS = ("full", "linear", "reverse_linear", "pairwise", "circular", "sca")
+
+#: Optimizer names accepted by :func:`get_optimizer`.
+SUPPORTED_OPTIMIZERS = ("SPSA", "COBYLA", "GradientDescent", "L_BFGS_B")
+
+
+def unit_coefficient_data_map(x):
+    """
+    Map a row of features to the rotation angle of a feature-map gate.
+
+    This is the ``data_map_func`` used by the projected-quantum-kernel paths. It
+    divides by two at every step so that every multiplicative factor of a data
+    feature inside a single-qubit gate is 1.0, rather than qiskit's default
+    ``prod(pi - x_i)``.
+
+    Args:
+        x: one row of features -- either numeric, or a symbolic
+            ``ParameterVector``. Qiskit calls a data map with *both*: with
+            symbolic parameters when it builds the feature-map circuit
+            (``PauliFeatureMap.pauli_block`` passes a ``ParameterVector``), and
+            with numeric values only if a caller evaluates the map directly.
+
+    Returns:
+        The mapped angle: a ``float`` for numeric input, or the unevaluated
+        ``ParameterExpression`` for symbolic input.
+
+    Notes:
+        Narrowing the symbolic case with ``float()`` raises
+        ``TypeError: Parameter expression with unbound parameters ... is not
+        numeric`` and makes every ``data_map=True`` feature map unbuildable, so
+        the symbolic expression is returned untouched for qiskit to bind later.
+    """
+    coeff = x[0] / 2 if len(x) == 1 else reduce(lambda m, n: (m * n) / 2, x)
+    try:
+        return float(coeff)
+    except (TypeError, ValueError):
+        return coeff
+
+
 def get_feature_map(feature_map, feat_dimension, reps=1, entanglement="linear", data_map_func=None):
     """
     This function returns a feature map based on the specified type and parameters.
@@ -249,7 +319,39 @@ def get_feature_map(feature_map, feat_dimension, reps=1, entanglement="linear", 
     Returns:
         feature_map: An instance of the specified feature map type.
         feat_dimension (int): The number of qubits in the feature map.
+
+    Raises:
+        ValueError: if ``feature_map`` is not one of ``'Z'``, ``'ZZ'``, ``'P'``,
+            or if ``feat_dimension``/``reps`` is not a positive integer.
     """
+    # Validated here rather than left to the if/elif chain: an unrecognized name
+    # used to fall through every branch and return the *input string* as the
+    # feature map, which then failed several frames later with
+    # "'str' object has no attribute 'num_qubits'" -- a message that says nothing
+    # about the actual mistake, a mistyped encoding.
+    if feature_map not in SUPPORTED_FEATURE_MAPS:
+        raise ValueError(
+            f"Unsupported feature_map {feature_map!r}. Expected one of "
+            f"{SUPPORTED_FEATURE_MAPS} (case-sensitive): 'Z' for ZFeatureMap, "
+            f"'ZZ' for ZZFeatureMap, 'P' for PauliFeatureMap."
+        )
+    if isinstance(entanglement, str) and entanglement not in SUPPORTED_ENTANGLEMENTS:
+        raise ValueError(
+            f"Unsupported entanglement {entanglement!r}. Expected one of "
+            f"{SUPPORTED_ENTANGLEMENTS}, or a callable/index list passed straight "
+            f"through to qiskit."
+        )
+    if not isinstance(feat_dimension, (int, np.integer)) or feat_dimension < 1:
+        raise ValueError(
+            f"feat_dimension is the number of qubits and must be a positive "
+            f"integer; got {feat_dimension!r}."
+        )
+    if not isinstance(reps, (int, np.integer)) or reps < 1:
+        raise ValueError(
+            f"reps is the number of feature-map repetitions and must be a "
+            f"positive integer; got {reps!r}."
+        )
+
     # Get Feature Map
     if feature_map == "Z":
         feature_map = ZFeatureMap(
@@ -294,7 +396,26 @@ def get_optimizer(
 
     Returns:
         optimizer: An instance of the specified optimizer type.
+
+    Raises:
+        ValueError: if ``type`` is not one of ``'SPSA'``, ``'COBYLA'``,
+            ``'GradientDescent'``, ``'L_BFGS_B'``, or if ``max_iter`` is not a
+            positive integer.
     """
+    # Validated up front: an unrecognized name previously left `optimizer`
+    # unbound and surfaced as "cannot access local variable 'optimizer'", which
+    # points at this function's internals rather than at the caller's typo.
+    if type not in SUPPORTED_OPTIMIZERS:
+        raise ValueError(
+            f"Unsupported optimizer {type!r}. Expected one of "
+            f"{SUPPORTED_OPTIMIZERS} (case-sensitive)."
+        )
+    if not isinstance(max_iter, (int, np.integer)) or max_iter < 1:
+        raise ValueError(
+            f"max_iter must be a positive integer number of optimizer "
+            f"iterations; got {max_iter!r}."
+        )
+
     if type == "SPSA":
         if (learning_rate_a != None) & (perturbation_gamma != None):
             # set up the power series
@@ -322,7 +443,11 @@ def get_optimizer(
     elif type == "GradientDescent":
         optimizer = GradientDescent(maxiter=max_iter)
     elif type == "L_BFGS_B":
-        optimizer == L_BFGS_B(maxiter=max_iter)
+        # `=`, not `==`. This was a comparison, so the branch built an optimizer,
+        # discarded it, and left `optimizer` unbound -- every request for
+        # L_BFGS_B (an option both compute_vqc and compute_qnn advertise in their
+        # Literal type hints) raised UnboundLocalError instead of running.
+        optimizer = L_BFGS_B(maxiter=max_iter)
 
     return optimizer
 
@@ -380,7 +505,7 @@ def retrieve_probabilities(counts: dict) -> list:
     return [p0, p1]
 
 
-def execute_circuit(qc, n_shots: int = 8192, device: str = 'CPU'):
+def execute_circuit(qc, n_shots: int = 8192, device: str = 'CPU', seed: int = None):
     """
     Execute quantum circuit on Aer simulator.
     
@@ -429,5 +554,9 @@ def execute_circuit(qc, n_shots: int = 8192, device: str = 'CPU'):
     backend = AerSimulator(method='statevector', device=device, 
                           statevector_parallel_threshold=50)
     tqc = transpile(qc, backend, optimization_level=3)
-    result = backend.run([tqc], shots=n_shots).result()
+    # seed_simulator, without which the shot sampling is drawn from OS entropy. This call
+    # used to omit it, so `compute_qensemble`'s documented `seed` parameter reached the
+    # training-set selection but never the measurement -- every metric it reported drifted
+    # between runs at an identical seed, and nothing said why.
+    result = backend.run([tqc], shots=n_shots, seed_simulator=seed).result()
     return result.get_counts(tqc)

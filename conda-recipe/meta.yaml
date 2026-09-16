@@ -1,5 +1,5 @@
 {% set name = "qbiocode" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/qbiocode-{{ version }}.tar.gz
-  sha256: # This will be filled automatically by conda-forge bot
+  sha256: 29b69270eabc1ac94f24def95ad1d062b84be6c3249488d375b6fbe8f472d87a
 
 build:
   noarch: python
@@ -17,6 +17,7 @@ build:
     - qprofiler=qbiocode.apps.qprofiler.cli:main
     - qprofiler-batch=qbiocode.apps.qprofiler.qprofiler_batchmode:main
     - qsage=qbiocode.apps.sage.sage:main
+    - quvine=qbiocode.apps.quvine.cli:main
 
 requirements:
   host:
@@ -30,9 +31,13 @@ requirements:
     - hfda
     - hydra-core
     - ipykernel
-    - numpy
+    - joblib
+    - matplotlib-base
+    - networkx
+    - numpy >=2,<2.3
     - optuna
     - pandas >=2,<3
+    - pyyaml
     # Qiskit ecosystem
     - qiskit ==2.4.2
     - qiskit-aer ==0.17.2
@@ -42,20 +47,22 @@ requirements:
     - qiskit-machine-learning ==0.9.1
     # ML and data science
     - scikit-dimension
-    - scikit-learn
-    - scipy
+    - scikit-learn >=1.6
+    - scipy >=1.14
     - seaborn
     - pytorch
-    - tqdm
+    - tqdm >=4.67.1
     - umap-learn
     - xgboost
-    # Single-cell and multi-omics tutorials
-    - anndata
-    - python-igraph
-    - leidenalg
+    # catboost is a core dependency alongside xgboost. tabpfn is deliberately
+    # absent: it is the [tabpfn] pip extra, kept out of the base install because it
+    # brings torch's ecosystem plus mlx, lightgbm, huggingface-hub and safetensors.
+    - catboost
+    # Single-cell / multi-omics
     - scanpy
-    # Apps extras
-    - joblib
+    - anndata
+    - leidenalg
+    - igraph
 
 test:
   imports:
@@ -70,35 +77,36 @@ test:
     - qbiocode.apps.sage
   commands:
     - qprofiler --help
+    - qprofiler-batch --help
     - qsage --help
+    - quvine --help
   requires:
     - pip
 
 about:
-  home: https://github.com/IBM/QBioCode
+  home: https://github.com/qiskit-community/QBioCode
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
   summary: Quantum machine learning applications for healthcare and life sciences
   description: |
-    QBioCode provides a comprehensive suite of computational resources for quantum 
-    machine learning applications in healthcare and life science data analysis. 
-    It includes tools for benchmarking quantum and classical ML models, analyzing 
+    QBioCode provides a comprehensive suite of computational resources for quantum
+    machine learning applications in healthcare and life science data analysis.
+    It includes tools for benchmarking quantum and classical ML models, analyzing
     data complexity, and making informed model selection decisions.
-    
+
     Key Features:
     - QProfiler: Automated ML benchmarking with data complexity analysis
     - QSage: Meta-learning tool for intelligent model selection
+    - QuVINE: Quantum View-based Network Embeddings for graph data
     - Data Generation: Create artificial datasets with controlled complexity
     - Quantum ML Support: QSVC, PQK, VQC, QNN implementations
-    - Classical ML Baselines: RF, SVM, LR, DT, NB, MLP, XGBoost
-  doc_url: https://ibm.github.io/QBioCode/
-  dev_url: https://github.com/IBM/QBioCode
+    - Classical ML Baselines: RF, SVM, LR, DT, NB, MLP, XGBoost, CatBoost
+  doc_url: https://qiskit-community.github.io/QBioCode/
+  dev_url: https://github.com/qiskit-community/QBioCode
 
 extra:
   recipe-maintainers:
     - futro  # Filippo Utro
     - krhriss  # Kahn Rhrissorrakrai
     - raubenb  # Bryan Raubenolt
-
-# Made with Bob

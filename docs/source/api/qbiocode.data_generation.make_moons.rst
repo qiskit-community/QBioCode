@@ -7,7 +7,7 @@ qbiocode.data_generation.make_moons module
 .. currentmodule:: qbiocode.data_generation.make_moons
 
 .. automodule:: qbiocode.data_generation.make_moons
-    :members: NOISE, N_SAMPLES, my_make_classification
+    :members: NOISE, N_SAMPLES, generate_moons_datasets
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,7 @@ qbiocode.data_generation.make_moons module
     .. autosummary::
         :nosignatures:
 
-        my_make_classification
+        generate_moons_datasets
 
 
 

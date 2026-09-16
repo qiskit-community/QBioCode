@@ -7,7 +7,7 @@ qbiocode.embeddings.embed module
 .. currentmodule:: qbiocode.embeddings.embed
 
 .. automodule:: qbiocode.embeddings.embed
-    :members: get_embeddings
+    :members: QUVINE_HEADLINE_METHODS, QUVINE_METHODS, SKLEARN_METHODS, check_embedding_name, get_embeddings, is_transductive, pqk
     :undoc-members:
     :show-inheritance:
     :member-order: bysource
@@ -20,7 +20,10 @@ qbiocode.embeddings.embed module
     .. autosummary::
         :nosignatures:
 
+        check_embedding_name
         get_embeddings
+        is_transductive
+        pqk
 
 
 

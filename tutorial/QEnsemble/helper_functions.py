@@ -45,6 +45,43 @@ except ImportError:
     LAZY_AVAILABLE = False
 
 
+def needs_run(predictions, dataset_name, method, rerun=False):
+    """
+    Decide whether a method still has to be computed for a dataset.
+
+    The notebook caches every arm in ``experiments/predictions.pkl`` and skips a
+    cell whose method is already a key of that cache. A method that *ran but
+    produced nothing* is also a key, though, so a result recorded in an
+    environment that lacked an optional dependency was cached as an empty frame
+    and never retried -- which is how the committed cache came to hold
+    ``xgb_gs`` with 0 rows, making the notebook print "Skipping XGBoost" on an
+    install where XGBoost is present. An empty cached result therefore counts as
+    absent.
+
+    Parameters
+    ----------
+    predictions : dict
+        The nested ``{dataset_name: {method: DataFrame}}`` cache.
+    dataset_name : str
+        Dataset key.
+    method : str
+        Method key.
+    rerun : bool
+        Force recomputation, ignoring anything cached.
+
+    Returns
+    -------
+    bool
+        True if the caller should compute this arm.
+    """
+    if rerun or dataset_name not in predictions:
+        return True
+    cached = predictions[dataset_name].get(method)
+    if cached is None:
+        return True
+    return len(cached) == 0
+
+
 def run_random_forest(predictions, dataset, method, dataset_name, seed, test_size, file_predictions, select_features=[],
                       params={}, pca_embed=False, umap_embed=False, n_features=0):
     """
@@ -903,7 +940,7 @@ def post_process_results(predictions, dir_output, datasets, metrics=['Accuracy',
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
         sns.despine()
         plt.tight_layout()
-        plt.savefig(os.path.join(dir_output, 'Blob_max_median_'+ re.sub('\ ', '_', metric) + '.pdf'))
+        plt.savefig(os.path.join(dir_output, 'Blob_max_median_'+ re.sub(' ', '_', metric) + '.pdf'))
         plt.show()
         plt.close()
 

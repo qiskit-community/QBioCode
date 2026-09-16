@@ -8,8 +8,8 @@ Before asking for help, please check our comprehensive documentation:
 
 - **Official Documentation**: [https://qbiocode.readthedocs.io/](https://qbiocode.readthedocs.io/)
 - **API Reference**: [https://qbiocode.readthedocs.io/en/latest/api/](https://qbiocode.readthedocs.io/en/latest/api/)
-- **Tutorials**: Check the `tutorial/` directory in the repository
-- **Examples**: See the `docs/source/tutorials/` directory
+- **Tutorials**: Check the `tutorial/` directory in the repository, or the
+  rendered gallery at [https://qiskit-community.github.io/QBioCode/tutorials.html](https://qiskit-community.github.io/QBioCode/tutorials.html)
 
 ## 💬 Getting Help
 
@@ -21,15 +21,15 @@ For general questions, discussions, and community support:
 - **Ideas**: Share and discuss new ideas
 - **Show and Tell**: Share your projects using QBioCode
 
-👉 [Start a Discussion](https://github.com/IBM/QBioCode/discussions)
+👉 [Start a Discussion](https://github.com/qiskit-community/QBioCode/discussions)
 
 ### GitHub Issues
 
 For bug reports and feature requests, please use GitHub Issues:
 
-- **Bug Reports**: [Report a bug](https://github.com/IBM/QBioCode/issues/new?template=bug_report.yml)
-- **Feature Requests**: [Request a feature](https://github.com/IBM/QBioCode/issues/new?template=feature_request.yml)
-- **Documentation**: [Report documentation issues](https://github.com/IBM/QBioCode/issues/new?template=documentation.yml)
+- **Bug Reports**: [Report a bug](https://github.com/qiskit-community/QBioCode/issues/new?template=bug_report.yml)
+- **Feature Requests**: [Request a feature](https://github.com/qiskit-community/QBioCode/issues/new?template=feature_request.yml)
+- **Documentation**: [Report documentation issues](https://github.com/qiskit-community/QBioCode/issues/new?template=documentation.yml)
 
 ### Email Support
 

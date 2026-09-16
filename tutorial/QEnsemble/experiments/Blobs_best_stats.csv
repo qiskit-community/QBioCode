@@ -1,8 +1,21 @@
 Method,Baseline,Dataset,Metric,Median method,Median baseline,Std. dev. method,Std. dev. baseline,t statistic,p-value
+random_forest,xgb,blob,Accuracy,0.75,0.5,0.22,0.435,4.87,0.0
+xgb,random_forest,blob,Accuracy,0.5,0.75,0.435,0.22,-4.87,1.0
 qcosine,random_forest,blob,Accuracy,0.5,0.75,0.244,0.22,-8.097,1.0
+qcosine,xgb,blob,Accuracy,0.5,0.5,0.244,0.435,-0.581,0.719
 qensemble,random_forest,blob,Accuracy,0.75,0.75,0.375,0.22,-2.851,0.998
+qensemble,xgb,blob,Accuracy,0.75,0.5,0.375,0.435,1.975,0.025
 qensemble_random_unitary,random_forest,blob,Accuracy,0.75,0.75,0.195,0.22,0.716,0.237
+qensemble_random_unitary,xgb,blob,Accuracy,0.75,0.5,0.195,0.435,5.42,0.0
+random_forest,xgb,blob,F1 Score,0.733,0.333,0.293,0.442,3.977,0.0
+xgb,random_forest,blob,F1 Score,0.333,0.733,0.442,0.293,-3.977,1.0
 qcosine,random_forest,blob,F1 Score,0.5,0.733,0.256,0.293,-6.24,1.0
+qcosine,xgb,blob,F1 Score,0.5,0.333,0.256,0.442,-0.626,0.734
 qensemble,random_forest,blob,F1 Score,0.733,0.733,0.392,0.293,-1.844,0.967
+qensemble,xgb,blob,F1 Score,0.733,0.333,0.392,0.442,2.039,0.021
 qensemble_random_unitary,random_forest,blob,F1 Score,0.733,0.733,0.237,0.293,1.307,0.096
+qensemble_random_unitary,xgb,blob,F1 Score,0.733,0.333,0.237,0.442,5.187,0.0
+random_forest,xgb,blob,brier,0.233,0.235,0.105,0.101,-1.462,0.073
+xgb,random_forest,blob,brier,0.235,0.233,0.101,0.105,1.462,0.927
 qcosine,random_forest,blob,brier,0.411,0.233,0.219,0.105,8.476,1.0
+qcosine,xgb,blob,brier,0.411,0.235,0.219,0.101,7.665,1.0

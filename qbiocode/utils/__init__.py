@@ -29,6 +29,8 @@ Available Functions
 - prepare_training_set: Prepare balanced training subset
 - retrieve_probabilities: Extract probabilities from measurement counts
 - execute_circuit: Execute quantum circuit on Aer simulator
+- tutorial_data_path: Locate a tutorial fixture across the repo data directories
+- tutorial_data_dirs: The directories tutorial_data_path searches, in order
 
 Usage
 -----
@@ -49,8 +51,15 @@ from .find_duplicates import find_duplicate_files
 from .find_string import find_string_in_files
 from .generate_qml_configs import generate_qml_experiment_configs
 from .helper_fn import feature_encoding, scaler_fn
-from .ibm_account import get_creds, instantiate_runtime_service
+from .ibm_account import get_creds, instantiate_runtime_service, redacted
+from .tabpfn_account import (
+    check_tabpfn_access,
+    describe_token_source,
+    load_tabpfn_token,
+    write_token_template,
+)
 from .qc_winner_finder import qml_winner
+from .tutorial_data import tutorial_data_dirs, tutorial_data_path
 from .qutils import (
     execute_circuit,
     get_ansatz,
@@ -68,6 +77,11 @@ from .data_encoding import (
 )
 
 __all__ = [
+    "check_tabpfn_access",
+    "redacted",
+    "describe_token_source",
+    "load_tabpfn_token",
+    "write_token_template",
     # Data preprocessing
     "scaler_fn",
     "feature_encoding",
@@ -98,4 +112,7 @@ __all__ = [
     "prepare_training_set",
     "retrieve_probabilities",
     "execute_circuit",
+    # Tutorial fixtures
+    "tutorial_data_path",
+    "tutorial_data_dirs",
 ]
