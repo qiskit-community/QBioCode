@@ -30,10 +30,11 @@ QBioCode requires Python **3.10 or higher** and has been tested with Python vers
 #### Install from PyPI (Recommended)
 
 ```bash
-# Install the latest stable version
+# Standard installation: QBioCode's library, applications, quantum,
+# machine-learning, visualization, and tutorial runtime dependencies
 pip install qbiocode
 
-# Install with apps support (QProfiler, QSage)
+# Backward-compatible alias; QProfiler and QSage are already included above
 pip install 'qbiocode[apps]'
 
 # Install with QuVINE graph embeddings (quvine_rwr, quvine_dtqw, node2vec, ...)
@@ -106,14 +107,20 @@ source .env/bin/activate  # On Windows: .env\Scripts\activate
 # Install QBioCode in editable mode
 pip install -e .
 
-# Install with apps support (QProfiler, QSage)
+# Backward-compatible alias; applications are part of the standard install
 pip install -e '.[apps]'
 
 # Install with QuVINE graph embeddings
 pip install -e '.[quvine]'
 ```
 
-**macOS Users:** XGBoost requires OpenMP. Install it using Homebrew:
+**macOS Users:** XGBoost requires OpenMP. In a Conda or Miniforge
+environment, install the cross-platform runtime from conda-forge:
+```bash
+conda install -c conda-forge llvm-openmp
+```
+
+Alternatively, Homebrew users can install it with:
 ```bash
 brew install libomp
 pip install --force-reinstall xgboost

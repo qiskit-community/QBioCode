@@ -93,7 +93,10 @@ METRICS = ["accuracy", "f1_score", "auc"]
 MODELS = ["rf", "svc"]
 
 
-def results_table(parameter_column="Model_Parameters", n_datasets=6, schema="legacy"):
+def results_table(
+    parameter_column="Model_Parameters", n_datasets=6, schema="legacy", *,
+    include_derived_metadata=True,
+):
     """A QProfiler-shaped results table with one parameter column, as QProfiler writes."""
     rng = np.random.default_rng(0)
     rows = []
@@ -115,10 +118,11 @@ def results_table(parameter_column="Model_Parameters", n_datasets=6, schema="leg
                 row[parameter_column] = "{}"
                 rows.append(row)
     frame = pd.DataFrame(rows)
-    frame["datatype"] = frame["Dataset"]
-    frame["model_embed_datatype"] = (
-        frame["model"] + "_" + frame["embeddings"] + "_" + frame["datatype"]
-    )
+    if include_derived_metadata:
+        frame["datatype"] = frame["Dataset"]
+        frame["model_embed_datatype"] = (
+            frame["model"] + "_" + frame["embeddings"] + "_" + frame["datatype"]
+        )
     return frame
 
 
@@ -137,6 +141,18 @@ class TestSchemaDetection:
         # point of detecting rather than naming.
         assert set(PYMFE_FEATURES) <= set(sage._columns_data_features)
         assert any(c.startswith("mfe.") for c in sage._columns_data_features)
+
+    @pytest.mark.parametrize("schema", sorted(SCHEMAS))
+    def test_raw_qprofiler_output_gets_derived_metadata(self, schema):
+        """QSage accepts ModelResults.csv without notebook-only preparation."""
+        frame = results_table(schema=schema, include_derived_metadata=False)
+        sage = _sage.QuantumSage(data_input=frame)
+        assert sage._input_data_metadata["datatype"].equals(frame["Dataset"])
+        expected = (
+            frame["model"] + "_" + frame["embeddings"] + "_" + frame["Dataset"]
+        )
+        assert sage._input_data_metadata["model_embed_datatype"].equals(expected)
+        assert sage._input_data_metadata["iteration"].eq(1).all()
 
     def test_the_committed_benchmark_table_is_still_trainable(self):
         """The table the QSage tutorial trains on is legacy-schema and unregenerable.
@@ -192,13 +208,10 @@ def test_it_accepts_a_table_recording_no_parameters_at_all(schema):
 
 
 @pytest.mark.parametrize("schema", sorted(SCHEMAS))
-def test_a_genuinely_missing_metadata_column_is_named_with_what_to_do(schema):
+def test_missing_iteration_defaults_to_first_iteration(schema):
     frame = results_table(schema=schema).drop(columns=["iteration"])
-    with pytest.raises(ValueError) as failure:
-        _sage.QuantumSage(data_input=frame)
-    message = str(failure.value)
-    assert "'iteration'" in message
-    assert "ModelResults.csv" in message
+    sage = _sage.QuantumSage(data_input=frame)
+    assert sage._input_data_metadata["iteration"].eq(1).all()
 
 
 @pytest.mark.parametrize("schema", sorted(SCHEMAS))

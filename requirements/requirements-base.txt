@@ -33,29 +33,28 @@ hfda
 hydra-core
 ipykernel
 joblib
-matplotlib
+matplotlib>=3.9
 networkx
-numpy
+numpy>=2,<2.3
 optuna
-pandas
+pandas>=2,<3
 # pyMFE supplies the dataset-complexity meta-features used by
 # qbiocode.evaluation.evaluate (see qbiocode/evaluation/mfe_features.py).
 # It pulls in `gower`; every other dependency of it is already declared here.
 pymfe
 pyyaml
-qiskit==2.2.0
-qiskit-aer==0.17.0
+qiskit==2.4.2
+qiskit-aer==0.17.2
 qiskit-algorithms==0.4.0
 qiskit-ibm-runtime==0.44.0
-qiskit-ibm-transpiler==0.11.0
-qiskit-machine-learning==0.9.0
-qiskit-nature==0.7.2
+qiskit-ibm-transpiler==0.18.0
+qiskit-machine-learning==0.9.1
 scikit-dimension
-scikit-learn
-scipy
+scikit-learn>=1.6
+scipy>=1.14
 seaborn
 torch
-tqdm
+tqdm>=4.67.1
 umap-learn
 xgboost
 
