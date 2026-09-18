@@ -46,6 +46,25 @@ class QuantumSage():
         This function initializes the Sage with the input data frame that contains the data characteristics and performance metrics
         '''
 
+        # QProfiler already writes the source fields needed to derive QSage's
+        # bookkeeping metadata. Normalize them here so a raw ModelResults.csv
+        # can be passed directly, while preserving caller-supplied values.
+        data_input = data_input.copy()
+        if 'datatype' not in data_input.columns and 'Dataset' in data_input.columns:
+            data_input['datatype'] = data_input['Dataset']
+        if 'model_embed_datatype' not in data_input.columns:
+            required = {'model', 'embeddings', 'datatype'}
+            if required <= set(data_input.columns):
+                data_input['model_embed_datatype'] = (
+                    data_input['model'].astype(str)
+                    + '_'
+                    + data_input['embeddings'].fillna('none').astype(str)
+                    + '_'
+                    + data_input['datatype'].astype(str)
+                )
+        if 'iteration' not in data_input.columns:
+            data_input['iteration'] = 1
+
         # Detected rather than hardcoded: the complexity block QProfiler writes is
         # now pyMFE-backed, but the committed benchmark table predates that and
         # cannot be regenerated from this repository. Reading whichever schema the
@@ -88,15 +107,14 @@ class QuantumSage():
             raise ValueError(
                 f"data_input is missing {len(missing)} required column(s): {missing}. "
                 "QSage trains on a QProfiler results table (ModelResults.csv) with the "
-                "metadata columns the QSage tutorial adds -- 'datatype', "
-                "'model_embed_datatype' and 'iteration'. See "
-                "tutorial/QSage/qsage.ipynb for the exact preparation step."
+                "metadata columns derived from a QProfiler table -- 'datatype', "
+                "'model_embed_datatype' and 'iteration' -- could not be created. "
+                "Check that Dataset, model, and embeddings are present."
             )
 
         # Grid-search and serialized model parameters are optional QProfiler
         # outputs.  Keep the QSage input schema stable when either feature was
         # disabled in the producing QProfiler run.
-        data_input = data_input.copy()
         for column in ('BestParams_GridSearch', 'Model_Parameters'):
             if column not in data_input.columns:
                 data_input[column] = None
